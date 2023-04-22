@@ -117,3 +117,22 @@ import { SITE } from '~/config.mjs';
     document.querySelector('#header nav')?.classList.add('hidden');
   };
 </script>
+<script>
+  import Scrollbar from 'smooth-scrollbar';
+
+  const container = document.getElementById('scrollable-content');
+
+  if (container !== null) {
+    const options = {
+      damping: 0.05,
+      thumbMinSize: 20,
+      renderByPixels: true,
+      alwaysShowTracks: false,
+      continuousScrolling: true,
+    };
+
+    Scrollbar.init(container, options);
+  } else {
+    console.error('No se pudo encontrar el elemento con el ID "scrollable-content"');
+  }
+</script>
