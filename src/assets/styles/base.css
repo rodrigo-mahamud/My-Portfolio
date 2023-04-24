@@ -76,9 +76,9 @@
 }
 
 .card {
-  box-shadow: inset 0px 250px 40px -35px rgb(255 255 255 / 15%);
+  box-shadow: inset 0px 200px 50px -25px rgb(255 255 255 / 20%);
   cursor: pointer;
-  border-radius: 1rem;
+  border-radius: 16px;
   display: flex;
   height: 304px;
   flex-direction: column;
@@ -114,7 +114,7 @@
   background: radial-gradient(
     15rem circle at var(--mouse-x) var(--mouse-y),
     rgba(255, 255, 255, 0.75),
-    transparent 100%
+    transparent 80%
   );
   z-index: 1;
 }
@@ -125,7 +125,7 @@
   display: flex;
   flex-direction: column;
   flex-grow: 1;
-  inset: 1px;
+  inset: 0.06rem 0.05rem 0.05rem 0.05rem;
   position: absolute;
   z-index: 2;
 }
