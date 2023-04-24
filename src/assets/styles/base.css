@@ -76,7 +76,9 @@
 }
 
 .card {
+  box-shadow: inset 0px 250px 40px -35px rgb(255 255 255 / 15%);
   cursor: pointer;
+  border-radius: 1rem;
   display: flex;
   height: 304px;
   flex-direction: column;
@@ -89,7 +91,7 @@
 
 .card::before,
 .card::after {
-  border-radius: 1rem;
+  border-radius: inherit;
   content: '';
   height: 100%;
   left: 0px;
@@ -119,6 +121,7 @@
 
 .card > .card-content {
   background-color: rgb(10, 1, 24);
+  border-radius: inherit;
   display: flex;
   flex-direction: column;
   flex-grow: 1;
