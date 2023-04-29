@@ -69,6 +69,16 @@
 .scrollbar-thumb {
   background: rgb(255 255 255 / 50%);
 }
+/*----ESFERA----*/
+#esfera {
+  position: fixed;
+  width: 20px;
+  height: 20px;
+  background-color: white;
+  border-radius: 50%;
+  pointer-events: none; /* Para permitir que los eventos del ratón pasen a través de la esfera */
+  z-index: 9999; /* Coloca la esfera por encima de otros elementos */
+}
 /*----CARDS----*/
 
 #cards:hover > .card::after {

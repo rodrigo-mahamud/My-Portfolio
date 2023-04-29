@@ -164,4 +164,25 @@ import { SITE } from '~/config.mjs';
   }
 
   resetScrollbarTimeout();
+
+  import { gsap } from 'gsap';
+
+  document.addEventListener('DOMContentLoaded', function () {
+    // Selecciona el elemento que representa la esfera
+    const esfera = document.getElementById('esfera');
+
+    // Crea una función para manejar el movimiento del ratón
+    function moverEsfera(e) {
+      // Usa GSAP para actualizar la posición de la esfera con un delay
+      gsap.to(esfera, {
+        x: e.clientX,
+        y: e.clientY,
+        duration: 0.3, // Aumenta la duración para introducir un delay
+        ease: 'power1.out', // Añade una función de suavizado para un seguimiento más suave
+      });
+    }
+
+    // Agrega un evento 'mousemove' al documento para seguir la posición del ratón
+    document.addEventListener('mousemove', moverEsfera);
+  });
 </script>
