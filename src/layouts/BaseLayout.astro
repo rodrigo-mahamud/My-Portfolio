@@ -20,8 +20,20 @@ const { language = 'es', textDirection = 'ltr' } = SITE;
   <head>
     <MetaTags {...meta} />
   </head>
-  <body class="antialiased text-page bg-light dark:text-slate-300 tracking-tight dark:bg-dark">
-    <div id="esfera"></div>
+  <body class="antialiased text-page bg-light dark:text-slate-300 tracking-tight dark:bg-dark cursor-none">
+    <div id="esfera-container">
+      <div id="esfera">
+        <svg width="0" height="0">
+          <defs>
+            <filter id="motionBlur">
+              <feGaussianBlur in="SourceGraphic" stdDeviation="0 0"></feGaussianBlur>
+            </filter>
+          </defs>
+        </svg>
+      </div>
+      <div class="semicircle"></div>
+    </div>
+
     <slot />
     <BasicScripts />
     <style is:global>

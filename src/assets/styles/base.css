@@ -72,13 +72,15 @@
 /*----ESFERA----*/
 #esfera {
   position: fixed;
-  width: 20px;
-  height: 20px;
-  background-color: white;
+  width: 3rem;
+  height: 3rem;
+  color: #fff;
+  border: 2px solid;
   border-radius: 50%;
-  pointer-events: none; /* Para permitir que los eventos del ratón pasen a través de la esfera */
-  z-index: 9999; /* Coloca la esfera por encima de otros elementos */
+  pointer-events: none;
+  z-index: 9999;
 }
+
 /*----CARDS----*/
 
 #cards:hover > .card::after {
@@ -87,7 +89,6 @@
 
 .card {
   box-shadow: inset 0px 200px 50px -25px rgb(255 255 255 / 20%);
-  cursor: pointer;
   border-radius: 16px;
   display: flex;
   height: 304px;
