@@ -58,17 +58,6 @@
 [data-aw-toggle-menu].expanded g > path:last-child {
   @apply rotate-45 translate-y-[-8px] translate-x-[14px];
 }
-#scrollable-content {
-  height: 100vh; /* Altura fija */
-  overflow: hidden;
-}
-.scrollbar-track {
-  background: rgb(222 222 222 / 0%);
-  transition: opacity 0.3s ease-in-out;
-}
-.scrollbar-thumb {
-  background: rgb(255 255 255 / 50%);
-}
 /*----CARDS----*/
 
 #cards:hover > .card::after {

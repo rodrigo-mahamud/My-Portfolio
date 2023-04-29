@@ -45,6 +45,7 @@
     "node": ">=16.12.0"
   },
   "dependencies": {
+    "gsap": "^3.11.5",
     "smooth-scrollbar": "^8.8.3"
   }
 }
