@@ -80,6 +80,24 @@
   pointer-events: none;
   z-index: 9999;
 }
+/*---TRANSICION----*/
+#loading-text-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.8); /* Fondo semitransparente */
+  z-index: 1000; /* Coloque el texto por encima de otros elementos */
+}
+
+#loading-text {
+  font-size: 24px;
+  font-weight: bold;
+}
 
 /*----CARDS----*/
 

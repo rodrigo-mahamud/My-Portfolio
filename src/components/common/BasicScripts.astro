@@ -244,4 +244,28 @@ import { SITE } from '~/config.mjs';
     // Agrega un evento 'mousemove' al documento para seguir la posición del ratón
     document.addEventListener('mousemove', moverEsfera);
   });
+
+  function animateLoadingText() {
+    const loadingTextContainer = document.getElementById('loading-text-container');
+
+    if (loadingTextContainer) {
+      // Coloca el contenedor en el centro
+      loadingTextContainer.style.transform = 'translateY(0%)';
+
+      // Animación de abajo hacia arriba para ocultar el texto
+      gsap.to(loadingTextContainer, {
+        y: '-100%',
+        duration: 1, // Duración de la animación
+        delay: 2, // Tiempo antes de que comience la animación de salida
+        onComplete: () => {
+          // Eliminar el contenedor del texto una vez que la animación haya terminado
+          loadingTextContainer.remove();
+        },
+      });
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', animateLoadingText);
+
+  document.addEventListener('DOMContentLoaded', animateLoadingText);
 </script>
