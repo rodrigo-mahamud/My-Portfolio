@@ -18,10 +18,12 @@ const { meta } = Astro.props;
   <slot name="header">
     <Header {...headerData} isSticky showRssFeed showToggleTheme />
   </slot>
-  <main>
-    <slot />
-  </main>
-  <slot name="footer">
-    <Footer {...footerData} />
-  </slot>
+  <div id="scrollable-content">
+    <main>
+      <slot />
+    </main>
+    <slot name="footer">
+      <Footer {...footerData} />
+    </slot>
+  </div>
 </Layout>
