@@ -6,6 +6,7 @@ import BasicScripts from '~/components/common/BasicScripts.astro';
 
 import { MetaSEO } from '~/types';
 import { SITE } from '~/config.mjs';
+import Mice from '~/components/common/Mice.astro';
 
 export interface Props {
   meta?: MetaSEO;
@@ -25,19 +26,7 @@ const { language = 'es', textDirection = 'ltr' } = SITE;
       <p id="loading-text">Texto de carga</p>
     </div>
 
-    <div id="esfera-container">
-      <div id="esfera">
-        <svg width="0" height="0">
-          <defs>
-            <filter id="motionBlur">
-              <feGaussianBlur in="SourceGraphic" stdDeviation="0 0"></feGaussianBlur>
-            </filter>
-          </defs>
-        </svg>
-      </div>
-      <div class="semicircle"></div>
-    </div>
-
+    <Mice />
     <slot />
     <BasicScripts />
     <style is:global>
