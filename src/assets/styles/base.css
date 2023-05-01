@@ -90,8 +90,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgba(255, 255, 255, 0.8); /* Fondo semitransparente */
-  z-index: 1000; /* Coloque el texto por encima de otros elementos */
+  background-color: #0a0118;
+  z-index: 99999;
 }
 
 #loading-text {
