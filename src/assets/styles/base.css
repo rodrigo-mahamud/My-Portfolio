@@ -82,6 +82,7 @@
   z-index: 9999;
   align-items: center;
   justify-content: center;
+  opacity: 0;
 }
 #welcome {
   animation: rotateSmooth 0.75s ease-in-out infinite alternate;

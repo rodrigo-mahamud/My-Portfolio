@@ -10,7 +10,7 @@
   /*----MICE SCRIPTS---- */
   /*---------------------*/
 
-  document.addEventListener('DOMContentLoaded', function () {
+  window.addEventListener('DOMContentLoaded', function () {
     // Selecciona el elemento que representa la esfera y el filtro de desenfoque
     const esfera = document.getElementById('esfera');
     const welcome = document.getElementById('welcome');
@@ -52,7 +52,8 @@
 
       // Usa GSAP para actualizar la posición de la esfera con un delay
       if (esferaRect) {
-        gsap.to(esfera, {
+        gsap.set(esfera, {
+          opacity: 1,
           x: mouseX - esferaRect.width, // Ajusta la posición en X
           y: mouseY - esferaRect.height / 1.5, // Ajusta la posición en Y
           duration: 0.2,
@@ -83,7 +84,6 @@
     }
     window.addEventListener('load', function () {
       setTimeout(function () {
-        console.log('El temporizador ha finalizado');
         gsap.to(welcome, {
           opacity: 0,
           duration: 0.2,
