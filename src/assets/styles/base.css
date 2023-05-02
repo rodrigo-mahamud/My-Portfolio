@@ -83,6 +83,27 @@
   align-items: center;
   justify-content: center;
 }
+#welcome {
+  animation: rotateSmooth 0.75s ease-in-out infinite alternate;
+}
+@keyframes rotateSmooth {
+  0% {
+    transform: rotate(15deg);
+  }
+  25% {
+    transform: rotate(-15deg);
+  }
+  50% {
+    transform: rotate(20deg);
+  }
+  75% {
+    transform: rotate(-20deg);
+  }
+  100% {
+    transform: rotate(15deg);
+  }
+}
+
 /*---TRANSICION----*/
 #loading-text-container {
   position: fixed;

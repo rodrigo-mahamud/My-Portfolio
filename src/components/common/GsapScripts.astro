@@ -53,8 +53,8 @@
       // Usa GSAP para actualizar la posición de la esfera con un delay
       if (esferaRect) {
         gsap.to(esfera, {
-          x: mouseX - esferaRect.width / 2, // Ajusta la posición en X
-          y: mouseY - esferaRect.height / 2, // Ajusta la posición en Y
+          x: mouseX - esferaRect.width, // Ajusta la posición en X
+          y: mouseY - esferaRect.height / 1.5, // Ajusta la posición en Y
           duration: 0.2,
           ease: 'expo.out',
         });
@@ -96,7 +96,7 @@
           background: 'transparent',
           ease: 'expo.out',
         });
-      }, 2000); // El tiempo de espera en milisegundos, por ejemplo, 2000 ms (2 segundos)
+      }, 1000);
     });
 
     // Aplica el filtro de desenfoque de movimiento a la esfera
