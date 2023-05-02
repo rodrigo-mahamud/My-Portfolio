@@ -72,13 +72,16 @@
 /*----ESFERA----*/
 #esfera {
   position: fixed;
-  width: 3rem;
-  height: 3rem;
+  width: 6rem;
+  display: flex;
+  height: 6rem;
   color: #fff;
   border: 2px solid;
   border-radius: 50%;
   pointer-events: none;
   z-index: 9999;
+  align-items: center;
+  justify-content: center;
 }
 /*---TRANSICION----*/
 #loading-text-container {
@@ -91,7 +94,7 @@
   justify-content: center;
   align-items: center;
   background-color: #0a0118;
-  z-index: 99999;
+  z-index: 999;
 }
 
 #loading-text {

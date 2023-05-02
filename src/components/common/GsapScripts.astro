@@ -13,6 +13,7 @@
   document.addEventListener('DOMContentLoaded', function () {
     // Selecciona el elemento que representa la esfera y el filtro de desenfoque
     const esfera = document.getElementById('esfera');
+    const welcome = document.getElementById('welcome');
     const motionBlurFilter = document.querySelector('#motionBlur feGaussianBlur');
 
     // Verifica si la esfera y el filtro de desenfoque existen en el DOM
@@ -80,6 +81,22 @@
         });
       }, 50);
     }
+    window.addEventListener('load', function () {
+      setTimeout(function () {
+        console.log('El temporizador ha finalizado');
+        gsap.to(welcome, {
+          opacity: 0,
+          duration: 0.2,
+          ease: 'expo.out',
+        });
+        gsap.to(esfera, {
+          width: '3rem',
+          height: '3rem',
+          duration: 0.2,
+          ease: 'expo.out',
+        });
+      }, 2000); // El tiempo de espera en milisegundos, por ejemplo, 2000 ms (2 segundos)
+    });
 
     // Aplica el filtro de desenfoque de movimiento a la esfera
     esfera.style.filter = 'url(#motionBlur)';
