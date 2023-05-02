@@ -76,7 +76,7 @@
   width: 6rem;
   height: 6rem;
   background-color: blue;
-  border: 0px solid;
+  color: #fff;
   border-radius: 50%;
   pointer-events: none;
   z-index: 9999;
