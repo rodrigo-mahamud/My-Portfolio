@@ -72,11 +72,11 @@
 /*----ESFERA----*/
 #esfera {
   position: fixed;
-  width: 6rem;
   display: flex;
+  width: 6rem;
   height: 6rem;
-  color: #fff;
-  border: 2px solid;
+  background-color: blue;
+  border: 0px solid;
   border-radius: 50%;
   pointer-events: none;
   z-index: 9999;
