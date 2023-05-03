@@ -8,50 +8,6 @@
   gsap.registerPlugin(ScrollTrigger);
 
   document.addEventListener('DOMContentLoaded', () => {
-    const navLinks = document.querySelectorAll('#header nav a');
-    const sections = document.querySelectorAll('section');
-
-    const observerOptions = {
-      rootMargin: '-10% 0px -90% 0px',
-    };
-
-    function handleIntersection(entries) {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          const targetLink = document.querySelector(`#header nav a[href="#${entry.target.id}"]`);
-
-          // Cambia el color del enlace activo
-          gsap.to(targetLink, {
-            color: '#fff', // Color deseado para el enlace activo
-            duration: 0.3,
-            backgroundImage: 'rgb(51, 51, 51)',
-            boxShadow:
-              'rgba(255, 255, 255, 0.74) 0px -8px 24px -14px inset, rgba(255, 255, 255, 0.54) 0px 6px 61px -15px',
-            overwrite: true,
-          });
-
-          // Restablece el color de los otros enlaces
-          navLinks.forEach((link) => {
-            if (link !== targetLink) {
-              gsap.to(link, {
-                clearProps: 'all',
-                color: '',
-                duration: 0.3,
-                overwrite: true,
-              });
-            }
-          });
-        }
-      });
-    }
-
-    const observer = new IntersectionObserver(handleIntersection, observerOptions);
-
-    sections.forEach((section) => {
-      observer.observe(section);
-    });
-
-    // Código de la animación de la esfera
     const esfera = document.getElementById('esfera');
     const welcome = document.getElementById('welcome');
     const motionBlurFilter = document.querySelector('#motionBlur feGaussianBlur');

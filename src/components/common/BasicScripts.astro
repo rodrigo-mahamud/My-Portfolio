@@ -183,4 +183,35 @@ import { SITE } from '~/config.mjs';
   }
 
   resetScrollbarTimeout();
+  import { gsap } from 'gsap';
+  const navGlow = document.querySelector('#navGlow');
+
+  if (!container) {
+    console.error('No se pudo encontrar el elemento con el ID "scrollable-content"');
+  }
+
+  function updateNavGlow() {
+    const scrollPercent =
+      scrollbarInstance.offset.y / (scrollbarInstance.limit.y - scrollbarInstance.size.container.height);
+    let navGlowPosition;
+
+    if (scrollPercent <= 0.2) {
+      navGlowPosition = 0;
+    } else if (scrollPercent <= 0.5) {
+      navGlowPosition = 20;
+    } else if (scrollPercent <= 0.8) {
+      navGlowPosition = 47;
+    } else {
+      navGlowPosition = 71;
+    }
+
+    gsap.to(navGlow, {
+      left: `${navGlowPosition}%`,
+      duration: 0.75,
+      overwrite: true,
+      ease: 'expo.out',
+    });
+  }
+
+  scrollbarInstance.addListener(updateNavGlow);
 </script>

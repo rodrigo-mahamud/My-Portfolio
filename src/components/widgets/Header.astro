@@ -35,6 +35,7 @@ const { links = [] } = Astro.props;
       class="items-center justify-around w-full hidden md:flex dark:text-neutral-400 h-[calc(100vh-72px)] md:h-auto overflow-y-auto md:overflow-visible md:mx-5"
       aria-label="Main navigation"
     >
+      <div id="navGlow" class="w-1/4 left-0 h-full bg-blue-500 -z-20 absolute"></div>
       {
         links.map(({ text, href }) => (
           <a

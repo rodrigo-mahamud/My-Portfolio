@@ -87,6 +87,7 @@
 #welcome {
   animation: rotateSmooth 0.75s ease-in-out infinite alternate;
 }
+
 @keyframes rotateSmooth {
   0% {
     transform: rotate(15deg);
