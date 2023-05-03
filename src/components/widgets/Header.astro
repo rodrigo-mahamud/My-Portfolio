@@ -27,19 +27,19 @@ const { links = [] } = Astro.props;
 ---
 
 <header
-  class="fixed z-50 w-full h-16 max-w-md -translate-x-1/2 bg-white border border-gray-200 rounded-xl bottom-4 left-1/2 dark:bg-[#00000072] dark:backdrop-blur-xl"
+  class="fixed z-50 w-full max-w-md -translate-x-1/2 border border-gray-300 rounded-full bottom-4 left-1/2 bg-[#00000050] backdrop-blur-xl"
   id="header"
 >
   <div class="flex flex-row h-full mx-auto">
     <nav
-      class="items-center justify-around w-full hidden md:flex dark:text-neutral-400 h-[calc(100vh-72px)] md:h-auto overflow-y-auto md:overflow-visible md:mx-5"
+      class="items-center justify-center w-full hidden md:flex dark:text-neutral-300 md:h-auto"
       aria-label="Main navigation"
     >
-      <div id="navGlow" class="w-1/4 left-0 h-full bg-blue-500 -z-20 absolute navGlow"></div>
+      <div id="navGlow" class="w-1/4 left-0 h-full -z-20 absolute navGlow"></div>
       {
         links.map(({ text, href }) => (
           <a
-            class="font-medium hover:text-gray-900 dark:hover:text-white px-4 py-3 flex items-center transition duration-150 ease-in-out"
+            class="font-medium hover:text-gray-900 cursor-none dark:hover:text-white px-5 py-4 flex items-center transition duration-150 ease-in-out"
             href={href}
           >
             {text}

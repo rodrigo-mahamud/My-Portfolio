@@ -208,7 +208,7 @@ import { SITE } from '~/config.mjs';
       navGlowPosition = 47;
     } else {
       isInPosition = 3;
-      navGlowPosition = 71;
+      navGlowPosition = 73;
     }
 
     gsap.to(navGlow, {
@@ -222,16 +222,15 @@ import { SITE } from '~/config.mjs';
         gsap.to(link, {
           color: '#fff',
           scale: 1.1,
-          duration: 0.3,
+          delay: 0.005,
+          duration: 0.2,
           overwrite: true,
           ease: 'expo.out',
         });
       } else {
         gsap.to(link, {
           clearProps: 'all',
-          duration: 0.3,
-          overwrite: true,
-          ease: 'expo.out',
+          duration: 0.1,
         });
       }
     });
