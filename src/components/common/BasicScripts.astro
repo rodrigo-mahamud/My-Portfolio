@@ -185,6 +185,7 @@ import { SITE } from '~/config.mjs';
   resetScrollbarTimeout();
   import { gsap } from 'gsap';
   const navGlow = document.querySelector('#navGlow');
+  const navLinks = document.querySelectorAll('#header nav a');
 
   if (!container) {
     console.error('No se pudo encontrar el elemento con el ID "scrollable-content"');
@@ -194,14 +195,19 @@ import { SITE } from '~/config.mjs';
     const scrollPercent =
       scrollbarInstance.offset.y / (scrollbarInstance.limit.y - scrollbarInstance.size.container.height);
     let navGlowPosition;
+    let isInPosition;
 
     if (scrollPercent <= 0.2) {
+      isInPosition = 0;
       navGlowPosition = 0;
     } else if (scrollPercent <= 0.5) {
+      isInPosition = 1;
       navGlowPosition = 20;
     } else if (scrollPercent <= 0.8) {
+      isInPosition = 2;
       navGlowPosition = 47;
     } else {
+      isInPosition = 3;
       navGlowPosition = 71;
     }
 
@@ -210,6 +216,21 @@ import { SITE } from '~/config.mjs';
       duration: 0.75,
       overwrite: true,
       ease: 'expo.out',
+    });
+    navLinks.forEach((link, index) => {
+      if (index === isInPosition) {
+        gsap.to(link, {
+          color: '#fff',
+          duration: 0.3,
+          overwrite: true,
+        });
+      } else {
+        gsap.to(link, {
+          color: '', // Color original
+          duration: 0.3,
+          overwrite: true,
+        });
+      }
     });
   }
 
