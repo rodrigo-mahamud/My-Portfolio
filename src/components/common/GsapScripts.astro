@@ -4,65 +4,91 @@
 <script>
   import { gsap } from 'gsap';
   import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
   gsap.registerPlugin(ScrollTrigger);
 
-  /*---------------------*/
-  /*----MICE SCRIPTS---- */
-  /*---------------------*/
+  document.addEventListener('DOMContentLoaded', () => {
+    const navLinks = document.querySelectorAll('#header nav a');
+    const sections = document.querySelectorAll('section');
 
-  window.addEventListener('DOMContentLoaded', function () {
-    // Selecciona el elemento que representa la esfera y el filtro de desenfoque
+    const observerOptions = {
+      rootMargin: '-10% 0px -90% 0px',
+    };
+
+    function handleIntersection(entries, observer) {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const targetLink = document.querySelector(`#header nav a[href="#${entry.target.id}"]`);
+
+          // Cambia el color del enlace activo
+          gsap.to(targetLink, {
+            color: 'red', // Color deseado para el enlace activo
+            duration: 0.3,
+            overwrite: true,
+          });
+
+          // Restablece el color de los otros enlaces
+          navLinks.forEach((link) => {
+            if (link !== targetLink) {
+              gsap.to(link, {
+                color: '', // Color original
+                duration: 0.3,
+                overwrite: true,
+              });
+            }
+          });
+        }
+      });
+    }
+
+    const observer = new IntersectionObserver(handleIntersection, observerOptions);
+
+    sections.forEach((section) => {
+      observer.observe(section);
+    });
+
+    // Código de la animación de la esfera
     const esfera = document.getElementById('esfera');
     const welcome = document.getElementById('welcome');
     const motionBlurFilter = document.querySelector('#motionBlur feGaussianBlur');
 
-    // Verifica si la esfera y el filtro de desenfoque existen en el DOM
     if (!esfera || !motionBlurFilter) {
       console.error('No se pudo encontrar la esfera o el filtro de desenfoque en el DOM.');
       return;
     }
 
-    // Variables para almacenar las posiciones anteriores y actuales del ratón
     let mouseX = 0;
     let mouseY = 0;
     let prevMouseX = 0;
     let prevMouseY = 0;
 
-    // Temporizador para detectar si el ratón se ha detenido
     let timer;
 
-    // Crea una función para manejar el movimiento del ratón
     function moverEsfera(e) {
-      // Limpia el temporizador existente
       clearTimeout(timer);
 
-      // Actualiza las posiciones del ratón
       prevMouseX = mouseX;
       prevMouseY = mouseY;
       mouseX = e.clientX;
       mouseY = e.clientY;
 
-      // Calcula la velocidad del movimiento del ratón
       const velocityX = mouseX - prevMouseX;
       const velocityY = mouseY - prevMouseY;
       const velocity = Math.sqrt(velocityX * velocityX + velocityY * velocityY);
 
-      // Verifica si la esfera no es null antes de llamar a getBoundingClientRect
       const esferaRect = esfera && esfera.getBoundingClientRect();
 
-      // Usa GSAP para actualizar la posición de la esfera con un delay
       if (esferaRect) {
         gsap.set(esfera, {
           opacity: 1,
-          x: mouseX - esferaRect.width, // Ajusta la posición en X
-          y: mouseY - esferaRect.height / 1.5, // Ajusta la posición en Y
+          x: mouseX - esferaRect.width,
+          y: mouseY - esferaRect.height / 1.5,
           duration: 0.2,
           ease: 'expo.out',
         });
       }
 
-      // Ajusta el efecto de desenfoque de movimiento según la velocidad del ratón
-      const blurAmount = Math.min(velocity * 0.1, 5); // Aumenta el desenfoque y establece un límite máximo
+      const blurAmount = Math.min(velocity * 0.2, 5);
       gsap.to(motionBlurFilter, {
         attr: {
           stdDeviation: `${blurAmount} ${blurAmount}`,
@@ -71,7 +97,6 @@
         ease: 'expo.out',
       });
 
-      // Detecta si el ratón se ha detenido y elimina el desenfoque
       timer = setTimeout(() => {
         gsap.to(motionBlurFilter, {
           attr: {
@@ -82,6 +107,7 @@
         });
       }, 50);
     }
+
     window.addEventListener('load', function () {
       setTimeout(function () {
         gsap.to(welcome, {
@@ -93,15 +119,14 @@
         gsap.to(esfera, {
           scale: 0.5,
           duration: 1,
-          border: 2,
+          border: '2px solid #fff',
           background: 'transparent',
           ease: 'expo.out',
         });
-      }, 1000);
+        // Aplica el filtro de desenfoque de movimiento a la esfera
+        esfera.style.filter = 'url(#motionBlur)';
+      }, 750);
     });
-
-    // Aplica el filtro de desenfoque de movimiento a la esfera
-    esfera.style.filter = 'url(#motionBlur)';
 
     // Agrega un evento 'mousemove' al documento para seguir la posición del ratón
     document.addEventListener('mousemove', moverEsfera);

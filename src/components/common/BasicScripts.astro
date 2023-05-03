@@ -121,41 +121,60 @@ import { SITE } from '~/config.mjs';
 <script>
   import Scrollbar from 'smooth-scrollbar';
 
-  const container = document.getElementById('scrollable-content');
+  function scrollToSection(event) {
+    event.preventDefault();
+    const targetId = event.target.getAttribute('href');
+    const targetElement = document.querySelector(targetId);
 
-  if (container !== null) {
-    const options = {
-      damping: 0.05,
-      renderByPixel: true,
-      continuousScrolling: true,
-      alwaysShowTracks: false,
-    };
-
-    Scrollbar.init(container, options);
-  } else {
-    console.error('No se pudo encontrar el elemento con el ID "scrollable-content"');
+    if (targetElement) {
+      const targetOffsetTop = targetElement.offsetTop;
+      scrollbarInstance.scrollTo(0, targetOffsetTop, 1000);
+    }
   }
-  let scrollbarTimeout: ReturnType<typeof setTimeout>;
 
-  function fadeOutScrollbar(): void {
+  function fadeOutScrollbar() {
     const scrollbarTrack = document.querySelector('.scrollbar-track-y');
     if (scrollbarTrack && scrollbarTrack instanceof HTMLElement) {
       scrollbarTrack.classList.remove('show');
     }
   }
 
-  function fadeInScrollbar(): void {
+  function fadeInScrollbar() {
     const scrollbarTrack = document.querySelector('.scrollbar-track-y');
     if (scrollbarTrack && scrollbarTrack instanceof HTMLElement) {
       scrollbarTrack.classList.add('show');
     }
   }
 
-  function resetScrollbarTimeout(): void {
+  function resetScrollbarTimeout() {
     clearTimeout(scrollbarTimeout);
     fadeInScrollbar();
-    scrollbarTimeout = setTimeout(fadeOutScrollbar, 2000); // 2 segundos
+    scrollbarTimeout = setTimeout(fadeOutScrollbar, 2000);
   }
+
+  const container = document.getElementById('scrollable-content');
+  let scrollbarInstance;
+
+  if (container !== null) {
+    const options = {
+      damping: 0.04,
+      renderByPixel: true,
+      continuousScrolling: true,
+      alwaysShowTracks: false,
+    };
+
+    scrollbarInstance = Scrollbar.init(container, options);
+
+    const navLinks = document.querySelectorAll('nav a');
+
+    navLinks.forEach((link) => {
+      link.addEventListener('click', scrollToSection);
+    });
+  } else {
+    console.error('No se encontro contenedor scroleable');
+  }
+
+  let scrollbarTimeout;
 
   if (container) {
     container.addEventListener('mouseenter', fadeInScrollbar);

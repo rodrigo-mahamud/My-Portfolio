@@ -1,9 +1,4 @@
 ---
-import ToggleTheme from '~/components/common/ToggleTheme.astro';
-import ToggleMenu from '~/components/common/ToggleMenu.astro';
-
-// import { getHomePermalink } from '~/utils/permalinks';
-
 interface Link {
   text?: string;
   href?: string;
@@ -28,7 +23,7 @@ export interface Props {
   position?: string;
 }
 
-const { links = [], showToggleTheme = false, position = 'center' } = Astro.props;
+const { links = [] } = Astro.props;
 ---
 
 <header
@@ -36,14 +31,8 @@ const { links = [], showToggleTheme = false, position = 'center' } = Astro.props
   id="header"
 >
   <div class="flex flex-row h-full mx-auto">
-    <div class="flex justify-between">
-      <div class="flex items-center md:hidden">
-        {showToggleTheme && <ToggleTheme />}
-        <ToggleMenu />
-      </div>
-    </div>
     <nav
-      class="items-center w-full md:w-auto hidden md:flex dark:text-slate-200 h-[calc(100vh-72px)] md:h-auto overflow-y-auto md:overflow-visible md:mx-5"
+      class="items-center justify-around w-full hidden md:flex dark:text-slate-200 h-[calc(100vh-72px)] md:h-auto overflow-y-auto md:overflow-visible md:mx-5"
       aria-label="Main navigation"
     >
       {
@@ -57,10 +46,5 @@ const { links = [], showToggleTheme = false, position = 'center' } = Astro.props
         ))
       }
     </nav>
-    <div class:list={[{ 'ml-auto': position === 'left' }, 'md:self-center flex items-center md:mb-0']}>
-      <div class="hidden items-center md:flex">
-        {showToggleTheme && <ToggleTheme iconClass="w-5 h-5" />}
-      </div>
-    </div>
   </div>
 </header>
