@@ -221,14 +221,17 @@ import { SITE } from '~/config.mjs';
       if (index === isInPosition) {
         gsap.to(link, {
           color: '#fff',
+          scale: 1.1,
           duration: 0.3,
           overwrite: true,
+          ease: 'expo.out',
         });
       } else {
         gsap.to(link, {
-          color: '', // Color original
+          clearProps: 'all',
           duration: 0.3,
           overwrite: true,
+          ease: 'expo.out',
         });
       }
     });
