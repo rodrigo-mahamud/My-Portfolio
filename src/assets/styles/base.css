@@ -87,7 +87,20 @@
 #welcome {
   animation: rotateSmooth 0.75s ease-in-out infinite alternate;
 }
-
+.navGlow {
+  background: radial-gradient(70px 90px at 70px bottom, #ffffff22, #0000);
+}
+.navGlow::after {
+  content: '';
+  display: block;
+  background: linear-gradient(to right, #00000000 10%, #ffffff 50%, #00000000 90%);
+  height: 2px;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  left: 0;
+  z-index: 999;
+}
 @keyframes rotateSmooth {
   0% {
     transform: rotate(15deg);
