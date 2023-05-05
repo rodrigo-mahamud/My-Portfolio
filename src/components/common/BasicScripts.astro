@@ -213,7 +213,7 @@ import { SITE } from '~/config.mjs';
 
     gsap.to(navGlow, {
       left: `${navGlowPosition}%`,
-      duration: 0.75,
+      duration: 0.5,
       overwrite: true,
       ease: 'expo.out',
     });
@@ -221,9 +221,9 @@ import { SITE } from '~/config.mjs';
       if (index === isInPosition) {
         gsap.to(link, {
           color: '#fff',
-          scale: 1.1,
+          scale: 1.05,
           delay: 0.005,
-          duration: 0.2,
+          duration: 0.1,
           overwrite: true,
           ease: 'expo.out',
         });
@@ -231,6 +231,7 @@ import { SITE } from '~/config.mjs';
         gsap.to(link, {
           clearProps: 'all',
           duration: 0.1,
+          ease: 'expo.in',
         });
       }
     });
