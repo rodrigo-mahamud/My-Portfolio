@@ -1,0 +1,237 @@
+---
+---
+
+<script>
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  import Scrollbar from 'smooth-scrollbar';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const esfera = document.getElementById('esfera');
+    const welcome = document.getElementById('welcome');
+    const motionBlurFilter = document.querySelector('#motionBlur feGaussianBlur');
+
+    if (!esfera || !motionBlurFilter) {
+      console.error('No se pudo encontrar la esfera o el filtro de desenfoque en el DOM.');
+      return;
+    }
+
+    let mouseX = 0;
+    let mouseY = 0;
+    let prevMouseX = 0;
+    let prevMouseY = 0;
+
+    let timer;
+
+    function moverEsfera(e) {
+      clearTimeout(timer);
+
+      prevMouseX = mouseX;
+      prevMouseY = mouseY;
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+
+      const velocityX = mouseX - prevMouseX;
+      const velocityY = mouseY - prevMouseY;
+      const velocity = Math.sqrt(velocityX * velocityX + velocityY * velocityY);
+
+      const esferaRect = esfera && esfera.getBoundingClientRect();
+
+      if (esferaRect) {
+        gsap.set(esfera, {
+          opacity: 1,
+          x: mouseX - esferaRect.width,
+          y: mouseY - esferaRect.height / 1.5,
+          duration: 0.2,
+          ease: 'expo.out',
+        });
+      }
+
+      const blurAmount = Math.min(velocity * 0.2, 5);
+      gsap.to(motionBlurFilter, {
+        attr: {
+          stdDeviation: `${blurAmount} ${blurAmount}`,
+        },
+        duration: 0.3,
+        ease: 'expo.out',
+      });
+
+      timer = setTimeout(() => {
+        gsap.to(motionBlurFilter, {
+          attr: {
+            stdDeviation: '0 0',
+          },
+          duration: 0.85,
+          ease: 'expo.out',
+        });
+      }, 50);
+    }
+
+    window.addEventListener('load', function () {
+      setTimeout(function () {
+        gsap.to(welcome, {
+          scale: 0,
+          opacity: 0,
+          duration: 0.3,
+          ease: 'expo.out',
+        });
+        gsap.to(esfera, {
+          scale: 0.5,
+          duration: 1,
+          border: '2px solid #fff',
+          background: 'transparent',
+          ease: 'expo.out',
+        });
+        // Aplica el filtro de desenfoque de movimiento a la esfera
+        esfera.style.filter = 'url(#motionBlur)';
+      }, 750);
+    });
+
+    // Agrega un evento 'mousemove' al documento para seguir la posición del ratón
+    document.addEventListener('mousemove', moverEsfera);
+  });
+
+  /*-----------------------*/
+  /*----LOADING SCREEN---- */
+  /*-----------------------*/
+  function animateLoadingText() {
+    const loadingTextContainer = document.getElementById('loading-text-container');
+
+    if (loadingTextContainer) {
+      // Coloca el contenedor en el centro
+      loadingTextContainer.style.transform = 'translateY(0%)';
+
+      // Animación de abajo hacia arriba para ocultar el texto
+      gsap.to(loadingTextContainer, {
+        y: '-100%',
+        duration: 0.75,
+        delay: 0.25,
+        ease: 'expo.inOut',
+        onComplete: () => {
+          loadingTextContainer.remove();
+        },
+      });
+    }
+  }
+  document.addEventListener('DOMContentLoaded', animateLoadingText);
+
+  function scrollToSection(event) {
+    event.preventDefault();
+    const targetId = event.target.getAttribute('href');
+    const targetElement = document.querySelector(targetId);
+
+    if (targetElement) {
+      const targetOffsetTop = targetElement.offsetTop;
+      scrollbarInstance.scrollTo(0, targetOffsetTop, 1000);
+    }
+  }
+
+  function fadeOutScrollbar() {
+    const scrollbarTrack = document.querySelector('.scrollbar-track-y');
+    if (scrollbarTrack && scrollbarTrack instanceof HTMLElement) {
+      scrollbarTrack.classList.remove('show');
+    }
+  }
+
+  function fadeInScrollbar() {
+    const scrollbarTrack = document.querySelector('.scrollbar-track-y');
+    if (scrollbarTrack && scrollbarTrack instanceof HTMLElement) {
+      scrollbarTrack.classList.add('show');
+    }
+  }
+
+  function resetScrollbarTimeout() {
+    clearTimeout(scrollbarTimeout);
+    fadeInScrollbar();
+    scrollbarTimeout = setTimeout(fadeOutScrollbar, 2000);
+  }
+
+  const container = document.getElementById('scrollable-content');
+  let scrollbarInstance;
+
+  if (container !== null) {
+    const options = {
+      damping: 0.04,
+      renderByPixel: true,
+      continuousScrolling: true,
+      alwaysShowTracks: false,
+    };
+
+    scrollbarInstance = Scrollbar.init(container, options);
+
+    const navLinks = document.querySelectorAll('nav a');
+
+    navLinks.forEach((link) => {
+      link.addEventListener('click', scrollToSection);
+    });
+  } else {
+    console.error('No se encontro contenedor scroleable');
+  }
+
+  let scrollbarTimeout;
+
+  if (container) {
+    container.addEventListener('mouseenter', fadeInScrollbar);
+    container.addEventListener('mouseleave', fadeOutScrollbar);
+    container.addEventListener('wheel', resetScrollbarTimeout);
+  }
+
+  resetScrollbarTimeout();
+
+  const navGlow = document.querySelector('#navGlow');
+  const navLinks = document.querySelectorAll('#header nav a');
+
+  if (!container) {
+    console.error('No se pudo encontrar el elemento con el ID "scrollable-content"');
+  }
+
+  function updateNavGlow() {
+    const scrollPercent =
+      scrollbarInstance.offset.y / (scrollbarInstance.limit.y - scrollbarInstance.size.container.height);
+    let navGlowPosition;
+    let isInPosition;
+
+    if (scrollPercent <= 0.2) {
+      isInPosition = 0;
+      navGlowPosition = 0;
+    } else if (scrollPercent <= 0.5) {
+      isInPosition = 1;
+      navGlowPosition = 20;
+    } else if (scrollPercent <= 0.8) {
+      isInPosition = 2;
+      navGlowPosition = 47;
+    } else {
+      isInPosition = 3;
+      navGlowPosition = 73;
+    }
+
+    gsap.to(navGlow, {
+      left: `${navGlowPosition}%`,
+      duration: 0.5,
+      overwrite: true,
+      ease: 'expo.out',
+    });
+    navLinks.forEach((link, index) => {
+      if (index === isInPosition) {
+        gsap.to(link, {
+          color: '#fff',
+          scale: 1.05,
+          delay: 0.005,
+          duration: 0.1,
+          overwrite: true,
+          ease: 'expo.out',
+        });
+      } else {
+        gsap.to(link, {
+          clearProps: 'all',
+          duration: 0.1,
+          ease: 'expo.in',
+        });
+      }
+    });
+  }
+
+  scrollbarInstance.addListener(updateNavGlow);
+</script>

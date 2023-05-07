@@ -6,8 +6,8 @@ import BasicScripts from '~/components/common/BasicScripts.astro';
 import { MetaSEO } from '~/types';
 import { SITE } from '~/config.mjs';
 import Mice from '~/components/common/Mice.astro';
-import GsapScripts from '~/components/common/GsapScripts.astro';
 import LoadingScreen from '~/components/common/LoadingScreen.astro';
+import GsapScrollBarScripts from '~/components/common/GsapScrollBarScripts.astro';
 
 export interface Props {
   meta?: MetaSEO;
@@ -27,7 +27,7 @@ const { language = 'es', textDirection = 'ltr' } = SITE;
     <Mice />
     <slot />
     <BasicScripts />
-    <GsapScripts />
+    <GsapScrollBarScripts />
     <style is:global>
       img {
         content-visibility: auto;
