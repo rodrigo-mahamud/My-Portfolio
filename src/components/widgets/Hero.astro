@@ -19,7 +19,6 @@ export interface Props {
 const {
   title = await Astro.slots.render('title'),
   subtitle = await Astro.slots.render('subtitle'),
-  content = await Astro.slots.render('content'),
   callToAction = await Astro.slots.render('callToAction'),
   callToAction2 = await Astro.slots.render('callToAction2'),
   image = await Astro.slots.render('image'),
@@ -81,7 +80,6 @@ const {
             }
           </div>
         </div>
-        {content && <Fragment set:html={content} />}
       </div>
       <div>
         {
