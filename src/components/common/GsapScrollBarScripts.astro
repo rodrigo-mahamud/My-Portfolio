@@ -235,7 +235,7 @@
 
   scrollbarInstance.addListener(updateNavGlow);
 
-  ScrollTrigger.scrollerProxy('body', {
+  ScrollTrigger.scrollerProxy('#scrollable-content', {
     scrollTop(value) {
       if (arguments.length) {
         scrollbarInstance.scrollTop = value;
@@ -249,14 +249,16 @@
     const element = document.getElementById('SAnimate');
 
     gsap.from(element, {
-      // Modifica las propiedades de la animación aquí, según tus necesidades
-      x: -500,
-      opacity: 0,
+      duration: 2.5,
+      autoAlpha: 0,
+      y: 100,
+      ease: 'expo.easeOut',
+      clearProps: 'all',
       scrollTrigger: {
         trigger: element,
-        scroller: 'body',
-        start: 'top 40%',
-        toggleActions: 'play none none reset',
+        scroller: '#scrollable-content',
+        start: 'top bottom',
+        toggleActions: 'play',
         markers: true,
       },
     });
