@@ -234,4 +234,32 @@
   }
 
   scrollbarInstance.addListener(updateNavGlow);
+
+  ScrollTrigger.scrollerProxy('body', {
+    scrollTop(value) {
+      if (arguments.length) {
+        scrollbarInstance.scrollTop = value;
+      }
+      return scrollbarInstance.scrollTop;
+    },
+  });
+  scrollbarInstance.addListener(ScrollTrigger.update);
+
+  function animateOnScroll() {
+    const element = document.getElementById('SAnimate');
+
+    gsap.from(element, {
+      // Modifica las propiedades de la animación aquí, según tus necesidades
+      x: -500,
+      opacity: 0,
+      scrollTrigger: {
+        trigger: element,
+        scroller: 'body',
+        start: 'top 40%',
+        toggleActions: 'play none none reset',
+        markers: true,
+      },
+    });
+  }
+  animateOnScroll();
 </script>
