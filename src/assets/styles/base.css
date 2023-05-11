@@ -145,7 +145,8 @@
 }
 
 .card {
-  box-shadow: inset 0px 200px 50px -25px rgb(255 255 255 / 20%);
+  box-shadow: inset 0px 200px 50px -15px rgb(255 255 255 / 18%);
+  background-color: rgba(255, 255, 255, 2%);
   border-radius: 16px;
   display: flex;
   height: 304px;
@@ -193,7 +194,7 @@
   display: flex;
   flex-direction: column;
   flex-grow: 1;
-  inset: 0.06rem 0.05rem 0.05rem 0.05rem;
+  inset: 1px 1px 1px 1px;
   position: absolute;
   z-index: 2;
 }

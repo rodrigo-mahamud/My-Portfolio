@@ -15,7 +15,7 @@ export interface Props {
 const { items = [] } = Astro.props;
 ---
 
-<section class="relative" id="SAnimate">
+<section class="relative">
   <div class="absolute inset-0 pointer-events-none mb-32" aria-hidden="true"></div>
   <div class="relative max-w-5xl mx-auto -mb-12">
     <div class="py-4 pt-8 sm:py-6 lg:py-8 lg:pt-12">
@@ -25,7 +25,7 @@ const { items = [] } = Astro.props;
       >
         {
           items.map(({ title, description }) => (
-            <div class="card relative flex flex-col  transition border border-transparent">
+            <div class="card SAnimate relative flex flex-col border border-transparent ">
               <div class="card-content">
                 <div class="card-image">
                   <img src="cardIMG.png" />

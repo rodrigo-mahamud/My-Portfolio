@@ -246,20 +246,25 @@
   scrollbarInstance.addListener(ScrollTrigger.update);
 
   function animateOnScroll() {
-    const element = document.getElementById('SAnimate');
+    const elementsToAnimate = document.querySelectorAll('.SAnimate');
 
-    gsap.from(element, {
-      duration: 1,
-      autoAlpha: 0,
-      y: 100,
-      ease: 'expo.Out',
-      clearProps: 'all',
-      scrollTrigger: {
-        trigger: element,
-        scroller: '#scrollable-content',
-        start: 'top bottom',
-        markers: false,
-      },
+    elementsToAnimate.forEach((element, index) => {
+      const delay = index * 0.1;
+
+      gsap.from(element, {
+        duration: 2.5,
+        autoAlpha: 0,
+        y: 100,
+        delay: delay,
+        ease: 'Expo.easeOut',
+        clearProps: 'all',
+        scrollTrigger: {
+          trigger: element,
+          scroller: '#scrollable-content',
+          start: 'top 70%',
+          markers: false,
+        },
+      });
     });
   }
   animateOnScroll();
