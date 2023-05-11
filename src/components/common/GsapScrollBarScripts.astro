@@ -249,10 +249,10 @@
     const elementsToAnimate = document.querySelectorAll('.SAnimate');
 
     elementsToAnimate.forEach((element, index) => {
-      const delay = index * 0.1;
+      const delay = index * 0.15;
 
       gsap.from(element, {
-        duration: 2.5,
+        duration: 2.25,
         autoAlpha: 0,
         y: 100,
         delay: delay,
@@ -261,7 +261,7 @@
         scrollTrigger: {
           trigger: element,
           scroller: '#scrollable-content',
-          start: 'top 70%',
+          start: 'top bottom',
           markers: false,
         },
       });
