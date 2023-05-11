@@ -27,10 +27,10 @@ const { links = [] } = Astro.props;
 ---
 
 <header
-  class="fixed z-50 w-full max-w-md -translate-x-1/2 border border-neutral-400 rounded-full bottom-4 left-1/2 bg-[#00000050] backdrop-blur-xl"
+  class="fixed z-50 w-full max-w-lg -translate-x-1/2 border border-neutral-400 rounded-full bottom-4 left-1/2 bg-[#00000050] backdrop-blur-xl"
   id="header"
 >
-  <div class="flex flex-row h-full mx-auto">
+  <div class="flex justify-between flex-row h-16 mx-auto">
     <nav
       class="items-center justify-center w-full hidden md:flex dark:text-neutral-300 md:h-auto"
       aria-label="Main navigation"
@@ -47,5 +47,12 @@ const { links = [] } = Astro.props;
         ))
       }
     </nav>
+    <button class="px-6 rounded-full my-2 mr-2 bg-[#ffffff21] flex justify-center items-center"
+      ><svg viewBox="0 0 120 120" width="30" height="30" stroke="#fff" fill="#fff"
+        ><path d="M67.5 97.5c0 8.3-8.4 15-18.8 15S30 105.8 30 97.5s8.4-15 18.8-15 18.8 6.7 18.7 15z" fill-rule="evenodd"
+        ></path><path d="M67.5 22.5v75H60V22.5h7.5z"></path><path
+          d="M60 21.2a7.5 7.5 0 0 1 6-7.4l22.5-4.5A7.5 7.5 0 0 1 97.5 16.7V30L60 37.5V21.2z"></path></svg
+      ></button
+    >
   </div>
 </header>
