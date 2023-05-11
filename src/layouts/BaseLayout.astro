@@ -8,6 +8,7 @@ import { SITE } from '~/config.mjs';
 import Mice from '~/components/common/Mice.astro';
 import LoadingScreen from '~/components/common/LoadingScreen.astro';
 import GsapScrollBarScripts from '~/components/common/GsapScrollBarScripts.astro';
+import SpotifyAPI from '~/components/common/SpotifyAPI.astro';
 
 export interface Props {
   meta?: MetaSEO;
@@ -26,6 +27,7 @@ const { language = 'es', textDirection = 'ltr' } = SITE;
     <LoadingScreen />
     <Mice />
     <slot />
+    <SpotifyAPI />
     <BasicScripts />
     <GsapScrollBarScripts />
     <style is:global>
