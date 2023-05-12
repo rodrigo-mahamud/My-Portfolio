@@ -195,16 +195,16 @@
 
     if (scrollPercent <= 0.2) {
       isInPosition = 0;
-      navGlowPosition = 0;
+      navGlowPosition = 1;
     } else if (scrollPercent <= 0.5) {
       isInPosition = 1;
       navGlowPosition = 20;
     } else if (scrollPercent <= 0.8) {
       isInPosition = 2;
-      navGlowPosition = 47;
+      navGlowPosition = 46;
     } else {
       isInPosition = 3;
-      navGlowPosition = 73;
+      navGlowPosition = 72;
     }
 
     gsap.to(navGlow, {

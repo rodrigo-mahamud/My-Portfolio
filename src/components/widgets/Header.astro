@@ -26,13 +26,10 @@ export interface Props {
 const { links = [] } = Astro.props;
 ---
 
-<header
-  class="fixed z-50 w-full max-w-lg -translate-x-1/2 border border-neutral-400 rounded-full bottom-4 left-1/2 bg-[#00000050] backdrop-blur-xl"
-  id="header"
->
-  <div class="flex justify-between flex-row h-16 mx-auto">
+<header class="fixed z-50 w-full max-w-xl -translate-x-1/2 bottom-4 left-1/2" id="header">
+  <div class="flex justify-end flex-row h-16 mx-auto">
     <nav
-      class="items-center justify-center w-full hidden md:flex dark:text-neutral-300 md:h-auto"
+      class="border border-neutral-400 rounded-full bg-[#00000050] backdrop-blur-xl items-center justify-center w-4/5 hidden md:flex md:h-auto"
       aria-label="Main navigation"
     >
       <div id="navGlow" class="w-1/4 left-0 h-full -z-20 absolute navGlow"></div>
@@ -47,7 +44,8 @@ const { links = [] } = Astro.props;
         ))
       }
     </nav>
-    <button class="px-6 rounded-full my-2 mr-2 bg-[#ffffff21] flex justify-center items-center"
+    <button
+      class="px-3 ml-4 rounded-full w-16 h-full bg-[#00000050] backdrop-blur-xl border border-white flex justify-center items-center cursor-none"
       ><svg viewBox="0 0 120 120" width="30" height="30" stroke="#fff" fill="#fff"
         ><path d="M67.5 97.5c0 8.3-8.4 15-18.8 15S30 105.8 30 97.5s8.4-15 18.8-15 18.8 6.7 18.7 15z" fill-rule="evenodd"
         ></path><path d="M67.5 22.5v75H60V22.5h7.5z"></path><path

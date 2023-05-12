@@ -36,7 +36,19 @@
 
     const data = await response.json();
     const trackName = data.item.name;
-    trackNameElement.innerText = trackName;
+    const artistName = data.item.artists[0].name;
+    const albumCoverUrl = data.item.album.images[0].url;
+    const trackUrl = data.item.external_urls.spotify;
+
+    trackNameElement.innerText = `Título: ${trackName}`;
+    const artistNameElement = document.getElementById('artist-name');
+    artistNameElement.innerText = `Artista: ${artistName}`;
+
+    const albumCover = document.getElementById('album-cover');
+    albumCover.src = albumCoverUrl;
+
+    const trackLink = document.getElementById('track-link');
+    trackLink.href = trackUrl;
   }
 
   async function init() {
