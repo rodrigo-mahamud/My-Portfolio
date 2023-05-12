@@ -40,9 +40,9 @@
     const albumCoverUrl = data.item.album.images[0].url;
     const trackUrl = data.item.external_urls.spotify;
 
-    trackNameElement.innerText = `Título: ${trackName}`;
+    trackNameElement.innerText = `${trackName}`;
     const artistNameElement = document.getElementById('artist-name');
-    artistNameElement.innerText = `Artista: ${artistName}`;
+    artistNameElement.innerText = `${artistName}`;
 
     const albumCover = document.getElementById('album-cover');
     albumCover.src = albumCoverUrl;

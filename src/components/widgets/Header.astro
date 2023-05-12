@@ -44,13 +44,25 @@ const { links = [] } = Astro.props;
         ))
       }
     </nav>
-    <button
-      class="px-3 ml-4 rounded-full w-16 h-full bg-[#00000050] backdrop-blur-xl border border-white flex justify-center items-center cursor-none"
-      ><svg viewBox="0 0 120 120" width="30" height="30" stroke="#fff" fill="#fff"
-        ><path d="M67.5 97.5c0 8.3-8.4 15-18.8 15S30 105.8 30 97.5s8.4-15 18.8-15 18.8 6.7 18.7 15z" fill-rule="evenodd"
-        ></path><path d="M67.5 22.5v75H60V22.5h7.5z"></path><path
-          d="M60 21.2a7.5 7.5 0 0 1 6-7.4l22.5-4.5A7.5 7.5 0 0 1 97.5 16.7V30L60 37.5V21.2z"></path></svg
-      ></button
-    >
+    <div>
+      <div class="fixed z-50 w-1/4 bottom-2/4" id="now-playing">
+        <span>Ahora escuchando:</span>
+        <a id="track-link" href="#" target="_blank" style="text-decoration: none;">
+          <img id="album-cover" src="" alt="Carátula del álbum" width="300" height="300" />
+        </a>
+        <p id="track-name">Cargando...</p>
+        <p id="artist-name"></p>
+      </div>
+
+      <button
+        class="px-3 ml-4 rounded-full w-16 h-full bg-[#00000050] backdrop-blur-xl border border-white flex justify-center items-center cursor-none"
+        ><svg viewBox="0 0 120 120" width="30" height="30" stroke="#fff" fill="#fff"
+          ><path
+            d="M67.5 97.5c0 8.3-8.4 15-18.8 15S30 105.8 30 97.5s8.4-15 18.8-15 18.8 6.7 18.7 15z"
+            fill-rule="evenodd"></path><path d="M67.5 22.5v75H60V22.5h7.5z"></path><path
+            d="M60 21.2a7.5 7.5 0 0 1 6-7.4l22.5-4.5A7.5 7.5 0 0 1 97.5 16.7V30L60 37.5V21.2z"></path></svg
+        ></button
+      >
+    </div>
   </div>
 </header>
