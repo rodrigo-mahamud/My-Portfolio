@@ -46,11 +46,10 @@ const { links = [] } = Astro.props;
     </nav>
     <div>
       <div class="fixed z-50 w-1/4 bottom-2/4" id="now-playing">
-        <span>Ahora escuchando:</span>
+        <p id="track-name">Cargando...</p>
         <a id="track-link" href="#" target="_blank" style="text-decoration: none;">
           <img id="album-cover" src="" alt="Carátula del álbum" width="300" height="300" />
         </a>
-        <p id="track-name">Cargando...</p>
         <p id="artist-name"></p>
       </div>
 
