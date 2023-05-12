@@ -35,6 +35,7 @@
     }
 
     const data = await response.json();
+    console.log(data);
     const trackName = data.item.name;
     const artistName = data.item.artists[0].name;
     const albumCoverUrl = data.item.album.images[0].url;
