@@ -232,7 +232,19 @@
       }
     });
   }
-
+  const sbutton = document.getElementById('sbutton');
+  if (sbutton) {
+    sbutton.addEventListener('click', () => {
+      const scard = document.getElementById('scard');
+      gsap.to(scard, {
+        duration: 2.25,
+        autoAlpha: 0,
+        y: 100,
+        ease: 'Expo.easeOut',
+        clearProps: 'all',
+      });
+    });
+  }
   scrollbarInstance.addListener(updateNavGlow);
 
   ScrollTrigger.scrollerProxy('#scrollable-content', {
