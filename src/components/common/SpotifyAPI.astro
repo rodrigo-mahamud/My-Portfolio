@@ -1,15 +1,11 @@
----
----
-
 <script>
-  const clientId = 'b1665b5784044dd3b9618e6041d23d17';
-  const clientSecret = 'afb55dabcea1474c91ac770644113292';
-  const refreshToken =
+  const clientId: string = 'b1665b5784044dd3b9618e6041d23d17';
+  const clientSecret: string = 'afb55dabcea1474c91ac770644113292';
+  const refreshToken: string =
     'AQBOdQ360XO2FzPngspd0bBkRm5UT4Bb2rPSiQakhZIEGn5qRZSilr7Ww0XKExdoHHJ8XSz1ZP7VdKwRED9F3gljWIjt86PC5NdJ_NwWs9wijArDPcX0WJ-9z_jy-lJ-ZM4';
-  const userId = 'franclingta';
-  const trackNameElement = document.getElementById('track-name');
+  let audioElement: HTMLAudioElement | null = null;
 
-  async function getAccessToken() {
+  async function getAccessToken(): Promise<string> {
     const response = await fetch('https://accounts.spotify.com/api/token', {
       method: 'POST',
       headers: {
@@ -22,42 +18,99 @@
     return data.access_token;
   }
 
-  async function getNowPlaying(accessToken) {
+  async function getNowPlaying(accessToken: string) {
     const response = await fetch(`https://api.spotify.com/v1/me/player/currently-playing`, {
       headers: {
         Authorization: 'Bearer ' + accessToken,
       },
     });
 
-    if (response.status === 204) {
+    const trackNameElement = document.getElementById('track-name');
+    if (trackNameElement && response.status === 204) {
       trackNameElement.innerText = 'Nada se está reproduciendo en este momento';
       return;
     }
 
     const data = await response.json();
-    console.log(data);
     const trackName = data.item.name;
     const artistName = data.item.artists[0].name;
     const albumCoverUrl = data.item.album.images[0].url;
     const trackUrl = data.item.external_urls.spotify;
+    const previewUrl = data.item.preview_url;
 
-    trackNameElement.innerText = `${trackName}`;
+    if (trackNameElement) {
+      trackNameElement.innerText = `${trackName}`;
+    }
     const artistNameElement = document.getElementById('artist-name');
-    artistNameElement.innerText = `${artistName}`;
+    if (artistNameElement) {
+      artistNameElement.innerText = `${artistName}`;
+    }
 
-    const albumCover = document.getElementById('album-cover');
-    albumCover.src = albumCoverUrl;
+    const albumCover = document.getElementById('album-cover') as HTMLImageElement;
+    if (albumCover) {
+      albumCover.src = albumCoverUrl;
+    }
 
-    const trackLink = document.getElementById('track-link');
-    trackLink.href = trackUrl;
+    const trackLink = document.getElementById('track-link') as HTMLAnchorElement;
+    if (trackLink) {
+      trackLink.href = trackUrl;
+    }
+
+    if (audioElement) {
+      audioElement.pause();
+    }
+
+    audioElement = new Audio(previewUrl);
+    audioElement.volume = 0.15;
+    const playPauseButton = document.getElementById('play-pause-button');
+    const playIcon = document.getElementById('play-icon') as HTMLElement;
+    const pauseIcon = document.getElementById('pause-icon') as HTMLElement;
+
+    if (playPauseButton && playIcon && pauseIcon) {
+      playPauseButton.onclick = function () {
+        if (audioElement && audioElement.paused) {
+          audioElement.play();
+          playIcon.style.display = 'none';
+          pauseIcon.style.display = 'block';
+        } else if (audioElement) {
+          audioElement.pause();
+          playIcon.style.display = 'block';
+          pauseIcon.style.display = 'none';
+        }
+      };
+    }
+
+    if (audioElement) {
+      audioElement.volume = 0.15;
+      const progress = document.getElementById('progress') as HTMLElement;
+      const progressBar = document.getElementById('progress-bar') as HTMLElement;
+      audioElement.addEventListener('timeupdate', () => {
+        if (progress && progressBar && audioElement) {
+          const progressPercentage = audioElement.currentTime / audioElement.duration;
+          progress.style.width = progressPercentage * progressBar.offsetWidth + 'px';
+        }
+      });
+
+      audioElement.addEventListener('ended', () => {
+        if (audioElement) {
+          audioElement.currentTime = 0;
+        }
+        if (playIcon && pauseIcon) {
+          playIcon.style.display = 'block';
+          pauseIcon.style.display = 'none';
+        }
+      });
+    }
   }
 
   async function init() {
     const accessToken = await getAccessToken();
-    getNowPlaying(accessToken);
-    setInterval(() => {
-      getNowPlaying(accessToken);
-    }, 5000); // Actualizar cada 5 segundos
+    await getNowPlaying(accessToken);
+    setInterval(async () => {
+      if (!audioElement || (audioElement && audioElement.paused)) {
+        await getNowPlaying(accessToken);
+      }
+    }, 60000); // Actualizar cada 60 segundos
   }
 
   init();

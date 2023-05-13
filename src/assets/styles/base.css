@@ -250,6 +250,33 @@ i {
   font-size: 0.85em;
   margin-top: 8px;
 }
+audio {
+  width: 300px;
+}
+
+#play-button,
+#pause-button {
+  background-color: #444;
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+}
+
+#progress-bar {
+  width: 80%;
+  margin-left: 1rem;
+  height: 2px;
+  border-radius: 1rem;
+  background-color: #919191;
+}
+
+#progress {
+  height: 2px;
+  border-radius: 1rem;
+  background-color: #ffffff;
+  width: 0;
+}
 
 /* -- ↓ ↓ ↓ some responsiveness ↓ ↓ ↓ -- */
 
