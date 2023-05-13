@@ -233,16 +233,27 @@
     });
   }
   const sbutton = document.getElementById('sbutton');
+  const scard = document.getElementById('scard');
+  let isActive = false;
   if (sbutton) {
     sbutton.addEventListener('click', () => {
-      const scard = document.getElementById('scard');
-      gsap.to(scard, {
-        duration: 2.25,
-        autoAlpha: 0,
-        y: 100,
-        ease: 'Expo.easeOut',
-        clearProps: 'all',
-      });
+      if (!isActive) {
+        gsap.to(scard, {
+          duration: 2.25,
+          autoAlpha: 1,
+          y: 0,
+          ease: 'Expo.easeOut',
+        });
+        isActive = true;
+      } else {
+        gsap.to(scard, {
+          duration: 2.25,
+          autoAlpha: 0,
+          y: 200,
+          ease: 'Expo.easeOut',
+        });
+        isActive = false;
+      }
     });
   }
   scrollbarInstance.addListener(updateNavGlow);

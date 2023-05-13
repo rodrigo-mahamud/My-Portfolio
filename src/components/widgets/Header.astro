@@ -46,7 +46,7 @@ const { links = [] } = Astro.props;
     </nav>
     <div
       id="scard"
-      class="border border-neutral-400 rounded-xl bg-[#00000050] backdrop-blur-xl fixed z-50 flex mb-4 bottom-full left-0 right-0"
+      class="border border-neutral-400 rounded-xl bg-[#00000050] backdrop-blur-xl fixed z-40 flex mb-4 bottom-full left-0 right-0 translate-y-32 opacity-0"
     >
       <div class="flex w-full items-center justify-start flex-row" id="now-playing">
         <a id="track-link" class="flex m-0 w-1/4 flex-col" href="#" target="_blank">
@@ -83,7 +83,7 @@ const { links = [] } = Astro.props;
         </div>
       </div>
     </div>
-    <div class="w-1/6">
+    <div class="w-1/6 z-50">
       <button
         id="sbutton"
         class="rounded-full w-16 h-16 ml-auto bg-[#00000050] backdrop-blur-xl border border-white flex justify-center items-center cursor-none"
