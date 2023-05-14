@@ -239,7 +239,7 @@
     sbutton.addEventListener('click', () => {
       if (!isActive) {
         gsap.to(scard, {
-          duration: 2.25,
+          duration: 2,
           autoAlpha: 1,
           y: 0,
           ease: 'Expo.easeOut',
@@ -247,9 +247,9 @@
         isActive = true;
       } else {
         gsap.to(scard, {
-          duration: 2.25,
+          duration: 2,
           autoAlpha: 0,
-          y: 200,
+          y: 100,
           ease: 'Expo.easeOut',
         });
         isActive = false;

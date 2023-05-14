@@ -29,7 +29,7 @@ const { links = [] } = Astro.props;
 <header class="fixed z-50 w-full max-w-lg -translate-x-1/2 bottom-4 left-1/2" id="header">
   <div class="flex justify-end flex-row h-16 mx-auto">
     <nav
-      class="border border-neutral-400 rounded-full bg-[#00000050] backdrop-blur-xl items-center justify-center w-5/6 hidden md:flex md:h-auto"
+      class="border border-neutral-400 rounded-full bg-[#00000050] backdrop-blur-xl items-center justify-center w-5/6 hidden md:flex md:h-auto z-50"
       aria-label="Main navigation"
     >
       <div id="navGlow" class="w-1/4 left-0 h-full -z-20 absolute navGlow"></div>
@@ -46,7 +46,7 @@ const { links = [] } = Astro.props;
     </nav>
     <div
       id="scard"
-      class="border border-neutral-400 rounded-xl bg-[#00000050] backdrop-blur-xl fixed z-40 flex mb-4 bottom-full left-0 right-0 translate-y-32 opacity-0"
+      class="border border-neutral-400 rounded-xl bg-[#00000050] backdrop-blur-xl fixed z-40 flex mb-4 bottom-full left-0 right-0 translate-y-20 opacity-0"
     >
       <div class="flex w-full items-center justify-start flex-row" id="now-playing">
         <a id="track-link" class="flex m-0 w-1/4 flex-col" href="#" target="_blank">
