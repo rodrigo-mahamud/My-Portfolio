@@ -13,98 +13,216 @@ import rled5 from '~/assets/images/THE-CAKE-IS-A-LIE/RLed-Head.png';
 ---
 
 <style>
+  .shake-vertical {
+    animation: shake-vertical 12s cubic-bezier(0.455, 0.03, 0.515, 0.955) infinite alternate-reverse both 0.8s;
+  }
+  .shake-horizontal {
+    animation: shake-horizontal 12s cubic-bezier(0.455, 0.03, 0.515, 0.955) infinite alternate-reverse both;
+  }
   .flicker {
+    animation: blink-normal 5s ease-in-out infinite;
+  }
+  .flicker-fast {
+    animation: blink-fast 1s linear infinite 0.5s;
+  }
+  .flicker-fast2 {
+    animation: blink-fast 1.5s linear infinite 0s;
+  }
+  .flicker-fast3 {
+    animation: blink-fast 1.75s linear infinite 0s;
+  }
+  .flicker-fast4 {
+    animation: blink-fast 1.2s linear infinite 0.75s;
+  }
+  .flicker-fast5 {
+    animation: blink-fast 1s linear infinite 2.5s;
+  }
+  @keyframes shake-vertical {
+    0%,
+    100% {
+      -webkit-transform: translateY(0);
+      transform: translateY(0);
+    }
+
+    10%,
+    30%,
+    50%,
+    70% {
+      -webkit-transform: translateY(-8px);
+      transform: translateY(-8px);
+    }
+
+    20%,
+    40%,
+    60% {
+      -webkit-transform: translateY(8px);
+      transform: translateY(8px);
+    }
+
+    80% {
+      -webkit-transform: translateY(6.4px);
+      transform: translateY(6.4px);
+    }
+
+    90% {
+      -webkit-transform: translateY(-6.4px);
+      transform: translateY(-6.4px);
+    }
+  }
+
+  @keyframes shake-horizontal {
+    0%,
+    100% {
+      -webkit-transform: translateX(0);
+      transform: translateX(0);
+    }
+
+    10%,
+    30%,
+    50%,
+    70% {
+      -webkit-transform: translateX(-10px);
+      transform: translateX(-10px);
+    }
+
+    20%,
+    40%,
+    60% {
+      -webkit-transform: translateX(10px);
+      transform: translateX(10px);
+    }
+
+    80% {
+      -webkit-transform: translateX(8px);
+      transform: translateX(8px);
+    }
+
+    90% {
+      -webkit-transform: translateX(-8px);
+      transform: translateX(-8px);
+    }
+  }
+
+  @keyframes blink-normal {
+    0% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.5;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  @keyframes blink-fast {
+    0% {
+      opacity: 1;
+    }
+    20% {
+      opacity: 1;
+    }
+    25% {
+      opacity: 0;
+    }
+    30% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 1;
+    }
   }
 </style>
-<div class="absolute right-0 w-1/6 mr-8">
-  <Picture
-    class="z-30 absolute"
-    alt="glad-os"
-    widths={[400, 768, 1024, 2040]}
-    sizes="(max-width: 767px) 400px, (max-width: 1023px) 768px, (max-width: 2039px) 1024px, 2040px"
-    loading="eager"
-    width={1024}
-    src={headLight}
-  />
-  <Picture
-    class="z-10 absolute"
-    alt="glad-os"
-    widths={[400, 768, 1024, 2040]}
-    sizes="(max-width: 767px) 400px, (max-width: 1023px) 768px, (max-width: 2039px) 1024px, 2040px"
-    loading="eager"
-    width={1024}
-    src={headIn}
-  />
-  <Picture
-    class="z-20 absolute"
-    alt="glad-os"
-    widths={[400, 768, 1024, 2040]}
-    sizes="(max-width: 767px) 400px, (max-width: 1023px) 768px, (max-width: 2039px) 1024px, 2040px"
-    loading="eager"
-    width={1024}
-    src={headOut}
-  />
-  <Picture
-    class="z-10 absolute"
-    alt="glad-os"
-    widths={[400, 768, 1024, 2040]}
-    sizes="(max-width: 767px) 400px, (max-width: 1023px) 768px, (max-width: 2039px) 1024px, 2040px"
-    loading="eager"
-    width={1024}
-    src={rled5}
-  />
-  <Picture
-    class="z-10 absolute"
-    alt="glad-os"
-    widths={[400, 768, 1024, 2040]}
-    sizes="(max-width: 767px) 400px, (max-width: 1023px) 768px, (max-width: 2039px) 1024px, 2040px"
-    loading="eager"
-    width={1024}
-    src={rled4}
-  />
-  <Picture
-    class="z-10 absolute"
-    alt="glad-os"
-    widths={[400, 768, 1024, 2040]}
-    sizes="(max-width: 767px) 400px, (max-width: 1023px) 768px, (max-width: 2039px) 1024px, 2040px"
-    loading="eager"
-    width={1024}
-    src={rled3}
-  />
-  <Picture
-    class="z-10 absolute"
-    alt="glad-os"
-    widths={[400, 768, 1024, 2040]}
-    sizes="(max-width: 767px) 400px, (max-width: 1023px) 768px, (max-width: 2039px) 1024px, 2040px"
-    loading="eager"
-    width={1024}
-    src={rled2}
-  />
-  <Picture
-    class="z-10 absolute"
-    alt="glad-os"
-    widths={[400, 768, 1024, 2040]}
-    sizes="(max-width: 767px) 400px, (max-width: 1023px) 768px, (max-width: 2039px) 1024px, 2040px"
-    loading="eager"
-    width={1024}
-    src={rled1}
-  />
-  <Picture
-    class="z-10 absolute"
-    alt="glad-os"
-    widths={[400, 768, 1024, 2040]}
-    sizes="(max-width: 767px) 400px, (max-width: 1023px) 768px, (max-width: 2039px) 1024px, 2040px"
-    loading="eager"
-    width={1024}
-    src={grid}
-  />
-  <Picture
-    class="z-0 absolute"
-    alt="glad-os"
-    widths={[400, 768, 1024, 2040]}
-    sizes="(max-width: 767px) 400px, (max-width: 1023px) 768px, (max-width: 2039px) 1024px, 2040px"
-    loading="eager"
-    width={1024}
-    src={body}
-  />
+<div class="shake-vertical">
+  <div class="absolute right-0 w-1/5 mr-8 shake-horizontal">
+    <Picture
+      class="z-30 absolute flicker"
+      alt="glad-os"
+      widths={[400, 768, 1024, 2040]}
+      sizes="(max-width: 767px) 400px, (max-width: 1023px) 768px, (max-width: 2039px) 1024px, 2040px"
+      loading="eager"
+      width={1024}
+      src={headLight}
+    />
+    <Picture
+      class="z-10 absolute"
+      alt="glad-os"
+      widths={[400, 768, 1024, 2040]}
+      sizes="(max-width: 767px) 400px, (max-width: 1023px) 768px, (max-width: 2039px) 1024px, 2040px"
+      loading="eager"
+      width={1024}
+      src={headIn}
+    />
+    <Picture
+      class="z-20 absolute"
+      alt="glad-os"
+      widths={[400, 768, 1024, 2040]}
+      sizes="(max-width: 767px) 400px, (max-width: 1023px) 768px, (max-width: 2039px) 1024px, 2040px"
+      loading="eager"
+      width={1024}
+      src={headOut}
+    />
+    <Picture
+      class="z-10 absolute flicker-fast"
+      alt="glad-os"
+      widths={[400, 768, 1024, 2040]}
+      sizes="(max-width: 767px) 400px, (max-width: 1023px) 768px, (max-width: 2039px) 1024px, 2040px"
+      loading="eager"
+      width={1024}
+      src={rled5}
+    />
+    <Picture
+      class="z-10 absolute flicker-fast3"
+      alt="glad-os"
+      widths={[400, 768, 1024, 2040]}
+      sizes="(max-width: 767px) 400px, (max-width: 1023px) 768px, (max-width: 2039px) 1024px, 2040px"
+      loading="eager"
+      width={1024}
+      src={rled4}
+    />
+    <Picture
+      class="z-10 absolute flicker-fast"
+      alt="glad-os"
+      widths={[400, 768, 1024, 2040]}
+      sizes="(max-width: 767px) 400px, (max-width: 1023px) 768px, (max-width: 2039px) 1024px, 2040px"
+      loading="eager"
+      width={1024}
+      src={rled3}
+    />
+    <Picture
+      class="z-10 absolute flicker-fast4"
+      alt="glad-os"
+      widths={[400, 768, 1024, 2040]}
+      sizes="(max-width: 767px) 400px, (max-width: 1023px) 768px, (max-width: 2039px) 1024px, 2040px"
+      loading="eager"
+      width={1024}
+      src={rled2}
+    />
+    <Picture
+      class="z-10 absolute flicker-fast2"
+      alt="glad-os"
+      widths={[400, 768, 1024, 2040]}
+      sizes="(max-width: 767px) 400px, (max-width: 1023px) 768px, (max-width: 2039px) 1024px, 2040px"
+      loading="eager"
+      width={1024}
+      src={rled1}
+    />
+    <Picture
+      class="z-10 absolute flicker-fast5"
+      alt="glad-os"
+      widths={[400, 768, 1024, 2040]}
+      sizes="(max-width: 767px) 400px, (max-width: 1023px) 768px, (max-width: 2039px) 1024px, 2040px"
+      loading="eager"
+      width={1024}
+      src={grid}
+    />
+    <Picture
+      class="z-0 absolute"
+      alt="glad-os"
+      widths={[400, 768, 1024, 2040]}
+      sizes="(max-width: 767px) 400px, (max-width: 1023px) 768px, (max-width: 2039px) 1024px, 2040px"
+      loading="eager"
+      width={1024}
+      src={body}
+    />
+  </div>
 </div>
