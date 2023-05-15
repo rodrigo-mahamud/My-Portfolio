@@ -16,7 +16,7 @@ import rled5 from '~/assets/images/THE-CAKE-IS-A-LIE/RLed-Head.png';
   .shake-vertical {
     transform-origin: 90%;
 
-    animation: shake-vertical 20s cubic-bezier(0.455, 0.03, 0.515, 0.955) infinite alternate-reverse both;
+    animation: shake-vertical cubic-bezier(0.455, 0.03, 0.515, 0.955) infinite alternate-reverse both;
   }
   .light {
     animation: light ease-in-out infinite;
@@ -210,7 +210,7 @@ import rled5 from '~/assets/images/THE-CAKE-IS-A-LIE/RLed-Head.png';
   // Objeto de todas las clases de animación que quieres actualizar, con sus rangos de duración
   const animations = {
     'shake-vertical': { min: 15, max: 25 },
-    light: { min: 2, max: 4 },
+    light: { min: 0.22, max: 4 },
     flicker: { min: 1, max: 5 },
     'flicker-fast': { min: 0.5, max: 2 },
     // Añade más aquí...
