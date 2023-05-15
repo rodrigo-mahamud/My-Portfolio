@@ -12,6 +12,7 @@
     const esfera = document.getElementById('esfera');
     const welcome = document.getElementById('welcome');
     const motionBlurFilter = document.querySelector('#motionBlur feGaussianBlur');
+    const portal = document.getElementById('portal');
 
     if (!esfera || !motionBlurFilter) {
       console.error('No se pudo encontrar la esfera o el filtro de desenfoque en el DOM.');
@@ -88,7 +89,19 @@
         esfera.style.filter = 'url(#motionBlur)';
       }, 750);
     });
-
+    if (portal) {
+      portal.addEventListener('mouseenter', () => {
+        gsap.to(esfera, {
+          border: '3px solid #ff6e00',
+          skewY: '30deg',
+          rotate: '36deg',
+          boxShadow: '0px 0px 46px #de5f03, inset 0px 0px 21px #ff9142',
+          scale: 0.75,
+          duration: 0.3,
+          ease: 'expo.out',
+        });
+      });
+    }
     // Agrega un evento 'mousemove' al documento para seguir la posición del ratón
     document.addEventListener('mousemove', moverEsfera);
   });
