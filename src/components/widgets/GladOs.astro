@@ -14,8 +14,9 @@ import rled5 from '~/assets/images/THE-CAKE-IS-A-LIE/RLed-Head.png';
 
 <style>
   .shake-vertical {
-    transform-origin: 50% 0%;
-    animation: shake-vertical 12s cubic-bezier(0.455, 0.03, 0.515, 0.955) infinite alternate-reverse both 0.8s;
+    transform-origin: 90%;
+
+    animation: shake-vertical 20s cubic-bezier(0.455, 0.03, 0.515, 0.955) infinite alternate-reverse both;
   }
 
   .flicker {
@@ -34,7 +35,7 @@ import rled5 from '~/assets/images/THE-CAKE-IS-A-LIE/RLed-Head.png';
     animation: blink-fast 1.2s ease-in-out infinite alternate-reverse both 0.75s;
   }
   .flicker-fast5 {
-    animation: blink-fast 1s linear infinite alternate-reverse both alternate-reverse both 5s;
+    animation: blink-normal 5s linear infinite alternate-reverse both 0.5s;
   }
   .flicker-fast6 {
     animation: blink-fast 1.25s linear infinite alternate-reverse both 2.5s;
@@ -42,69 +43,38 @@ import rled5 from '~/assets/images/THE-CAKE-IS-A-LIE/RLed-Head.png';
   @keyframes shake-vertical {
     0%,
     100% {
-      -webkit-transform: translateY(0);
-      transform: translateY(0);
+      -webkit-transform: skewY(0) rotateX(0deg) translateY(15px) rotate(5deg);
+      transform: skewY(0) rotateX(0deg) translateY(15px) rotate(5deg);
     }
 
     10%,
     30%,
     50%,
-    70% {
-      -webkit-transform: translateY(-8px);
-      transform: translateY(-8px);
+    70%,
+    90% {
+      -webkit-transform: skewY(-1deg) rotateX(10deg) translateY(0px) rotate(6deg);
+      transform: skewY(-1deg) rotateX(10deg) translateY(0px) rotate(6deg);
     }
 
     20%,
     40%,
-    60% {
-      -webkit-transform: translateY(8px);
-      transform: translateY(8px);
-    }
-
+    60%,
     80% {
-      -webkit-transform: translateY(6.4px);
-      transform: translateY(6.4px);
-    }
-
-    90% {
-      -webkit-transform: translateY(-6.4px);
-      transform: translateY(-6.4px);
+      -webkit-transform: skewY(0deg) rotateX(0deg) translateY(15px) rotate(5deg);
+      transform: skewY(0deg) rotateX(0deg) translateY(15px) rotate(5deg);
     }
   }
-
-  @keyframes shake-horizontal {
-    0%,
+  @keyframes light {
+    0% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.5;
+    }
     100% {
-      -webkit-transform: translateX(0);
-      transform: translateX(0);
-    }
-
-    10%,
-    30%,
-    50%,
-    70% {
-      -webkit-transform: translateX(-10px);
-      transform: translateX(-10px);
-    }
-
-    20%,
-    40%,
-    60% {
-      -webkit-transform: translateX(10px);
-      transform: translateX(10px);
-    }
-
-    80% {
-      -webkit-transform: translateX(8px);
-      transform: translateX(8px);
-    }
-
-    90% {
-      -webkit-transform: translateX(-8px);
-      transform: translateX(-8px);
+      opacity: 1;
     }
   }
-
   @keyframes blink-normal {
     0% {
       opacity: 1;
@@ -135,7 +105,7 @@ import rled5 from '~/assets/images/THE-CAKE-IS-A-LIE/RLed-Head.png';
   }
 </style>
 <div class="shake-vertical">
-  <div class="absolute right-0 w-1/5 mr-8">
+  <div class="absolute right-5 w-1/5">
     <Picture
       class="z-30 absolute flicker"
       alt="glad-os"
