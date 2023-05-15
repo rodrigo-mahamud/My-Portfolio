@@ -14,15 +14,17 @@ import rled5 from '~/assets/images/THE-CAKE-IS-A-LIE/RLed-Head.png';
 
 <style>
   .shake-vertical {
-    transform-origin: 90%;
-
-    animation: shake-vertical cubic-bezier(0.455, 0.03, 0.515, 0.955) infinite alternate-reverse both;
+    transform-origin: 80%;
+    animation: shake-vertical 20s cubic-bezier(0.455, 0.03, 0.515, 0.955) infinite alternate-reverse both;
   }
   .light {
-    animation: light ease-in-out infinite;
+    animation: light ease-in-out infinite alternate-reverse both;
+  }
+  .light-flicker {
+    animation: light-blink-fast linear infinite alternate-reverse both 0.1s;
   }
   .flicker {
-    animation: blink-normal ease-in-out infinite alternate-reverse both;
+    animation: blink-fast linear infinite alternate-reverse both 0.5s;
   }
   .flicker-fast {
     animation: blink-fast linear infinite alternate-reverse both 0.5s;
@@ -37,7 +39,7 @@ import rled5 from '~/assets/images/THE-CAKE-IS-A-LIE/RLed-Head.png';
     animation: blink-fast ease-in-out infinite alternate-reverse both 0.75s;
   }
   .flicker-fast5 {
-    animation: blink-normal linear infinite alternate-reverse both 0.5s;
+    animation: blink-fast linear infinite alternate-reverse both 0.5s;
   }
   .flicker-fast6 {
     animation: blink-fast linear infinite alternate-reverse both 2.5s;
@@ -82,17 +84,7 @@ import rled5 from '~/assets/images/THE-CAKE-IS-A-LIE/RLed-Head.png';
       transform: translate(-5px, -8px);
     }
   }
-  @keyframes blink-normal {
-    0% {
-      opacity: 1;
-    }
-    50% {
-      opacity: 0.5;
-    }
-    100% {
-      opacity: 1;
-    }
-  }
+
   @keyframes blink-fast {
     0% {
       opacity: 1;
@@ -110,18 +102,38 @@ import rled5 from '~/assets/images/THE-CAKE-IS-A-LIE/RLed-Head.png';
       opacity: 1;
     }
   }
+
+  @keyframes light-blink-fast {
+    0% {
+      opacity: 0.5;
+    }
+    20% {
+      opacity: 0.5;
+    }
+    25% {
+      opacity: 0;
+    }
+    30% {
+      opacity: 0.5;
+    }
+    100% {
+      opacity: 0.5;
+    }
+  }
 </style>
 <div class="shake-vertical">
-  <div class="absolute right-5 w-1/5">
-    <Picture
-      class="z-30 absolute light"
-      alt="glad-os"
-      widths={[400, 768, 1024, 2040]}
-      sizes="(max-width: 767px) 400px, (max-width: 1023px) 768px, (max-width: 2039px) 1024px, 2040px"
-      loading="eager"
-      width={1024}
-      src={headLight}
-    />
+  <div class="absolute right-5 -top-5 w-1/5">
+    <div class="absolute z-30 light-flicker">
+      <Picture
+        class="light mix-blend-luminosity"
+        alt="glad-os"
+        widths={[400, 768, 1024, 2040]}
+        sizes="(max-width: 767px) 400px, (max-width: 1023px) 768px, (max-width: 2039px) 1024px, 2040px"
+        loading="eager"
+        width={1024}
+        src={headLight}
+      />
+    </div>
     <Picture
       class="z-10 absolute light"
       alt="glad-os"
@@ -209,10 +221,9 @@ import rled5 from '~/assets/images/THE-CAKE-IS-A-LIE/RLed-Head.png';
 <script>
   // Objeto de todas las clases de animación que quieres actualizar, con sus rangos de duración
   const animations = {
-    'shake-vertical': { min: 15, max: 25 },
-    light: { min: 0.22, max: 4 },
-    flicker: { min: 1, max: 5 },
-    'flicker-fast': { min: 0.5, max: 2 },
+    light: { min: 2, max: 3 },
+    flicker: { min: 0.3, max: 0.75 },
+    'flicker-fast': { min: 0.5, max: 1 },
     // Añade más aquí...
   };
 
@@ -243,5 +254,5 @@ import rled5 from '~/assets/images/THE-CAKE-IS-A-LIE/RLed-Head.png';
   // Actualiza la duración de las animaciones cada 5 segundos
   setInterval(() => {
     Object.entries(animations).forEach(([animation, range]) => updateDur(animation, range));
-  }, 5000);
+  }, 3500);
 </script>
