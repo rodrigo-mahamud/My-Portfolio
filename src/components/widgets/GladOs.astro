@@ -18,7 +18,9 @@ import rled5 from '~/assets/images/THE-CAKE-IS-A-LIE/RLed-Head.png';
 
     animation: shake-vertical 20s cubic-bezier(0.455, 0.03, 0.515, 0.955) infinite alternate-reverse both;
   }
-
+  .light {
+    animation: light 8s ease-in-out infinite;
+  }
   .flicker {
     animation: blink-normal 5s ease-in-out infinite alternate-reverse both;
   }
@@ -65,14 +67,19 @@ import rled5 from '~/assets/images/THE-CAKE-IS-A-LIE/RLed-Head.png';
     }
   }
   @keyframes light {
-    0% {
-      opacity: 1;
+    0%,
+    40% {
+      -webkit-transform: translate(0px);
+      transform: translate(-5px, -8px);
     }
     50% {
-      opacity: 0.5;
+      -webkit-transform: translate(15px);
+      transform: translate(4px, 10px);
     }
+    60%,
     100% {
-      opacity: 1;
+      -webkit-transform: translate(15px);
+      transform: translate(-5px, -8px);
     }
   }
   @keyframes blink-normal {
@@ -107,7 +114,7 @@ import rled5 from '~/assets/images/THE-CAKE-IS-A-LIE/RLed-Head.png';
 <div class="shake-vertical">
   <div class="absolute right-5 w-1/5">
     <Picture
-      class="z-30 absolute flicker"
+      class="z-30 absolute light"
       alt="glad-os"
       widths={[400, 768, 1024, 2040]}
       sizes="(max-width: 767px) 400px, (max-width: 1023px) 768px, (max-width: 2039px) 1024px, 2040px"
@@ -116,7 +123,7 @@ import rled5 from '~/assets/images/THE-CAKE-IS-A-LIE/RLed-Head.png';
       src={headLight}
     />
     <Picture
-      class="z-10 absolute"
+      class="z-10 absolute light"
       alt="glad-os"
       widths={[400, 768, 1024, 2040]}
       sizes="(max-width: 767px) 400px, (max-width: 1023px) 768px, (max-width: 2039px) 1024px, 2040px"
