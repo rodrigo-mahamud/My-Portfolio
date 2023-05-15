@@ -244,7 +244,9 @@ import rled5 from '~/assets/images/THE-CAKE-IS-A-LIE/RLed-Head.png';
     const duration = randomVal(range.min, range.max);
 
     elements.forEach((element) => {
-      element.style.animationDuration = `${duration}s`;
+      // Aquí hacemos el 'type assertion' a HTMLElement
+      const htmlElement = element as HTMLElement;
+      htmlElement.style.animationDuration = `${duration}s`;
     });
   }
 
