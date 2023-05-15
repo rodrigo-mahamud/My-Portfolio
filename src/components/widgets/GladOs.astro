@@ -240,28 +240,11 @@ import rled5 from '~/assets/images/THE-CAKE-IS-A-LIE/RLed-Head.png';
     });
   }
 
-  // Función para manejar el fin de la animación
-  function handleAnimationEnd(event) {
-    const element = event.target;
-    const animationClass = Array.from(element.classList).find((className) => animationClasses.includes(className));
+  // Actualiza la duración de las animaciones al inicio
+  animationClasses.forEach(updateAnimationDuration);
 
-    // Quita el controlador de eventos para evitar múltiples llamadas
-    element.removeEventListener('animationend', handleAnimationEnd);
-
-    updateAnimationDuration(animationClass);
-
-    // Agrega de nuevo el controlador de eventos después de actualizar la duración de la animación
-    element.addEventListener('animationend', handleAnimationEnd);
-  }
-
-  // Agrega los controladores de eventos al inicio y actualiza la duración de las animaciones
-  animationClasses.forEach((animationClass) => {
-    const elements = document.querySelectorAll(`.${animationClass}`);
-
-    elements.forEach((element) => {
-      element.addEventListener('animationend', handleAnimationEnd);
-    });
-
-    updateAnimationDuration(animationClass);
-  });
+  // Actualiza la duración de las animaciones cada 5 segundos
+  setInterval(() => {
+    animationClasses.forEach(updateAnimationDuration);
+  }, 5000);
 </script>
