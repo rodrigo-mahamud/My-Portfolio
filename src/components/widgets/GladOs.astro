@@ -19,28 +19,28 @@ import rled5 from '~/assets/images/THE-CAKE-IS-A-LIE/RLed-Head.png';
     animation: shake-vertical 20s cubic-bezier(0.455, 0.03, 0.515, 0.955) infinite alternate-reverse both;
   }
   .light {
-    animation: light 8s ease-in-out infinite;
+    animation: light ease-in-out infinite;
   }
   .flicker {
-    animation: blink-normal 5s ease-in-out infinite alternate-reverse both;
+    animation: blink-normal ease-in-out infinite alternate-reverse both;
   }
   .flicker-fast {
-    animation: blink-fast 1s linear infinite alternate-reverse both 0.5s;
+    animation: blink-fast linear infinite alternate-reverse both 0.5s;
   }
   .flicker-fast2 {
-    animation: blink-fast 1.5s ease-in-out infinite alternate-reverse both 0s;
+    animation: blink-fast ease-in-out infinite alternate-reverse both 0s;
   }
   .flicker-fast3 {
-    animation: blink-fast 1.75s linear infinite alternate-reverse both 0s;
+    animation: blink-fast linear infinite alternate-reverse both 0s;
   }
   .flicker-fast4 {
-    animation: blink-fast 1.2s ease-in-out infinite alternate-reverse both 0.75s;
+    animation: blink-fast ease-in-out infinite alternate-reverse both 0.75s;
   }
   .flicker-fast5 {
-    animation: blink-normal 5s linear infinite alternate-reverse both 0.5s;
+    animation: blink-normal linear infinite alternate-reverse both 0.5s;
   }
   .flicker-fast6 {
-    animation: blink-fast 1.25s linear infinite alternate-reverse both 2.5s;
+    animation: blink-fast linear infinite alternate-reverse both 2.5s;
   }
   @keyframes shake-vertical {
     0%,
@@ -74,7 +74,7 @@ import rled5 from '~/assets/images/THE-CAKE-IS-A-LIE/RLed-Head.png';
     }
     50% {
       -webkit-transform: translate(15px);
-      transform: translate(4px, 10px);
+      transform: translate(3px, 10px);
     }
     60%,
     100% {
@@ -131,6 +131,7 @@ import rled5 from '~/assets/images/THE-CAKE-IS-A-LIE/RLed-Head.png';
       width={1024}
       src={headIn}
     />
+
     <Picture
       class="z-20 absolute"
       alt="glad-os"
@@ -205,3 +206,62 @@ import rled5 from '~/assets/images/THE-CAKE-IS-A-LIE/RLed-Head.png';
     />
   </div>
 </div>
+<script>
+  // Array de todas las clases de animación que quieres actualizar
+  const animationClasses = [
+    'light',
+    'flicker',
+    'flicker-fast',
+    'flicker-fast2',
+    'flicker-fast3',
+    'flicker-fast4',
+    'flicker-fast5',
+    'flicker-fast6',
+  ];
+
+  // Función para obtener un valor aleatorio entre un rango
+  function getRandomValue(min, max) {
+    return Math.random() * (max - min) + min;
+  }
+
+  // Función para actualizar la duración de las animaciones
+  function updateAnimationDuration(animationClass) {
+    // Selecciona todos los elementos con la clase de animación actual
+    const elements = document.querySelectorAll(`.${animationClass}`);
+
+    // Si no hay elementos, no hacer nada
+    if (elements.length === 0) return;
+
+    // Establece la duración de la animación a un valor aleatorio entre 1s y 5s
+    const duration = getRandomValue(1, 5);
+
+    elements.forEach((element) => {
+      element.style.animationDuration = `${duration}s`;
+    });
+  }
+
+  // Función para manejar el fin de la animación
+  function handleAnimationEnd(event) {
+    const element = event.target;
+    const animationClass = Array.from(element.classList).find((className) => animationClasses.includes(className));
+
+    // Quita el controlador de eventos para evitar múltiples llamadas
+    element.removeEventListener('animationend', handleAnimationEnd);
+
+    updateAnimationDuration(animationClass);
+
+    // Agrega de nuevo el controlador de eventos después de actualizar la duración de la animación
+    element.addEventListener('animationend', handleAnimationEnd);
+  }
+
+  // Agrega los controladores de eventos al inicio y actualiza la duración de las animaciones
+  animationClasses.forEach((animationClass) => {
+    const elements = document.querySelectorAll(`.${animationClass}`);
+
+    elements.forEach((element) => {
+      element.addEventListener('animationend', handleAnimationEnd);
+    });
+
+    updateAnimationDuration(animationClass);
+  });
+</script>
