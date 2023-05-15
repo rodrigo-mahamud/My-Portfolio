@@ -17,27 +17,27 @@ import rled5 from '~/assets/images/THE-CAKE-IS-A-LIE/RLed-Head.png';
     transform-origin: 50% 0%;
     animation: shake-vertical 12s cubic-bezier(0.455, 0.03, 0.515, 0.955) infinite alternate-reverse both 0.8s;
   }
-  .shake-horizontal {
-    transform-origin: 50% 0%;
-    animation: shake-horizontal 12s cubic-bezier(0.455, 0.03, 0.515, 0.955) infinite alternate-reverse both;
-  }
+
   .flicker {
-    animation: blink-normal 5s ease-in-out infinite;
+    animation: blink-normal 5s ease-in-out infinite alternate-reverse both;
   }
   .flicker-fast {
-    animation: blink-fast 1s linear infinite 0.5s;
+    animation: blink-fast 1s linear infinite alternate-reverse both 0.5s;
   }
   .flicker-fast2 {
-    animation: blink-fast 1.5s linear infinite 0s;
+    animation: blink-fast 1.5s ease-in-out infinite alternate-reverse both 0s;
   }
   .flicker-fast3 {
-    animation: blink-fast 1.75s linear infinite 0s;
+    animation: blink-fast 1.75s linear infinite alternate-reverse both 0s;
   }
   .flicker-fast4 {
-    animation: blink-fast 1.2s linear infinite 0.75s;
+    animation: blink-fast 1.2s ease-in-out infinite alternate-reverse both 0.75s;
   }
   .flicker-fast5 {
-    animation: blink-fast 1s linear infinite 2.5s;
+    animation: blink-fast 1s linear infinite alternate-reverse both alternate-reverse both 5s;
+  }
+  .flicker-fast6 {
+    animation: blink-fast 1.25s linear infinite alternate-reverse both 2.5s;
   }
   @keyframes shake-vertical {
     0%,
@@ -135,7 +135,7 @@ import rled5 from '~/assets/images/THE-CAKE-IS-A-LIE/RLed-Head.png';
   }
 </style>
 <div class="shake-vertical">
-  <div class="absolute right-0 w-1/5 mr-8 shake-horizontal">
+  <div class="absolute right-0 w-1/5 mr-8">
     <Picture
       class="z-30 absolute flicker"
       alt="glad-os"
@@ -164,7 +164,7 @@ import rled5 from '~/assets/images/THE-CAKE-IS-A-LIE/RLed-Head.png';
       src={headOut}
     />
     <Picture
-      class="z-10 absolute flicker-fast"
+      class="z-10 absolute flicker-fast6"
       alt="glad-os"
       widths={[400, 768, 1024, 2040]}
       sizes="(max-width: 767px) 400px, (max-width: 1023px) 768px, (max-width: 2039px) 1024px, 2040px"
