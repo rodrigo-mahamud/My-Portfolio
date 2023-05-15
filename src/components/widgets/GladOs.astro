@@ -207,33 +207,30 @@ import rled5 from '~/assets/images/THE-CAKE-IS-A-LIE/RLed-Head.png';
   </div>
 </div>
 <script>
-  // Array de todas las clases de animación que quieres actualizar
-  const animationClasses = [
-    'light',
-    'flicker',
-    'flicker-fast',
-    'flicker-fast2',
-    'flicker-fast3',
-    'flicker-fast4',
-    'flicker-fast5',
-    'flicker-fast6',
-  ];
+  // Objeto de todas las clases de animación que quieres actualizar, con sus rangos de duración
+  const animations = {
+    'shake-vertical': { min: 15, max: 25 },
+    light: { min: 2, max: 4 },
+    flicker: { min: 1, max: 5 },
+    'flicker-fast': { min: 0.5, max: 2 },
+    // Añade más aquí...
+  };
 
   // Función para obtener un valor aleatorio entre un rango
-  function getRandomValue(min, max) {
+  function randomVal(min, max) {
     return Math.random() * (max - min) + min;
   }
 
   // Función para actualizar la duración de las animaciones
-  function updateAnimationDuration(animationClass) {
+  function updateDur(animation, range) {
     // Selecciona todos los elementos con la clase de animación actual
-    const elements = document.querySelectorAll(`.${animationClass}`);
+    const elements = document.querySelectorAll(`.${animation}`);
 
     // Si no hay elementos, no hacer nada
     if (elements.length === 0) return;
 
-    // Establece la duración de la animación a un valor aleatorio entre 1s y 5s
-    const duration = getRandomValue(1, 5);
+    // Establece la duración de la animación a un valor aleatorio entre el rango especificado
+    const duration = randomVal(range.min, range.max);
 
     elements.forEach((element) => {
       element.style.animationDuration = `${duration}s`;
@@ -241,10 +238,10 @@ import rled5 from '~/assets/images/THE-CAKE-IS-A-LIE/RLed-Head.png';
   }
 
   // Actualiza la duración de las animaciones al inicio
-  animationClasses.forEach(updateAnimationDuration);
+  Object.entries(animations).forEach(([animation, range]) => updateDur(animation, range));
 
   // Actualiza la duración de las animaciones cada 5 segundos
   setInterval(() => {
-    animationClasses.forEach(updateAnimationDuration);
+    Object.entries(animations).forEach(([animation, range]) => updateDur(animation, range));
   }, 5000);
 </script>
