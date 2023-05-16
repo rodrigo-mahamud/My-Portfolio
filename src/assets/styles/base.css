@@ -279,6 +279,16 @@ audio {
   background-color: #ffffff;
   width: 0;
 }
+.portal-glow {
+  box-shadow: inset 54px 0px 47px -48px #2564eb84;
+  border-left: 2px solid #0051ff;
+  transition: 0.2s all ease-in-out;
+}
+.portal-glow:hover {
+  border-left: 4px solid #2c6fff;
+  box-shadow: inset 64px 0px 47px -48px #3877ff;
+  transition: 0.2s all ease-in-out;
+}
 
 /* -- ↓ ↓ ↓ some responsiveness ↓ ↓ ↓ -- */
 
