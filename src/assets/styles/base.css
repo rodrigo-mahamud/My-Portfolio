@@ -290,18 +290,18 @@ audio {
   transition: 0.2s all ease-in-out;
 }
 #stickman {
-  animation: left-right 1s cubic-bezier(0.9, 0, 0.1, 1) forwards;
+  animation: left-right 0.85s cubic-bezier(0.22, 1, 0.36, 1) forwards;
   transform: translate(60px, -80px) skewY(330deg);
 }
 @keyframes left-right {
   0% {
     opacity: 0;
-    transform: translate(60px, -80px) skewY(330deg);
+    transform: translate(50px, -50px) skewY(330deg);
   }
-  50% {
+  35% {
     opacity: 0.85;
   }
-  75% {
+  85% {
     transform: translate(0px, 0px) skewY(330deg);
   }
   100% {

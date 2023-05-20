@@ -70,7 +70,7 @@
       }, 50);
     }
 
-    window.addEventListener('load', function () {
+    window.addEventListener('DOMContentLoaded', function () {
       setTimeout(function () {
         gsap.to(welcome, {
           scale: 0,
@@ -87,9 +87,10 @@
         });
         // Aplica el filtro de desenfoque de movimiento a la esfera
         esfera.style.filter = 'url(#motionBlur)';
-      }, 500);
+      }, 550);
     });
     if (portal) {
+      const stickman = document.getElementById('stickman');
       portal.addEventListener('mouseenter', () => {
         gsap.fromTo(
           esfera,
@@ -106,8 +107,7 @@
             ease: 'expo.out',
           }
         );
-        const stickman = document.getElementById('stickman');
-        gsap.to(stickman, {
+        gsap.set(stickman, {
           display: 'flex',
         });
       });
@@ -121,8 +121,7 @@
           background: 'transparent',
           ease: 'expo.out',
         });
-        const stickman = document.getElementById('stickman');
-        gsap.to(stickman, {
+        gsap.set(stickman, {
           display: 'none',
         });
       });
