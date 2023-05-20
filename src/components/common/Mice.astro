@@ -1,3 +1,8 @@
+---
+import { Picture } from '@astrojs/image/components';
+import stickman from '~/assets/images/THE-CAKE-IS-A-LIE/portal-stickman.png';
+---
+
 <div id="esfera-container">
   <div id="esfera">
     <svg
@@ -25,6 +30,15 @@
         </filter>
       </defs>
     </svg>
+    <Picture
+      id="stickman"
+      class="absolute hidden w-3/4 skew-y-[330deg] -top-2/3 left-3/4 opacity-75"
+      alt="glad-os"
+      widths={[400, 768, 1024, 2040]}
+      sizes="(max-width: 767px) 400px, (max-width: 1023px) 768px, (max-width: 2039px) 1024px, 2040px"
+      loading="eager"
+      width={1024}
+      src={stickman}
+    />
   </div>
-  <div class="semicircle"></div>
 </div>

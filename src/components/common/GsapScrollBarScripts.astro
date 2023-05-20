@@ -106,6 +106,10 @@
             ease: 'expo.out',
           }
         );
+        const stickman = document.getElementById('stickman');
+        gsap.to(stickman, {
+          display: 'flex',
+        });
       });
       portal.addEventListener('mouseout', () => {
         gsap.to(esfera, {
@@ -116,6 +120,10 @@
           boxShadow: 'unset',
           background: 'transparent',
           ease: 'expo.out',
+        });
+        const stickman = document.getElementById('stickman');
+        gsap.to(stickman, {
+          display: 'none',
         });
       });
     }
