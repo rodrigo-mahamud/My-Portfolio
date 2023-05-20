@@ -76,7 +76,7 @@
   width: 6rem;
   height: 6rem;
   left: -3%;
-  top: -5%;
+  top: calc(-5% + (100vh * 0.01));
   background-color: blue;
   color: #fff;
   border-radius: 50%;
@@ -290,7 +290,7 @@ audio {
   transition: 0.2s all ease-in-out;
 }
 #stickman {
-  animation: left-right 0.85s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation: left-right 0.75s cubic-bezier(0.22, 1, 0.36, 1) forwards;
   transform: translate(60px, -80px) skewY(330deg);
 }
 @keyframes left-right {

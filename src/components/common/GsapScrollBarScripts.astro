@@ -87,7 +87,7 @@
         });
         // Aplica el filtro de desenfoque de movimiento a la esfera
         esfera.style.filter = 'url(#motionBlur)';
-      }, 550);
+      }, 750);
     });
     if (portal) {
       const stickman = document.getElementById('stickman');
@@ -276,7 +276,7 @@
     sbutton.addEventListener('click', () => {
       if (!isActive) {
         gsap.to(scard, {
-          duration: 2,
+          duration: 1.25,
           autoAlpha: 1,
           y: 0,
           ease: 'Expo.easeOut',
@@ -284,7 +284,7 @@
         isActive = true;
       } else {
         gsap.to(scard, {
-          duration: 2,
+          duration: 1.25,
           autoAlpha: 0,
           y: 100,
           ease: 'Expo.easeOut',
