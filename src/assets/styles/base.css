@@ -296,7 +296,7 @@ audio {
 @keyframes left-right {
   0% {
     opacity: 0;
-    transform: translate(50px, -50px) skewY(300deg);
+    transform: translate(50px, -50px) skewY(330deg);
   }
   35% {
     opacity: 0.85;
