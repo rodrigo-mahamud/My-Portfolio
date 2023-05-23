@@ -250,7 +250,7 @@ i {
 .card-info-title > h4 {
   color: rgba(255, 255, 255, 0.5);
   font-size: 0.85em;
-  margin-top: 0px;
+  margin-top: 8px;
 }
 audio {
   width: 300px;
