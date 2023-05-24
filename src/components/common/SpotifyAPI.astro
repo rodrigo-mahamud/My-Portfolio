@@ -25,10 +25,13 @@
         Authorization: 'Bearer ' + accessToken,
       },
     });
-    const artistNameElement = document.getElementById('artist-name');
     const trackNameElement = document.getElementById('track-name');
-    if (artistNameElement && response.status === 204) {
-      artistNameElement.innerText = 'Sry, no hay nada sonando en mi Spotifiy 😴';
+    if (trackNameElement && response.status === 204) {
+      trackNameElement.innerText = 'Sry, no hay nada sonando en mi Spotifiy 😴';
+      const scardTitle = document.getElementById('scard-title') as HTMLImageElement;
+      if (scardTitle) {
+        scardTitle.style.display = 'none';
+      }
       const defaultImage = document.getElementById('default-image') as HTMLImageElement;
       if (defaultImage) {
         defaultImage.style.display = 'block';
