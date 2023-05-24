@@ -4,6 +4,7 @@
   const refreshToken: string =
     'AQBOdQ360XO2FzPngspd0bBkRm5UT4Bb2rPSiQakhZIEGn5qRZSilr7Ww0XKExdoHHJ8XSz1ZP7VdKwRED9F3gljWIjt86PC5NdJ_NwWs9wijArDPcX0WJ-9z_jy-lJ-ZM4';
   let audioElement: HTMLAudioElement | null = null;
+  let isFirstClick = true;
 
   async function getAccessToken(): Promise<string> {
     const response = await fetch('https://accounts.spotify.com/api/token', {
@@ -28,6 +29,11 @@
     const trackNameElement = document.getElementById('track-name');
     if (trackNameElement && response.status === 204) {
       trackNameElement.innerText = 'Nada se está reproduciendo en este momento';
+      const defaultImage = document.getElementById('default-image') as HTMLImageElement;
+      if (defaultImage) {
+        defaultImage.style.display = 'block';
+      }
+
       return;
     }
 
@@ -44,6 +50,15 @@
     const artistNameElement = document.getElementById('artist-name');
     if (artistNameElement) {
       artistNameElement.innerText = `${artistName}`;
+    }
+
+    const defaultImage = document.getElementById('default-image') as HTMLImageElement;
+    const defaultText = document.getElementById('default-text') as HTMLElement;
+    if (defaultImage) {
+      defaultImage.style.display = 'none';
+    }
+    if (defaultText) {
+      defaultText.style.display = 'none';
     }
 
     const albumCover = document.getElementById('album-cover') as HTMLImageElement;
@@ -104,6 +119,18 @@
   }
 
   async function init() {
+    const sbutton = document.getElementById('sbutton');
+    if (sbutton) {
+      sbutton.addEventListener('click', async () => {
+        if (isFirstClick) {
+          const accessToken = await getAccessToken();
+          await getNowPlaying(accessToken);
+          isFirstClick = false;
+        }
+        // El resto del código del manejador de eventos aquí.
+      });
+    }
+
     const accessToken = await getAccessToken();
     await getNowPlaying(accessToken);
     setInterval(async () => {
