@@ -70,34 +70,6 @@
       }, 50);
     }
 
-    //HOVER
-    function onElementHover() {
-      gsap.to(esfera, {
-        scale: 0.75,
-        background: '#ffffff80',
-        border: '0px',
-        duration: 0.3,
-        ease: 'expo.out',
-      });
-    }
-
-    function onElementMouseLeave() {
-      gsap.to(esfera, {
-        scale: 0.5,
-        background: 'transparent',
-        border: '2px solid #fff',
-        duration: 0.3,
-        ease: 'expo.out',
-      });
-    }
-
-    const elementsToHover = document.querySelectorAll('a, button');
-
-    elementsToHover.forEach((el) => {
-      el.addEventListener('mouseenter', onElementHover);
-      el.addEventListener('mouseleave', onElementMouseLeave);
-    });
-
     window.addEventListener('DOMContentLoaded', function () {
       setTimeout(function () {
         gsap.to(welcome, {
@@ -117,6 +89,36 @@
         esfera.style.filter = 'url(#motionBlur)';
       }, 750);
     });
+    //HOVER
+    const elementsToHover = document.querySelectorAll('a, button');
+
+    elementsToHover.forEach((el) => {
+      el.addEventListener('mouseenter', onElementHover);
+      el.addEventListener('mouseleave', onElementMouseLeave);
+    });
+
+    function onElementHover() {
+      gsap.to(esfera, {
+        scale: 0.75,
+        background: '#ffffff80',
+        filter: 'invert(1)',
+        border: '0px',
+        duration: 0.5,
+        ease: 'expo.out',
+      });
+    }
+
+    function onElementMouseLeave() {
+      gsap.to(esfera, {
+        scale: 0.5,
+        background: 'transparent',
+        border: '2px solid #fff',
+        duration: 0.5,
+        ease: 'expo.out',
+      });
+    }
+
+    // THE 404 PAGE IS A LIE
     if (portal) {
       const stickman = document.getElementById('stickman');
       portal.addEventListener('mouseenter', () => {
