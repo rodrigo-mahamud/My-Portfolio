@@ -69,22 +69,23 @@
         });
       }, 50);
     }
+
     //HOVER
     function onElementHover() {
-      // Aumenta el tamaño de la esfera y añade fondo
       gsap.to(esfera, {
-        scale: 1, // Ajusta este valor al tamaño que desees
-        background: '#000', // Ajusta este valor al color de fondo que desees
+        scale: 0.75,
+        background: '#ffffff80',
+        border: '0px',
         duration: 0.3,
         ease: 'expo.out',
       });
     }
 
     function onElementMouseLeave() {
-      // Vuelve a su tamaño y aspecto original
       gsap.to(esfera, {
-        scale: 0.5, // Este valor debe coincidir con el tamaño original de la esfera
-        background: 'transparent', // Esto vuelve la esfera a su estado original transparente
+        scale: 0.5,
+        background: 'transparent',
+        border: '2px solid #fff',
         duration: 0.3,
         ease: 'expo.out',
       });
