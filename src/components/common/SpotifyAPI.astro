@@ -25,15 +25,18 @@
         Authorization: 'Bearer ' + accessToken,
       },
     });
-
+    const artistNameElement = document.getElementById('artist-name');
     const trackNameElement = document.getElementById('track-name');
-    if (trackNameElement && response.status === 204) {
-      trackNameElement.innerText = 'Nada se está reproduciendo en este momento';
+    if (artistNameElement && response.status === 204) {
+      artistNameElement.innerText = 'Sry, no hay nada sonando en mi Spotifiy 😴';
       const defaultImage = document.getElementById('default-image') as HTMLImageElement;
       if (defaultImage) {
         defaultImage.style.display = 'block';
       }
-
+      const albumCover = document.getElementById('album-cover') as HTMLImageElement;
+      if (albumCover) {
+        albumCover.style.display = 'none';
+      }
       return;
     }
 
@@ -45,24 +48,17 @@
     const previewUrl = data.item.preview_url;
 
     if (trackNameElement) {
-      trackNameElement.innerText = `${trackName}`;
-    }
-    const artistNameElement = document.getElementById('artist-name');
-    if (artistNameElement) {
-      artistNameElement.innerText = `${artistName}`;
+      trackNameElement.innerText = `${trackName} - ${artistName}`;
     }
 
     const defaultImage = document.getElementById('default-image') as HTMLImageElement;
-    const defaultText = document.getElementById('default-text') as HTMLElement;
     if (defaultImage) {
       defaultImage.style.display = 'none';
-    }
-    if (defaultText) {
-      defaultText.style.display = 'none';
     }
 
     const albumCover = document.getElementById('album-cover') as HTMLImageElement;
     if (albumCover) {
+      albumCover.style.display = 'block';
       albumCover.src = albumCoverUrl;
     }
 
@@ -127,7 +123,6 @@
           await getNowPlaying(accessToken);
           isFirstClick = false;
         }
-        // El resto del código del manejador de eventos aquí.
       });
     }
 
