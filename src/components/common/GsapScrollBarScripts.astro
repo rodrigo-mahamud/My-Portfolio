@@ -97,24 +97,28 @@
       el.addEventListener('mouseleave', onElementMouseLeave);
     });
 
-    function onElementHover() {
-      gsap.to(esfera, {
-        scale: 0.75,
-        background: '#ffffff50',
-        border: '0px',
-        duration: 0.5,
-        ease: 'expo.out',
-      });
+    function onElementHover(e) {
+      if (!e.target.classList.contains('NoMiceHover')) {
+        gsap.to(esfera, {
+          scale: 0.75,
+          background: '#ffffff50',
+          border: '0px',
+          duration: 0.5,
+          ease: 'expo.out',
+        });
+      }
     }
 
-    function onElementMouseLeave() {
-      gsap.to(esfera, {
-        scale: 0.5,
-        background: 'transparent',
-        border: '2px solid #fff',
-        duration: 0.5,
-        ease: 'expo.out',
-      });
+    function onElementMouseLeave(e) {
+      if (!e.target.classList.contains('NoMiceHover')) {
+        gsap.to(esfera, {
+          scale: 0.5,
+          background: 'transparent',
+          border: '2px solid #fff',
+          duration: 0.5,
+          ease: 'expo.out',
+        });
+      }
     }
 
     // THE 404 PAGE IS A LIE
