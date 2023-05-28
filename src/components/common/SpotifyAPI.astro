@@ -27,7 +27,7 @@
     });
     const trackNameElement = document.getElementById('track-name');
     if (trackNameElement && response.status === 204) {
-      trackNameElement.innerText = 'Sry, no hay nada sonando en mi Spotifiy 😴';
+      trackNameElement.innerText = 'No hay nada sonando en mi Spotifiy 😴';
       const scardTitle = document.getElementById('scard-title') as HTMLImageElement;
       if (scardTitle) {
         scardTitle.style.display = 'none';
