@@ -5,7 +5,7 @@ import hero from '~/assets/images/hero/hero.png';
 
 <style>
   .transformHero {
-    transform: translate3d(30%, 0px, 0px) scale3d(1, 0.7, 1) rotateX(15deg) rotateY(-9deg) rotateZ(32deg)
+    transform: translate3d(30%, -10%, 0px) scale3d(1, 0.7, 1) rotateX(15deg) rotateY(-9deg) rotateZ(32deg)
       skew(0deg, 0deg);
   }
   .heroShadow {
@@ -26,17 +26,8 @@ import hero from '~/assets/images/hero/hero.png';
         </h2>
       </div>
     </div>
-    <div class="flex flex-row w-full h-full transformHero">
+    <div class="flex flex-row w-full h-full items-center transformHero">
       <div class="flex flex-col w-1/4 mx-4 transformHeroElement">
-        <Picture
-          class="mt-8 heroCardShadow"
-          alt="glad-os"
-          widths={[400, 768, 1024, 2040]}
-          sizes="(max-width: 767px) 400px, (max-width: 1023px) 768px, (max-width: 2039px) 1024px, 2040px"
-          loading="eager"
-          width={1024}
-          src={hero}
-        />
         <Picture
           class="mt-8 heroCardShadow"
           alt="glad-os"
@@ -194,8 +185,44 @@ import hero from '~/assets/images/hero/hero.png';
           width={1024}
           src={hero}
         />
+        <Picture
+          class="mt-8 heroCardShadow"
+          alt="glad-os"
+          widths={[400, 768, 1024, 2040]}
+          sizes="(max-width: 767px) 400px, (max-width: 1023px) 768px, (max-width: 2039px) 1024px, 2040px"
+          loading="eager"
+          width={1024}
+          src={hero}
+        />
       </div>
       <div class="flex flex-col w-1/4 mx-4 transformHeroElement">
+        <Picture
+          class="mt-8 heroCardShadow"
+          alt="glad-os"
+          widths={[400, 768, 1024, 2040]}
+          sizes="(max-width: 767px) 400px, (max-width: 1023px) 768px, (max-width: 2039px) 1024px, 2040px"
+          loading="eager"
+          width={1024}
+          src={hero}
+        />
+        <Picture
+          class="mt-8 heroCardShadow"
+          alt="glad-os"
+          widths={[400, 768, 1024, 2040]}
+          sizes="(max-width: 767px) 400px, (max-width: 1023px) 768px, (max-width: 2039px) 1024px, 2040px"
+          loading="eager"
+          width={1024}
+          src={hero}
+        />
+        <Picture
+          class="mt-8 heroCardShadow"
+          alt="glad-os"
+          widths={[400, 768, 1024, 2040]}
+          sizes="(max-width: 767px) 400px, (max-width: 1023px) 768px, (max-width: 2039px) 1024px, 2040px"
+          loading="eager"
+          width={1024}
+          src={hero}
+        />
         <Picture
           class="mt-8 heroCardShadow"
           alt="glad-os"
@@ -234,14 +261,13 @@ import hero from '~/assets/images/hero/hero.png';
     const columns = Array.from(document.querySelectorAll('.transformHeroElement'));
     columns.forEach((column) => {
       // generar una duración aleatoria entre 0.2 y 2
-      const randomDuration = Math.random() * (30 - 20) + 0.2;
-
+      const randomDuration = Math.random() * (30 - 5) + 5;
       gsap.to(column, {
         opacity: 1,
-        y: 500,
+        y: 200,
         repeat: -1,
+        yoyo: true,
         duration: randomDuration,
-        ease: 'power1.out',
       });
     });
   });
