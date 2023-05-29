@@ -1,27 +1,182 @@
 ---
-import { Icon } from 'astro-icon';
-import { Picture } from '@astrojs/image/components';
-
-interface Item {
-  title: string;
-  description?: string;
-  icon?: string;
-}
-
-export interface Props {
-  title?: string;
-  items: Array<Item>;
-  image?: string | any; // TODO: find HTMLElementProps
-}
-
-const {
-  title = await Astro.slots.render('title'),
-  items = [],
-  image = await Astro.slots.render('image'),
-} = Astro.props;
 ---
 
-<section class="px-4 py-16 sm:px-6 mx-auto lg:px-8 lg:py-20 max-w-6xl" id="proyectos">
+<section class="h-screen min-h-[1000px] flex" id="experience">
+  <div class="sticky top-8 p-20-40">
+    <div
+      class="a-top-1 sticky mx-auto mb-20-60 max-w-7xl rounded-10 border border-secondary bg-primary dark:border-primary dark:bg-secondary"
+    >
+      <header>
+        <div class="p-10-20"><h3 class="text-button text-16-40 uppercase text-tertiary">Experience</h3></div>
+      </header><section class="w-full">
+        <ul class="mx-10-20 flex flex-col gap-10-20 border-t border-secondary py-10-20 dark:border-primary/20">
+          <li class="relative flex gap-10-20">
+            <div
+              class="flex basis-1/6 items-center justify-center rounded-10 bg-primary bg-secondary/10 p-10-20 text-center text-16-40 leading-none text-secondary dark:bg-primary/10 dark:text-primary"
+            >
+              2019<br />-<br />2023
+            </div><h4
+              class="flex basis-full items-center rounded-10 bg-primary bg-secondary/10 p-10-20 text-16-40 leading-tight text-secondary dark:bg-primary/10 dark:text-primary"
+            >
+              <a class="hover:text-tertiary" href="http://divisa.design" target="_blank" rel="noopener noreferrer"
+                >Co-Founder, Designer &amp; Developer @ Divisa.</a
+              >
+            </h4>
+          </li>
+        </ul>
+      </section>
+    </div><div
+      class="a-top-2 sticky mx-auto mb-20-60 max-w-7xl rounded-10 border border-secondary bg-primary dark:border-primary dark:bg-secondary"
+    >
+      <header>
+        <div class="p-10-20"><h3 class="text-button text-16-40 uppercase text-tertiary">Education</h3></div>
+      </header><section class="w-full">
+        <ul class="mx-10-20 flex flex-col gap-10-20 border-t border-secondary py-10-20 dark:border-primary/20">
+          <li class="relative flex gap-10-20">
+            <div
+              class="flex basis-1/6 items-center justify-center rounded-10 bg-primary bg-secondary/10 p-10-20 text-center text-16-40 leading-none text-secondary dark:bg-primary/10 dark:text-primary"
+            >
+              2014<br />-<br />2019
+            </div><h4
+              class="flex basis-full items-center rounded-10 bg-primary bg-secondary/10 p-10-20 text-16-40 leading-tight text-secondary dark:bg-primary/10 dark:text-primary"
+            >
+              Bachelor's and Master's degrees in Design and Multimedia @ University of Coimbra
+            </h4>
+          </li>
+        </ul>
+      </section>
+    </div><div
+      class="a-top-3 sticky mx-auto mb-20-60 max-w-7xl rounded-10 border border-secondary bg-primary dark:border-primary dark:bg-secondary"
+    >
+      <header>
+        <div class="p-10-20">
+          <h3 class="text-button text-16-40 uppercase text-tertiary">Exhibitions · Talks · Workshops</h3>
+        </div>
+      </header><section class="w-full">
+        <ul class="mx-10-20 flex flex-col gap-10-20 border-t border-secondary py-10-20 dark:border-primary/20">
+          <li class="relative flex gap-10-20">
+            <div
+              class="flex basis-1/6 items-center justify-center rounded-10 bg-primary bg-secondary/10 p-10-20 text-center text-16-40 leading-none text-secondary dark:bg-primary/10 dark:text-primary"
+            >
+              2022
+            </div><h4
+              class="flex basis-full items-center rounded-10 bg-primary bg-secondary/10 p-10-20 text-16-40 leading-tight text-secondary dark:bg-primary/10 dark:text-primary"
+            >
+              Talk with DM Alumni @ NEI ACC
+            </h4>
+          </li><li class="relative flex gap-10-20">
+            <div
+              class="flex basis-1/6 items-center justify-center rounded-10 bg-primary bg-secondary/10 p-10-20 text-center text-16-40 leading-none text-secondary dark:bg-primary/10 dark:text-primary"
+            >
+              2022
+            </div><h4
+              class="flex basis-full items-center rounded-10 bg-primary bg-secondary/10 p-10-20 text-16-40 leading-tight text-secondary dark:bg-primary/10 dark:text-primary"
+            >
+              Exhibition @ Portugal National Day of Historical Centers
+            </h4>
+          </li><li class="relative flex gap-10-20">
+            <div
+              class="flex basis-1/6 items-center justify-center rounded-10 bg-primary bg-secondary/10 p-10-20 text-center text-16-40 leading-none text-secondary dark:bg-primary/10 dark:text-primary"
+            >
+              2021
+            </div><h4
+              class="flex basis-full items-center rounded-10 bg-primary bg-secondary/10 p-10-20 text-16-40 leading-tight text-secondary dark:bg-primary/10 dark:text-primary"
+            >
+              <a
+                class="hover:text-tertiary"
+                href="https://github.com/fabioop/pcd21-generative-type-design"
+                target="_blank"
+                rel="noopener noreferrer">Workshop @ PCD'21, “Generetive Type Design”</a
+              >
+            </h4>
+          </li>
+        </ul>
+      </section>
+    </div><div
+      class="a-top-4 sticky mx-auto mb-20-60 max-w-7xl rounded-10 border border-secondary bg-primary dark:border-primary dark:bg-secondary"
+    >
+      <header>
+        <div class="p-10-20"><h3 class="text-button text-16-40 uppercase text-tertiary">Awards · Publications</h3></div>
+      </header><section class="w-full">
+        <ul class="mx-10-20 flex flex-col gap-10-20 border-t border-secondary py-10-20 dark:border-primary/20">
+          <li class="relative flex gap-10-20">
+            <div
+              class="flex basis-1/6 items-center justify-center rounded-10 bg-primary bg-secondary/10 p-10-20 text-center text-16-40 leading-none text-secondary dark:bg-primary/10 dark:text-primary"
+            >
+              2021
+            </div><h4
+              class="flex basis-full items-center rounded-10 bg-primary bg-secondary/10 p-10-20 text-16-40 leading-tight text-secondary dark:bg-primary/10 dark:text-primary"
+            >
+              Winner of Graphic Design Category @ National Exhibition of Young Creators
+            </h4>
+          </li><li class="relative flex gap-10-20">
+            <div
+              class="flex basis-1/6 items-center justify-center rounded-10 bg-primary bg-secondary/10 p-10-20 text-center text-16-40 leading-none text-secondary dark:bg-primary/10 dark:text-primary"
+            >
+              2019
+            </div><h4
+              class="flex basis-full items-center rounded-10 bg-primary bg-secondary/10 p-10-20 text-16-40 leading-tight text-secondary dark:bg-primary/10 dark:text-primary"
+            >
+              <a
+                class="hover:text-tertiary"
+                href="http://www.atipo.pt/et/atas/10ET-Proceedings.pdf#page=166"
+                target="_blank"
+                rel="noopener noreferrer">Web-based Tool for the Generation of Letterforms @ 10th Typography Meeting</a
+              >
+            </h4>
+          </li><li class="relative flex gap-10-20">
+            <div
+              class="flex basis-1/6 items-center justify-center rounded-10 bg-primary bg-secondary/10 p-10-20 text-center text-16-40 leading-none text-secondary dark:bg-primary/10 dark:text-primary"
+            >
+              2019
+            </div><h4
+              class="flex basis-full items-center rounded-10 bg-primary bg-secondary/10 p-10-20 text-16-40 leading-tight text-secondary dark:bg-primary/10 dark:text-primary"
+            >
+              <a
+                class="hover:text-tertiary"
+                href="https://dl.acm.org/doi/10.1145/3359852.3359866"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Generative Type Design: Creating Glyphs from Typographical Skeletons @ ARTECH 2019</a
+              >
+            </h4>
+          </li><li class="relative flex gap-10-20">
+            <div
+              class="flex basis-1/6 items-center justify-center rounded-10 bg-primary bg-secondary/10 p-10-20 text-center text-16-40 leading-none text-secondary dark:bg-primary/10 dark:text-primary"
+            >
+              2019
+            </div><h4
+              class="flex basis-full items-center rounded-10 bg-primary bg-secondary/10 p-10-20 text-16-40 leading-tight text-secondary dark:bg-primary/10 dark:text-primary"
+            >
+              <a
+                class="hover:text-tertiary"
+                href="https://selectedinspiration.com/community/project/experiments-on-generative-type-design"
+                target="_blank"
+                rel="noopener noreferrer">Experiments on Generative Type Design @ Selected</a
+              >
+            </h4>
+          </li><li class="relative flex gap-10-20">
+            <div
+              class="flex basis-1/6 items-center justify-center rounded-10 bg-primary bg-secondary/10 p-10-20 text-center text-16-40 leading-none text-secondary dark:bg-primary/10 dark:text-primary"
+            >
+              2015
+            </div><h4
+              class="flex basis-full items-center rounded-10 bg-primary bg-secondary/10 p-10-20 text-16-40 leading-tight text-secondary dark:bg-primary/10 dark:text-primary"
+            >
+              <a
+                class="hover:text-tertiary"
+                href="https://www.posterfortomorrow.org/en/gallery/40167"
+                target="_blank"
+                rel="noopener noreferrer">Short Listed @ Poster For Tomorrow 2015 Edition</a
+              >
+            </h4>
+          </li>
+        </ul>
+      </section>
+    </div>
+  </div>
+</section>
+<!-- <section class="px-4 py-16 sm:px-6 mx-auto lg:px-8 lg:py-20 max-w-6xl" id="proyectos">
   <div class="grid gap-6 row-gap-10 md:grid-cols-2">
     <div class="md:py-4 md:pr-16 mb-4 md:mb-0">
       {title && <h2 class="mb-8 text-3xl lg:text-4xl font-bold font-heading" set:html={title} />}
@@ -71,4 +226,4 @@ const {
       }
     </div>
   </div>
-</section>
+</section> -->
