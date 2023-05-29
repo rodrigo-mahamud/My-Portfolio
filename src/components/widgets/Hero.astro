@@ -261,7 +261,7 @@ import hero from '~/assets/images/hero/hero.png';
     const columns = Array.from(document.querySelectorAll('.transformHeroElement'));
     columns.forEach((column) => {
       // generar una duración aleatoria entre 0.2 y 2
-      const randomDuration = Math.random() * (30 - 5) + 5;
+      const randomDuration = Math.random() * (30 - 10) + 10;
       gsap.to(column, {
         opacity: 1,
         y: 200,
