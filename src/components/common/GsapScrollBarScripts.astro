@@ -360,5 +360,21 @@
       });
     });
   }
+
   animateOnScroll();
+  window.addEventListener('DOMContentLoaded', () => {
+    const heroElementsToAnimate = document.querySelectorAll('.SAnimateHero');
+
+    heroElementsToAnimate.forEach((element, index) => {
+      const delay = 0.65 + index * 0.15;
+      gsap.from(element, {
+        duration: 2.25,
+        autoAlpha: 0,
+        y: 100,
+        delay: delay,
+        ease: 'Expo.easeOut',
+        clearProps: 'all',
+      });
+    });
+  });
 </script>

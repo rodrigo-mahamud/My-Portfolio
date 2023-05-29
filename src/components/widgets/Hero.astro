@@ -11,25 +11,23 @@ import hero from '~/assets/images/hero/hero.png';
   .heroShadow {
     box-shadow: 25px 0 144px -65px rgba(16, 24, 40, 0.25);
   }
-  .heroCardShadow {
-    box-shadow: 1px 1px 1px #e4e7ec, 18px 26px 64px -12px rgba(16, 24, 40, 0.15);
-  }
 </style>
 <section class="relative" id="inicio">
-  <div class="bg-white w-screen h-screen overflow-hidden">
+  <div class="bg-[#0f0420] w-screen h-screen overflow-hidden">
     <div class="w-1/2 bg-[#0a0118] h-screen absolute z-10 heroShadow">
-      <div class="absolute bottom-0 h-1/3 px-14 pb-8 flex flex-col">
-        <h1 class="text-white text-5xl mb-4 font-semibold">Rodrigo Mahamud's portfolio</h1>
-        <h2 class="w-full">
+      <div class="absolute bottom-0 h-2/5 px-14 pb-8 flex flex-col">
+        <h1 class="text-white text-5xl mb-6 font-semibold SAnimateHero">Rodrigo Mahamud's portfolio</h1>
+        <h2 class="w-full text-lg SAnimateHero">
           UI kit and design system for Figma in the world. Kickstart any project, save thousands of hours, and level up
           as a .
         </h2>
       </div>
     </div>
     <div class="flex flex-row w-full h-full items-center transformHero">
-      <div class="flex flex-col w-1/4 mx-4 transformHeroElement">
+      <div class="flex flex-col w-1/4 mx-4">
         <Picture
-          class="mt-8 heroCardShadow"
+          id="heroCardShadow"
+          class="mt-8"
           alt="glad-os"
           widths={[400, 768, 1024, 2040]}
           sizes="(max-width: 767px) 400px, (max-width: 1023px) 768px, (max-width: 2039px) 1024px, 2040px"
@@ -38,7 +36,8 @@ import hero from '~/assets/images/hero/hero.png';
           src={hero}
         />
         <Picture
-          class="mt-8 heroCardShadow"
+          id="heroCardShadow"
+          class="mt-8"
           alt="glad-os"
           widths={[400, 768, 1024, 2040]}
           sizes="(max-width: 767px) 400px, (max-width: 1023px) 768px, (max-width: 2039px) 1024px, 2040px"
@@ -47,7 +46,8 @@ import hero from '~/assets/images/hero/hero.png';
           src={hero}
         />
         <Picture
-          class="mt-8 heroCardShadow"
+          id="heroCardShadow"
+          class="mt-8"
           alt="glad-os"
           widths={[400, 768, 1024, 2040]}
           sizes="(max-width: 767px) 400px, (max-width: 1023px) 768px, (max-width: 2039px) 1024px, 2040px"
@@ -56,7 +56,8 @@ import hero from '~/assets/images/hero/hero.png';
           src={hero}
         />
         <Picture
-          class="mt-8 heroCardShadow"
+          id="heroCardShadow"
+          class="mt-8"
           alt="glad-os"
           widths={[400, 768, 1024, 2040]}
           sizes="(max-width: 767px) 400px, (max-width: 1023px) 768px, (max-width: 2039px) 1024px, 2040px"
@@ -65,63 +66,8 @@ import hero from '~/assets/images/hero/hero.png';
           src={hero}
         />
         <Picture
-          class="mt-8 heroCardShadow"
-          alt="glad-os"
-          widths={[400, 768, 1024, 2040]}
-          sizes="(max-width: 767px) 400px, (max-width: 1023px) 768px, (max-width: 2039px) 1024px, 2040px"
-          loading="eager"
-          width={1024}
-          src={hero}
-        />
-      </div>
-      <div class="flex flex-col w-1/4 mx-4 transformHeroElement">
-        <Picture
-          class="mt-8 heroCardShadow"
-          alt="glad-os"
-          widths={[400, 768, 1024, 2040]}
-          sizes="(max-width: 767px) 400px, (max-width: 1023px) 768px, (max-width: 2039px) 1024px, 2040px"
-          loading="eager"
-          width={1024}
-          src={hero}
-        />
-        <Picture
-          class="mt-8 heroCardShadow"
-          alt="glad-os"
-          widths={[400, 768, 1024, 2040]}
-          sizes="(max-width: 767px) 400px, (max-width: 1023px) 768px, (max-width: 2039px) 1024px, 2040px"
-          loading="eager"
-          width={1024}
-          src={hero}
-        />
-        <Picture
-          class="mt-8 heroCardShadow"
-          alt="glad-os"
-          widths={[400, 768, 1024, 2040]}
-          sizes="(max-width: 767px) 400px, (max-width: 1023px) 768px, (max-width: 2039px) 1024px, 2040px"
-          loading="eager"
-          width={1024}
-          src={hero}
-        />
-        <Picture
-          class="mt-8 heroCardShadow"
-          alt="glad-os"
-          widths={[400, 768, 1024, 2040]}
-          sizes="(max-width: 767px) 400px, (max-width: 1023px) 768px, (max-width: 2039px) 1024px, 2040px"
-          loading="eager"
-          width={1024}
-          src={hero}
-        />
-        <Picture
-          class="mt-8 heroCardShadow"
-          alt="glad-os"
-          widths={[400, 768, 1024, 2040]}
-          sizes="(max-width: 767px) 400px, (max-width: 1023px) 768px, (max-width: 2039px) 1024px, 2040px"
-          loading="eager"
-          width={1024}
-          src={hero}
-        />
-        <Picture
-          class="mt-8 heroCardShadow"
+          id="heroCardShadow"
+          class="mt-8"
           alt="glad-os"
           widths={[400, 768, 1024, 2040]}
           sizes="(max-width: 767px) 400px, (max-width: 1023px) 768px, (max-width: 2039px) 1024px, 2040px"
@@ -130,9 +76,10 @@ import hero from '~/assets/images/hero/hero.png';
           src={hero}
         />
       </div>
-      <div class="flex flex-col w-1/4 mx-4 transformHeroElement">
+      <div class="flex flex-col w-1/4 mx-4">
         <Picture
-          class="mt-8 heroCardShadow"
+          id="heroCardShadow"
+          class="mt-8"
           alt="glad-os"
           widths={[400, 768, 1024, 2040]}
           sizes="(max-width: 767px) 400px, (max-width: 1023px) 768px, (max-width: 2039px) 1024px, 2040px"
@@ -141,7 +88,8 @@ import hero from '~/assets/images/hero/hero.png';
           src={hero}
         />
         <Picture
-          class="mt-8 heroCardShadow"
+          id="heroCardShadow"
+          class="mt-8"
           alt="glad-os"
           widths={[400, 768, 1024, 2040]}
           sizes="(max-width: 767px) 400px, (max-width: 1023px) 768px, (max-width: 2039px) 1024px, 2040px"
@@ -150,7 +98,8 @@ import hero from '~/assets/images/hero/hero.png';
           src={hero}
         />
         <Picture
-          class="mt-8 heroCardShadow"
+          id="heroCardShadow"
+          class="mt-8"
           alt="glad-os"
           widths={[400, 768, 1024, 2040]}
           sizes="(max-width: 767px) 400px, (max-width: 1023px) 768px, (max-width: 2039px) 1024px, 2040px"
@@ -159,7 +108,8 @@ import hero from '~/assets/images/hero/hero.png';
           src={hero}
         />
         <Picture
-          class="mt-8 heroCardShadow"
+          id="heroCardShadow"
+          class="mt-8"
           alt="glad-os"
           widths={[400, 768, 1024, 2040]}
           sizes="(max-width: 767px) 400px, (max-width: 1023px) 768px, (max-width: 2039px) 1024px, 2040px"
@@ -168,7 +118,8 @@ import hero from '~/assets/images/hero/hero.png';
           src={hero}
         />
         <Picture
-          class="mt-8 heroCardShadow"
+          id="heroCardShadow"
+          class="mt-8"
           alt="glad-os"
           widths={[400, 768, 1024, 2040]}
           sizes="(max-width: 767px) 400px, (max-width: 1023px) 768px, (max-width: 2039px) 1024px, 2040px"
@@ -177,16 +128,8 @@ import hero from '~/assets/images/hero/hero.png';
           src={hero}
         />
         <Picture
-          class="mt-8 heroCardShadow"
-          alt="glad-os"
-          widths={[400, 768, 1024, 2040]}
-          sizes="(max-width: 767px) 400px, (max-width: 1023px) 768px, (max-width: 2039px) 1024px, 2040px"
-          loading="eager"
-          width={1024}
-          src={hero}
-        />
-        <Picture
-          class="mt-8 heroCardShadow"
+          id="heroCardShadow"
+          class="mt-8"
           alt="glad-os"
           widths={[400, 768, 1024, 2040]}
           sizes="(max-width: 767px) 400px, (max-width: 1023px) 768px, (max-width: 2039px) 1024px, 2040px"
@@ -195,9 +138,10 @@ import hero from '~/assets/images/hero/hero.png';
           src={hero}
         />
       </div>
-      <div class="flex flex-col w-1/4 mx-4 transformHeroElement">
+      <div class="flex flex-col w-1/4 mx-4">
         <Picture
-          class="mt-8 heroCardShadow"
+          id="heroCardShadow"
+          class="mt-8"
           alt="glad-os"
           widths={[400, 768, 1024, 2040]}
           sizes="(max-width: 767px) 400px, (max-width: 1023px) 768px, (max-width: 2039px) 1024px, 2040px"
@@ -206,7 +150,8 @@ import hero from '~/assets/images/hero/hero.png';
           src={hero}
         />
         <Picture
-          class="mt-8 heroCardShadow"
+          id="heroCardShadow"
+          class="mt-8"
           alt="glad-os"
           widths={[400, 768, 1024, 2040]}
           sizes="(max-width: 767px) 400px, (max-width: 1023px) 768px, (max-width: 2039px) 1024px, 2040px"
@@ -215,7 +160,8 @@ import hero from '~/assets/images/hero/hero.png';
           src={hero}
         />
         <Picture
-          class="mt-8 heroCardShadow"
+          id="heroCardShadow"
+          class="mt-8"
           alt="glad-os"
           widths={[400, 768, 1024, 2040]}
           sizes="(max-width: 767px) 400px, (max-width: 1023px) 768px, (max-width: 2039px) 1024px, 2040px"
@@ -224,7 +170,8 @@ import hero from '~/assets/images/hero/hero.png';
           src={hero}
         />
         <Picture
-          class="mt-8 heroCardShadow"
+          id="heroCardShadow"
+          class="mt-8"
           alt="glad-os"
           widths={[400, 768, 1024, 2040]}
           sizes="(max-width: 767px) 400px, (max-width: 1023px) 768px, (max-width: 2039px) 1024px, 2040px"
@@ -233,7 +180,8 @@ import hero from '~/assets/images/hero/hero.png';
           src={hero}
         />
         <Picture
-          class="mt-8 heroCardShadow"
+          id="heroCardShadow"
+          class="mt-8"
           alt="glad-os"
           widths={[400, 768, 1024, 2040]}
           sizes="(max-width: 767px) 400px, (max-width: 1023px) 768px, (max-width: 2039px) 1024px, 2040px"
@@ -242,7 +190,80 @@ import hero from '~/assets/images/hero/hero.png';
           src={hero}
         />
         <Picture
-          class="mt-8 heroCardShadow"
+          id="heroCardShadow"
+          class="mt-8"
+          alt="glad-os"
+          widths={[400, 768, 1024, 2040]}
+          sizes="(max-width: 767px) 400px, (max-width: 1023px) 768px, (max-width: 2039px) 1024px, 2040px"
+          loading="eager"
+          width={1024}
+          src={hero}
+        />
+        <Picture
+          id="heroCardShadow"
+          class="mt-8"
+          alt="glad-os"
+          widths={[400, 768, 1024, 2040]}
+          sizes="(max-width: 767px) 400px, (max-width: 1023px) 768px, (max-width: 2039px) 1024px, 2040px"
+          loading="eager"
+          width={1024}
+          src={hero}
+        />
+      </div>
+      <div class="flex flex-col w-1/4 mx-4">
+        <Picture
+          id="heroCardShadow"
+          class="mt-8"
+          alt="glad-os"
+          widths={[400, 768, 1024, 2040]}
+          sizes="(max-width: 767px) 400px, (max-width: 1023px) 768px, (max-width: 2039px) 1024px, 2040px"
+          loading="eager"
+          width={1024}
+          src={hero}
+        />
+        <Picture
+          id="heroCardShadow"
+          class="mt-8"
+          alt="glad-os"
+          widths={[400, 768, 1024, 2040]}
+          sizes="(max-width: 767px) 400px, (max-width: 1023px) 768px, (max-width: 2039px) 1024px, 2040px"
+          loading="eager"
+          width={1024}
+          src={hero}
+        />
+        <Picture
+          id="heroCardShadow"
+          class="mt-8"
+          alt="glad-os"
+          widths={[400, 768, 1024, 2040]}
+          sizes="(max-width: 767px) 400px, (max-width: 1023px) 768px, (max-width: 2039px) 1024px, 2040px"
+          loading="eager"
+          width={1024}
+          src={hero}
+        />
+        <Picture
+          id="heroCardShadow"
+          class="mt-8"
+          alt="glad-os"
+          widths={[400, 768, 1024, 2040]}
+          sizes="(max-width: 767px) 400px, (max-width: 1023px) 768px, (max-width: 2039px) 1024px, 2040px"
+          loading="eager"
+          width={1024}
+          src={hero}
+        />
+        <Picture
+          id="heroCardShadow"
+          class="mt-8"
+          alt="glad-os"
+          widths={[400, 768, 1024, 2040]}
+          sizes="(max-width: 767px) 400px, (max-width: 1023px) 768px, (max-width: 2039px) 1024px, 2040px"
+          loading="eager"
+          width={1024}
+          src={hero}
+        />
+        <Picture
+          id="heroCardShadow"
+          class="mt-8"
           alt="glad-os"
           widths={[400, 768, 1024, 2040]}
           sizes="(max-width: 767px) 400px, (max-width: 1023px) 768px, (max-width: 2039px) 1024px, 2040px"
@@ -256,18 +277,41 @@ import hero from '~/assets/images/hero/hero.png';
 </section>
 <script>
   import { gsap } from 'gsap';
+
   document.addEventListener('DOMContentLoaded', () => {
     // obtener todas las columnas de las imágenes
-    const columns = Array.from(document.querySelectorAll('.transformHeroElement'));
+    const columns = Array.from(document.querySelectorAll('.'));
+
     columns.forEach((column) => {
-      // generar una duración aleatoria entre 0.2 y 2
-      const randomDuration = Math.random() * (30 - 10) + 10;
-      gsap.to(column, {
+      // generar una duración aleatoria entre 10 y 30
+      const randomDurationInitial = Math.random() * (6 - 4) + 4;
+      const randomDurationIdle = Math.random() * (20 - 10) + 10;
+
+      const tl = gsap.timeline();
+
+      // Primera animación al cargar
+      tl.fromTo(
+        column,
+        {
+          y: -500,
+        },
+        {
+          y: 0,
+          duration: randomDurationInitial,
+          delay: 0.25,
+          ease: 'Expo.easeOut',
+        }
+      );
+
+      // Animación repetitiva después de la inicial
+      tl.to(column, {
         opacity: 1,
         y: 200,
         repeat: -1,
         yoyo: true,
-        duration: randomDuration,
+        delay: 0,
+        duration: randomDurationIdle,
+        ease: 'Expo.easeOut',
       });
     });
   });
