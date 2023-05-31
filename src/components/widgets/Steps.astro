@@ -1,14 +1,38 @@
 ---
 ---
 
-<section class="flex relative h-screen">
+<style>
+  .active {
+    border: solid dodgerblue;
+    border-top-width: 3px;
+    border-right-width: 3px;
+    border-bottom-width: 0px;
+    border-left-width: 3px;
+    border-radius: 20px 0 0 0px;
+    border-right: 0;
+    margin: 10px;
+    padding-left: 10px;
+    position: relative;
+  }
+  .active:before {
+    border-right: 3px solid dodgerblue;
+    content: '';
+    height: 32px;
+    left: -25px;
+    position: absolute;
+    width: 20px;
+    border-top-right-radius: 40px;
+    transform: translateY(85%) rotate(90deg);
+  }
+</style>
+<section class="flex relative h-screen pt-16">
   <div class="max-w-5xl w-full mx-auto" id="experience">
-    <div class="a-top-1 mx-auto mb-20-60 max-w-7xl rounded-10 border border-secondary dark:border-primary">
-      <div class="p-10-20 flex justify-end w-full">
-        <h3 class="uppercase">Experience</h3>
+    <div class="a-top-1 mx-auto mb-20-60 max-w-7xl rounded-10">
+      <div class="flex justify-end w-full">
+        <h3 class="uppercase border-t-2 border-r-2 border-white active px-5 py-2">Experience</h3>
       </div>
       <section class="w-full">
-        <ul class="mx-10-20 flex flex-col gap-10-20 border-t border-secondary py-10-20 dark:border-primary/20">
+        <ul class="mx-10-20 flex flex-col gap-10-20 border-t border-white">
           <li class="relative flex gap-10-20">
             <div
               class="flex basis-1/6 items-center justify-center rounded-10 p-10-20 text-center text-16-40 leading-none text-secondary dark:/10 dark:text-primary"
