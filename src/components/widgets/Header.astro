@@ -38,7 +38,7 @@ const { links = [] } = Astro.props;
       {
         links.map(({ text, href }) => (
           <a
-            class="font-medium hover:text-gray-900 cursor-none dark:hover:text-white px-4 flex items-center transition duration-150 ease-in-out"
+            class="font-medium hover:text-gray-900 cursor-none dark:hover:text-white px-4 py-3 flex items-center transition duration-150 ease-in-out"
             href={href}
           >
             {text}
