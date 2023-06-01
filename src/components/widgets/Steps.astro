@@ -15,14 +15,18 @@
     position: relative;
   }
   .active:before {
-    border-right: 3px solid dodgerblue;
+    border: solid dodgerblue;
+    border-top-width: 3px;
+    border-right-width: 3px;
+    border-bottom-width: 0px;
+    border-left-width: 0px;
     content: '';
     height: 32px;
     left: -25px;
     position: absolute;
     width: 20px;
     border-top-right-radius: 40px;
-    transform: translateY(85%) rotate(90deg);
+    transform: translateY(80%) rotate(90deg);
   }
 </style>
 <section class="flex relative h-screen pt-16">
