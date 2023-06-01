@@ -4,29 +4,22 @@
 <style>
   .active {
     border: solid dodgerblue;
-    border-top-width: 3px;
-    border-right-width: 3px;
-    border-bottom-width: 0px;
-    border-left-width: 3px;
+    border-width: 3px 0 0 3px;
     border-radius: 20px 0 0 0px;
-    border-right: 0;
-    margin: 10px;
-    padding-left: 10px;
+    margin-bottom: 0.75rem;
+    padding: 0.75rem 2rem 0 2rem;
     position: relative;
   }
   .active:before {
     border: solid dodgerblue;
-    border-top-width: 3px;
-    border-right-width: 3px;
-    border-bottom-width: 0px;
-    border-left-width: 0px;
+    border-width: 3px 3px 0 0px;
     content: '';
     height: 32px;
-    left: -25px;
+    left: -25.5px;
     position: absolute;
     width: 20px;
     border-top-right-radius: 40px;
-    transform: translateY(80%) rotate(90deg);
+    transform: translateY(65%) rotate(90deg);
   }
 </style>
 <section class="flex relative h-screen pt-16">
