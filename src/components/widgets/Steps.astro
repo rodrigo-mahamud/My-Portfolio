@@ -7,6 +7,7 @@
     border-width: 2px 2px 0 2px;
     border-radius: 1rem 1rem 0 0px;
     padding: 0.75rem 2rem 0.75rem 2rem;
+    box-shadow: -2px 20px 0px #0a0118;
     position: relative;
   }
   .active:before {
@@ -18,37 +19,48 @@
     position: absolute;
     width: 18px;
     border-top-right-radius: 40px;
-    transform: translateY(61%) rotate(90deg);
+    transform: translateY(65%) rotate(90deg);
     box-shadow: 1px -11px 0px #0a0118;
   }
   .borderGlow {
     display: flex;
-    align-items: flex-end;
+    align-items: flex-start;
+    flex-direction: column;
+    border: solid #474152;
+    border-width: 2px 2px 0 2px;
+    border-radius: 1rem 0 0 0;
   }
   .borderGlow:before {
     content: '';
-    background: linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, rgba(255, 255, 255, 1) 48%, rgba(0, 0, 0, 0) 100%);
+    background: linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, rgba(255, 255, 255, 1) 50%, rgba(0, 0, 0, 0) 70%);
     width: 100%;
     position: relative;
     display: flex;
     height: 1px;
-    align-items: flex-end;
+  }
+  .borderGlow::after {
+    content: '';
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgb(10 1 24) 100%);
+    width: 102%;
+    left: -1%;
+    position: relative;
+    display: flex;
+    height: 8rem;
   }
 </style>
 <section class="flex relative h-screen pt-16">
   <div class="max-w-5xl w-full mx-auto" id="experience">
     <div class="a-top-1 mx-auto mb-20-60 max-w-7xl rounded-10">
       <div class="flex justify-end w-full">
-        <div class="w-full border-b border-[#474152] rounded-s-2xl borderGlow"></div>
         <h3 class="uppercase active px-5 py-2">Experience</h3>
       </div>
-      <section class="w-full border-x border-[#474152]">
+      <section class="w-full borderGlow">
         <ul class="mx-10-20 flex flex-col gap-10-20">
           <li class="relative flex gap-10-20">
             <h4
               class="flex basis-full items-center rounded-10 p-10-20 text-16-40 leading-tight text-secondary dark:/10 dark:text-primary"
             >
-              <a class="hover:text-tertiary" href="http://divisa.design" target="_blank" rel="noopener noreferrer"
+              <a class="text-white p-8" href="http://divisa.design" target="_blank" rel="noopener noreferrer"
                 >Co-Founder, Designer &amp; Developer @ Divisa.</a
               >
             </h4>
