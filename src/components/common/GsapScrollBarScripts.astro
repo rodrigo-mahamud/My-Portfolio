@@ -391,22 +391,19 @@
         // Calcular la cantidad de desplazamiento dentro de nuestro rango definido.
         const scrollY = offset.y - minScrollY;
 
-        // Mover la sección en la dirección opuesta al desplazamiento.
         gsap.to(section, {
           y: scrollY,
-          duration: 0.1,
+          duration: 0.001,
         });
       } else if (offset.y > maxScrollY) {
-        // Si hemos pasado el final de nuestro rango de desplazamiento, queremos asegurarnos de que la sección no se mueva más.
         gsap.to(section, {
           y: maxScrollY - minScrollY,
-          duration: 0.1,
+          duration: 0.001,
         });
       } else {
-        // Si estamos por debajo de nuestro rango de desplazamiento, queremos asegurarnos de que la sección esté en su posición original.
         gsap.to(section, {
-          y: 0,
-          duration: 0.1,
+          y: -1,
+          duration: 0.001,
         });
       }
     });

@@ -2,16 +2,16 @@
 ---
 
 <style>
-  .active {
-    border: solid #474152;
+  .border {
+    border: solid #2d263a;
     border-width: 2px 2px 0 2px;
     border-radius: 1rem 1rem 0 0px;
     padding: 0.75rem 2rem 0.75rem 2rem;
     box-shadow: -2px 20px 0px #0a0118;
     position: relative;
   }
-  .active:before {
-    border: solid #474152;
+  .border:before {
+    border: solid #2d263a;
     border-width: 2px 1px 0 0px;
     content: '';
     height: 32px;
@@ -26,23 +26,23 @@
     display: flex;
     align-items: flex-start;
     flex-direction: column;
-    border: solid #474152;
+    border: solid #2d263a;
     background: radial-gradient(
-      40.23% 100% at 30% 0%,
-      rgba(225, 225, 255, 0.1) 0%,
-      rgba(133, 102, 255, 0) 100%,
-      rgba(133, 102, 255, 0) 100%
+      40.23% 100% at 20% 0%,
+      rgb(25 17 41) 0%,
+      rgba(10, 1, 24, 1) 100%,
+      rgba(10, 1, 24, 1) 100%
     );
     border-width: 2px 2px 0 2px;
     border-radius: 1rem 0 0 0;
   }
   .borderGlow:before {
     content: '';
-    background: linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, rgba(255, 255, 255, 1) 30%, rgba(0, 0, 0, 0) 80%);
+    background: linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, rgba(255, 255, 255, 0.75) 20%, rgba(0, 0, 0, 0) 80%);
     width: 100%;
     position: relative;
     display: flex;
-    height: 1px;
+    height: 0.75px;
   }
   .borderGlow::after {
     content: '';
@@ -54,32 +54,46 @@
     height: 8rem;
   }
   .sticky-section:nth-of-type(2) .borderGlow {
-    display: flex;
-    align-items: flex-start;
-    flex-direction: column;
-    border: solid #474152;
     background: radial-gradient(
-      40.23% 100% at 30% 0%,
-      rgba(225, 225, 255, 0.1) 0%,
+      40.23% 100% at 20% 0%,
+      rgb(25 17 41) 0%,
       rgba(10, 1, 24, 1) 100%,
       rgba(10, 1, 24, 1) 100%
     );
     border-width: 2px 2px 0 2px;
     border-radius: 1rem 1rem 0 0;
   }
+  .sticky-section:nth-of-type(2) .borderGlow:before {
+    content: '';
+    background: linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, rgba(255, 255, 255, 0.75) 20%, rgba(0, 0, 0, 0) 65%);
+    width: 100%;
+    position: relative;
+    display: flex;
+    height: 0.75px;
+  }
+  .sticky-section:nth-of-type(2) .border::after {
+    border: solid #2d263a;
+    border-width: 2px 2px 0 0px;
+    content: '';
+    height: 32px;
+    right: -19px;
+    position: absolute;
+    width: 18px;
+    border-top-right-radius: 40px;
+    transform: translateY(45%) rotate(180deg);
+    box-shadow: 1px -11px 0px #0a0118;
+  }
 </style>
 <section class="flex relative h-screen pt-16">
   <div class="max-w-5xl w-full mx-auto">
     <div class="mx-auto mb-20-60 rounded-10 sticky-section" data-start="2000" data-end="2500">
       <div class="flex justify-end w-full">
-        <h3 class="uppercase active px-5 py-2">Experience</h3>
+        <h3 class="uppercase border bg-[#0a0118]">Experience</h3>
       </div>
       <section class="w-full borderGlow">
-        <ul class="mx-10-20 flex flex-col gap-10-20">
-          <li class="relative flex gap-10-20">
-            <h4
-              class="flex basis-full items-center rounded-10 p-10-20 text-16-40 leading-tight text-secondary dark:/10 dark:text-primary"
-            >
+        <ul class="mx-10-20 flex flex-col">
+          <li class="relative flex">
+            <h4 class="flex basis-full items-center rounded-10 p-10-20 text-16-40 leading-tight text-secondary">
               <a class="text-white p-8" href="http://divisa.design" target="_blank" rel="noopener noreferrer"
                 >Co-Founder, Designer &amp; Developer @ Divisa.</a
               >
@@ -88,16 +102,14 @@
         </ul>
       </section>
     </div>
-    <div class="mx-auto mb-20-60 rounded-10 sticky-section" data-start="2329" data-end="2500">
-      <div class="flex justify-end w-5/6">
-        <h3 class="uppercase active px-5 py-2">Experience</h3>
+    <div class="mx-auto mb-20-60 rounded-10 sticky-section" data-start="2328" data-end="2500">
+      <div class="flex justify-end w-[86%]">
+        <h3 class="uppercase border bg-[#0a0118]">Experience</h3>
       </div>
       <section class="w-full borderGlow">
-        <ul class="mx-10-20 flex flex-col gap-10-20">
-          <li class="relative flex gap-10-20">
-            <h4
-              class="flex basis-full items-center rounded-10 p-10-20 text-16-40 leading-tight text-secondary dark:/10 dark:text-primary"
-            >
+        <ul class="mx-10-20 flex flex-col">
+          <li class="relative flex">
+            <h4 class="flex basis-full items-center rounded-10 p-10-20 text-16-40 leading-tight text-secondary">
               <a class="text-white p-8" href="http://divisa.design" target="_blank" rel="noopener noreferrer"
                 >Co-Founder, Designer &amp; Developer @ Divisa.</a
               >
