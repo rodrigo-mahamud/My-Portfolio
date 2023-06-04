@@ -53,7 +53,7 @@
     display: flex;
     height: 8rem;
   }
-  .sticky-section:nth-of-type(2) .borderGlow {
+  .SAnimate:nth-of-type(2) .borderGlow {
     background: radial-gradient(
       40.23% 100% at 20% 0%,
       rgb(25 17 41) 0%,
@@ -63,7 +63,7 @@
     border-width: 2px 2px 0 2px;
     border-radius: 1rem 1rem 0 0;
   }
-  .sticky-section:nth-of-type(2) .borderGlow:before {
+  .SAnimate:nth-of-type(2) .borderGlow:before {
     content: '';
     background: linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, rgba(255, 255, 255, 0.75) 20%, rgba(0, 0, 0, 0) 65%);
     width: 100%;
@@ -71,7 +71,7 @@
     display: flex;
     height: 0.75px;
   }
-  .sticky-section:nth-of-type(2) .border::after {
+  .SAnimate:nth-of-type(2) .border::after {
     border: solid #2d263a;
     border-width: 2px 2px 0 0px;
     content: '';
@@ -83,10 +83,10 @@
     transform: translateY(45%) rotate(180deg);
     box-shadow: 1px -11px 0px #0a0118;
   }
-  .sticky-section:nth-of-type(2) div {
+  .SAnimate:nth-of-type(2) div {
     box-shadow: 175px 0px 30px -15px rgb(10 1 24 / 75%);
   }
-  .sticky-section:nth-of-type(3) .borderGlow {
+  .SAnimate:nth-of-type(3) .borderGlow {
     background: radial-gradient(
       40.23% 100% at 20% 0%,
       rgb(25 17 41) 0%,
@@ -96,7 +96,7 @@
     border-width: 2px 2px 0 2px;
     border-radius: 1rem 1rem 0 0;
   }
-  .sticky-section:nth-of-type(3) .borderGlow:before {
+  .SAnimate:nth-of-type(3) .borderGlow:before {
     content: '';
     background: linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, rgba(255, 255, 255, 0.75) 20%, rgba(0, 0, 0, 0) 55%);
     width: 100%;
@@ -104,7 +104,7 @@
     display: flex;
     height: 0.75px;
   }
-  .sticky-section:nth-of-type(3) .border::after {
+  .SAnimate:nth-of-type(3) .border::after {
     border: solid #2d263a;
     border-width: 2px 2px 0 0px;
     content: '';
@@ -116,65 +116,74 @@
     transform: translateY(45%) rotate(180deg);
     box-shadow: 1px -11px 0px #0a0118;
   }
-  .sticky-section:nth-of-type(3) div {
+  .SAnimate:nth-of-type(3) div {
     box-shadow: 175px 0px 30px -15px rgb(10 1 24 / 75%);
   }
 </style>
-<section class="flex relative h-[calc(100vh+12rem)] pt-16 mb-20">
+<section class="flex relative h-[calc(100vh+12rem)] pt-16 mb-2">
   <div class="max-w-5xl w-full mx-auto">
-    <div class="mx-auto mb-20-60 rounded-10 sticky-section" data-start="2000" data-end="2747">
-      <div class="flex justify-end w-full">
-        <h3 class="uppercase border bg-[#0a0118]">Experience</h3>
+    <div class="SAnimate">
+      <div class="mx-auto sticky-section" data-start="2000" data-end="2747">
+        <div class="flex justify-end w-full">
+          <h3 class="uppercase border bg-[#0a0118]">Experience</h3>
+        </div>
+        <section class="w-full borderGlow">
+          <ul class="mx-10-20 flex flex-col">
+            <li class="relative flex flex-col">
+              <h4 class="text-white px-8 pb-4 pt-8 basis-full items-center rounded-10">
+                Co-Founder, Designer &amp; Developer @ Divisa.
+              </h4>
+              <p class="text-secondary px-8">
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Unde sit architecto corrupti ex? Vero quis,
+                quod unde quas adipisci porro molestiae, qui fuga aliquid, expedita sunt totam dignissimos sapiente
+                dolor
+              </p>
+            </li>
+          </ul>
+        </section>
       </div>
-      <section class="w-full borderGlow">
-        <ul class="mx-10-20 flex flex-col">
-          <li class="relative flex flex-col">
-            <h4 class="text-white px-8 pb-4 pt-8 basis-full items-center rounded-10">
-              Co-Founder, Designer &amp; Developer @ Divisa.
-            </h4>
-            <p class="text-secondary px-8">
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Unde sit architecto corrupti ex? Vero quis, quod
-              unde quas adipisci porro molestiae, qui fuga aliquid, expedita sunt totam dignissimos sapiente dolor
-            </p>
-          </li>
-        </ul>
-      </section>
     </div>
-    <div class="mx-auto mb-20-60 rounded-10 sticky-section" data-start="2373" data-end="2747">
-      <div class="flex justify-end w-[86%]">
-        <h3 class="uppercase border bg-[#0a0118]">Experience</h3>
+    <div class="SAnimate">
+      <div class="mx-auto sticky-section" data-start="2373" data-end="2747">
+        <div class="flex justify-end w-[86%]">
+          <h3 class="uppercase border bg-[#0a0118]">Experience</h3>
+        </div>
+        <section class="w-full borderGlow">
+          <ul class="mx-10-20 flex flex-col">
+            <li class="relative flex flex-col">
+              <h4 class="text-white px-8 pb-4 pt-8 basis-full items-center rounded-10">
+                Co-Founder, Designer &amp; Developer @ Divisa.
+              </h4>
+              <p class="text-secondary px-8">
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Unde sit architecto corrupti ex? Vero quis,
+                quod unde quas adipisci porro molestiae, qui fuga aliquid, expedita sunt totam dignissimos sapiente
+                dolor
+              </p>
+            </li>
+          </ul>
+        </section>
       </div>
-      <section class="w-full borderGlow">
-        <ul class="mx-10-20 flex flex-col">
-          <li class="relative flex flex-col">
-            <h4 class="text-white px-8 pb-4 pt-8 basis-full items-center rounded-10">
-              Co-Founder, Designer &amp; Developer @ Divisa.
-            </h4>
-            <p class="text-secondary px-8">
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Unde sit architecto corrupti ex? Vero quis, quod
-              unde quas adipisci porro molestiae, qui fuga aliquid, expedita sunt totam dignissimos sapiente dolor
-            </p>
-          </li>
-        </ul>
-      </section>
     </div>
-    <div class="mx-auto mb-20-60 rounded-10 sticky-section" data-start="2747" data-end="2747">
-      <div class="flex justify-end w-[72%]">
-        <h3 class="uppercase border bg-[#0a0118]">Experience</h3>
+    <div class="SAnimate">
+      <div class="mx-auto sticky-section" data-start="2747" data-end="2747">
+        <div class="flex justify-end w-[72%]">
+          <h3 class="uppercase border bg-[#0a0118]">Experience</h3>
+        </div>
+        <section class="w-full borderGlow">
+          <ul class="mx-10-20 flex flex-col">
+            <li class="relative flex flex-col">
+              <h4 class="text-white px-8 pb-4 pt-8 basis-full items-center rounded-10">
+                Co-Founder, Designer &amp; Developer @ Divisa.
+              </h4>
+              <p class="text-secondary px-8">
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Unde sit architecto corrupti ex? Vero quis,
+                quod unde quas adipisci porro molestiae, qui fuga aliquid, expedita sunt totam dignissimos sapiente
+                dolor
+              </p>
+            </li>
+          </ul>
+        </section>
       </div>
-      <section class="w-full borderGlow">
-        <ul class="mx-10-20 flex flex-col">
-          <li class="relative flex flex-col">
-            <h4 class="text-white px-8 pb-4 pt-8 basis-full items-center rounded-10">
-              Co-Founder, Designer &amp; Developer @ Divisa.
-            </h4>
-            <p class="text-secondary px-8">
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Unde sit architecto corrupti ex? Vero quis, quod
-              unde quas adipisci porro molestiae, qui fuga aliquid, expedita sunt totam dignissimos sapiente dolor
-            </p>
-          </li>
-        </ul>
-      </section>
     </div>
   </div>
 </section>
