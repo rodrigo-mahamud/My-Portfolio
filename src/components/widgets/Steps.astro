@@ -27,12 +27,18 @@
     align-items: flex-start;
     flex-direction: column;
     border: solid #474152;
+    background: radial-gradient(
+      40.23% 100% at 45% 0%,
+      rgba(225, 225, 255, 0.08) 0%,
+      rgba(133, 102, 255, 0) 100%,
+      rgba(133, 102, 255, 0) 100%
+    );
     border-width: 2px 2px 0 2px;
     border-radius: 1rem 0 0 0;
   }
   .borderGlow:before {
     content: '';
-    background: linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, rgba(255, 255, 255, 1) 50%, rgba(0, 0, 0, 0) 70%);
+    background: linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, rgba(255, 255, 255, 1) 50%, rgba(0, 0, 0, 0) 80%);
     width: 100%;
     position: relative;
     display: flex;
@@ -50,8 +56,26 @@
 </style>
 <section class="flex relative h-screen pt-16">
   <div class="max-w-5xl w-full mx-auto" id="experience">
-    <div class="a-top-1 mx-auto mb-20-60 max-w-7xl rounded-10">
+    <div class="mx-auto mb-20-60 rounded-10">
       <div class="flex justify-end w-full">
+        <h3 class="uppercase active px-5 py-2">Experience</h3>
+      </div>
+      <section class="w-full borderGlow">
+        <ul class="mx-10-20 flex flex-col gap-10-20">
+          <li class="relative flex gap-10-20">
+            <h4
+              class="flex basis-full items-center rounded-10 p-10-20 text-16-40 leading-tight text-secondary dark:/10 dark:text-primary"
+            >
+              <a class="text-white p-8" href="http://divisa.design" target="_blank" rel="noopener noreferrer"
+                >Co-Founder, Designer &amp; Developer @ Divisa.</a
+              >
+            </h4>
+          </li>
+        </ul>
+      </section>
+    </div>
+    <div class="mx-auto mb-20-60 rounded-10">
+      <div class="flex justify-end w-5/6">
         <h3 class="uppercase active px-5 py-2">Experience</h3>
       </div>
       <section class="w-full borderGlow">
