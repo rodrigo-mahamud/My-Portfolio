@@ -379,33 +379,36 @@
     });
   });
 
-  const minScrollY = 1900; // ajusta esto a la posición de inicio de tu sección
-  const maxScrollY = 2500; // ajusta esto al final de la posición "sticky"
-  const section = document.querySelector('#experience');
+  const sections = Array.from(document.querySelectorAll('.sticky-section'));
 
   scrollbarInstance.addListener(({ offset }) => {
-    // Sólo queremos hacer que la sección sea "fija" si el desplazamiento está dentro de nuestro rango definido.
-    if (offset.y >= minScrollY && offset.y <= maxScrollY) {
-      // Calcular la cantidad de desplazamiento dentro de nuestro rango definido.
-      const scrollY = offset.y - minScrollY;
+    sections.forEach((section) => {
+      const minScrollY = parseInt((section as HTMLElement).dataset.start || '0', 10);
+      const maxScrollY = parseInt((section as HTMLElement).dataset.end || '0', 10);
 
-      // Mover la sección en la dirección opuesta al desplazamiento.
-      gsap.to(section, {
-        y: scrollY,
-        duration: 0.01,
-      });
-    } else if (offset.y > maxScrollY) {
-      // Si hemos pasado el final de nuestro rango de desplazamiento, queremos asegurarnos de que la sección no se mueva más.
-      gsap.to(section, {
-        y: maxScrollY - minScrollY,
-        duration: 0.1,
-      });
-    } else {
-      // Si estamos por debajo de nuestro rango de desplazamiento, queremos asegurarnos de que la sección esté en su posición original.
-      gsap.to(section, {
-        y: 0,
-        duration: 0.1,
-      });
-    }
+      // Sólo queremos hacer que la sección sea "fija" si el desplazamiento está dentro de nuestro rango definido.
+      if (offset.y >= minScrollY && offset.y <= maxScrollY) {
+        // Calcular la cantidad de desplazamiento dentro de nuestro rango definido.
+        const scrollY = offset.y - minScrollY;
+
+        // Mover la sección en la dirección opuesta al desplazamiento.
+        gsap.to(section, {
+          y: scrollY,
+          duration: 0.1,
+        });
+      } else if (offset.y > maxScrollY) {
+        // Si hemos pasado el final de nuestro rango de desplazamiento, queremos asegurarnos de que la sección no se mueva más.
+        gsap.to(section, {
+          y: maxScrollY - minScrollY,
+          duration: 0.1,
+        });
+      } else {
+        // Si estamos por debajo de nuestro rango de desplazamiento, queremos asegurarnos de que la sección esté en su posición original.
+        gsap.to(section, {
+          y: 0,
+          duration: 0.1,
+        });
+      }
+    });
   });
 </script>
