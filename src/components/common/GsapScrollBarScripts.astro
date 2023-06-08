@@ -29,7 +29,7 @@
       opacity: 1,
       border: '2px solid #fff',
       background: 'transparent',
-      ease: 'expo.out',
+      ease: 'Expo.easeOut',
     });
 
     document.addEventListener('mousemove', moverEsfera);
@@ -40,9 +40,9 @@
         gsap.to(esfera, {
           x: e.clientX,
           y: e.clientY,
-          duration: 1.25,
+          duration: 0.45,
           delay: 0.01,
-          ease: 'expo.out',
+          ease: 'Expo.easeOut',
         });
       }
     }
@@ -61,7 +61,7 @@
           background: '#ffffff50',
           border: '0px',
           duration: 0.5,
-          ease: 'expo.out',
+          ease: 'Expo.easeOut',
         });
       }
     }
@@ -73,7 +73,7 @@
           background: 'transparent',
           border: '2px solid #fff',
           duration: 0.5,
-          ease: 'expo.out',
+          ease: 'Expo.easeOut',
         });
       }
     }
@@ -94,7 +94,7 @@
             skewY: '30deg',
             scale: 0.9,
             duration: 0.3,
-            ease: 'expo.out',
+            ease: 'Expo.easeOut',
           }
         );
         gsap.set(stickman, {
@@ -109,7 +109,7 @@
           border: '2px solid #fff',
           boxShadow: 'unset',
           background: 'transparent',
-          ease: 'expo.out',
+          ease: 'Expo.easeOut',
         });
         gsap.set(stickman, {
           display: 'none',
@@ -237,7 +237,7 @@
       left: `${navGlowPosition}%`,
       duration: 0.5,
       overwrite: true,
-      ease: 'expo.out',
+      ease: 'Expo.easeOut',
     });
     navLinks.forEach((link, index) => {
       if (index === isInPosition) {
@@ -247,7 +247,7 @@
           delay: 0.005,
           duration: 0.1,
           overwrite: true,
-          ease: 'expo.out',
+          ease: 'Expo.easeOut',
         });
       } else {
         gsap.to(link, {

@@ -75,7 +75,7 @@
     }
 
     audioElement = new Audio(previewUrl);
-    audioElement.volume = 0.15;
+    audioElement.volume = 0.125;
     const playPauseButton = document.getElementById('play-pause-button');
     const playIcon = document.getElementById('play-icon') as HTMLElement;
     const pauseIcon = document.getElementById('pause-icon') as HTMLElement;
@@ -95,7 +95,7 @@
     }
 
     if (audioElement) {
-      audioElement.volume = 0.15;
+      audioElement.volume = 0.125;
       const progress = document.getElementById('progress') as HTMLElement;
       const progressBar = document.getElementById('progress-bar') as HTMLElement;
       audioElement.addEventListener('timeupdate', () => {
