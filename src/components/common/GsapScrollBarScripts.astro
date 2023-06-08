@@ -337,13 +337,15 @@
       return scrollbarInstance.scrollTop;
     },
   });
+
   scrollbarInstance.addListener(ScrollTrigger.update);
 
   function animateOnScroll() {
     const elementsToAnimate = document.querySelectorAll('.SAnimate');
 
-    elementsToAnimate.forEach((element, index) => {
-      const delay = index * 0.15;
+    elementsToAnimate.forEach((element) => {
+      const htmlElement = element as HTMLElement;
+      const delay = htmlElement.dataset.sadelay ?? 0;
 
       gsap.from(element, {
         duration: 2.25,
@@ -363,6 +365,7 @@
   }
 
   animateOnScroll();
+
   window.addEventListener('DOMContentLoaded', () => {
     const heroElementsToAnimate = document.querySelectorAll('.SAnimateHero');
 
