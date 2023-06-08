@@ -2,13 +2,14 @@
 interface Item {
   title?: string;
   description?: string;
-  icon?: string;
+  delay?: string;
 }
 
 export interface Props {
   title?: string;
   subtitle?: string;
   highlight?: string;
+  delay?: string;
   items: Array<Item>;
 }
 
@@ -23,8 +24,8 @@ const { items = [] } = Astro.props;
         class="grid gap-3 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 my-12 dark:text-white items-stretch"
       >
         {
-          items.map(({ title, description }) => (
-            <div class="card SAnimate relative flex flex-col border border-transparent ">
+          items.map(({ title, description, delay }) => (
+            <div class="card SAnimate relative flex flex-col border border-transparent" data-sadelay={delay}>
               <div class="card-content">
                 <div class="card-image">
                   <img src="cardIMG.png" />
