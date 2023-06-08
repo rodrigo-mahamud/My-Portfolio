@@ -11,32 +11,19 @@
   document.addEventListener('DOMContentLoaded', () => {
     const esfera = document.getElementById('esfera');
     const welcome = document.getElementById('welcome');
-    const motionBlurFilter = document.querySelector('#motionBlur feGaussianBlur');
     const portal = document.getElementById('portal');
 
-    if (!esfera || !motionBlurFilter) {
+    if (!esfera) {
       console.error('No se pudo encontrar la esfera o el filtro de desenfoque en el DOM.');
       return;
     }
 
     let mouseX = 0;
     let mouseY = 0;
-    let prevMouseX = 0;
-    let prevMouseY = 0;
-
-    let timer;
 
     function moverEsfera(e) {
-      clearTimeout(timer);
-
-      prevMouseX = mouseX;
-      prevMouseY = mouseY;
       mouseX = e.clientX;
       mouseY = e.clientY;
-
-      const velocityX = mouseX - prevMouseX;
-      const velocityY = mouseY - prevMouseY;
-      const velocity = Math.sqrt(velocityX * velocityX + velocityY * velocityY);
 
       const esferaRect = esfera && esfera.getBoundingClientRect();
 
@@ -45,30 +32,11 @@
           opacity: 1,
           x: mouseX,
           y: mouseY,
-          duration: 0.2,
+          duration: 0,
           delay: 0.05,
           ease: 'expo.out',
         });
       }
-
-      const blurAmount = Math.min(velocity * 0.2, 5);
-      gsap.to(motionBlurFilter, {
-        attr: {
-          stdDeviation: `${blurAmount} ${blurAmount}`,
-        },
-        duration: 0.3,
-        ease: 'expo.out',
-      });
-
-      timer = setTimeout(() => {
-        gsap.to(motionBlurFilter, {
-          attr: {
-            stdDeviation: '0 0',
-          },
-          duration: 0.85,
-          ease: 'expo.out',
-        });
-      }, 50);
     }
 
     window.addEventListener('DOMContentLoaded', function () {
