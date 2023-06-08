@@ -84,10 +84,11 @@
   z-index: 9999;
   align-items: center;
   justify-content: center;
+  transform: translate(50vw, 60vh);
   opacity: 0;
 }
 #welcome {
-  animation: rotateSmooth 0.75s ease-in-out infinite alternate;
+  animation: rotateSmooth 0.75s ease-in-out infinite alternate, disapearWelcome 0.5s ease-in-out both 0.3s;
 }
 .navGlow {
   background: radial-gradient(70px 80px at 70px bottom, #ffffff30, #0000);
@@ -118,6 +119,11 @@
   }
   100% {
     transform: rotate(15deg);
+  }
+}
+@keyframes disapearWelcome {
+  100% {
+    opacity: 0;
   }
 }
 

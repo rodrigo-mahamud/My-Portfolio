@@ -10,7 +10,6 @@
 
   document.addEventListener('DOMContentLoaded', () => {
     const esfera = document.getElementById('esfera');
-    const welcome = document.getElementById('welcome');
     const portal = document.getElementById('portal');
 
     if (!esfera) {
@@ -18,46 +17,33 @@
       return;
     }
 
-    let mouseX = 0;
-    let mouseY = 0;
+    // Primero, realizar la animación inicial después de 750ms
+    gsap.to(esfera, {
+      duration: 0.25,
+      opacity: 1,
+    });
+    gsap.to(esfera, {
+      scale: 0.5,
+      delay: 0.5,
+      opacity: 1,
+      border: '2px solid #fff',
+      background: 'transparent',
+      ease: 'expo.out',
+    });
 
+    document.addEventListener('mousemove', moverEsfera);
     function moverEsfera(e) {
-      mouseX = e.clientX;
-      mouseY = e.clientY;
-
       const esferaRect = esfera && esfera.getBoundingClientRect();
 
       if (esferaRect) {
-        gsap.set(esfera, {
-          opacity: 1,
-          x: mouseX,
-          y: mouseY,
-          duration: 0,
-          delay: 0.05,
+        gsap.to(esfera, {
+          x: e.clientX,
+          y: e.clientY,
+          delay: 0.02,
           ease: 'expo.out',
         });
       }
     }
-
-    window.addEventListener('DOMContentLoaded', function () {
-      setTimeout(function () {
-        gsap.to(welcome, {
-          scale: 0,
-          opacity: 0,
-          duration: 0.3,
-          ease: 'expo.out',
-        });
-        gsap.to(esfera, {
-          scale: 0.5,
-          duration: 0.75,
-          border: '2px solid #fff',
-          background: 'transparent',
-          ease: 'expo.out',
-        });
-        // Aplica el filtro de desenfoque de movimiento a la esfera
-        esfera.style.filter = 'url(#motionBlur)';
-      }, 750);
-    });
     //HOVER
     const elementsToHover = document.querySelectorAll('a, button');
 
@@ -129,7 +115,6 @@
       });
     }
     // Agrega un evento 'mousemove' al documento para seguir la posición del ratón
-    document.addEventListener('mousemove', moverEsfera);
   });
 
   /*-----------------------*/
