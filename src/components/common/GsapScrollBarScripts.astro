@@ -351,6 +351,7 @@
       if (offset.y >= minScrollY && offset.y <= maxScrollY) {
         // Calcular la cantidad de desplazamiento dentro de nuestro rango definido.
         const scrollY = offset.y - minScrollY;
+        console.log(scrollY);
 
         gsap.to(section, {
           y: scrollY,
@@ -370,6 +371,8 @@
     });
   });
   const heroElement = document.querySelector('.transformHero');
+  const heroTextBox = document.querySelector('.transformTextBox');
+  const heroContainer = document.querySelector('#inicio');
   gsap.fromTo(
     heroElement,
     {
@@ -377,10 +380,27 @@
     },
 
     {
-      transform: 'translate3d(30%, -10%, 0px) scale3d(1, 1, 1)  rotateX(15deg) rotateY(0deg) rotateZ(0deg) ',
+      transform: 'translate3d(0%, 50%, 0px) scale3d(1, 1, 1)  rotateX(15deg) rotateY(0deg) rotateZ(0deg) ',
       scrollTrigger: {
-        trigger: heroElement,
+        trigger: heroContainer,
         start: 'top',
+        end: 800,
+        scroller: '#scrollable-content',
+        scrub: true,
+        markers: false,
+      },
+    }
+  );
+  gsap.fromTo(
+    heroTextBox,
+    { width: '50vw' },
+
+    {
+      width: '0vw',
+      scrollTrigger: {
+        trigger: heroContainer,
+        start: 'top',
+        end: 800,
         scroller: '#scrollable-content',
         scrub: true,
         markers: true,
