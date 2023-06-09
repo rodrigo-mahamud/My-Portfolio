@@ -182,9 +182,10 @@
 
   if (container !== null) {
     const options = {
-      damping: 0.04,
+      damping: 0.035,
+      thumbMinSize: 1,
       renderByPixel: true,
-      continuousScrolling: true,
+      continuousScrolling: false,
       alwaysShowTracks: false,
     };
 
@@ -376,10 +377,12 @@
   gsap.fromTo(
     heroElement,
     {
+      duration: 1,
       transform: 'translate3d(20%, 0%, 0px) scale3d(1, 0.65, 1)  rotateX(15deg) rotateY(-10deg) rotateZ(32deg) ',
     },
 
     {
+      duration: 1,
       transform: 'translate3d(0%, -50%, 0px) scale3d(1, 1, 1)  rotateX(15deg) rotateY(0deg) rotateZ(0deg) ',
       scrollTrigger: {
         trigger: heroContainer,
@@ -387,23 +390,25 @@
         end: 800,
         scroller: '#scrollable-content',
         scrub: true,
-        markers: false,
       },
     }
   );
   gsap.fromTo(
     heroTextBox,
-    { width: '50vw' },
+    {
+      width: '50vw',
+      duration: 1,
+    },
 
     {
       width: '0vw',
+      duration: 1,
       scrollTrigger: {
         trigger: heroContainer,
         start: 'top',
         end: 800,
         scroller: '#scrollable-content',
         scrub: true,
-        markers: true,
       },
     }
   );
