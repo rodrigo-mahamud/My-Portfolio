@@ -11,9 +11,20 @@ import hero from '~/assets/images/hero/hero.png';
   .transformTextBox {
     box-shadow: 25px 0 144px -65px rgba(16, 24, 40, 0.25);
   }
+  .heroShadow {
+    background-color: transparent;
+  }
+  .heroShadow:after {
+    content: '';
+    position: absolute;
+    width: 100%;
+
+    box-shadow: 0px 95px 68px 175px #0a011800;
+  }
 </style>
+
 <section class="sticky-section h-[calc(100vh*1.6)]" id="inicio" data-start="0" data-end="800">
-  <div class="bg-[#0f0420] w-screen h-screen overflow-hidden">
+  <div class="bg-[#0f0420] w-screen h-screen heroShadow">
     <div class="w-1/2 bg-[#0a0118] h-screen absolute z-10 transformTextBox overflow-hidden">
       <div class="absolute bottom-0 h-2/5 px-14 pb-8 flex flex-col w-[50vw]">
         <h1 class="text-white text-5xl mb-6 font-semibold w-full SAnimateHero">Rodrigo Mahamud's portfolio</h1>
