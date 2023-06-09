@@ -366,4 +366,23 @@
       }
     });
   });
+  const heroElement = document.querySelector('.transformHero');
+  gsap.fromTo(
+    heroElement,
+    {
+      // transform:
+      //   'translate3d(30%, -10%, 0px) scale3d(1, 0.7, 1) rotateX(15deg) rotateY(-9deg) rotateZ(32deg) skew(0deg, 0deg)',
+    },
+    {
+      // transform:
+      //   'translate3d(30%, -10%, 0px) scale3d(1, 1.7, 1) rotateX(15deg) rotateY(-9deg) rotateZ(32deg) skew(0deg, 0deg)',
+      scrollTrigger: {
+        trigger: heroElement,
+        start: 'top',
+        scroller: '#scrollable-content',
+        scrub: true,
+        markers: true,
+      },
+    }
+  );
 </script>
