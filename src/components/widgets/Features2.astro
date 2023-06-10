@@ -58,10 +58,8 @@ const { items = [] } = Astro.props;
       const x = e.clientX - rect.left;
       const y = e.clientY - rect.top;
 
-      setTimeout(() => {
-        card.style.setProperty('--mouse-x', `${x}px`);
-        card.style.setProperty('--mouse-y', `${y}px`);
-      }, 125);
+      card.style.setProperty('--mouse-x', `${x}px`);
+      card.style.setProperty('--mouse-y', `${y}px`);
     }
   };
 </script>
