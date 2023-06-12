@@ -9,6 +9,9 @@ module.exports = {
         secondary: 'var(--aw-color-secondary)',
         accent: 'var(--aw-color-accent)',
       },
+      screens: {
+        '3xl': '1950px',
+      },
       fontFamily: {
         sans: ['var(--aw-font-sans)', ...defaultTheme.fontFamily.sans],
         serif: ['var(--aw-font-serif)', ...defaultTheme.fontFamily.serif],
