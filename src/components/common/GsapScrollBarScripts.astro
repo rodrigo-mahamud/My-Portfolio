@@ -352,8 +352,6 @@
       if (offset.y >= minScrollY && offset.y <= maxScrollY) {
         // Calcular la cantidad de desplazamiento dentro de nuestro rango definido.
         const scrollY = offset.y - minScrollY;
-        console.log(scrollY);
-
         gsap.to(section, {
           y: scrollY,
           duration: 0.001,
