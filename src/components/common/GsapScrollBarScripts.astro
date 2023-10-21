@@ -4,11 +4,20 @@
 <script>
   import { gsap } from 'gsap';
   import { ScrollTrigger } from 'gsap/ScrollTrigger';
-  import Scrollbar from 'smooth-scrollbar';
+
   import { CSSPlugin } from 'gsap/CSSPlugin';
+  import Lenis from '@studio-freight/lenis';
+  const lenis = new Lenis();
 
+  lenis.on('scroll', () => {});
+
+  function raf(time) {
+    lenis.raf(time);
+    requestAnimationFrame(raf);
+  }
+
+  requestAnimationFrame(raf);
   gsap.registerPlugin(CSSPlugin);
-
   gsap.registerPlugin(ScrollTrigger);
 
   document.addEventListener('DOMContentLoaded', () => {
@@ -146,95 +155,57 @@
   }
   document.addEventListener('DOMContentLoaded', animateLoadingText);
 
-  function scrollToSection(event) {
-    event.preventDefault();
-    const targetId = event.target.getAttribute('href');
-    const targetElement = document.querySelector(targetId);
-
-    if (targetElement) {
-      const targetOffsetTop = targetElement.offsetTop;
-      scrollbarInstance.scrollTo(0, targetOffsetTop, 1000);
-    }
-  }
-
-  function fadeOutScrollbar() {
-    const scrollbarTrack = document.querySelector('.scrollbar-track-y');
-    if (scrollbarTrack && scrollbarTrack instanceof HTMLElement) {
-      scrollbarTrack.classList.remove('show');
-    }
-  }
-
-  function fadeInScrollbar() {
-    const scrollbarTrack = document.querySelector('.scrollbar-track-y');
-    if (scrollbarTrack && scrollbarTrack instanceof HTMLElement) {
-      scrollbarTrack.classList.add('show');
-    }
-  }
-
-  function resetScrollbarTimeout() {
-    clearTimeout(scrollbarTimeout);
-    fadeInScrollbar();
-    scrollbarTimeout = setTimeout(fadeOutScrollbar, 2000);
-  }
-
-  const container = document.getElementById('scrollable-content');
-  let scrollbarInstance;
-
-  if (container !== null) {
-    const options = {
-      damping: 0.035,
-      thumbMinSize: 1,
-      renderByPixel: true,
-      continuousScrolling: false,
-      alwaysShowTracks: false,
-    };
-
-    scrollbarInstance = Scrollbar.init(container, options);
-
-    const navLinks = document.querySelectorAll('nav a');
-
-    navLinks.forEach((link) => {
-      link.addEventListener('click', scrollToSection);
-    });
-  } else {
-    console.error('No se encontro contenedor scroleable');
-  }
-
-  let scrollbarTimeout;
-
-  if (container) {
-    container.addEventListener('mouseenter', fadeInScrollbar);
-    container.addEventListener('mouseleave', fadeOutScrollbar);
-    container.addEventListener('wheel', resetScrollbarTimeout);
-  }
-
-  resetScrollbarTimeout();
-
   const navGlow = document.querySelector('#navGlow');
   const navLinks = document.querySelectorAll('#header nav a');
+  /*-----------------------*/
+  /*------ NAV MENU ------ */
+  /*-----------------------*/
+  function getSectionIdsFromNavLinks() {
+    return Array.from(navLinks)
+      .map((link) => {
+        const href = link.getAttribute('href');
+        return href ? href.replace('#', '') : '';
+      })
+      .filter(Boolean); // Este filtro eliminará cualquier valor vacío
+  }
+  const sectionIDs = getSectionIdsFromNavLinks();
 
-  if (!container) {
-    console.error('No se pudo encontrar el elemento con el ID "scrollable-content"');
+  function isVisible(el: Element): boolean {
+    const rect = el.getBoundingClientRect();
+    const windowHeight = window.innerHeight || document.documentElement.clientHeight;
+    const isInView = rect.top <= windowHeight && rect.top + rect.height >= 0;
+    return isInView;
   }
 
   function updateNavGlow() {
-    const scrollPercent =
-      scrollbarInstance.offset.y / (scrollbarInstance.limit.y - scrollbarInstance.size.container.height);
-    let navGlowPosition;
-    let isInPosition;
+    let activeSectionIndex: number | null = null;
 
-    if (scrollPercent <= 0.2) {
-      isInPosition = 0;
-      navGlowPosition = 1;
-    } else if (scrollPercent <= 0.5) {
-      isInPosition = 1;
-      navGlowPosition = 20;
-    } else if (scrollPercent <= 0.8) {
-      isInPosition = 2;
-      navGlowPosition = 46;
-    } else {
-      isInPosition = 3;
-      navGlowPosition = 72;
+    for (let i = 0; i < sectionIDs.length; i++) {
+      const element = document.getElementById(sectionIDs[i]);
+      if (element && isVisible(element)) {
+        activeSectionIndex = i;
+        break;
+      }
+    }
+
+    let navGlowPosition;
+
+    switch (activeSectionIndex) {
+      case 0:
+        navGlowPosition = 1;
+        break;
+      case 1:
+        navGlowPosition = 20;
+        break;
+      case 2:
+        navGlowPosition = 46;
+        break;
+      case 3:
+        navGlowPosition = 72;
+        break;
+      default:
+        navGlowPosition = 1;
+        return;
     }
 
     gsap.to(navGlow, {
@@ -243,8 +214,9 @@
       overwrite: true,
       ease: 'Expo.easeOut',
     });
+
     navLinks.forEach((link, index) => {
-      if (index === isInPosition) {
+      if (index === activeSectionIndex) {
         gsap.to(link, {
           color: '#fff',
           scale: 1.05,
@@ -262,6 +234,7 @@
       }
     });
   }
+
   const sbutton = document.getElementById('sbutton');
   const scard = document.getElementById('scard');
   let isActive = false;
@@ -286,7 +259,7 @@
       }
     });
   }
-  scrollbarInstance.addListener(updateNavGlow);
+  window.addEventListener('scroll', updateNavGlow);
 
   ScrollTrigger.scrollerProxy('#scrollable-content', {
     scrollTop(value) {

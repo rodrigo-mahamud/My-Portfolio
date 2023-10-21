@@ -26,14 +26,13 @@ const { items = [] } = Astro.props;
         class="grid gap-3 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 my-12 dark:text-white items-stretch"
       >
         {
-          items.map(({ title, description, delay, hello }) => (
+          items.map(({ title, description, delay }) => (
             <div class="card SAnimate relative flex flex-col border border-transparent" data-sadelay={delay}>
               <div class="card-content">
                 <div class="card-image">
                   <img src="cardIMG.png" />
                 </div>
                 <div class="px-8 pb-6">
-                  <slot name={hello || 'defaultName'} />
                   <h3 class="text-xl font-bold">{title}</h3>
                   {description && <h4 class="text-muted dark:text-gray-400 text-md mt-1" set:html={description} />}
                 </div>

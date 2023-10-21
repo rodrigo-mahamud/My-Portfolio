@@ -32,10 +32,6 @@
   }
 }
 
-#header.scroll {
-  @apply shadow-md md:shadow-lg bg-white md:bg-white/90 md:backdrop-blur-sm dark:bg-slate-900 dark:md:bg-slate-900/90;
-}
-
 .dropdown:hover .dropdown-menu {
   display: block;
 }
@@ -58,16 +54,24 @@
 [data-aw-toggle-menu].expanded g > path:last-child {
   @apply rotate-45 translate-y-[-8px] translate-x-[14px];
 }
-#scrollable-content {
-  height: 100vh; /* Altura fija */
+html.lenis {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
   overflow: hidden;
 }
-.scrollbar-track {
-  background: rgb(222 222 222 / 0%);
-  transition: opacity 0.3s ease-in-out;
-}
-.scrollbar-thumb {
-  background: rgb(255 255 255 / 50%);
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
 }
 /*----ESFERA----*/
 #esfera {
