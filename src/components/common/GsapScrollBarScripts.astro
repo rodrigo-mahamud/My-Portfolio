@@ -261,17 +261,6 @@
   }
   window.addEventListener('scroll', updateNavGlow);
 
-  ScrollTrigger.scrollerProxy('#scrollable-content', {
-    scrollTop(value) {
-      if (arguments.length) {
-        scrollbarInstance.scrollTop = value;
-      }
-      return scrollbarInstance.scrollTop;
-    },
-  });
-
-  scrollbarInstance.addListener(ScrollTrigger.update);
-
   function animateOnScroll() {
     const elementsToAnimate = document.querySelectorAll('.SAnimate');
 
@@ -288,7 +277,6 @@
         clearProps: 'all',
         scrollTrigger: {
           trigger: element,
-          scroller: '#scrollable-content',
           start: 'top bottom',
           markers: false,
         },
@@ -316,20 +304,22 @@
 
   const sections = Array.from(document.querySelectorAll('.sticky-section'));
 
-  scrollbarInstance.addListener(({ offset }) => {
+  window.addEventListener('scroll', () => {
+    const currentScrollY = window.scrollY;
+
     sections.forEach((section) => {
       const minScrollY = parseInt((section as HTMLElement).dataset.start || '0', 10);
       const maxScrollY = parseInt((section as HTMLElement).dataset.end || '0', 10);
 
       // Sólo queremos hacer que la sección sea "fija" si el desplazamiento está dentro de nuestro rango definido.
-      if (offset.y >= minScrollY && offset.y <= maxScrollY) {
+      if (currentScrollY >= minScrollY && currentScrollY <= maxScrollY) {
         // Calcular la cantidad de desplazamiento dentro de nuestro rango definido.
-        const scrollY = offset.y - minScrollY;
+        const scrollY = currentScrollY - minScrollY;
         gsap.to(section, {
           y: scrollY,
           duration: 0.001,
         });
-      } else if (offset.y > maxScrollY) {
+      } else if (currentScrollY > maxScrollY) {
         gsap.to(section, {
           y: maxScrollY - minScrollY,
           duration: 0.001,
@@ -342,6 +332,7 @@
       }
     });
   });
+
   const heroElement = document.querySelector('.transformHero');
   const heroTextBox = document.querySelector('.transformTextBox');
   const heroContainer = document.querySelector('#inicio');
@@ -359,7 +350,6 @@
         trigger: heroContainer,
         start: 'top',
         end: 800,
-        scroller: '#scrollable-content',
         scrub: true,
       },
     }
@@ -378,7 +368,6 @@
         trigger: heroContainer,
         start: 'top',
         end: 800,
-        scroller: '#scrollable-content',
         scrub: true,
       },
     }
