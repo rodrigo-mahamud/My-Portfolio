@@ -2,7 +2,7 @@
 ---
 
 <style>
-  .border {
+  .borderAlt {
     border: solid #2d263a;
     border-width: 2px 2px 0 2px;
     border-radius: 1rem 1rem 0 0px;
@@ -10,7 +10,7 @@
     box-shadow: -2px 20px 0px #0a0118;
     position: relative;
   }
-  .border:before {
+  .borderAlt:before {
     border: solid #2d263a;
     border-width: 2px 1px 0 0px;
     content: '';
@@ -71,7 +71,7 @@
     display: flex;
     height: 0.75px;
   }
-  .SAnimate:nth-of-type(2) .border::after {
+  .SAnimate:nth-of-type(2) .borderAlt::after {
     border: solid #2d263a;
     border-width: 2px 2px 0 0px;
     content: '';
@@ -104,7 +104,7 @@
     display: flex;
     height: 0.75px;
   }
-  .SAnimate:nth-of-type(3) .border::after {
+  .SAnimate:nth-of-type(3) .borderAlt::after {
     border: solid #2d263a;
     border-width: 2px 2px 0 0px;
     content: '';
@@ -119,11 +119,67 @@
   .SAnimate:nth-of-type(3) div {
     box-shadow: 175px 0px 30px -15px rgb(10 1 24 / 75%);
   }
+  .badge {
+    isolation: isolate;
+    overflow: hidden;
+    align-items: center;
+    -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: blur(6px);
+    border-radius: 32px;
+    box-shadow: inset 0 7px 11px #a48fff1f;
+    display: flex;
+    margin: 0 auto 12px;
+    padding: 6px 14px 6px 15px;
+    position: relative;
+    width: -moz-max-content;
+    width: max-content;
+  }
+  .badge::after {
+    background: linear-gradient(
+      180deg,
+      rgba(229, 156, 255, 0.24) 0.01%,
+      rgba(186, 156, 255, 0.24) 50.01%,
+      rgba(156, 178, 255, 0.12) 100%
+    );
+    border-radius: inherit;
+    content: '';
+    inset: 0;
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask-composite: xor;
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    padding: 1px;
+    pointer-events: none;
+    position: absolute;
+  }
+  .badge-text {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.8) 15%, rgba(0, 0, 0, 0.4)),
+      linear-gradient(90deg, #dd81ff 0.01%, #a882ff 50.01%, #7e9aff 100%);
+    background-blend-mode: normal, screen;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .headingTxt {
+    background: linear-gradient(180deg, #fff 22.5%, rgba(255, 255, 255, 0.7) 100%);
+    font-size: 3.5rem;
+    line-height: 4rem;
+    text-align: center;
+    font-weight: 600;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+  }
 </style>
 <section class="max-w-5xl mx-auto flex flex-col relative h-[calc(100vh+22rem)] py-28 mb-2" id="proyectos">
   <div class="flex flex-col sticky top-10 mb-12">
-    <h2 class="text-center text-5xl font-medium">
-      FALTA EL TITULO EN FORMA DE PASTILLA Spot issues faster <br />
+    <div class="badge">
+      <span class="badge-text"> Contenido del div</span>
+    </div>
+    <h2 class="headingTxt text-">
+      Spot issues faster <br />
       with smart indicators
     </h2>
   </div>
@@ -131,8 +187,9 @@
     <div class="SAnimate sticky top-44" data-sadelay="0">
       <div class="mx-auto">
         <div class="flex justify-end w-full">
-          <h3 class="uppercase border bg-[#0a0118]">Experience</h3>
+          <h3 class="uppercase borderAlt bg-[#0a0118]">Experience</h3>
         </div>
+
         <section class="w-full borderGlow">
           <ul class="mx-10-20 flex flex-col">
             <li class="relative flex flex-col">
@@ -152,7 +209,7 @@
     <div class="SAnimate sticky top-44" data-sadelay="0.15">
       <div class="mx-auto">
         <div class="flex justify-end w-[86%]">
-          <h3 class="uppercase border bg-[#0a0118]">Experience</h3>
+          <h3 class="uppercase borderAlt bg-[#0a0118]">Experience</h3>
         </div>
         <section class="w-full borderGlow">
           <ul class="mx-10-20 flex flex-col">
@@ -173,7 +230,7 @@
     <div class="SAnimate sticky top-44" data-sadelay="0.3">
       <div class="mx-auto">
         <div class="flex justify-end w-[72%]">
-          <h3 class="uppercase border bg-[#0a0118]">Experience</h3>
+          <h3 class="uppercase borderAlt bg-[#0a0118]">Experience</h3>
         </div>
         <section class="w-full borderGlow">
           <ul class="mx-10-20 flex flex-col">
