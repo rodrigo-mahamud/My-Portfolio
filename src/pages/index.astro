@@ -2,12 +2,13 @@
 import { SITE } from '~/config.mjs';
 import Layout from '~/layouts/PageLayout.astro';
 import Hero from '~/components/widgets/Hero.astro';
-import Features2 from '~/components/widgets/Features2.astro';
+import Features from '~/components/widgets/Features.astro';
 import Steps from '~/components/widgets/Steps.astro';
 import LatestPosts from '~/components/blog/LatestPosts.astro';
 import FAQs from '~/components/widgets/FAQs.astro';
 import Stats from '~/components/widgets/Stats.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
+import FeatureHead from '~/components/widgets/FeatureHead.astro';
 
 const meta = {
   title: SITE.title,
@@ -22,49 +23,15 @@ const meta = {
 
   <!-- Features2 Widget ************** -->
 
-  <Features2
-    title="Most used widgets"
-    subtitle="Provides frequently used components for building websites using Tailwind CSS"
-    highlight="Components"
-    items={[
-      {
-        hello: 'hola',
-        title: 'Headers',
-        description: 'In general, Headers contain information that makes it easier for.',
-        delay: '0',
-      },
-      {
-        hello: 'hola',
-        title: 'Heros',
-        description: 'In general, Headers contain information that makes it easier for.',
-        delay: '0.10',
-      },
-      {
-        hello: 'hola',
-        title: 'Features',
-        description: 'In general, Headers contain information that makes it easier for.',
-        delay: '0.20',
-      },
-      {
-        hello: 'hola',
-        title: 'Content',
-        description: 'In general, Headers contain information that makes it easier for.',
-        delay: '0.30',
-      },
-      {
-        hello: 'hola',
-        title: 'Call-to-Action',
-        description: 'In general, Headers contain information that makes it easier for.',
-        delay: '0.40',
-      },
-      {
-        hello: 'hola',
-        title: 'Pricing',
-        description: 'In general, Head contain information that makes it easier for.',
-        delay: '0.50',
-      },
-    ]}
-  />
+  <Features title="Most used widgets" subtitle="Subtitle Here" highlight="Components">
+    <FeatureHead title="Headers" description="Some description" delay="0" hello="hola">
+      <img src="./cardIMG.png" alt="Image for Headers" />
+    </FeatureHead>
+    <FeatureHead title="Heros" description="Another description" delay="0.10" hello="hola">
+      <img src="./cardIMG.png" alt="Image for Heros" />
+    </FeatureHead>
+    <!-- ... Y así para cada tarjeta -->
+  </Features>
 
   <!-- HighlightedPosts Widget ******* -->
   <!-- Steps Widget ****************** -->
