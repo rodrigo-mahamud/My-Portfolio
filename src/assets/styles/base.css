@@ -157,7 +157,7 @@ html.lenis {
 }
 
 .card {
-  box-shadow: inset 0px 200px 50px -15px rgb(255 255 255 / 18%);
+  box-shadow: inset 0px 200px 50px -20px rgb(255 255 255 / 10%);
   background-color: rgba(255, 255, 255, 2%);
   border-radius: 16px;
   display: flex;

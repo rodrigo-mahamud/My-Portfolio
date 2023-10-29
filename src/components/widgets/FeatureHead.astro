@@ -7,25 +7,24 @@ export interface Props {
 }
 ---
 
-<div id="cards" class="grid gap-3 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 my-12 dark:text-white items-stretch">
-  <div class="card SAnimate relative flex flex-col border border-transparent">
-    <div class="card-content">
-      <div data-sadelay={Astro.props.delay} class="relative">
-        <div class="card-image">
-          <slot />
-        </div>
-        <div class="px-8 pb-6">
-          <h3 class="text-xl font-bold">{Astro.props.title}</h3>
-          {
-            Astro.props.description && (
-              <h4 class="text-muted dark:text-gray-400 text-md mt-1" set:html={Astro.props.description} />
-            )
-          }
-        </div>
+<div class="card SAnimate relative flex flex-col border border-transparent" data-sadelay={Astro.props.delay}>
+  <div class="card-content">
+    <div class="relative">
+      <div class="card-image">
+        <slot />
+      </div>
+      <div class="px-8 pb-6">
+        <h3 class="text-xl font-bold">{Astro.props.title}</h3>
+        {
+          Astro.props.description && (
+            <h4 class="text-muted text-gray-400 text-md mt-1" set:html={Astro.props.description} />
+          )
+        }
       </div>
     </div>
   </div>
 </div>
+
 <script>
   interface ExtendedHTMLElement extends HTMLElement {
     style: CSSStyleDeclaration & {
