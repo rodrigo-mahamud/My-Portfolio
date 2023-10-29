@@ -156,6 +156,7 @@
 
   const navGlow = document.querySelector('#navGlow');
   const navLinks = document.querySelectorAll('#header nav a');
+
   /*-----------------------*/
   /*------ NAV MENU ------ */
   /*-----------------------*/
@@ -268,7 +269,7 @@
       const delay = htmlElement.dataset.sadelay ?? 0;
 
       gsap.from(element, {
-        duration: 2.25,
+        duration: 2.5,
         autoAlpha: 0,
         y: 100,
         delay: delay,
@@ -276,7 +277,8 @@
         clearProps: 'all',
         scrollTrigger: {
           trigger: element,
-          start: 'top bottom',
+          once: true,
+          start: 'top 100%',
           markers: false,
         },
       });

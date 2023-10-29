@@ -8,19 +8,17 @@ export interface Props {
 ---
 
 <div class="card SAnimate relative flex flex-col border border-transparent" data-sadelay={Astro.props.delay}>
-  <div class="card-content">
-    <div class="relative">
-      <div class="card-image">
-        <slot />
-      </div>
-      <div class="px-8 pb-6">
-        <h3 class="text-xl font-bold">{Astro.props.title}</h3>
-        {
-          Astro.props.description && (
-            <h4 class="text-muted text-gray-400 text-md mt-1" set:html={Astro.props.description} />
-          )
-        }
-      </div>
+  <div class="card-content relative">
+    <div class="card-image">
+      <slot />
+    </div>
+    <div class="px-8 pb-6">
+      <h3 class="text-xl font-bold">{Astro.props.title}</h3>
+      {
+        Astro.props.description && (
+          <h4 class="text-muted text-gray-400 text-md mt-1" set:html={Astro.props.description} />
+        )
+      }
     </div>
   </div>
 </div>
