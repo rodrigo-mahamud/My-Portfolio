@@ -1,0 +1,63 @@
+---
+// Componente SelectorSVG.astro
+export interface Props {
+  selector: string;
+}
+
+const { selector } = Astro.props;
+---
+<div class="absolute w-full pl-4 h-[inherit]">
+    <div
+      class="text-neutral-200 flex justify-center items-center w-16 h-16 rounded-full bg-gradient-to-tr from-[#0a0118] from-35% to-[#291a40] z-10"
+    >
+    <svg xmlns="http://www.w3.org/2000/svg"
+      width="1.75rem"
+      height="1.75rem"
+      viewBox="0 0 24 24"
+      stroke-width="1"
+      stroke="currentColor"
+      fill="none"
+      stroke-linecap="round"
+      stroke-linejoin="round">
+        {selector === '1' && (
+          <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+          <path d="M20 4l-2 14.5l-6 2l-6 -2l-2 -14.5z"></path>
+          <path d="M7.5 8h3v8l-2 -1"></path>
+          <path d="M16.5 8h-2.5a.5 .5 0 0 0 -.5 .5v3a.5 .5 0 0 0 .5 .5h1.423a.5 .5 0 0 1 .495 .57l-.418 2.93l-2 .5"
+          ></path>
+        )}
+        {selector === '2' && (
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+            <path d="M9 15v-6l7.745 10.65a9 9 0 1 1 2.255 -1.993"></path>
+            <path d="M15 12v-3"></path>
+        )}
+        {selector === '3' && (
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+            <path d="M9.225 18.412a1.595 1.595 0 0 1 -1.225 .588c-.468 0 -.914 -.214 -1.225 -.588l-4.361 -5.248a1.844 1.844 0 0 1 0 -2.328l4.361 -5.248a1.595 1.595 0 0 1 1.225 -.588c.468 0 .914 .214 1.225 .588l4.361 5.248a1.844 1.844 0 0 1 0 2.328l-4.361 5.248z">
+            </path>
+            <path d="M17 5l4.586 5.836a1.844 1.844 0 0 1 0 2.328l-4.586 5.836"></path>
+            <path d="M13 5l4.586 5.836a1.844 1.844 0 0 1 0 2.328l-4.586 5.836"></path>
+        )}
+        {selector === '4' && (
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+            <path d="M11.667 6c-2.49 0 -4.044 1.222 -4.667 3.667c.933 -1.223 2.023 -1.68 3.267 -1.375c.71 .174 1.217 .68 1.778 1.24c.916 .912 2 1.968 4.288 1.968c2.49 0 4.044 -1.222 4.667 -3.667c-.933 1.223 -2.023 1.68 -3.267 1.375c-.71 -.174 -1.217 -.68 -1.778 -1.24c-.916 -.912 -1.975 -1.968 -4.288 -1.968zm-4 6.5c-2.49 0 -4.044 1.222 -4.667 3.667c.933 -1.223 2.023 -1.68 3.267 -1.375c.71 .174 1.217 .68 1.778 1.24c.916 .912 1.975 1.968 4.288 1.968c2.49 0 4.044 -1.222 4.667 -3.667c-.933 1.223 -2.023 1.68 -3.267 1.375c-.71 -.174 -1.217 -.68 -1.778 -1.24c-.916 -.912 -1.975 -1.968 -4.288 -1.968z">
+            </path>
+        )}
+        {selector === '5' && (
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+            <path d="M8.5 13.5l-1.5 -1.5l1.5 -1.5"></path>
+            <path d="M15.5 10.5l1.5 1.5l-1.5 1.5"></path>
+            <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"></path>
+            <path d="M13 9.5l-2 5.5"></path>
+        )}
+        {selector === '6' && (
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+            <path d="M4 13a8 8 0 0 1 7 7a6 6 0 0 0 3 -5a9 9 0 0 0 6 -8a3 3 0 0 0 -3 -3a9 9 0 0 0 -8 6a6 6 0 0 0 -5 3"
+            ></path>
+            <path d="M7 14a6 6 0 0 0 -3 6a6 6 0 0 0 6 -3"></path>
+            <path d="M15 9m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0"></path>
+        )}
+      </svg>
+    </div>
+  </div>
+
