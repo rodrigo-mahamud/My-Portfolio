@@ -7,7 +7,13 @@ export interface Props {
 }
 ---
 
-<div class="card SAnimate relative flex flex-col border border-transparent" data-sadelay={Astro.props.delay}>
+<div
+  class="card animate-on-scroll relative flex flex-col border border-transparent"
+  data-type="simple"
+  data-delay={Astro.props.delay}
+  data-duration="2.5"
+  data-easing="Expo.easeOut"
+>
   <div class="card-content relative">
     <div class="card-image">
       <slot />

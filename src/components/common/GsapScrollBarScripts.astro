@@ -261,34 +261,67 @@
   }
   window.addEventListener('scroll', updateNavGlow);
 
-  function animateOnScroll() {
-    const elementsToAnimate = document.querySelectorAll('.SAnimate');
+  document.addEventListener('DOMContentLoaded', () => {
+    const elementsToAnimate: HTMLElement[] = Array.from(document.querySelectorAll('.animate-on-scroll'));
 
-    elementsToAnimate.forEach((element) => {
-      const htmlElement = element as HTMLElement;
-      const delay = htmlElement.dataset.sadelay ?? 0;
+    elementsToAnimate.forEach((element: HTMLElement) => {
+      const delay = element.getAttribute('data-delay') || '0';
+      const easing = element.getAttribute('data-easing') || 'Expo.easeOut';
+      const duration = element.getAttribute('data-duration') || '2.5';
+      const type = element.getAttribute('data-type') || 'simple';
+
+      let animationSettings = {};
+
+      switch (type) {
+        case 'simple':
+          animationSettings = {
+            opacity: 0,
+            y: 50,
+          };
+          break;
+        case 'zoomReversed':
+          animationSettings = {
+            opacity: 0,
+            scale: 1.5,
+          };
+          break;
+        case 'zoomSmall':
+          animationSettings = {
+            opacity: 0,
+            scale: 0.9,
+          };
+          break;
+      }
 
       gsap.from(element, {
-        duration: 2.5,
-        autoAlpha: 0,
-        y: 100,
-        delay: delay,
-        ease: 'Expo.easeOut',
-        clearProps: 'all',
+        ...animationSettings,
+        duration: parseFloat(duration),
+        delay: parseFloat(delay),
+        ease: easing,
+        onStart: () => {
+          element.style.visibility = 'visible';
+        },
         scrollTrigger: {
           trigger: element,
           once: true,
           start: 'top 100%',
-          markers: false,
+          // markers: true,
+
+          onToggle: (self) => {
+            if (!self.isActive) {
+              const index = elementsToAnimate.indexOf(element);
+              if (index > -1) {
+                elementsToAnimate.splice(index, 1);
+              }
+            }
+          },
         },
       });
     });
-  }
-
-  animateOnScroll();
+  });
 
   window.addEventListener('DOMContentLoaded', () => {
-    const heroElementsToAnimate = document.querySelectorAll('.SAnimateHero');
+    const heroElementsToAnimate = document.querySelectorAll('.animate-on-scrollHero');
 
     heroElementsToAnimate.forEach((element, index) => {
       const delay = 0.65 + index * 0.15;
