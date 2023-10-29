@@ -1,4 +1,5 @@
 ---
+import TitleCentered from './TitleCentered.astro';
 export interface Props {
   title?: string;
   subtitle?: string;
@@ -6,16 +7,17 @@ export interface Props {
 }
 ---
 
-<section class="relative max-w-5xl h-screen mx-auto">
-  <h1>{Astro.props.title}</h1>
-  <h2>{Astro.props.subtitle}</h2>
-  <h3>{Astro.props.highlight}</h3>
+<section class="relative max-w-5xl pt-28 h-screen mx-auto">
+  <TitleCentered
+    data={{
+      title: 'Spot issues faster <br /> with smart indicators',
+      subtitle: 'Pre titulo',
+      isSticky: false,
+    }}
+  />
 
-  <div class="py-4 h-full pt-8 sm:py-6 lg:py-8 lg:pt-40">
-    <div
-      id="cards"
-      class="h-auto grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 my-12 text-white items-stretch"
-    >
+  <div class="py-4 h-full pt-8 sm:py-6 lg:py-8 lg:pt-8">
+    <div id="cards" class="h-auto grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 text-white items-stretch">
       <slot />
     </div>
   </div>

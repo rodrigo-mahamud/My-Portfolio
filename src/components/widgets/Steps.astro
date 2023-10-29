@@ -1,4 +1,5 @@
 ---
+import TitleCentered from './TitleCentered.astro';
 ---
 
 <style>
@@ -119,70 +120,15 @@
   .SAnimate:nth-of-type(3) div {
     box-shadow: 175px 0px 30px -15px rgb(10 1 24 / 75%);
   }
-  .badge {
-    isolation: isolate;
-    overflow: hidden;
-    align-items: center;
-    -webkit-backdrop-filter: blur(6px);
-    backdrop-filter: blur(6px);
-    border-radius: 32px;
-    box-shadow: inset 0 7px 11px #a48fff1f;
-    display: flex;
-    margin: 0 auto 12px;
-    padding: 6px 14px 6px 15px;
-    position: relative;
-    width: -moz-max-content;
-    width: max-content;
-  }
-  .badge::after {
-    background: linear-gradient(
-      180deg,
-      rgba(229, 156, 255, 0.24) 0.01%,
-      rgba(186, 156, 255, 0.24) 50.01%,
-      rgba(156, 178, 255, 0.12) 100%
-    );
-    border-radius: inherit;
-    content: '';
-    inset: 0;
-    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-    mask-composite: xor;
-    -webkit-mask-composite: xor;
-    mask-composite: exclude;
-    padding: 1px;
-    pointer-events: none;
-    position: absolute;
-  }
-  .badge-text {
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.8) 15%, rgba(0, 0, 0, 0.4)),
-      linear-gradient(90deg, #dd81ff 0.01%, #a882ff 50.01%, #7e9aff 100%);
-    background-blend-mode: normal, screen;
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-  .headingTxt {
-    background: linear-gradient(180deg, #fff 22.5%, rgba(255, 255, 255, 0.7) 100%);
-    font-size: 3.5rem;
-    line-height: 4rem;
-    text-align: center;
-    font-weight: 600;
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    -webkit-text-fill-color: transparent;
-  }
 </style>
 <section class="max-w-5xl mx-auto flex flex-col relative h-[calc(100vh+5rem)] pt-28 mb-[30.375rem]" id="proyectos">
-  <div class="flex flex-col sticky top-20 pb-16">
-    <div class="badge">
-      <span class="badge-text"> Contenido del div</span>
-    </div>
-    <h2 class="headingTxt text-">
-      Spot issues faster <br />
-      with smart indicators
-    </h2>
-  </div>
+  <TitleCentered
+    data={{
+      title: 'Spot issues faster <br /> with smart indicators',
+      subtitle: 'Pre titulo',
+      isSticky: true,
+    }}
+  />
   <div class="w-full">
     <div class="SAnimate sticky top-[19.7rem]" data-sadelay="0">
       <div class="mx-auto">

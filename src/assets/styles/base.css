@@ -321,16 +321,6 @@ audio {
 /* -- ↓ ↓ ↓ some responsiveness ↓ ↓ ↓ -- */
 
 @media (max-width: 1000px) {
-  body {
-    align-items: flex-start;
-    overflow: auto;
-  }
-
-  #cards {
-    max-width: 1000px;
-    padding: 10px 0px;
-  }
-
   .card {
     flex-shrink: 1;
     width: calc(50% - 4px);
@@ -374,52 +364,57 @@ audio {
   }
 }
 
-/* -- ↓ ↓ ↓ YouTube link styles ↓ ↓ ↓ -- */
-
-#youtube-link {
-  bottom: 10px;
-}
-
-#youtube-link > i {
-  color: rgb(239, 83, 80);
-}
-
-#source-link {
-  bottom: 60px;
-}
-
-#source-link > i {
-  color: rgb(94, 106, 210);
-}
-
-.link {
+/*---TITLE CENTER CSS----*/
+.badge {
+  isolation: isolate;
+  overflow: hidden;
   align-items: center;
-  backdrop-filter: blur(3px);
-  background-color: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 6px;
-  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1);
-  cursor: pointer;
-  display: inline-flex;
-  gap: 5px;
-  left: 10px;
-  padding: 10px 20px;
-  position: fixed;
-  text-decoration: none;
-  z-index: 100;
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  border-radius: 32px;
+  box-shadow: inset 0 7px 11px #a48fff1f;
+  display: flex;
+  margin: 0 auto 12px;
+  padding: 6px 14px 6px 15px;
+  position: relative;
+  width: -moz-max-content;
+  width: max-content;
 }
-
-.link:hover {
-  background-color: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+.badge::after {
+  background: linear-gradient(
+    180deg,
+    rgba(229, 156, 255, 0.24) 0.01%,
+    rgba(186, 156, 255, 0.24) 50.01%,
+    rgba(156, 178, 255, 0.12) 100%
+  );
+  border-radius: inherit;
+  content: '';
+  inset: 0;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: xor;
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  padding: 1px;
+  pointer-events: none;
+  position: absolute;
 }
-
-.link > i,
-.link > span {
-  height: 20px;
-  line-height: 20px;
+.badge-text {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.8) 15%, rgba(0, 0, 0, 0.4)),
+    linear-gradient(90deg, #dd81ff 0.01%, #a882ff 50.01%, #7e9aff 100%);
+  background-blend-mode: normal, screen;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
-
-.link > span {
-  color: white;
+.headingTxt {
+  background: linear-gradient(180deg, #fff 22.5%, rgba(255, 255, 255, 0.7) 100%);
+  font-size: 3.5rem;
+  line-height: 4rem;
+  text-align: center;
+  font-weight: 600;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
 }
