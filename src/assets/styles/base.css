@@ -100,13 +100,15 @@ html.lenis {
 .navGlow::after {
   content: '';
   display: block;
-  background: linear-gradient(to right, #00000000 10%, #ffffff 50%, #00000000 100%);
-  height: 2px;
+  height: 4px;
+  width: 24px;
+  border-radius: 20px;
   position: absolute;
-  bottom: -1px;
-  width: 100%;
-  left: 0;
-  z-index: 999;
+  bottom: -2px;
+  left: 43%;
+  background: #fff;
+  z-index: -3;
+  box-shadow: 0 2px 25px 2px #fff;
 }
 @keyframes rotateSmooth {
   0% {
