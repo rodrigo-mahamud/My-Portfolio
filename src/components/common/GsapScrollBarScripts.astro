@@ -168,6 +168,7 @@
       })
       .filter(Boolean); // Este filtro eliminará cualquier valor vacío
   }
+
   const sectionIDs = getSectionIdsFromNavLinks();
 
   function isVisible(el: Element): boolean {
@@ -188,51 +189,38 @@
       }
     }
 
-    let navGlowPosition;
+    if (activeSectionIndex !== null && activeSectionIndex < navLinks.length) {
+      const activeLink = navLinks[activeSectionIndex];
+      const linkRect = activeLink.getBoundingClientRect();
+      const navRect = activeLink.parentElement.getBoundingClientRect();
+      const navGlowPosition = linkRect.left - navRect.left + linkRect.width / 2;
 
-    switch (activeSectionIndex) {
-      case 0:
-        navGlowPosition = 1;
-        break;
-      case 1:
-        navGlowPosition = 20;
-        break;
-      case 2:
-        navGlowPosition = 46;
-        break;
-      case 3:
-        navGlowPosition = 72;
-        break;
-      default:
-        navGlowPosition = 1;
-        return;
+      gsap.to(navGlow, {
+        left: `${navGlowPosition}px`,
+        duration: 0.5,
+        overwrite: true,
+        ease: 'Expo.easeOut',
+      });
+
+      navLinks.forEach((link, index) => {
+        if (index === activeSectionIndex) {
+          gsap.to(link, {
+            color: '#fff',
+            scale: 1.05,
+            delay: 0.005,
+            duration: 0.1,
+            overwrite: true,
+            ease: 'Expo.easeOut',
+          });
+        } else {
+          gsap.to(link, {
+            clearProps: 'all',
+            duration: 0.1,
+            ease: 'expo.in',
+          });
+        }
+      });
     }
-
-    gsap.to(navGlow, {
-      left: `${navGlowPosition}%`,
-      duration: 0.5,
-      overwrite: true,
-      ease: 'Expo.easeOut',
-    });
-
-    navLinks.forEach((link, index) => {
-      if (index === activeSectionIndex) {
-        gsap.to(link, {
-          color: '#fff',
-          scale: 1.05,
-          delay: 0.005,
-          duration: 0.1,
-          overwrite: true,
-          ease: 'Expo.easeOut',
-        });
-      } else {
-        gsap.to(link, {
-          clearProps: 'all',
-          duration: 0.1,
-          ease: 'expo.in',
-        });
-      }
-    });
   }
 
   const sbutton = document.getElementById('sbutton');

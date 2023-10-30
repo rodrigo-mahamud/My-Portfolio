@@ -28,17 +28,16 @@ export interface Props {
 const { links = [] } = Astro.props;
 ---
 
-<header class="fixed z-50 w-full max-w-lg -translate-x-1/2 bottom-4 left-1/2" id="header">
-  <div class="flex justify-end flex-row h-12 mx-auto">
-    <nav
-      class="border border-[#f2f2f21a] rounded-full bg-[#f2f2f20d] backdrop-blur-xl items-center justify-center w-5/6 hidden md:flex md:h-auto z-50"
-      aria-label="Main navigation"
-    >
-      <div id="navGlow" class="w-1/4 left-0 h-full -z-20 absolute navGlow"></div>
+<header class="fixed z-50 w-full max-w-[30rem] -translate-x-1/2 bottom-4 left-1/2" id="header">
+  <div
+    class="flex items-center justify-end flex-row h-12 w-full border backdrop-blur-xl border-[#f2f2f21a] rounded-full bg-[#f2f2f20d]"
+  >
+    <nav class="w-full items-center justify-evenly hidden md:flex md:h-auto z-50" aria-label="Main navigation">
+      <div id="navGlow" class="w-1/4 h-full -z-20 absolute -translate-x-1/2 navGlow"></div>
       {
         links.map(({ text, href }) => (
           <a
-            class="font-medium hover:text-gray-900 cursor-none dark:hover:text-white px-4 py-3 flex items-center transition duration-150 ease-in-out"
+            class="font-medium hover:text-gray-900 cursor-none dark:hover:text-white  py-3 flex items-center transition duration-150 ease-in-out"
             href={href}
           >
             {text}
