@@ -191,35 +191,38 @@
 
     if (activeSectionIndex !== null && activeSectionIndex < navLinks.length) {
       const activeLink = navLinks[activeSectionIndex];
-      const linkRect = activeLink.getBoundingClientRect();
-      const navRect = activeLink.parentElement.getBoundingClientRect();
-      const navGlowPosition = linkRect.left - navRect.left + linkRect.width / 2;
+      if (activeLink.parentElement) {
+        // Asegurarse de que parentElement no es null
+        const linkRect = activeLink.getBoundingClientRect();
+        const navRect = activeLink.parentElement.getBoundingClientRect();
+        const navGlowPosition = linkRect.left - navRect.left + linkRect.width / 2;
 
-      gsap.to(navGlow, {
-        left: `${navGlowPosition}px`,
-        duration: 0.5,
-        overwrite: true,
-        ease: 'Expo.easeOut',
-      });
+        gsap.to(navGlow, {
+          left: `${navGlowPosition}px`,
+          duration: 0.5,
+          overwrite: true,
+          ease: 'Expo.easeOut',
+        });
 
-      navLinks.forEach((link, index) => {
-        if (index === activeSectionIndex) {
-          gsap.to(link, {
-            color: '#fff',
-            scale: 1.05,
-            delay: 0.005,
-            duration: 0.1,
-            overwrite: true,
-            ease: 'Expo.easeOut',
-          });
-        } else {
-          gsap.to(link, {
-            clearProps: 'all',
-            duration: 0.1,
-            ease: 'expo.in',
-          });
-        }
-      });
+        navLinks.forEach((link, index) => {
+          if (index === activeSectionIndex) {
+            gsap.to(link, {
+              color: '#fff',
+              scale: 1.05,
+              delay: 0.005,
+              duration: 0.1,
+              overwrite: true,
+              ease: 'Expo.easeOut',
+            });
+          } else {
+            gsap.to(link, {
+              clearProps: 'all',
+              duration: 0.1,
+              ease: 'expo.in',
+            });
+          }
+        });
+      }
     }
   }
 
