@@ -226,30 +226,6 @@
     }
   }
 
-  const sbutton = document.getElementById('sbutton');
-  const scard = document.getElementById('scard');
-  let isActive = false;
-  if (sbutton) {
-    sbutton.addEventListener('click', () => {
-      if (!isActive) {
-        gsap.to(scard, {
-          duration: 1,
-          autoAlpha: 1,
-          y: 0,
-          ease: 'Expo.easeOut',
-        });
-        isActive = true;
-      } else {
-        gsap.to(scard, {
-          duration: 0.75,
-          autoAlpha: 0,
-          y: 100,
-          ease: 'Expo.easeOut',
-        });
-        isActive = false;
-      }
-    });
-  }
   window.addEventListener('scroll', updateNavGlow);
 
   document.addEventListener('DOMContentLoaded', () => {
