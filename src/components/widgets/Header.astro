@@ -33,13 +33,29 @@ const { links = [] } = Astro.props;
     id="navContainer"
     class="flex items-center justify-end flex-row h-12 w-[87.5%] border backdrop-blur-xl border-[#f2f2f21a] rounded-full bg-[#f2f2f20d] shadow-[0_10px_25px_0_rgba(0,0,0,0.15)]"
   >
-    <div id="scard" class="fixed h-full z-40 flex left-0 right-0 bottom-0 opacity-0">
+    <div id="scard" class="overflow-hidden blur-md fixed h-full z-40 flex left-0 right-0 bottom-0 opacity-0">
+      <svg
+        id="scardClose"
+        class="absolute mx-3 my-2 right-0 opacity-0 scale-0"
+        width="1.75rem"
+        height="1.75rem"
+        viewBox="0 0 24 24"
+        stroke-width="1.5"
+        stroke="#fff"
+        fill="#fff"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+        <path d="M18 6l-12 12"></path>
+        <path d="M6 6l12 12"></path>
+      </svg>
       <div class="flex w-full items-center justify-start flex-row" id="now-playing">
-        <a id="track-link" class="flex m-0 w-[30%] flex-col" href="#" target="_blank">
+        <a id="track-link" class="flex m-0 w-[30%] flex-col h-full" href="#" target="_blank">
           <img id="album-cover" class="m-0 h-40 rounded-l-xl object-cover" src="" alt="Carátula del álbum" />
           <img
             id="default-image"
-            class="rounded-l-xl h-32 object-cover"
+            class="rounded-l-xl object-cover h-full"
             src="no-song.png"
             alt="Carátula del álbum por defecto"
             style="display: none;"
@@ -83,7 +99,7 @@ const { links = [] } = Astro.props;
       {
         links.map(({ text, href }) => (
           <a
-            class="navElements font-medium hover:text-gray-900 cursor-none dark:hover:text-white  py-3 flex items-center transition duration-150 ease-in-out"
+            class="navElements font-medium  cursor-none hover:text-white  py-3 flex items-center transition duration-150 ease-in-out"
             href={href}
           >
             {text}
@@ -102,6 +118,7 @@ const { links = [] } = Astro.props;
   const navElements = Array.from(document.getElementsByClassName('navElements'));
   const navGlow = document.getElementById('navGlow');
   const scard = document.getElementById('scard');
+  const scardClose = document.getElementById('scardClose');
 
   let isActive = false;
 
@@ -110,15 +127,17 @@ const { links = [] } = Astro.props;
       if (!isActive) {
         gsap.to(navContainer, {
           duration: 1,
+          delay: 0.1,
           height: '200px',
           width: '100%',
-          backdropFilter: 'blur(250px)',
+          backdropFilter: 'blur(200px)',
           ease: 'Expo.easeOut',
         });
         gsap.to(scard, {
-          duration: 0.5,
-          delay: 0.4,
+          duration: 1,
+          delay: 0.1,
           opacity: 1,
+          filter: 'blur(0px)',
           ease: 'Expo.easeOut',
         });
         gsap.to(navContainer, {
@@ -126,11 +145,18 @@ const { links = [] } = Astro.props;
           borderRadius: '1rem',
         });
         gsap.to(navGlow, {
-          duration: 0.01,
+          duration: 0.1,
           filter: 'blur(10px)',
           opacity: 0,
         });
-
+        gsap.to(scardClose, {
+          duration: 1,
+          delay: 0.3,
+          opacity: 1,
+          scale: 1,
+          rotate: 270,
+          ease: 'Expo.easeOut',
+        });
         navElements.forEach((element) => {
           gsap.to(element, {
             duration: 0.01,
@@ -138,7 +164,6 @@ const { links = [] } = Astro.props;
             opacity: 0,
           });
         });
-
         isActive = true;
       } else {
         gsap.to(navContainer, {
