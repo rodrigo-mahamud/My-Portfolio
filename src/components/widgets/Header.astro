@@ -52,7 +52,7 @@ const { links = [] } = Astro.props;
       </svg>
       <div class="flex w-full items-center justify-start flex-row" id="now-playing">
         <a id="track-link" class="flex m-0 w-[30%] flex-col h-full" href="#" target="_blank">
-          <img id="album-cover" class="m-0 h-40 rounded-l-xl object-cover" src="" alt="Carátula del álbum" />
+          <img id="album-cover" class="m-0 h-40 rounded-l-xl object-fill" src="" alt="Carátula del álbum" />
           <img
             id="default-image"
             class="rounded-l-xl object-cover h-full"
@@ -122,20 +122,20 @@ const { links = [] } = Astro.props;
 
   let isActive = false;
 
-  if (sbutton && navContainer && navElements.length && scard) {
+  if (sbutton && navContainer && navElements.length && scard && scardClose && navGlow) {
     sbutton.addEventListener('click', () => {
       if (!isActive) {
         gsap.to(navContainer, {
           duration: 1,
           delay: 0.1,
-          height: '200px',
+          height: '195px',
           width: '100%',
           backdropFilter: 'blur(200px)',
           ease: 'Expo.easeOut',
         });
         gsap.to(scard, {
           duration: 1,
-          delay: 0.1,
+          delay: 0.3,
           opacity: 1,
           filter: 'blur(0px)',
           ease: 'Expo.easeOut',
@@ -160,27 +160,73 @@ const { links = [] } = Astro.props;
         navElements.forEach((element) => {
           gsap.to(element, {
             duration: 0.01,
+            scale: 0,
             filter: 'blur(10px)',
             opacity: 0,
           });
         });
+
         isActive = true;
-      } else {
+      }
+    });
+
+    scardClose.addEventListener('click', () => {
+      if (isActive) {
         gsap.to(navContainer, {
-          clearProps: 'all',
+          duration: 1,
+          borderRadius: '10rem',
         });
-
-        gsap.to(scard, {
-          duration: 0.75,
-          autoAlpha: 0,
-          y: 100,
+        gsap.to(navContainer, {
+          duration: 1,
+          delay: 0.1,
+          height: '3rem',
+          width: '87.5%',
+          backdropFilter: 'blur(24px)',
           ease: 'Expo.easeOut',
+          onComplete: function () {
+            gsap.set(navContainer, { clearProps: 'all' });
+          },
         });
-
+        gsap.to(scard, {
+          duration: 0.2,
+          opacity: 0,
+          filter: 'blur(12px)',
+          ease: 'Expo.easeOut',
+          onComplete: function () {
+            gsap.set(scard, { clearProps: 'all' });
+          },
+        });
+        gsap.to(navGlow, {
+          duration: 0.1,
+          filter: 'blur(0px)',
+          opacity: 1,
+          onComplete: function () {
+            gsap.set(navGlow, { clearProps: 'all' });
+          },
+        });
+        gsap.to(scardClose, {
+          duration: 1,
+          delay: 0.3,
+          opacity: 0,
+          scale: 1,
+          rotate: 0,
+          ease: 'Expo.easeOut',
+          onComplete: function () {
+            gsap.set(scardClose, { clearProps: 'all' });
+          },
+        });
         navElements.forEach((element) => {
-          // Regresar navElements a su estado original
           gsap.to(element, {
-            clearProps: 'filter',
+            duration: 0.01,
+            scale: 1,
+          });
+          gsap.to(element, {
+            duration: 0.3,
+            filter: 'blur(0px)',
+            opacity: 1,
+            onComplete: function () {
+              gsap.set(element, { clearProps: 'all' });
+            },
           });
         });
 
