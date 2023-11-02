@@ -33,7 +33,7 @@ const { links = [] } = Astro.props;
     id="navContainer"
     class="flex items-center justify-end flex-row h-12 w-[87.5%] border backdrop-blur-xl border-[#f2f2f21a] rounded-full bg-[#f2f2f20d] shadow-[0_10px_25px_0_rgba(0,0,0,0.15)]"
   >
-    <div id="scard" class="overflow-hidden blur-md fixed h-full z-40 flex left-0 right-0 bottom-0 opacity-0">
+    <div id="scard" class="overflow-hidden blur-md fixed h-full z-40 left-0 right-0 bottom-0 opacity-0 hidden">
       <svg
         id="scardClose"
         class="absolute mx-3 my-2 right-0 opacity-0 scale-0"
@@ -94,14 +94,11 @@ const { links = [] } = Astro.props;
       </div>
     </div>
 
-    <nav class="w-full items-center justify-evenly hidden md:flex md:h-auto z-50" aria-label="Main navigation">
+    <nav class="w-full items-center justify-evenly hidden md:flex md:h-auto z-30" aria-label="Main navigation">
       <div id="navGlow" class="w-1/4 h-full -z-20 absolute -translate-x-1/2 navGlow"></div>
       {
         links.map(({ text, href }) => (
-          <a
-            class="navElements font-medium  cursor-none hover:text-white  py-3 flex items-center transition duration-150 ease-in-out"
-            href={href}
-          >
+          <a class="navElements font-medium  cursor-none hover:text-white  py-3 flex items-center " href={href}>
             {text}
           </a>
         ))
@@ -139,6 +136,9 @@ const { links = [] } = Astro.props;
           opacity: 1,
           filter: 'blur(0px)',
           ease: 'Expo.easeOut',
+          onStart: function () {
+            gsap.set(scard, { display: 'flex' });
+          },
         });
         gsap.to(navContainer, {
           duration: 0.1,
@@ -148,9 +148,6 @@ const { links = [] } = Astro.props;
           duration: 0.1,
           filter: 'blur(10px)',
           opacity: 0,
-          onComplete: function () {
-            gsap.set(navGlow, { display: ' none' });
-          },
         });
         gsap.to(scardClose, {
           duration: 1,
@@ -176,7 +173,8 @@ const { links = [] } = Astro.props;
     scardClose.addEventListener('click', () => {
       if (isActive) {
         gsap.to(navContainer, {
-          duration: 0.01,
+          duration: 1,
+          delay: 0.3,
           borderRadius: '10rem',
           ease: 'Expo.easeOut',
         });
@@ -221,13 +219,13 @@ const { links = [] } = Astro.props;
         });
         navElements.forEach((element) => {
           gsap.to(element, {
-            duration: 0.01,
+            duration: 0.1,
             scale: 1,
-            filter: 'blur(0px)',
           });
           gsap.to(element, {
-            duration: 0.75,
+            duration: 1,
             opacity: 1,
+            filter: 'blur(0px)',
             ease: 'power2.out',
             onComplete: function () {
               gsap.set(element, { clearProps: 'all' });
