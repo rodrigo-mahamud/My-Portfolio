@@ -203,7 +203,7 @@ const { links = [] } = Astro.props;
           filter: 'blur(0px)',
           opacity: 1,
           onComplete: function () {
-            gsap.set(navGlow, { clearProps: 'all' });
+            gsap.set(navGlow, { clearProps: 'filter,opacity' });
           },
         });
         gsap.to(scardClose, {

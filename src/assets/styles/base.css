@@ -95,7 +95,7 @@ html.lenis {
   animation: rotateSmooth 0.75s ease-in-out infinite alternate, disapearWelcome 0.5s ease-in-out both 0.5s;
 }
 .navGlow {
-  background: radial-gradient(70px 80px at 70px bottom, #ffffff30, #0000);
+  background: radial-gradient(55px 100px at 76px bottom, #ffffff24, #0000);
 }
 .navGlow::after {
   content: '';
