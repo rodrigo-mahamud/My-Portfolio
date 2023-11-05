@@ -120,6 +120,15 @@ const { links = [] } = Astro.props;
   let isActive = false;
 
   if (sbutton && navContainer && navElements.length && scard && scardClose && navGlow) {
+    window.addEventListener('DOMContentLoaded', () => {
+      gsap.from(navContainer, {
+        duration: 1,
+        delay: 0.2,
+        opacity: 0,
+        y: 200,
+        ease: 'Expo.easeOut',
+      });
+    });
     sbutton.addEventListener('click', () => {
       if (!isActive) {
         gsap.to(navContainer, {
