@@ -15,32 +15,29 @@ const { post } = Astro.props;
 const image = await findImage(post.image);
 ---
 
-<article class="mb-6 h-screen bg-slate-400">
+<article class="mb-6 h-screen rounded-2xl mt-16 border border-[#2d263a]">
   <div class="flex flex-col h-full justify-between">
-    <div class="h-2/6">
-      <h3 class="mb-2 text-xl font-bold leading-tight sm:text-2xl font-heading">
+    <div class="h-1/6 pl-12 pt-14">
+      <h3 class="text-3xl font-bold tracking-tighter mb-2">
         {
           BLOG?.post?.disabled ? (
             post.title
           ) : (
-            <a
-              href={getPermalink(post.permalink, 'post')}
-              class="hover:text-primary dark:hover:text-blue-700  transition ease-in duration-200"
-            >
+            <a href={getPermalink(post.permalink, 'post')} class="headingTxt  ">
               {post.title}
             </a>
           )
         }
       </h3>
-      <p class="text-muted text-lg">{post.excerpt || post.description}</p>
+      <p class="text-neutral-400 text-lg">{post.excerpt || post.description}</p>
     </div>
-    <div class="relative h-4/6 rounded">
+    <div class="relative h-5/6 rounded pt-16">
       {
         image && (
           <a href={getPermalink(post.permalink, 'post')}>
             <Picture
               src={image}
-              class="object-cover w-4/5 h-full rounded mx-auto"
+              class="object-cover w-5/6 h-full rounded-t-2xl mx-auto"
               widths={[1920]}
               alt={post.title}
               loading="lazy"

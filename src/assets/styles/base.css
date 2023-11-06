@@ -411,8 +411,7 @@ audio {
 }
 .headingTxt {
   background: linear-gradient(180deg, #fff 22.5%, rgba(255, 255, 255, 0.7) 100%);
-  font-size: 3.5rem;
-  line-height: 4rem;
+
   text-align: center;
   font-weight: 600;
   -webkit-background-clip: text;
