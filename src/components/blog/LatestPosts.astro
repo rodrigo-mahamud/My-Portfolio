@@ -15,7 +15,7 @@ const { title, count = 4 } = Astro.props;
 const posts = await findLatestPosts({ count });
 ---
 
-<section class="py-16 mx-auto lg:max-w-4xl xl:max-w-6xl" id="experiencia">
+<section class="py-16 mx-auto w-full lg:max-w-4xl xl:max-w-6xl" id="experiencia">
   <TitleCentered
     data={{
       title: title,

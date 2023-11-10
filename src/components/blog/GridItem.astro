@@ -1,5 +1,5 @@
 ---
-import { Picture } from '@astrojs/image/components';
+// import { Picture } from '@astrojs/image/components';
 
 import { BLOG } from '~/config.mjs';
 import type { Post } from '~/types';
@@ -9,13 +9,38 @@ import { getPermalink } from '~/utils/permalinks';
 
 export interface Props {
   post: Post;
+  gradientBaseColor: string; // Añadimos una nueva propiedad para el color base del gradiente
 }
 
-const { post } = Astro.props;
+const { post, gradientBaseColor } = Astro.props;
 const image = await findImage(post.image);
+
+// Función para ajustar el color del gradiente
+function adjustGradientColor(color) {
+  let [r, g, b, a] = color.match(/\d+/g).map(Number);
+  r = Math.max(r - 25, 0);
+  g = Math.max(g - 23, 0);
+  b = Math.max(b - 34, 0);
+  return `rgba(${r}, ${g}, ${b}, ${a})`;
+}
+
+const adjustedColor1 = adjustGradientColor(gradientBaseColor);
+console.log(adjustedColor1);
+
+const adjustedColor2 = adjustGradientColor(adjustedColor1);
+console.log(adjustedColor2);
 ---
 
 <style>
+  .borderGlow {
+    background: radial-gradient(
+      40.23% 100% at 20% 0%,
+      rgb(25 17 41) 0%,
+      rgba(10, 1, 24, 1) 100%,
+      rgba(10, 1, 24, 1) 100%
+    );
+    transition: 0.3s ease-in-out;
+  }
   .borderGlow::before {
     content: '';
     background: linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, rgba(255, 255, 255, 0.95) 10%, rgba(0, 0, 0, 0) 60%);
@@ -24,25 +49,45 @@ const image = await findImage(post.image);
     display: flex;
     height: 0.75px;
   }
-  .borderGlow {
-    background: radial-gradient(
-      40.23% 100% at 20% 0%,
-      rgb(25 17 41) 0%,
-      rgba(10, 1, 24, 1) 100%,
-      rgba(10, 1, 24, 1) 100%
-    );
+  .borderGlow:hover::before {
+    content: '';
+    background: linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, rgba(255, 255, 255, 1) 10%, rgba(0, 0, 0, 0) 60%);
+    width: 100%;
+    position: relative;
+    display: flex;
+    height: 1px;
   }
-  .borderGlow:hover {
+  .bgGradient {
+    opacity: 0;
     background: radial-gradient(
       110.23% 95% at 20% 0%,
-      rgb(35 24 58) 0%,
+      {gradientBaseColor} 0%,
+      {adjustedColor1} 50%,
+      {adjustedColor2} 100%
+    );
+    transition: 0.3s ease-in-out;
+  }
+  .arrow-right {
+    transition: 0.3s ease-in-out;
+  }
+  .borderGlow:hover .bgGradient {
+    background: radial-gradient(
+      110.23% 95% at 20% 0%,
+      rgba(35, 24, 58, 1) 0%,
       rgba(10, 1, 24, 1) 100%,
       rgba(10, 1, 24, 1) 100%
     );
+    opacity: 1;
+    transition: 0.3s ease-in-out;
+  }
+  .borderGlow:hover .arrow-right {
+    transform: translateX(10px);
+    transition: 0.3s ease-in-out;
+    color: white;
   }
 </style>
-<article class="borderGlow mb-6 h-screen rounded-2xl mt-16 border border-[#2d263a]">
-  <div class="flex flex-col h-full justify-between">
+<article class="relative borderGlow mb-6 w-full h-screen rounded-2xl mt-16 border border-[#2d263a]">
+  <div class="flex flex-col h-full justify-between z-10 relative">
     <div class="flex flex-row justify-between px-12 pt-14">
       <div class="h-1/6">
         <h3 class="text-3xl font-bold tracking-tighter mb-2">
@@ -50,7 +95,7 @@ const image = await findImage(post.image);
             BLOG?.post?.disabled ? (
               post.title
             ) : (
-              <a href={getPermalink(post.permalink, 'post')} class="headingTxt  ">
+              <a href={getPermalink(post.permalink, 'post')} class="headingTxt ">
                 {post.title}
               </a>
             )
@@ -58,15 +103,15 @@ const image = await findImage(post.image);
         </h3>
         <p class="text-neutral-400 text-lg">{post.excerpt || post.description}</p>
       </div>
-      <div class="flex items-center">
+      <div class="flex items-center text-neutral-400">
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          class=""
+          class="arrow-right"
           width="2.5rem"
           height="2.5rem"
           viewBox="0 0 24 24"
           stroke-width="1.5"
-          stroke="#a3a3a3"
+          stroke="currentcolor"
           fill="none"
           stroke-linecap="round"
           stroke-linejoin="round"
@@ -82,17 +127,19 @@ const image = await findImage(post.image);
       {
         image && (
           <a href={getPermalink(post.permalink, 'post')}>
-            <Picture
-              src={image}
-              class="object-cover w-5/6 h-full rounded-t-2xl mx-auto"
-              widths={[1920]}
-              alt={post.title}
-              loading="lazy"
-              decoding="async"
-            />
+            <video class="object-cover w-5/6 h-full rounded-t-2xl mx-auto" src="./Project1.mp4" autoplay muted />
           </a>
         )
       }
     </div>
   </div>
+  <div class="bgGradient absolute top-0 h-full w-full rounded-2xl mt-[1px] border border-[#463c58]"></div>
 </article>
+<!-- <Picture
+src={image}
+class="object-cover w-5/6 h-full rounded-t-2xl mx-auto"
+widths={[1920]}
+alt={post.title}
+loading="lazy"
+decoding="async"
+/> -->
