@@ -3,32 +3,34 @@
 
 import { BLOG } from '~/config.mjs';
 import type { Post } from '~/types';
-
 import { findImage } from '~/utils/images';
 import { getPermalink } from '~/utils/permalinks';
 
 export interface Props {
   post: Post;
-  gradientBaseColor: string; // Añadimos una nueva propiedad para el color base del gradiente
+  gradientBaseColor: string;
+  darkeningFactor1?: number;
+  darkeningFactor2?: number;
 }
 
-const { post, gradientBaseColor } = Astro.props;
+const {
+  post,
+  gradientBaseColor,
+  darkeningFactor1 = 0.6, // Valor por defecto para el primer factor de oscurecimiento
+  darkeningFactor2 = 0.15, // Valor por defecto para el segundo factor de oscurecimiento
+} = Astro.props;
 const image = await findImage(post.image);
 
-// Función para ajustar el color del gradiente
-function adjustGradientColor(color) {
+function darkenColor(color, amount) {
   let [r, g, b, a] = color.match(/\d+/g).map(Number);
-  r = Math.max(r - 25, 0);
-  g = Math.max(g - 23, 0);
-  b = Math.max(b - 34, 0);
+  r = Math.floor(r * amount);
+  g = Math.floor(g * amount);
+  b = Math.floor(b * amount);
   return `rgba(${r}, ${g}, ${b}, ${a})`;
 }
 
-const adjustedColor1 = adjustGradientColor(gradientBaseColor);
-console.log(adjustedColor1);
-
-const adjustedColor2 = adjustGradientColor(adjustedColor1);
-console.log(adjustedColor2);
+const adjustedColor1 = darkenColor(gradientBaseColor, darkeningFactor1);
+const adjustedColor2 = darkenColor(gradientBaseColor, darkeningFactor2);
 ---
 
 <style>
@@ -49,21 +51,14 @@ console.log(adjustedColor2);
     display: flex;
     height: 0.75px;
   }
-  .borderGlow:hover::before {
-    content: '';
-    background: linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, rgba(255, 255, 255, 1) 10%, rgba(0, 0, 0, 0) 60%);
-    width: 100%;
-    position: relative;
-    display: flex;
-    height: 1px;
-  }
+
   .bgGradient {
     opacity: 0;
     background: radial-gradient(
       110.23% 95% at 20% 0%,
-      {gradientBaseColor} 0%,
-      {adjustedColor1} 50%,
-      {adjustedColor2} 100%
+      var(--gradient-base-color) 0%,
+      var(--adjusted-color1) 50%,
+      var(--adjusted-color2) 100%
     );
     transition: 0.3s ease-in-out;
   }
@@ -73,9 +68,9 @@ console.log(adjustedColor2);
   .borderGlow:hover .bgGradient {
     background: radial-gradient(
       110.23% 95% at 20% 0%,
-      rgba(35, 24, 58, 1) 0%,
-      rgba(10, 1, 24, 1) 100%,
-      rgba(10, 1, 24, 1) 100%
+      var(--gradient-base-color) 0%,
+      var(--adjusted-color1) 50%,
+      var(--adjusted-color2) 100%
     );
     opacity: 1;
     transition: 0.3s ease-in-out;
@@ -86,7 +81,14 @@ console.log(adjustedColor2);
     color: white;
   }
 </style>
-<article class="relative borderGlow mb-6 w-full h-screen rounded-2xl mt-16 border border-[#2d263a]">
+<article
+  class="relative borderGlow mb-6 w-full h-screen rounded-2xl mt-16 border border-[#2d263a]"
+  style={{
+    '--gradient-base-color': gradientBaseColor,
+    '--adjusted-color1': adjustedColor1,
+    '--adjusted-color2': adjustedColor2,
+  }}
+>
   <div class="flex flex-col h-full justify-between z-10 relative">
     <div class="flex flex-row justify-between px-12 pt-14">
       <div class="h-1/6">
