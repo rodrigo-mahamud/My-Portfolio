@@ -1,7 +1,6 @@
 ---
 // import { Picture } from '@astrojs/image/components';
 
-import { BLOG } from '~/config.mjs';
 import type { Post } from '~/types';
 import { findImage } from '~/utils/images';
 import { getPermalink } from '~/utils/permalinks';
@@ -17,7 +16,6 @@ const {
   post,
   gradientBaseColor,
   darkeningFactor1 = 0.6, // Valor por defecto para el primer factor de oscurecimiento
-  darkeningFactor2 = 0.15, // Valor por defecto para el segundo factor de oscurecimiento
 } = Astro.props;
 const image = await findImage(post.image);
 
@@ -26,11 +24,10 @@ function darkenColor(color, amount) {
   r = Math.floor(r * amount);
   g = Math.floor(g * amount);
   b = Math.floor(b * amount);
-  return `rgba(${r}, ${g}, ${b}, ${a})`;
+  return `rgba(${r}, ${g}, ${b}, ${a - 0.25})`;
 }
 
 const adjustedColor1 = darkenColor(gradientBaseColor, darkeningFactor1);
-const adjustedColor2 = darkenColor(gradientBaseColor, darkeningFactor2);
 ---
 
 <style>
@@ -58,7 +55,7 @@ const adjustedColor2 = darkenColor(gradientBaseColor, darkeningFactor2);
       110.23% 95% at 20% 0%,
       var(--gradient-base-color) 0%,
       var(--adjusted-color1) 50%,
-      var(--adjusted-color2) 100%
+      transparent 100%
     );
     transition: 0.3s ease-in-out;
   }
@@ -70,7 +67,7 @@ const adjustedColor2 = darkenColor(gradientBaseColor, darkeningFactor2);
       110.23% 95% at 20% 0%,
       var(--gradient-base-color) 0%,
       var(--adjusted-color1) 50%,
-      var(--adjusted-color2) 100%
+      transparent 100%
     );
     opacity: 1;
     transition: 0.3s ease-in-out;
@@ -78,64 +75,66 @@ const adjustedColor2 = darkenColor(gradientBaseColor, darkeningFactor2);
   .borderGlow:hover .arrow-right {
     transform: translateX(10px);
     transition: 0.3s ease-in-out;
-    color: white;
+    color: rgba(255, 255, 255, 0.85);
+  }
+  .borderGlow video {
+    transform: unset;
+    box-shadow: 0 40px 50px 10px rgba(0, 0, 0, 0.15);
+    transition: 0.5s cubic-bezier(0.14, 1, 0.34, 1);
+  }
+  .borderGlow:hover video {
+    transform: translateY(-25px);
+    box-shadow: 0 40px 50px 10px rgba(0, 0, 0, 0.5);
+    transition: 0.5s cubic-bezier(0.14, 1, 0.34, 1);
   }
 </style>
+
 <article
-  class="relative borderGlow mb-6 w-full h-screen rounded-2xl mt-16 border border-[#2d263a]"
+  class="relative borderGlow mb-6 w-full h-screen rounded-2xl mt-16 border border-[#2d263a] overflow-hidden"
   style={{
     '--gradient-base-color': gradientBaseColor,
     '--adjusted-color1': adjustedColor1,
-    '--adjusted-color2': adjustedColor2,
   }}
 >
-  <div class="flex flex-col h-full justify-between z-10 relative">
-    <div class="flex flex-row justify-between px-12 pt-14">
-      <div class="h-1/6">
-        <h3 class="text-3xl font-bold tracking-tighter mb-2">
-          {
-            BLOG?.post?.disabled ? (
-              post.title
-            ) : (
-              <a href={getPermalink(post.permalink, 'post')} class="headingTxt ">
-                {post.title}
-              </a>
-            )
-          }
-        </h3>
-        <p class="text-neutral-400 text-lg">{post.excerpt || post.description}</p>
+  <a href={getPermalink(post.permalink, 'post')} class="w-full">
+    <div class="bgGradient absolute top-0 h-full w-full rounded-2xl border border-[#716882]"></div>
+    <div class="flex flex-col h-full justify-between z-10 relative">
+      <div class="flex flex-row justify-between px-12 pt-14">
+        <div class="h-1/6">
+          <h3 class="text-3xl font-bold tracking-tighter mb-2 headingTxt text-left">
+            {post.title}
+          </h3>
+          <p class="text-neutral-400 text-lg">{post.excerpt || post.description}</p>
+        </div>
+        <div class="flex items-center text-neutral-400">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="arrow-right"
+            width="2.5rem"
+            height="2.5rem"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentcolor"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+            <path d="M5 12l14 0"></path>
+            <path d="M15 16l4 -4"></path>
+            <path d="M15 8l4 4"></path>
+          </svg>
+        </div>
       </div>
-      <div class="flex items-center text-neutral-400">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          class="arrow-right"
-          width="2.5rem"
-          height="2.5rem"
-          viewBox="0 0 24 24"
-          stroke-width="1.5"
-          stroke="currentcolor"
-          fill="none"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-        >
-          <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-          <path d="M5 12l14 0"></path>
-          <path d="M15 16l4 -4"></path>
-          <path d="M15 8l4 4"></path>
-        </svg>
+      <div class="relative h-5/6 rounded pt-16">
+        {
+          image && (
+            <video class="object-cover w-5/6 h-[105%] rounded-t-2xl mx-auto" src="./Project1.mp4" autoplay muted />
+          )
+        }
       </div>
     </div>
-    <div class="relative h-5/6 rounded pt-16">
-      {
-        image && (
-          <a href={getPermalink(post.permalink, 'post')}>
-            <video class="object-cover w-5/6 h-full rounded-t-2xl mx-auto" src="./Project1.mp4" autoplay muted />
-          </a>
-        )
-      }
-    </div>
-  </div>
-  <div class="bgGradient absolute top-0 h-full w-full rounded-2xl mt-[1px] border border-[#463c58]"></div>
+  </a>
 </article>
 <!-- <Picture
 src={image}
