@@ -11,8 +11,8 @@ export interface Post {
   canonical?: string | URL;
   permalink?: string;
 
-  draft?: boolean;
-
+  videoThumbnail?: string;
+  accentColor?: string;
   excerpt?: string;
   category?: string;
   tags?: Array<string>;

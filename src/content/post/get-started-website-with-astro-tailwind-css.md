@@ -2,6 +2,8 @@
 publishDate: 2023-01-12T00:00:00Z
 title: Hello World
 description: Lorem ipsum dolor sit amet
+videoThumbnail: hola
+accentColor: rgba(86, 8, 95, 1)
 excerpt: Sint sit cillum pariatur eiusmod nulla pariatur ipsum. Sit laborum anim qui mollit tempor pariatur.
 image: ~/assets/images/do-more.jpg
 category: Tutorials

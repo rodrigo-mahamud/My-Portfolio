@@ -7,16 +7,9 @@ import { getPermalink } from '~/utils/permalinks';
 
 export interface Props {
   post: Post;
-  gradientBaseColor: string;
-  darkeningFactor1?: number;
-  darkeningFactor2?: number;
 }
 
-const {
-  post,
-  gradientBaseColor,
-  darkeningFactor1 = 0.6, // Valor por defecto para el primer factor de oscurecimiento
-} = Astro.props;
+const { post } = Astro.props;
 const image = await findImage(post.image);
 
 function darkenColor(color, amount) {
@@ -27,7 +20,7 @@ function darkenColor(color, amount) {
   return `rgba(${r}, ${g}, ${b}, ${a - 0.25})`;
 }
 
-const adjustedColor1 = darkenColor(gradientBaseColor, darkeningFactor1);
+const adjustedColor1 = darkenColor(post.accentColor, 0.6);
 ---
 
 <style>
@@ -92,7 +85,7 @@ const adjustedColor1 = darkenColor(gradientBaseColor, darkeningFactor1);
 <article
   class="relative borderGlow mb-6 w-full h-screen rounded-2xl mt-16 border border-[#2d263a] overflow-hidden"
   style={{
-    '--gradient-base-color': gradientBaseColor,
+    '--gradient-base-color': post.accentColor,
     '--adjusted-color1': adjustedColor1,
   }}
 >
