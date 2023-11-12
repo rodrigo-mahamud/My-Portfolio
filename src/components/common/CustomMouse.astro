@@ -96,7 +96,7 @@ import stickman from '~/assets/images/THE-CAKE-IS-A-LIE/portal-stickman.png';
     });
 
     //HOVER
-    const elementsToHover = document.querySelectorAll('a, button');
+    const elementsToHover = document.querySelectorAll('a');
     elementsToHover.forEach((el) => {
       el.addEventListener('mouseenter', onElementHover);
       el.addEventListener('mouseleave', onElementMouseLeave);
@@ -125,31 +125,52 @@ import stickman from '~/assets/images/THE-CAKE-IS-A-LIE/portal-stickman.png';
         });
       }
     }
-    //MAGNETIC
-    document.addEventListener('DOMContentLoaded', function () {
+
+    // MAGNETIC
+    const magnetic = () => {
       const magnetics = document.querySelectorAll('.magnetic');
-      console.log(magnetics);
-      if (magnetics.length === 0) return; // Verifica si hay elementos con la clase "magnetic".
+      if (magnetics.length === 0) return;
 
       magnetics.forEach((magnetic) => {
-        const xTo = gsap.quickTo(magnetic, 'x', { duration: 1, ease: 'elastic.out(1, 0.3)' });
-        const yTo = gsap.quickTo(magnetic, 'y', { duration: 1, ease: 'elastic.out(1, 0.3)' });
+        const magneticElement = magnetic as HTMLElement; // Aserción de tipo a HTMLElement
+        const xTo = gsap.quickTo(magneticElement, 'x', { duration: 1, ease: 'elastic.out(1, 0.3)' });
+        const yTo = gsap.quickTo(magneticElement, 'y', { duration: 1, ease: 'elastic.out(1, 0.3)' });
+        const strength = magneticElement.dataset.strength ? parseFloat(magneticElement.dataset.strength) : 1.15;
+        magneticElement.addEventListener('mouseenter', () => {
+          gsap.to(esfera, {
+            scale: 0.75,
+            duration: 0.5,
+            ease: 'Expo.easeOut',
+          });
+        });
 
-        magnetic.addEventListener('mousemove', (e: any) => {
+        magneticElement.addEventListener('mousemove', (e) => {
           const { clientX, clientY } = e;
-          const { height, width, left, top } = magnetic.getBoundingClientRect();
+          const { height, width, left, top } = magneticElement.getBoundingClientRect();
           const x = clientX - (left + width / 2);
           const y = clientY - (top + height / 2);
-          xTo(x * 0.35);
-          yTo(y * 0.35);
+
+          xTo(x * strength);
+          yTo(y * strength);
         });
 
-        magnetic.addEventListener('mouseleave', () => {
+        gsap.to(esfera, {
+          scale: 0.75,
+        });
+
+        magneticElement.addEventListener('mouseleave', () => {
           xTo(0);
           yTo(0);
+          gsap.to(esfera, {
+            scale: 0.5,
+            duration: 0.5,
+            ease: 'Expo.easeOut',
+          });
         });
       });
-    });
+    };
+    magnetic();
+
     // THE 404 PAGE IS A LIE
     if (portal) {
       const stickman = document.getElementById('stickman');
