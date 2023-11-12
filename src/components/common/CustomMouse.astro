@@ -52,10 +52,14 @@ import stickman from '~/assets/images/THE-CAKE-IS-A-LIE/portal-stickman.png';
       console.error('No se pudo encontrar la esfera en el DOM.');
       return;
     }
+    let x = window.innerWidth / 2;
+    let y = window.innerHeight / 2;
+    let mouseX = x;
+    let mouseY = y;
 
-    // Animaciones iniciales para la esfera
     gsap.to(esfera, {
-      duration: 0.25,
+      duration: 0.15,
+      delay: 0.1,
       opacity: 1,
     });
 
@@ -68,10 +72,6 @@ import stickman from '~/assets/images/THE-CAKE-IS-A-LIE/portal-stickman.png';
       background: 'transparent',
       ease: 'Expo.easeOut',
     });
-    let x = 0,
-      y = 0;
-    let mouseX = 0,
-      mouseY = 0;
 
     function lerp(start, end, amount) {
       return (1 - amount) * start + amount * end;
@@ -150,12 +150,12 @@ import stickman from '~/assets/images/THE-CAKE-IS-A-LIE/portal-stickman.png';
           const x = clientX - (left + width / 2);
           const y = clientY - (top + height / 2);
 
+          gsap.to(esfera, {
+            scale: 0.75,
+          });
+
           xTo(x * strength);
           yTo(y * strength);
-        });
-
-        gsap.to(esfera, {
-          scale: 0.75,
         });
 
         magneticElement.addEventListener('mouseleave', () => {

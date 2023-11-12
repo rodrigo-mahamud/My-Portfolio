@@ -86,7 +86,6 @@ html.lenis {
   z-index: 9999;
   align-items: center;
   justify-content: center;
-  transform: translate(50vw, 60vh);
   opacity: 0;
 }
 #welcome {
