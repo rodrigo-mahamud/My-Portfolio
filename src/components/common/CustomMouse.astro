@@ -42,3 +42,128 @@ import stickman from '~/assets/images/THE-CAKE-IS-A-LIE/portal-stickman.png';
     />
   </div>
 </div>
+<script>
+  import { gsap } from 'gsap';
+  document.addEventListener('DOMContentLoaded', () => {
+    const portal = document.getElementById('portal');
+    const esfera = document.getElementById('esfera');
+
+    if (!esfera) {
+      console.error('No se pudo encontrar la esfera en el DOM.');
+      return;
+    }
+
+    // Animaciones iniciales para la esfera
+    gsap.to(esfera, {
+      duration: 0.25,
+      opacity: 1,
+    });
+
+    gsap.to(esfera, {
+      scale: 0.5,
+      duration: 0.75,
+      delay: 0.75,
+      opacity: 1,
+      border: '2px solid #fff',
+      background: 'transparent',
+      ease: 'Expo.easeOut',
+    });
+    let x = 0,
+      y = 0;
+    let mouseX = 0,
+      mouseY = 0;
+
+    function lerp(start, end, amount) {
+      return (1 - amount) * start + amount * end;
+    }
+
+    function animate() {
+      x = lerp(x, mouseX, 0.1);
+      y = lerp(y, mouseY, 0.1);
+      if (esfera) {
+        gsap.set(esfera, {
+          x: x - esfera.clientWidth / 2, // Centrar esfera en el cursor
+          y: y - esfera.clientHeight / 2,
+        });
+      }
+
+      requestAnimationFrame(animate);
+    }
+
+    document.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+    });
+    //HOVER
+    const elementsToHover = document.querySelectorAll('a, button');
+
+    elementsToHover.forEach((el) => {
+      el.addEventListener('mouseenter', onElementHover);
+      el.addEventListener('mouseleave', onElementMouseLeave);
+    });
+
+    function onElementHover(e) {
+      if (!e.target.classList.contains('NoMiceHover')) {
+        gsap.to(esfera, {
+          scale: 0.75,
+          background: '#ffffff50',
+          border: '0px',
+          duration: 0.5,
+          ease: 'Expo.easeOut',
+        });
+      }
+    }
+
+    function onElementMouseLeave(e) {
+      if (!e.target.classList.contains('NoMiceHover')) {
+        gsap.to(esfera, {
+          scale: 0.5,
+          background: 'transparent',
+          border: '2px solid #fff',
+          duration: 0.5,
+          ease: 'Expo.easeOut',
+        });
+      }
+    }
+
+    // THE 404 PAGE IS A LIE
+    if (portal) {
+      const stickman = document.getElementById('stickman');
+      portal.addEventListener('mouseenter', () => {
+        gsap.fromTo(
+          esfera,
+          {
+            scale: 0.5,
+            rotate: '36deg',
+          },
+          {
+            border: '4px solid #ff9142',
+            boxShadow: '0px 0px 75px 0px #de5f03, inset 0px 0px 35px 1px #ff6e00',
+            skewY: '30deg',
+            scale: 0.9,
+            duration: 0.3,
+            ease: 'Expo.easeOut',
+          }
+        );
+        gsap.set(stickman, {
+          display: 'flex',
+        });
+      });
+      portal.addEventListener('mouseout', () => {
+        gsap.to(esfera, {
+          skewY: '0deg',
+          scale: 0.5,
+          duration: 0.3,
+          border: '2px solid #fff',
+          boxShadow: 'unset',
+          background: 'transparent',
+          ease: 'Expo.easeOut',
+        });
+        gsap.set(stickman, {
+          display: 'none',
+        });
+      });
+    }
+    animate();
+  });
+</script>

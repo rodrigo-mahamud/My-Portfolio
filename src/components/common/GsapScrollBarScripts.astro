@@ -4,7 +4,6 @@
 <script>
   import { gsap } from 'gsap';
   import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
   import { CSSPlugin } from 'gsap/CSSPlugin';
   import Lenis from '@studio-freight/lenis';
 
@@ -18,117 +17,6 @@
   requestAnimationFrame(raf);
   gsap.registerPlugin(CSSPlugin);
   gsap.registerPlugin(ScrollTrigger);
-
-  document.addEventListener('DOMContentLoaded', () => {
-    const esfera = document.getElementById('esfera');
-    const portal = document.getElementById('portal');
-
-    if (!esfera) {
-      console.error('No se pudo encontrar la esfera o el filtro de desenfoque en el DOM.');
-      return;
-    }
-
-    // Primero, realizar la animación inicial después de 750ms
-    gsap.to(esfera, {
-      duration: 0.25,
-      opacity: 1,
-    });
-    gsap.to(esfera, {
-      scale: 0.5,
-      duration: 0.75,
-      delay: 0.75,
-      opacity: 1,
-      border: '2px solid #fff',
-      background: 'transparent',
-      ease: 'Expo.easeOut',
-    });
-
-    document.addEventListener('mousemove', moverEsfera);
-    function moverEsfera(e) {
-      const esferaRect = esfera && esfera.getBoundingClientRect();
-
-      if (esferaRect) {
-        gsap.to(esfera, {
-          x: e.clientX,
-          y: e.clientY,
-          duration: 0.45,
-          delay: 0.01,
-          ease: 'Expo.easeOut',
-        });
-      }
-    }
-    //HOVER
-    const elementsToHover = document.querySelectorAll('a, button');
-
-    elementsToHover.forEach((el) => {
-      el.addEventListener('mouseenter', onElementHover);
-      el.addEventListener('mouseleave', onElementMouseLeave);
-    });
-
-    function onElementHover(e) {
-      if (!e.target.classList.contains('NoMiceHover')) {
-        gsap.to(esfera, {
-          scale: 0.75,
-          background: '#ffffff50',
-          border: '0px',
-          duration: 0.5,
-          ease: 'Expo.easeOut',
-        });
-      }
-    }
-
-    function onElementMouseLeave(e) {
-      if (!e.target.classList.contains('NoMiceHover')) {
-        gsap.to(esfera, {
-          scale: 0.5,
-          background: 'transparent',
-          border: '2px solid #fff',
-          duration: 0.5,
-          ease: 'Expo.easeOut',
-        });
-      }
-    }
-
-    // THE 404 PAGE IS A LIE
-    if (portal) {
-      const stickman = document.getElementById('stickman');
-      portal.addEventListener('mouseenter', () => {
-        gsap.fromTo(
-          esfera,
-          {
-            scale: 0.5,
-            rotate: '36deg',
-          },
-          {
-            border: '4px solid #ff9142',
-            boxShadow: '0px 0px 75px 0px #de5f03, inset 0px 0px 35px 1px #ff6e00',
-            skewY: '30deg',
-            scale: 0.9,
-            duration: 0.3,
-            ease: 'Expo.easeOut',
-          }
-        );
-        gsap.set(stickman, {
-          display: 'flex',
-        });
-      });
-      portal.addEventListener('mouseout', () => {
-        gsap.to(esfera, {
-          skewY: '0deg',
-          scale: 0.5,
-          duration: 0.3,
-          border: '2px solid #fff',
-          boxShadow: 'unset',
-          background: 'transparent',
-          ease: 'Expo.easeOut',
-        });
-        gsap.set(stickman, {
-          display: 'none',
-        });
-      });
-    }
-    // Agrega un evento 'mousemove' al documento para seguir la posición del ratón
-  });
 
   /*-----------------------*/
   /*----LOADING SCREEN---- */

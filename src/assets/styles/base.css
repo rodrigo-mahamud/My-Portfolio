@@ -79,8 +79,6 @@ html.lenis {
   display: flex;
   width: 6rem;
   height: 6rem;
-  left: -3%;
-  top: calc(-5% + (100vh * 0.01));
   background-color: blue;
   color: #fff;
   border-radius: 50%;
