@@ -18,30 +18,6 @@
   gsap.registerPlugin(CSSPlugin);
   gsap.registerPlugin(ScrollTrigger);
 
-  /*-----------------------*/
-  /*----LOADING SCREEN---- */
-  /*-----------------------*/
-  function animateLoadingText() {
-    const loadingTextContainer = document.getElementById('loading-text-container');
-
-    if (loadingTextContainer) {
-      // Coloca el contenedor en el centro
-      loadingTextContainer.style.transform = 'translateY(0%)';
-
-      // Animación de abajo hacia arriba para ocultar el texto
-      gsap.to(loadingTextContainer, {
-        y: '-100%',
-        duration: 0.75,
-        delay: 0.25,
-        ease: 'expo.inOut',
-        onComplete: () => {
-          loadingTextContainer.remove();
-        },
-      });
-    }
-  }
-  document.addEventListener('DOMContentLoaded', animateLoadingText);
-
   const navGlow = document.querySelector('#navGlow');
   const navLinks = document.querySelectorAll('#header nav a');
 
