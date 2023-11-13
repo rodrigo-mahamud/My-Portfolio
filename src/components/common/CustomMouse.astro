@@ -38,6 +38,7 @@ import stickman from '~/assets/images/THE-CAKE-IS-A-LIE/portal-stickman.png';
       sizes="(max-width: 767px) 400px, (max-width: 1023px) 768px, (max-width: 2039px) 1024px, 2040px"
       loading="eager"
       width={1024}
+      height={1024}
       src={stickman}
     />
   </div>
@@ -56,6 +57,7 @@ import stickman from '~/assets/images/THE-CAKE-IS-A-LIE/portal-stickman.png';
     let y = window.innerHeight / 2;
     let mouseX = x;
     let mouseY = y;
+    let esferaScale = 0.5;
 
     gsap.to(esfera, {
       duration: 0.15,
@@ -64,7 +66,7 @@ import stickman from '~/assets/images/THE-CAKE-IS-A-LIE/portal-stickman.png';
     });
 
     gsap.to(esfera, {
-      scale: 0.5,
+      scale: esferaScale,
       duration: 0.75,
       delay: 0.75,
       opacity: 1,
@@ -82,7 +84,7 @@ import stickman from '~/assets/images/THE-CAKE-IS-A-LIE/portal-stickman.png';
       y = lerp(y, mouseY, 0.1);
       if (esfera) {
         gsap.set(esfera, {
-          x: x - esfera.clientWidth / 2, // Centrar esfera en el cursor
+          x: x - esfera.clientWidth / 2,
           y: y - esfera.clientHeight / 2,
         });
       }
@@ -94,37 +96,18 @@ import stickman from '~/assets/images/THE-CAKE-IS-A-LIE/portal-stickman.png';
       mouseX = e.clientX;
       mouseY = e.clientY;
     });
-
-    //HOVER
-    const elementsToHover = document.querySelectorAll('a');
-    elementsToHover.forEach((el) => {
-      el.addEventListener('mouseenter', onElementHover);
-      el.addEventListener('mouseleave', onElementMouseLeave);
+    document.addEventListener('mousedown', () => {
+      gsap.to(esfera, {
+        scale: esferaScale * 0.85,
+        ease: 'Expo.easeOut',
+      });
     });
-
-    function onElementHover(e) {
-      if (!e.target.classList.contains('NoMiceHover')) {
-        gsap.to(esfera, {
-          scale: 0.75,
-          background: '#ffffff50',
-          border: '0px',
-          duration: 0.5,
-          ease: 'Expo.easeOut',
-        });
-      }
-    }
-
-    function onElementMouseLeave(e) {
-      if (!e.target.classList.contains('NoMiceHover')) {
-        gsap.to(esfera, {
-          scale: 0.5,
-          background: 'transparent',
-          border: '2px solid #fff',
-          duration: 0.5,
-          ease: 'Expo.easeOut',
-        });
-      }
-    }
+    document.addEventListener('mouseup', () => {
+      gsap.to(esfera, {
+        scale: esferaScale,
+        ease: 'Expo.easeOut',
+      });
+    });
 
     // MAGNETIC
     const magnetic = () => {
@@ -133,8 +116,8 @@ import stickman from '~/assets/images/THE-CAKE-IS-A-LIE/portal-stickman.png';
 
       magnetics.forEach((magnetic) => {
         const magneticElement = magnetic as HTMLElement; // Aserción de tipo a HTMLElement
-        const xTo = gsap.quickTo(magneticElement, 'x', { duration: 1, ease: 'elastic.out(1, 0.3)' });
-        const yTo = gsap.quickTo(magneticElement, 'y', { duration: 1, ease: 'elastic.out(1, 0.3)' });
+        const xTo = gsap.quickTo(magneticElement, 'x', { duration: 1, ease: 'elastic.out(1, 0.5)' });
+        const yTo = gsap.quickTo(magneticElement, 'y', { duration: 1, ease: 'elastic.out(1, 0.5)' });
         const strength = magneticElement.dataset.strength ? parseFloat(magneticElement.dataset.strength) : 1.15;
         magneticElement.addEventListener('mouseenter', () => {
           gsap.to(esfera, {
@@ -149,9 +132,10 @@ import stickman from '~/assets/images/THE-CAKE-IS-A-LIE/portal-stickman.png';
           const { height, width, left, top } = magneticElement.getBoundingClientRect();
           const x = clientX - (left + width / 2);
           const y = clientY - (top + height / 2);
+          esferaScale = 0.75;
 
           gsap.to(esfera, {
-            scale: 0.75,
+            scale: esferaScale,
           });
 
           xTo(x * strength);
@@ -161,8 +145,9 @@ import stickman from '~/assets/images/THE-CAKE-IS-A-LIE/portal-stickman.png';
         magneticElement.addEventListener('mouseleave', () => {
           xTo(0);
           yTo(0);
+          esferaScale = 0.5;
           gsap.to(esfera, {
-            scale: 0.5,
+            scale: esferaScale,
             duration: 0.5,
             ease: 'Expo.easeOut',
           });

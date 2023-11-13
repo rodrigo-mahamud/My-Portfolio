@@ -39,7 +39,11 @@ const { links = [] } = Astro.props;
       <div id="navGlow" class="w-1/4 h-full -z-20 absolute -translate-x-1/2 navGlow"></div>
       {
         links.map(({ text, href }) => (
-          <a class="navElements font-medium  cursor-none hover:text-white  py-3 flex items-center " href={href}>
+          <a
+            class="navElements font-medium cursor-none hover:text-white py-3 flex items-center magnetic"
+            data-strength=".75"
+            href={href}
+          >
             {text}
           </a>
         ))
