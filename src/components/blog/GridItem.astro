@@ -83,13 +83,14 @@ const adjustedColor1 = darkenColor(post.accentColor, 0.6);
 </style>
 
 <article
-  class="relative borderGlow mb-6 w-full h-screen rounded-2xl mt-16 border border-[#2d263a] overflow-hidden"
+  class="cursor-none custom-mouse relative borderGlow mb-6 w-full h-screen rounded-2xl mt-16 border border-[#2d263a] overflow-hidden"
+  data-typemouse="link"
   style={{
     '--gradient-base-color': post.accentColor,
     '--adjusted-color1': adjustedColor1,
   }}
 >
-  <a href={getPermalink(post.permalink, 'post')} class="w-full">
+  <a href={getPermalink(post.permalink, 'post')} class="w-full cursor-none">
     <div class="bgGradient absolute top-0 h-full w-full rounded-2xl border border-[#716882]"></div>
     <div class="flex flex-col h-full justify-between z-10 relative">
       <div class="flex flex-row justify-between px-12 pt-14">
