@@ -5,6 +5,25 @@ import stickman from '~/assets/images/THE-CAKE-IS-A-LIE/portal-stickman.png';
 
 <div id="esfera-container">
   <div id="esfera">
+    <i id="esferaIcon" class="arrowIcon hidden">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="icon icon-tabler icon-tabler-arrow-narrow-up"
+        width="80"
+        height="80"
+        viewBox="0 0 24 24"
+        stroke-width="1.8"
+        stroke="currentColor"
+        fill="none"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+        <path d="M12 5l0 14"></path>
+        <path d="M16 9l-4 -4"></path>
+        <path d="M8 9l4 -4"></path>
+      </svg>
+    </i>
     <svg
       id="welcome"
       fill="#fff"
@@ -48,6 +67,7 @@ import stickman from '~/assets/images/THE-CAKE-IS-A-LIE/portal-stickman.png';
   document.addEventListener('DOMContentLoaded', () => {
     const portal = document.getElementById('portal');
     const esfera = document.getElementById('esfera');
+    const esferaIcon = document.getElementById('esferaIcon');
 
     if (!esfera) {
       console.error('No se pudo encontrar la esfera en el DOM.');
@@ -108,6 +128,59 @@ import stickman from '~/assets/images/THE-CAKE-IS-A-LIE/portal-stickman.png';
         ease: 'Expo.easeOut',
       });
     });
+
+    const linkArrow = () => {
+      const linkElements = document.querySelectorAll('.custom-mouse[data-typemouse="link"]');
+      linkElements.forEach((el) => {
+        el.addEventListener('mouseenter', (e) => {
+          if (!e.target || !(e.target instanceof HTMLElement)) return;
+          let type = e.target.dataset.typemouse;
+          if (type === 'link' && esferaIcon) {
+            esferaScale = 1;
+            gsap.to(esfera, {
+              scale: esferaScale,
+              background: '#0000ff',
+              border: '0px',
+              duration: 0.5,
+              opacity: 1,
+              ease: 'Expo.easeOut',
+            });
+            gsap.to(esferaIcon, {
+              opacity: 1,
+              duration: 0.25,
+              ease: 'Expo.easeOut',
+              onComplete: () => {
+                esferaIcon.classList.remove('hidden');
+              },
+            });
+          }
+        });
+
+        el.addEventListener('mouseleave', () => {
+          if (esferaIcon) {
+            esferaScale = 0.5;
+            gsap.to(esfera, {
+              scale: esferaScale,
+              background: 'transparent',
+              border: '2px solid rgb(255, 255, 255)',
+              duration: 0.5,
+              opacity: 1,
+              ease: 'Expo.easeOut',
+            });
+            gsap.to(esferaIcon, {
+              opacity: 0,
+              duration: 0.25,
+              ease: 'Expo.easeOut',
+              onComplete: () => {
+                esferaIcon.classList.remove('hidden');
+              },
+            });
+          }
+        });
+      });
+    };
+
+    linkArrow();
 
     // MAGNETIC
     const magnetic = () => {

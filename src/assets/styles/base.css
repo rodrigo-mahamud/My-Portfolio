@@ -130,6 +130,12 @@ html.lenis {
   }
 }
 
+/*----ESFERA-LINK----*/
+.arrowIcon {
+  position: absolute;
+  transform: rotate(45deg);
+}
+
 /*---TRANSICION----*/
 #loading-text-container {
   position: fixed;
