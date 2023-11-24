@@ -5,12 +5,6 @@ import SCardButton from './SCardButton.astro';
 interface Link {
   text?: string;
   href?: string;
-  ariaLabel?: string;
-  icon?: string;
-}
-
-interface ActionLink extends Link {
-  type?: string;
 }
 
 interface MenuLink extends Link {
@@ -19,39 +13,64 @@ interface MenuLink extends Link {
 
 export interface Props {
   links?: Array<MenuLink>;
-  actions?: Array<ActionLink>;
-  isSticky?: boolean;
-  showToggleTheme?: boolean;
-  showRssFeed?: boolean;
-  position?: string;
+  isHomePage?: boolean;
 }
 
-const { links = [] } = Astro.props;
+const { links = [], back, isHomePage } = Astro.props;
+console.log(isHomePage);
 ---
 
 <header class="fixed z-50 w-full max-w-[34rem] flex justify-center -translate-x-1/2 bottom-4 left-1/2" id="header">
   <div
     id="navContainer"
-    class="flex items-center justify-end flex-row h-12 w-[87.5%] border backdrop-blur-xl border-[#f2f2f21a] rounded-full bg-[#f2f2f20d] shadow-[0_10px_25px_0_rgba(0,0,0,0.15)]"
+    class={`flex items-center justify-end flex-row h-12 ${
+      isHomePage ? 'w-[87.5%]' : 'w-5/12'
+    } border backdrop-blur-xl border-[#f2f2f21a] rounded-full bg-[#f2f2f20d] shadow-[0_10px_25px_0_rgba(0,0,0,0.15)]`}
   >
     <SCard />
     <nav class="w-full items-center justify-evenly hidden md:flex md:h-auto z-30" aria-label="Main navigation">
-      <div id="navGlow" class="w-1/4 h-full -z-20 absolute -translate-x-1/2 navGlow"></div>
+      <div id="navGlow" class={`${isHomePage ? 'w-1/4 h-full -z-20 absolute -translate-x-1/2 navGlow' : 'hidden'}`}>
+      </div>
       {
-        links.map(({ text, href }) => (
-          <a
-            class="navElements font-medium cursor-none hover:text-white py-3 flex items-center magnetic"
-            data-strength=".75"
-            href={href}
-          >
-            {text}
+        !isHomePage ? (
+          <a class="flex items-center" href={back.href}>
+            {' '}
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="-rotate-90 mr-2"
+              width="1.75rem"
+              height="1.75rem"
+              viewBox="0 0 24 24"
+              stroke-width="1.8"
+              stroke="currentColor"
+              fill="none"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+              <path d="M12 5l0 14" />
+              <path d="M16 9l-4 -4" />
+              <path d="M8 9l4 -4" />
+            </svg>
+            {back.text}
           </a>
-        ))
+        ) : (
+          links.map(({ text, href }) => (
+            <a
+              class="navElements font-medium cursor-none hover:text-white py-3 flex items-center magnetic"
+              data-strength=".75"
+              href={href}
+            >
+              {text}
+            </a>
+          ))
+        )
       }
     </nav>
-    <SCardButton />
+    <SCardButton isHomePage={isHomePage} />
   </div>
 </header>
+
 <script>
   import { gsap } from 'gsap';
 

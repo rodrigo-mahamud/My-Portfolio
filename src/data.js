@@ -1,4 +1,4 @@
-import { getPermalink, getAsset } from './utils/permalinks';
+import { getPermalink, getAsset, getHomePermalink } from './utils/permalinks';
 
 export const headerData = {
   links: [
@@ -19,7 +19,10 @@ export const headerData = {
       href: '#contacto',
     },
   ],
-  actions: [{ type: 'button', text: 'Download', href: 'https://github.com/onwidget/astrowind' }],
+  back: {
+    text: 'Go back',
+    href: getHomePermalink(),
+  },
 };
 
 export const footerData = {
