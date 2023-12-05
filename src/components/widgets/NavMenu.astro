@@ -17,7 +17,6 @@ export interface Props {
 }
 
 const { links = [], back, isHomePage } = Astro.props;
-console.log(isHomePage);
 ---
 
 <header class="fixed z-50 w-full max-w-[34rem] flex justify-center -translate-x-1/2 bottom-4 left-1/2" id="header">
@@ -79,6 +78,7 @@ console.log(isHomePage);
   const navGlow = document.getElementById('navGlow');
   const scard = document.getElementById('scard');
   const scardClose = document.getElementById('scardClose');
+  const enlaces = document.querySelectorAll('a[data-nav="animate"]');
 
   let isActive = false;
 
@@ -90,6 +90,25 @@ console.log(isHomePage);
         opacity: 0,
         y: 100,
         ease: 'Expo.easeOut',
+      });
+
+      enlaces.forEach((enlace) => {
+        enlace.addEventListener('click', (e) => {
+          e.preventDefault();
+          const destino = enlace.getAttribute('href');
+          // Ejecuta la animación
+          gsap.to(navContainer, {
+            duration: 0.75,
+            delay: 0,
+            opacity: 0,
+            y: 50,
+            ease: 'power3.out',
+            onComplete: () => {
+              // Navega al destino después de la animación
+              window.location.href = destino;
+            },
+          });
+        });
       });
     });
     sbutton.addEventListener('click', () => {
