@@ -79,7 +79,7 @@ const { links = [], back, isHomePage } = Astro.props;
   const scard = document.getElementById('scard');
   const scardClose = document.getElementById('scardClose');
   const enlaces = document.querySelectorAll('a[data-nav="animate"]');
-
+  const main = document.querySelector('main');
   let isActive = false;
 
   if (sbutton && navContainer && navElements.length && scard && scardClose && navGlow) {
@@ -96,18 +96,22 @@ const { links = [], back, isHomePage } = Astro.props;
         enlace.addEventListener('click', (e) => {
           e.preventDefault();
           const destino = enlace.getAttribute('href');
-          // Ejecuta la animación
-          gsap.to(navContainer, {
-            duration: 0.75,
-            delay: 0,
-            opacity: 0,
-            y: 50,
-            ease: 'power3.out',
-            onComplete: () => {
-              // Navega al destino después de la animación
-              window.location.href = destino;
-            },
-          });
+          if (destino) {
+            gsap.to(main, {
+              duration: 0.75,
+              opacity: 0,
+              ease: 'power4.out',
+              onComplete: () => {
+                window.location.href = destino;
+              },
+            });
+            gsap.to(navContainer, {
+              duration: 0.5,
+              opacity: 0,
+              y: 50,
+              ease: 'power4.in',
+            });
+          }
         });
       });
     });

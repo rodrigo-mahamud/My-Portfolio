@@ -19,7 +19,7 @@ const { post, url } = Astro.props;
 ---
 
 <section class="py-8 sm:py-16 lg:py-20 mx-auto">
-  <article>
+  <article class="opacity-0">
     <header class={post.image ? '' : ''}>
       <div class="flex justify-between flex-col sm:flex-row max-w-3xl mx-auto mt-0 mb-2 px-4 sm:px-6 sm:items-center">
         <p>
@@ -93,3 +93,14 @@ const { post, url } = Astro.props;
     </div>
   </article>
 </section>
+<script>
+  import { gsap } from 'gsap';
+
+  const article = document.querySelector('article');
+
+  gsap.to(article, {
+    duration: 0.75,
+    opacity: 1,
+    ease: 'power4.in',
+  });
+</script>
