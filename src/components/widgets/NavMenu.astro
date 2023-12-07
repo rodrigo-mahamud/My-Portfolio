@@ -107,6 +107,7 @@ const { links = [], back, isHomePage } = Astro.props;
           if (destino) {
             gsap.to(main, {
               duration: 0.75,
+              filter: 'blur(15px)',
               opacity: 0,
               ease: 'power3.out',
               onComplete: () => {
