@@ -27,12 +27,13 @@ const { links = [], back, isHomePage } = Astro.props;
     } border backdrop-blur-xl border-[#f2f2f21a] rounded-full bg-[#f2f2f20d] shadow-[0_10px_25px_0_rgba(0,0,0,0.15)]`}
   >
     <SCard />
+
     <nav class="w-full items-center justify-evenly hidden md:flex md:h-auto z-30" aria-label="Main navigation">
       <div id="navGlow" class={`${isHomePage ? 'w-1/4 h-full -z-20 absolute -translate-x-1/2 navGlow' : 'hidden'}`}>
       </div>
       {
         !isHomePage ? (
-          <a class="flex items-center hover:text-white" href={back.href}>
+          <button id="goBack" class="flex items-center hover:text-white">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               class="-rotate-90 mr-2"
@@ -51,7 +52,7 @@ const { links = [], back, isHomePage } = Astro.props;
               <path d="M8 9l4 -4" />
             </svg>
             {back.text}
-          </a>
+          </button>
         ) : (
           links.map(({ text, href }) => (
             <a
@@ -70,6 +71,7 @@ const { links = [], back, isHomePage } = Astro.props;
 </header>
 
 <script>
+  //TODO: SEPARAR LAS COMPROBACIONES DE TYPESCRIPT PARA PODER ELIMINAR SCCARD Y DERIVADOS DENTRO DE UN ITEM DEL PORTAFOLIO
   import { gsap } from 'gsap';
 
   const sbutton = document.getElementById('sbutton');
@@ -80,8 +82,14 @@ const { links = [], back, isHomePage } = Astro.props;
   const scardClose = document.getElementById('scardClose');
   const enlaces = document.querySelectorAll('a[data-nav="animate"]');
   const main = document.querySelector('main');
+  const backButton = document.getElementById('goBack');
   let isActive = false;
 
+  if (backButton) {
+    backButton.addEventListener('click', () => {
+      window.history.back();
+    });
+  }
   if (sbutton && navContainer && navElements.length && scard && scardClose && navGlow) {
     window.addEventListener('DOMContentLoaded', () => {
       gsap.from(navContainer, {
