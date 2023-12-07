@@ -20,7 +20,7 @@ export const headerData = {
     },
   ],
   back: {
-    text: 'Go back',
+    text: 'Back',
     href: getHomePermalink(),
   },
 };
