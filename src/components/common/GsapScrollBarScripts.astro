@@ -107,25 +107,25 @@
       switch (type) {
         case 'simple':
           animationSettings = {
-            opacity: 0,
-            y: 50,
+            opacity: 1,
+            y: 0,
           };
           break;
         case 'zoomReversed':
           animationSettings = {
-            opacity: 0,
+            opacity: 1,
             scale: 1.5,
           };
           break;
         case 'zoomSmall':
           animationSettings = {
-            opacity: 0,
+            opacity: 1,
             scale: 0.9,
           };
           break;
       }
 
-      gsap.from(element, {
+      gsap.to(element, {
         ...animationSettings,
         duration: parseFloat(duration),
         delay: parseFloat(delay),
