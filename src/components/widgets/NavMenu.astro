@@ -100,7 +100,7 @@ const { links = [], back, isHomePage } = Astro.props;
             gsap.to(main, {
               duration: 0.75,
               opacity: 0,
-              ease: 'power4.out',
+              ease: 'power3.out',
               onComplete: () => {
                 window.location.href = destino;
               },
@@ -109,7 +109,7 @@ const { links = [], back, isHomePage } = Astro.props;
               duration: 0.5,
               opacity: 0,
               y: 50,
-              ease: 'power4.in',
+              ease: 'power3.in',
             });
           }
         });

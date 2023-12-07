@@ -79,7 +79,7 @@ html.lenis {
   display: flex;
   width: 6rem;
   height: 6rem;
-  background-color: blue;
+  background-color: transparent;
   color: #fff;
   border-radius: 50%;
   pointer-events: none;

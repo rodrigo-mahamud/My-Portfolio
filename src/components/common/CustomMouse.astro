@@ -67,7 +67,9 @@ import stickman from '~/assets/images/THE-CAKE-IS-A-LIE/portal-stickman.png';
   document.addEventListener('DOMContentLoaded', () => {
     const portal = document.getElementById('portal');
     const esfera = document.getElementById('esfera');
+    const wlcomeIcon = document.getElementById('welcome');
     const esferaIcon = document.getElementById('esferaIcon');
+    const primeraVisitaEnSesion = sessionStorage.getItem('primeraVisita') !== 'true';
 
     if (!esfera) {
       console.error('No se pudo encontrar la esfera en el DOM.');
@@ -79,21 +81,39 @@ import stickman from '~/assets/images/THE-CAKE-IS-A-LIE/portal-stickman.png';
     let mouseY = y;
     let esferaScale = 0.5;
 
-    gsap.to(esfera, {
-      duration: 0.15,
-      delay: 0.1,
-      opacity: 1,
-    });
+    if (primeraVisitaEnSesion) {
+      gsap.to(esfera, {
+        duration: 0.15,
+        delay: 0.1,
+        background: '#2900ff',
+        opacity: 1,
+      });
 
-    gsap.to(esfera, {
-      scale: esferaScale,
-      duration: 0.75,
-      delay: 0.75,
-      opacity: 1,
-      border: '2px solid #fff',
-      background: 'transparent',
-      ease: 'Expo.easeOut',
-    });
+      gsap.to(esfera, {
+        scale: esferaScale,
+        duration: 0.75,
+        delay: 0.75,
+        opacity: 1,
+        border: '2px solid #fff',
+        background: 'transparent',
+        ease: 'Expo.easeOut',
+      });
+      // sessionStorage.setItem('primeraVisita', 'true');
+    }
+
+    if (!primeraVisitaEnSesion && wlcomeIcon) {
+      wlcomeIcon.style.opacity = '0';
+
+      gsap.to(esfera, {
+        scale: esferaScale,
+        duration: 0.75,
+        delay: 0,
+        opacity: 1,
+        border: '2px solid #fff',
+        background: 'transparent',
+        ease: 'Expo.easeOut',
+      });
+    }
 
     function lerp(start, end, amount) {
       return (1 - amount) * start + amount * end;
