@@ -1,6 +1,7 @@
 ---
 import { Picture } from '@astrojs/image/components';
 import PostTags from '~/components/blog/Tags.astro';
+import SinglePostInfo from '~/components/blog/SinglePostInfo.astro';
 import SocialShare from '~/components/common/SocialShare.astro';
 import { getFormattedDate } from '~/utils/utils';
 
@@ -22,7 +23,7 @@ function darkenColor(color, amount) {
   return `rgba(${r}, ${g}, ${b}, ${a - 0.25})`;
 }
 
-const adjustedColor1 = darkenColor(post.accentColor, 0.6);
+const adjustedColor1 = darkenColor(post.accentColor, 0.5);
 ---
 
 <style>
@@ -33,7 +34,16 @@ const adjustedColor1 = darkenColor(post.accentColor, 0.6);
       var(--adjusted-color1) 50%,
       transparent 100%
     );
-    animation: fadeInOut 0.35s cubic-bezier(0.26, 1, 0.48, 1);
+    opacity: 0;
+    animation: fadeInOut 0.35s cubic-bezier(0.26, 1, 0.48, 1) forwards;
+  }
+  .postHeaderFont {
+    background-image: linear-gradient(to bottom, #fff 50%, transparent);
+    text-shadow: 0 5px 15px rgba(68, 0, 255, 0.25), 0 -5px 15px rgba(255, 90, 0, 0.15),
+      0 -5px 25px rgba(255, 255, 255, 0.25);
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
   }
   @keyframes fadeInOut {
     0% {
@@ -54,19 +64,25 @@ const adjustedColor1 = darkenColor(post.accentColor, 0.6);
   >
   </div>
   <article class="opacity-0 blur-lg max-w-6xl mx-auto">
-    <header class="w-full h-full pt-36">
-      <div class="flex justify-between flex-col -auto mt-0 mb-2 px-4 sm:px-6 sm:items-center">
+    <header class="w-full h-full pt-28">
+      <div class="flex justify-between flex-col pb-16 mt-0 mb-2 px-4 sm:px-6 sm:items-center">
         <h1
-          class="px-4 text-[80px] sm:px-6 mx-auto leading-tighter tracking-tighter font-heading animate-on-scroll"
+          class="postHeaderFont px-4 text-[80px] mx-auto font-medium tracking-tighter leading-snug animate-on-scroll"
           data-type="simple"
           data-delay="0"
           data-duration="2.5"
           data-easing="Expo.easeOut"
+          style={{
+            '--gradient-base-color': post.accentColor,
+            '--adjusted-color1': adjustedColor1,
+          }}
         >
           {post.title}
         </h1>
         <p class="animate-on-scroll" data-type="simple" data-delay="0" data-duration="2.5" data-easing="Expo.easeOut">
-          <time datetime={String(post.publishDate)}>{getFormattedDate(post.publishDate)}</time>
+          <time class="opacity-50 text-white" datetime={String(post.publishDate)}
+            >{getFormattedDate(post.publishDate)}</time
+          >
         </p>
       </div>
       {
@@ -95,6 +111,7 @@ const adjustedColor1 = darkenColor(post.accentColor, 0.6);
         )
       }
     </header>
+    <SinglePostInfo />
     <div
       class="mx-auto px-6 sm:px-6 prose prose-lg lg:prose-xl dark:prose-invert dark:prose-headings:text-slate-300 prose-md prose-headings:font-heading prose-headings:leading-tighter prose-headings:tracking-tighter prose-headings:font-bold prose-a:text-primary dark:prose-a:text-blue-400 prose-img:rounded-md prose-img:shadow-lg mt-8"
     >
