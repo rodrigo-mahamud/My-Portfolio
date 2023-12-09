@@ -28,46 +28,44 @@ const adjustedColor1 = darkenColor(post.accentColor, 0.6);
 <style>
   .bg-accentColor {
     background: radial-gradient(
-      95% 25% at 50% 0%,
+      95% 100% at 50% 0%,
       var(--gradient-base-color) 0%,
       var(--adjusted-color1) 50%,
       transparent 100%
     );
-    animation: fadeInOut 3s;
+    animation: fadeInOut 0.35s cubic-bezier(0.26, 1, 0.48, 1);
   }
   @keyframes fadeInOut {
     0% {
-      background: radial-gradient(
-        95% 25% at 50% 0%,
-        var(--gradient-base-color) 0%,
-        var(--adjusted-color1) 50%,
-        transparent 0%
-      );
+      opacity: 0;
     }
     100% {
-      background: radial-gradient(
-        95% 25% at 50% 0%,
-        var(--gradient-base-color) 0%,
-        var(--adjusted-color1) 50%,
-        transparent 100%
-      );
+      opacity: 1;
     }
   }
 </style>
-<section
-  class="bg-accentColor"
-  style={{
-    '--gradient-base-color': post.accentColor,
-    '--adjusted-color1': adjustedColor1,
-  }}
->
+<section class="w-full h-full">
+  <div
+    class="bg-accentColor absolute w-full h-full"
+    style={{
+      '--gradient-base-color': post.accentColor,
+      '--adjusted-color1': adjustedColor1,
+    }}
+  >
+  </div>
   <article class="opacity-0 blur-lg max-w-6xl mx-auto">
     <header class="w-full h-full pt-36">
-      <div class="flex justify-between flex-col sm:flex-row mx-auto mt-0 mb-2 px-4 sm:px-6 sm:items-center">
-        <h1 class="px-4 sm:px-6 mx-auto text-4xl md:text-5xl font-bold leading-tighter tracking-tighter font-heading">
+      <div class="flex justify-between flex-col -auto mt-0 mb-2 px-4 sm:px-6 sm:items-center">
+        <h1
+          class="px-4 text-[80px] sm:px-6 mx-auto leading-tighter tracking-tighter font-heading animate-on-scroll"
+          data-type="simple"
+          data-delay="0"
+          data-duration="2.5"
+          data-easing="Expo.easeOut"
+        >
           {post.title}
         </h1>
-        <p>
+        <p class="animate-on-scroll" data-type="simple" data-delay="0" data-duration="2.5" data-easing="Expo.easeOut">
           <time datetime={String(post.publishDate)}>{getFormattedDate(post.publishDate)}</time>
         </p>
       </div>
@@ -75,7 +73,11 @@ const adjustedColor1 = darkenColor(post.accentColor, 0.6);
         post.image ? (
           <Picture
             src={post.image}
-            class="max-w-full w-full mx-auto mb-6 sm:rounded-md bg-gray-400 dark:bg-slate-700"
+            class="max-w-full w-full mx-auto mb-6 sm:rounded-md bg-gray-400 dark:bg-slate-700 animate-on-scroll"
+            data-type="simple"
+            data-delay="0.15"
+            data-duration="2.5"
+            data-easing="Expo.easeOut"
             widths={[400, 900]}
             sizes="(max-width: 1440px) 400px, 900px"
             alt={post.description || ''}
@@ -110,7 +112,8 @@ const adjustedColor1 = darkenColor(post.accentColor, 0.6);
   const article = document.querySelector('article');
 
   gsap.to(article, {
-    duration: 0.75,
+    duration: 1,
+    delay: 0.3,
     filter: 'blur(0px)',
     opacity: 1,
     ease: 'power3.out',
