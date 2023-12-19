@@ -4,10 +4,12 @@ import Layout from '~/layouts/BaseLayout.astro';
 import { getHomePermalink } from '~/utils/permalinks';
 import { Picture } from '@astrojs/image/components';
 import aperture from '~/assets/images/THE-CAKE-IS-A-LIE/aperture.png';
+import CustomMouse from '~/components/common/CustomMouse.astro';
 const title = ` 404`;
 ---
 
 <Layout meta={{ title }}>
+  <CustomMouse />
   <div class="overflow-hidden">
     <GladOs />
     <section class="flex items-center h-screen px-16 bg-black">
