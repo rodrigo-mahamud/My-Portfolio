@@ -16,11 +16,10 @@ const altTxt = getAltTxt(cardMedia);
     alt={altTxt}
     widths={[400, 768, 1024, 2040]}
     sizes="(max-width: 767px) 400px, (max-width: 1023px) 768px, (max-width: 2039px) 1024px, 2040px"
-    loading="eager"
+    loading="lazy"
     width={1024}
     aspectRatio={16 / 9}
     src={image}
-    loading="eager"
     formats={['webp']}
     decoding="async"
   />
