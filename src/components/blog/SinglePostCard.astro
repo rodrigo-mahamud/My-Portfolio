@@ -1,26 +1,24 @@
 ---
-import { Picture } from '@astrojs/image/components';
-import { findImage, getAltTxt } from '~/utils/images';
+import { Image } from 'astro:assets';
+import { getAltTxt } from '~/utils/images';
 interface CardProps {
   cardMedia: string;
 }
 
 const { cardMedia } = Astro.props as CardProps;
-const image = await findImage(`~/assets/images/${cardMedia}`);
+const images = import.meta.glob('/src/assets/images/works/*.{jpeg,jpg,png,gif}');
 const altTxt = getAltTxt(cardMedia);
 ---
 
 <section class="bg-black w-full h-screen">
-  <Picture
+  <Image
     class="z-20 absolute"
     alt={altTxt}
-    widths={[400, 768, 1024, 2040]}
     sizes="(max-width: 767px) 400px, (max-width: 1023px) 768px, (max-width: 2039px) 1024px, 2040px"
     loading="lazy"
     width={1024}
-    aspectRatio={16 / 9}
-    src={image}
-    formats={['webp']}
+    height={1024}
+    src={images[cardMedia]()}
     decoding="async"
   />
 </section>

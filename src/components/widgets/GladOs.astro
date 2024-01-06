@@ -1,15 +1,15 @@
 ---
-import { Picture } from '@astrojs/image/components';
-import body from '~/assets/images/THE-CAKE-IS-A-LIE/body.png';
-import grid from '~/assets/images/THE-CAKE-IS-A-LIE/RLed-grid.png';
-import headIn from '~/assets/images/THE-CAKE-IS-A-LIE/HeadIN.png';
-import headOut from '~/assets/images/THE-CAKE-IS-A-LIE/HeadOUT.png';
-import headLight from '~/assets/images/THE-CAKE-IS-A-LIE/Light.png';
-import rled1 from '~/assets/images/THE-CAKE-IS-A-LIE/RLed-body.png';
-import rled2 from '~/assets/images/THE-CAKE-IS-A-LIE/RLedBIG-Head.png';
-import rled3 from '~/assets/images/THE-CAKE-IS-A-LIE/RLed-Body-2.png';
-import rled4 from '~/assets/images/THE-CAKE-IS-A-LIE/RLed-Head-2.png';
-import rled5 from '~/assets/images/THE-CAKE-IS-A-LIE/RLed-Head.png';
+import { Image } from 'astro:assets';
+import body from '../../assets/images/THE-CAKE-IS-A-LIE/body.png';
+import grid from '../../assets/images/THE-CAKE-IS-A-LIE/RLed-grid.png';
+import headIn from '../../assets/images/THE-CAKE-IS-A-LIE/HeadIN.png';
+import headOut from '../../assets/images/THE-CAKE-IS-A-LIE/HeadOUT.png';
+import headLight from '../../assets/images/THE-CAKE-IS-A-LIE/Light.png';
+import rled1 from '../../assets/images/THE-CAKE-IS-A-LIE/RLed-body.png';
+import rled2 from '../../assets/images/THE-CAKE-IS-A-LIE/RLedBIG-Head.png';
+import rled3 from '../../assets/images/THE-CAKE-IS-A-LIE/RLed-Body-2.png';
+import rled4 from '../../assets/images/THE-CAKE-IS-A-LIE/RLed-Head-2.png';
+import rled5 from '../../assets/images/THE-CAKE-IS-A-LIE/RLed-Head.png';
 ---
 
 <style>
@@ -124,93 +124,83 @@ import rled5 from '~/assets/images/THE-CAKE-IS-A-LIE/RLed-Head.png';
 <div class="shake-vertical">
   <div class="absolute right-5 -top-5 w-1/5">
     <div class="absolute z-30 light-flicker">
-      <Picture
+      <Image
         class="light mix-blend-luminosity"
         alt="glad-os"
-        widths={[400, 768, 1024, 2040]}
         sizes="(max-width: 767px) 400px, (max-width: 1023px) 768px, (max-width: 2039px) 1024px, 2040px"
         loading="eager"
         width={1024}
         src={headLight}
       />
     </div>
-    <Picture
+    <Image
       class="z-10 absolute light"
       alt="glad-os"
-      widths={[400, 768, 1024, 2040]}
       sizes="(max-width: 767px) 400px, (max-width: 1023px) 768px, (max-width: 2039px) 1024px, 2040px"
       loading="eager"
       width={1024}
       src={headIn}
     />
 
-    <Picture
+    <Image
       class="z-20 absolute"
       alt="glad-os"
-      widths={[400, 768, 1024, 2040]}
       sizes="(max-width: 767px) 400px, (max-width: 1023px) 768px, (max-width: 2039px) 1024px, 2040px"
       loading="eager"
       width={1024}
       src={headOut}
     />
-    <Picture
+    <Image
       class="z-10 absolute flicker-fast6"
       alt="glad-os"
-      widths={[400, 768, 1024, 2040]}
       sizes="(max-width: 767px) 400px, (max-width: 1023px) 768px, (max-width: 2039px) 1024px, 2040px"
       loading="eager"
       width={1024}
       src={rled5}
     />
-    <Picture
+    <Image
       class="z-10 absolute flicker-fast3"
       alt="glad-os"
-      widths={[400, 768, 1024, 2040]}
       sizes="(max-width: 767px) 400px, (max-width: 1023px) 768px, (max-width: 2039px) 1024px, 2040px"
       loading="eager"
       width={1024}
       src={rled4}
     />
-    <Picture
+    <Image
       class="z-10 absolute flicker-fast"
       alt="glad-os"
-      widths={[400, 768, 1024, 2040]}
       sizes="(max-width: 767px) 400px, (max-width: 1023px) 768px, (max-width: 2039px) 1024px, 2040px"
       loading="eager"
       width={1024}
       src={rled3}
     />
-    <Picture
+    <Image
       class="z-10 absolute flicker-fast4"
       alt="glad-os"
-      widths={[400, 768, 1024, 2040]}
       sizes="(max-width: 767px) 400px, (max-width: 1023px) 768px, (max-width: 2039px) 1024px, 2040px"
       loading="eager"
       width={1024}
       src={rled2}
     />
-    <Picture
+    <Image
       class="z-10 absolute flicker-fast2"
       alt="glad-os"
-      widths={[400, 768, 1024, 2040]}
       sizes="(max-width: 767px) 400px, (max-width: 1023px) 768px, (max-width: 2039px) 1024px, 2040px"
       loading="eager"
       width={1024}
       src={rled1}
     />
-    <Picture
+    <Image
       class="z-10 absolute flicker-fast5"
       alt="glad-os"
-      widths={[400, 768, 1024, 2040]}
       sizes="(max-width: 767px) 400px, (max-width: 1023px) 768px, (max-width: 2039px) 1024px, 2040px"
       loading="eager"
       width={1024}
       src={grid}
     />
-    <Picture
+    <Image
       class="z-0 absolute"
       alt="glad-os"
-      widths={[400, 768, 1024, 2040]}
       sizes="(max-width: 767px) 400px, (max-width: 1023px) 768px, (max-width: 2039px) 1024px, 2040px"
       loading="eager"
       width={1024}

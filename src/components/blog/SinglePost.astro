@@ -1,5 +1,5 @@
 ---
-import { Picture } from '@astrojs/image/components';
+import { Image } from 'astro:assets';
 import { getFormattedDate } from '~/utils/utils';
 import type { Post } from '~/types';
 
@@ -82,22 +82,19 @@ const adjustedColor1 = darkenColor(post.accentColor, 0.5);
       </div>
       {
         post.image ? (
-          <Picture
+          <Image
             src={post.image}
             class="max-w-full w-full mx-auto mb-6 sm:rounded-md bg-gray-400 dark:bg-slate-700 animate-on-scroll"
             data-type="simple"
             data-delay="0.15"
             data-duration="2.5"
             data-easing="Expo.easeOut"
-            widths={[400, 900]}
             sizes="(max-width: 1440px) 400px, 900px"
-            alt={post.description || ''}
+            alt={post.excerpt || ''}
             loading="eager"
-            aspectRatio={16 / 9}
             width={900}
             height={506}
             loading="eager"
-            formats={['webp']}
             decoding="async"
           />
         ) : (

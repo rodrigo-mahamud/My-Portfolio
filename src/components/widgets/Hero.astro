@@ -1,6 +1,6 @@
 ---
-import { Picture } from '@astrojs/image/components';
-import hero from '~/assets/images/hero/hero.png';
+import { Image } from 'astro:assets';
+import hero from '../../assets/images/hero/hero.png';
 ---
 
 <style>
@@ -53,84 +53,41 @@ import hero from '~/assets/images/hero/hero.png';
     </div>
     <div class="flex flex-row w-full min-h-max h-screen items-center transformHero">
       <div class="flex flex-col w-1/4 mx-4 opacity-0" id="heroCardShadow">
-        <Picture
+        <Image
           class="mt-9 min-h-[22rem]"
           alt="glad-os"
-          widths={[400, 768, 1024, 2040]}
           sizes="(max-width: 767px) 400px, (max-width: 1023px) 768px, (max-width: 2039px) 1024px, 2040px"
           loading="eager"
           width={1024}
           src={hero}
         />
-        <Picture
+        <Image
           class="mt-9 min-h-[22rem]"
           alt="glad-os"
-          widths={[400, 768, 1024, 2040]}
           sizes="(max-width: 767px) 400px, (max-width: 1023px) 768px, (max-width: 2039px) 1024px, 2040px"
           loading="eager"
           width={1024}
           src={hero}
         />
-        <Picture
+        <Image
           class="mt-9 min-h-[22rem]"
           alt="glad-os"
-          widths={[400, 768, 1024, 2040]}
           sizes="(max-width: 767px) 400px, (max-width: 1023px) 768px, (max-width: 2039px) 1024px, 2040px"
           loading="eager"
           width={1024}
           src={hero}
         />
-        <Picture
+        <Image
           class="mt-9 min-h-[22rem]"
           alt="glad-os"
-          widths={[400, 768, 1024, 2040]}
           sizes="(max-width: 767px) 400px, (max-width: 1023px) 768px, (max-width: 2039px) 1024px, 2040px"
           loading="eager"
           width={1024}
           src={hero}
         />
-        <Picture
+        <Image
           class="mt-9 min-h-[22rem]"
           alt="glad-os"
-          widths={[400, 768, 1024, 2040]}
-          sizes="(max-width: 767px) 400px, (max-width: 1023px) 768px, (max-width: 2039px) 1024px, 2040px"
-          loading="eager"
-          width={1024}
-          src={hero}
-        />
-      </div>
-      <div class="flex flex-col w-1/4 mx-4 opacity-0" id="heroCardShadow">
-        <Picture
-          class="mt-9 min-h-[22rem]"
-          alt="glad-os"
-          widths={[400, 768, 1024, 2040]}
-          sizes="(max-width: 767px) 400px, (max-width: 1023px) 768px, (max-width: 2039px) 1024px, 2040px"
-          loading="eager"
-          width={1024}
-          src={hero}
-        />
-        <Picture
-          class="mt-9 min-h-[22rem]"
-          alt="glad-os"
-          widths={[400, 768, 1024, 2040]}
-          sizes="(max-width: 767px) 400px, (max-width: 1023px) 768px, (max-width: 2039px) 1024px, 2040px"
-          loading="eager"
-          width={1024}
-          src={hero}
-        />
-        <Picture
-          class="mt-9 min-h-[22rem]"
-          alt="glad-os"
-          widths={[400, 768, 1024, 2040]}
-          sizes="(max-width: 767px) 400px, (max-width: 1023px) 768px, (max-width: 2039px) 1024px, 2040px"
-          loading="eager"
-          width={1024}
-          src={hero}
-        />
-        <Picture
-          class="mt-9 min-h-[22rem]"
-          alt="glad-os"
-          widths={[400, 768, 1024, 2040]}
           sizes="(max-width: 767px) 400px, (max-width: 1023px) 768px, (max-width: 2039px) 1024px, 2040px"
           loading="eager"
           width={1024}
@@ -138,46 +95,33 @@ import hero from '~/assets/images/hero/hero.png';
         />
       </div>
       <div class="flex flex-col w-1/4 mx-4 opacity-0" id="heroCardShadow">
-        <Picture
+        <Image
           class="mt-9 min-h-[22rem]"
           alt="glad-os"
-          widths={[400, 768, 1024, 2040]}
           sizes="(max-width: 767px) 400px, (max-width: 1023px) 768px, (max-width: 2039px) 1024px, 2040px"
           loading="eager"
           width={1024}
           src={hero}
         />
-        <Picture
+        <Image
           class="mt-9 min-h-[22rem]"
           alt="glad-os"
-          widths={[400, 768, 1024, 2040]}
           sizes="(max-width: 767px) 400px, (max-width: 1023px) 768px, (max-width: 2039px) 1024px, 2040px"
           loading="eager"
           width={1024}
           src={hero}
         />
-        <Picture
+        <Image
           class="mt-9 min-h-[22rem]"
           alt="glad-os"
-          widths={[400, 768, 1024, 2040]}
           sizes="(max-width: 767px) 400px, (max-width: 1023px) 768px, (max-width: 2039px) 1024px, 2040px"
           loading="eager"
           width={1024}
           src={hero}
         />
-        <Picture
+        <Image
           class="mt-9 min-h-[22rem]"
           alt="glad-os"
-          widths={[400, 768, 1024, 2040]}
-          sizes="(max-width: 767px) 400px, (max-width: 1023px) 768px, (max-width: 2039px) 1024px, 2040px"
-          loading="eager"
-          width={1024}
-          src={hero}
-        />
-        <Picture
-          class="mt-9 min-h-[22rem]"
-          alt="glad-os"
-          widths={[400, 768, 1024, 2040]}
           sizes="(max-width: 767px) 400px, (max-width: 1023px) 768px, (max-width: 2039px) 1024px, 2040px"
           loading="eager"
           width={1024}
@@ -185,37 +129,75 @@ import hero from '~/assets/images/hero/hero.png';
         />
       </div>
       <div class="flex flex-col w-1/4 mx-4 opacity-0" id="heroCardShadow">
-        <Picture
+        <Image
           class="mt-9 min-h-[22rem]"
           alt="glad-os"
-          widths={[400, 768, 1024, 2040]}
           sizes="(max-width: 767px) 400px, (max-width: 1023px) 768px, (max-width: 2039px) 1024px, 2040px"
           loading="eager"
           width={1024}
           src={hero}
         />
-        <Picture
+        <Image
           class="mt-9 min-h-[22rem]"
           alt="glad-os"
-          widths={[400, 768, 1024, 2040]}
           sizes="(max-width: 767px) 400px, (max-width: 1023px) 768px, (max-width: 2039px) 1024px, 2040px"
           loading="eager"
           width={1024}
           src={hero}
         />
-        <Picture
+        <Image
           class="mt-9 min-h-[22rem]"
           alt="glad-os"
-          widths={[400, 768, 1024, 2040]}
           sizes="(max-width: 767px) 400px, (max-width: 1023px) 768px, (max-width: 2039px) 1024px, 2040px"
           loading="eager"
           width={1024}
           src={hero}
         />
-        <Picture
+        <Image
           class="mt-9 min-h-[22rem]"
           alt="glad-os"
-          widths={[400, 768, 1024, 2040]}
+          sizes="(max-width: 767px) 400px, (max-width: 1023px) 768px, (max-width: 2039px) 1024px, 2040px"
+          loading="eager"
+          width={1024}
+          src={hero}
+        />
+        <Image
+          class="mt-9 min-h-[22rem]"
+          alt="glad-os"
+          sizes="(max-width: 767px) 400px, (max-width: 1023px) 768px, (max-width: 2039px) 1024px, 2040px"
+          loading="eager"
+          width={1024}
+          src={hero}
+        />
+      </div>
+      <div class="flex flex-col w-1/4 mx-4 opacity-0" id="heroCardShadow">
+        <Image
+          class="mt-9 min-h-[22rem]"
+          alt="glad-os"
+          sizes="(max-width: 767px) 400px, (max-width: 1023px) 768px, (max-width: 2039px) 1024px, 2040px"
+          loading="eager"
+          width={1024}
+          src={hero}
+        />
+        <Image
+          class="mt-9 min-h-[22rem]"
+          alt="glad-os"
+          sizes="(max-width: 767px) 400px, (max-width: 1023px) 768px, (max-width: 2039px) 1024px, 2040px"
+          loading="eager"
+          width={1024}
+          src={hero}
+        />
+        <Image
+          class="mt-9 min-h-[22rem]"
+          alt="glad-os"
+          sizes="(max-width: 767px) 400px, (max-width: 1023px) 768px, (max-width: 2039px) 1024px, 2040px"
+          loading="eager"
+          width={1024}
+          src={hero}
+        />
+        <Image
+          class="mt-9 min-h-[22rem]"
+          alt="glad-os"
           sizes="(max-width: 767px) 400px, (max-width: 1023px) 768px, (max-width: 2039px) 1024px, 2040px"
           loading="eager"
           width={1024}
@@ -223,46 +205,41 @@ import hero from '~/assets/images/hero/hero.png';
         />
       </div>
       <div class="hidden 3xl:flex flex-col w-1/4 mx-4 opacity-0" id="heroCardShadow">
-        <Picture
+        <Image
           class="mt-9 min-h-[22rem]"
           alt="glad-os"
-          widths={[400, 768, 1024, 2040]}
           sizes="(max-width: 767px) 400px, (max-width: 1023px) 768px, (max-width: 2039px) 1024px, 2040px"
           loading="eager"
           width={1024}
           src={hero}
         />
-        <Picture
+        <Image
           class="mt-9 min-h-[22rem]"
           alt="glad-os"
-          widths={[400, 768, 1024, 2040]}
           sizes="(max-width: 767px) 400px, (max-width: 1023px) 768px, (max-width: 2039px) 1024px, 2040px"
           loading="eager"
           width={1024}
           src={hero}
         />
-        <Picture
+        <Image
           class="mt-9 min-h-[22rem]"
           alt="glad-os"
-          widths={[400, 768, 1024, 2040]}
           sizes="(max-width: 767px) 400px, (max-width: 1023px) 768px, (max-width: 2039px) 1024px, 2040px"
           loading="eager"
           width={1024}
           src={hero}
         />
-        <Picture
+        <Image
           class="mt-9 min-h-[22rem]"
           alt="glad-os"
-          widths={[400, 768, 1024, 2040]}
           sizes="(max-width: 767px) 400px, (max-width: 1023px) 768px, (max-width: 2039px) 1024px, 2040px"
           loading="eager"
           width={1024}
           src={hero}
         />
-        <Picture
+        <Image
           class="mt-9 min-h-[22rem]"
           alt="glad-os"
-          widths={[400, 768, 1024, 2040]}
           sizes="(max-width: 767px) 400px, (max-width: 1023px) 768px, (max-width: 2039px) 1024px, 2040px"
           loading="eager"
           width={1024}
@@ -270,37 +247,33 @@ import hero from '~/assets/images/hero/hero.png';
         />
       </div>
       <div class="hidden 3xl:flex flex-col w-1/4 mx-4 opacity-0" id="heroCardShadow">
-        <Picture
+        <Image
           class="mt-9 min-h-[22rem]"
           alt="glad-os"
-          widths={[400, 768, 1024, 2040]}
           sizes="(max-width: 767px) 400px, (max-width: 1023px) 768px, (max-width: 2039px) 1024px, 2040px"
           loading="eager"
           width={1024}
           src={hero}
         />
-        <Picture
+        <Image
           class="mt-9 min-h-[22rem]"
           alt="glad-os"
-          widths={[400, 768, 1024, 2040]}
           sizes="(max-width: 767px) 400px, (max-width: 1023px) 768px, (max-width: 2039px) 1024px, 2040px"
           loading="eager"
           width={1024}
           src={hero}
         />
-        <Picture
+        <Image
           class="mt-9 min-h-[22rem]"
           alt="glad-os"
-          widths={[400, 768, 1024, 2040]}
           sizes="(max-width: 767px) 400px, (max-width: 1023px) 768px, (max-width: 2039px) 1024px, 2040px"
           loading="eager"
           width={1024}
           src={hero}
         />
-        <Picture
+        <Image
           class="mt-9 min-h-[22rem]"
           alt="glad-os"
-          widths={[400, 768, 1024, 2040]}
           sizes="(max-width: 767px) 400px, (max-width: 1023px) 768px, (max-width: 2039px) 1024px, 2040px"
           loading="eager"
           width={1024}

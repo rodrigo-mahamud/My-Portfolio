@@ -3,7 +3,7 @@ publishDate: 2023-01-12
 title: Hello World
 author: Rodrigo Mahamud García
 excerpt: Sint sit cillum pariatur eiusmod nulla pariatur ipsum. Sit laborum anim qui mollit tempor pariatur.
-image: ~/assets/images/do-more.jpg
+image: ../../assets/images/do-more.jpg
 video: hola
 accentColor: rgba(86, 8, 95, 1)
 canonical: https://astrowind.vercel.app/get-started-website-with-astro-tailwind-css

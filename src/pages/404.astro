@@ -2,8 +2,8 @@
 import GladOs from '~/components/widgets/GladOs.astro';
 import Layout from '~/layouts/BaseLayout.astro';
 import { getHomePermalink } from '~/utils/permalinks';
-import { Picture } from '@astrojs/image/components';
-import aperture from '~/assets/images/THE-CAKE-IS-A-LIE/aperture.png';
+import { Image } from 'astro:assets';
+import aperture from '../../assets/images/THE-CAKE-IS-A-LIE/aperture.png';
 import CustomMouse from '~/components/common/CustomMouse.astro';
 const title = ` 404`;
 ---
@@ -14,10 +14,9 @@ const title = ` 404`;
     <GladOs />
     <section class="flex items-center h-screen px-16 bg-black">
       <div class="absolute left-0 top-0 ml-20 mt-16 py-4">
-        <Picture
+        <Image
           class="w-1/4"
           alt="glad-os"
-          widths={[400, 768, 1024, 2040]}
           sizes="(max-width: 767px) 400px, (max-width: 1023px) 768px, (max-width: 2039px) 1024px, 2040px"
           loading="eager"
           width={1024}
