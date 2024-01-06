@@ -1,7 +1,6 @@
 ---
 import { Icon } from 'astro-icon';
 import { Picture } from '@astrojs/image/components';
-import PostTags from '~/components/blog/Tags.astro';
 
 import { BLOG } from '~/config.mjs';
 import type { Post } from '~/types';
@@ -74,8 +73,6 @@ const link = !BLOG?.post?.disabled ? getPermalink(post.permalink, 'post') : '';
     </header>
 
     {post.excerpt && <p class="flex-grow text-muted dark:text-slate-400 text-lg">{post.excerpt}</p>}
-    <footer class="mt-5">
-      <PostTags tags={post.tags} />
-    </footer>
+    <footer class="mt-5"></footer>
   </div>
 </article>

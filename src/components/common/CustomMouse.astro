@@ -117,12 +117,13 @@ import stickman from '~/assets/images/THE-CAKE-IS-A-LIE/portal-stickman.png';
     }
 
     function animate() {
-      x = lerp(x, mouseX, 0.1);
-      y = lerp(y, mouseY, 0.1);
+      x = lerp(x, mouseX, 0.09);
+      y = lerp(y, mouseY, 0.09);
       if (esfera) {
         gsap.set(esfera, {
           x: x - esfera.clientWidth / 2,
           y: y - esfera.clientHeight / 2,
+          ease: 'expo.out',
         });
       }
 

@@ -3,7 +3,7 @@ import type { CollectionEntry } from 'astro:content';
 import type { Post } from '~/types';
 import { cleanSlug, trimSlash, POST_PERMALINK_PATTERN } from './permalinks';
 
-const generatePermalink = async ({ id, slug, publishDate, category }) => {
+const generatePermalink = async ({ id, slug, publishDate }) => {
   const year = String(publishDate.getFullYear()).padStart(4, '0');
   const month = String(publishDate.getMonth() + 1).padStart(2, '0');
   const day = String(publishDate.getDate()).padStart(2, '0');
@@ -13,7 +13,6 @@ const generatePermalink = async ({ id, slug, publishDate, category }) => {
 
   const permalink = POST_PERMALINK_PATTERN.replace('%slug%', slug)
     .replace('%id%', id)
-    .replace('%category%', category || '')
     .replace('%year%', year)
     .replace('%month%', month)
     .replace('%day%', day)
@@ -30,28 +29,18 @@ const generatePermalink = async ({ id, slug, publishDate, category }) => {
 
 const getNormalizedPost = async (post: CollectionEntry<'post'>): Promise<Post> => {
   const { id, slug: rawSlug = '', data } = post;
-  const { Content, remarkPluginFrontmatter } = await post.render();
+  const { Content } = await post.render();
 
-  const {
-    tags: rawTags = [],
-    category: rawCategory,
-    author = 'Anonymous',
-    publishDate: rawPublishDate = new Date(),
-    ...rest
-  } = data;
+  const { author = 'Anonymous', publishDate: rawPublishDate = new Date(), ...rest } = data;
 
   const slug = cleanSlug(rawSlug.split('/').pop());
   const publishDate = new Date(rawPublishDate);
-  const category = rawCategory ? cleanSlug(rawCategory) : undefined;
-  const tags = rawTags.map((tag: string) => cleanSlug(tag));
 
   return {
     id: id,
     slug: slug,
 
     publishDate: publishDate,
-    category: category,
-    tags: tags,
     author: author,
 
     ...rest,
@@ -59,9 +48,7 @@ const getNormalizedPost = async (post: CollectionEntry<'post'>): Promise<Post> =
     Content: Content,
     // or 'body' in case you consume from API
 
-    permalink: await generatePermalink({ id, slug, publishDate, category }),
-
-    readingTime: remarkPluginFrontmatter?.readingTime,
+    permalink: await generatePermalink({ id, slug, publishDate }),
   };
 };
 
@@ -69,9 +56,9 @@ const load = async function (): Promise<Array<Post>> {
   const posts = await getCollection('post');
   const normalizedPosts = posts.map(async (post) => await getNormalizedPost(post));
 
-  const results = (await Promise.all(normalizedPosts))
-    .sort((a, b) => b.publishDate.valueOf() - a.publishDate.valueOf())
-    .filter((post) => !post.draft);
+  const results = (await Promise.all(normalizedPosts)).sort(
+    (a, b) => b.publishDate.valueOf() - a.publishDate.valueOf()
+  );
 
   return results;
 };

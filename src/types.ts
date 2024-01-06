@@ -3,6 +3,7 @@ export interface Post {
   slug: string;
 
   publishDate: Date;
+  author: string;
   title: string;
   description?: string;
 
@@ -16,12 +17,9 @@ export interface Post {
   excerpt?: string;
   category?: string;
   tags?: Array<string>;
-  author?: string;
 
   Content: unknown;
   content?: string;
-
-  readingTime?: number;
 }
 
 export interface MetaSEO {

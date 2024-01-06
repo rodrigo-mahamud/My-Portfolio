@@ -1,5 +1,6 @@
 ---
 publishDate: 2023-01-08T00:00:00Z
+author: Rodrigo
 title: AstroWind template in depth
 description: Lorem ipsum dolor sit amet
 videoThumbnail: hola

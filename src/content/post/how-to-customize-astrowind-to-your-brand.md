@@ -1,5 +1,6 @@
 ---
 publishDate: 2023-01-06T00:00:00Z
+author: Rodrigo
 title: How to customize AstroWind template to suit your branding
 videoThumbnail: hola
 accentColor: rgba(95, 41, 8, 1)

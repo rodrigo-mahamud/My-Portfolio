@@ -1,5 +1,6 @@
 ---
 publishDate: 2023-01-09T00:00:00Z
+author: Rodrigo
 title: Useful tools and resources to create a professional website
 videoThumbnail: hola
 accentColor: rgba(95, 41, 8, 1)

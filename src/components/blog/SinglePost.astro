@@ -20,6 +20,7 @@ function darkenColor(color, amount) {
   b = Math.floor(b * amount);
   return `rgba(${r}, ${g}, ${b}, ${a - 0.25})`;
 }
+console.log(post.Content);
 
 const adjustedColor1 = darkenColor(post.accentColor, 0.5);
 ---
@@ -100,6 +101,7 @@ const adjustedColor1 = darkenColor(post.accentColor, 0.5);
             width={900}
             height={506}
             loading="eager"
+            formats={['webp']}
             decoding="async"
           />
         ) : (
@@ -110,9 +112,7 @@ const adjustedColor1 = darkenColor(post.accentColor, 0.5);
       }
     </header>
     <SinglePostInfo />
-    <div
-      class="mx-auto max-w-none px-6 sm:px-6 prose prose-lg lg:prose-xl dark:prose-invert prose-md prose-headings:font-heading prose-headings:leading-tighter prose-headings:tracking-tighter prose-headings:font-bold prose-a:text-primary prose-img:rounded-md prose-img:shadow-lg mt-8"
-    >
+    <div class="mx-auto mt-8">
       {post.Content && <post.Content />}
     </div>
   </article>
