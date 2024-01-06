@@ -5,12 +5,14 @@ const post = defineCollection({
     publishDate: z.date().or(z.string()).optional(),
     title: z.string(),
     author: z.string(),
-    description: z.string().optional(),
+    rol: z.string().optional(),
     excerpt: z.string().optional(),
     image: z.string().optional(),
-    videoThumbnail: z.string().optional(),
+    video: z.string().optional(),
     accentColor: z.string().optional(),
     canonical: z.string().url().optional(),
+    duration: z.string(),
+    status: z.string(),
   }),
 });
 

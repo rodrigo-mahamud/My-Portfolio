@@ -1,15 +1,15 @@
 ---
-publishDate: 2023-01-09T00:00:00Z
-author: Rodrigo
-title: Useful tools and resources to create a professional website
-videoThumbnail: hola
-accentColor: rgba(95, 41, 8, 1)
+publishDate: 2023-01-12
+title: Hello World
+author: Rodrigo Mahamud García
 excerpt: Sint sit cillum pariatur eiusmod nulla pariatur ipsum. Sit laborum anim qui mollit tempor pariatur.
-image: ~/assets/images/tools.jpg
-tags:
-  - front-end
-  - tools
-  - resources
+image: ~/assets/images/do-more.jpg
+video: hola
+accentColor: rgba(86, 8, 95, 1)
+canonical: https://astrowind.vercel.app/get-started-website-with-astro-tailwind-css
+rol: Lorem ipsum dolor sit amet
+duration: 4 months
+status: done
 ---
 
 ## Magna nunc senectus torquent per fusce sapien ligula tempus cra

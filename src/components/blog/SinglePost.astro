@@ -1,8 +1,6 @@
 ---
 import { Picture } from '@astrojs/image/components';
-import SinglePostInfo from '~/components/blog/SinglePostInfo.astro';
 import { getFormattedDate } from '~/utils/utils';
-
 import type { Post } from '~/types';
 
 export interface Props {
@@ -11,8 +9,6 @@ export interface Props {
 }
 
 const { post } = Astro.props;
-console.log(post);
-
 function darkenColor(color, amount) {
   let [r, g, b, a] = color.match(/\d+/g).map(Number);
   r = Math.floor(r * amount);
@@ -38,7 +34,7 @@ const adjustedColor1 = darkenColor(post.accentColor, 0.5);
   }
   .postHeaderFont {
     background-image: linear-gradient(to bottom, #fff 50%, transparent);
-    text-shadow: 0 5px 15px rgba(68, 0, 255, 0.25), 0 -5px 15px rgba(255, 90, 0, 0.15),
+    text-shadow: 0 5px 15px var(--gradient-base-color) 0%, 0 -5px 15px rgba(255, 90, 0, 0.15),
       0 -5px 25px rgba(255, 255, 255, 0.25);
     -webkit-text-fill-color: transparent;
     -webkit-background-clip: text;
@@ -111,7 +107,6 @@ const adjustedColor1 = darkenColor(post.accentColor, 0.5);
         )
       }
     </header>
-    <SinglePostInfo />
     <div class="mx-auto mt-8">
       {post.Content && <post.Content />}
     </div>

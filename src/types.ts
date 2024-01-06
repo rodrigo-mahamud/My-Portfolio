@@ -5,21 +5,21 @@ export interface Post {
   publishDate: Date;
   author: string;
   title: string;
-  description?: string;
+  rol?: string;
 
   image?: string;
+  video?: string;
 
   canonical?: string | URL;
   permalink?: string;
-
-  videoThumbnail?: string;
+  duration: string;
   accentColor?: string;
   excerpt?: string;
   category?: string;
   tags?: Array<string>;
+  status: string;
 
   Content: unknown;
-  content?: string;
 }
 
 export interface MetaSEO {

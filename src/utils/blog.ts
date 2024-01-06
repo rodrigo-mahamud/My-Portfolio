@@ -39,15 +39,11 @@ const getNormalizedPost = async (post: CollectionEntry<'post'>): Promise<Post> =
   return {
     id: id,
     slug: slug,
-
     publishDate: publishDate,
     author: author,
 
     ...rest,
-
     Content: Content,
-    // or 'body' in case you consume from API
-
     permalink: await generatePermalink({ id, slug, publishDate }),
   };
 };

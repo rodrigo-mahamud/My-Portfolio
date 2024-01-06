@@ -1,27 +1,44 @@
 ---
+interface InfoProps {
+  excerpt: string;
+  duration: string;
+  rol: string;
+  status: string;
+}
+
+const { excerpt, duration, rol, status } = Astro.props as InfoProps;
 ---
 
-<div class="mx-auto px-4 py-8">
-  <div class="flex flex-col md:flex-row justify-between space-y-8 md:space-y-0">
-    <!-- Columna Izquierda -->
+<div class="mx-auto py-36">
+  <div class="flex flex-col md:flex-row justify-between">
     <div class="md:w-1/3">
-      <div class="mb-10">
-        <h2 class="text-xl font-bold mb-1">Mi rol</h2>
-        <p class="text-sm">UX Lead — Interaction Design, Visual Design, User Flows, Rapid Prototyping</p>
+      <div class="mb-14">
+        <h2 class="text-base font-bold mb-2 text-white">My Role</h2>
+        <p class="text-sm">{rol}</p>
       </div>
       <div>
-        <h2 class="text-xl font-bold mb-1">Duración & Estatus</h2>
-        <p class="text-sm">2 Months, Launched in January 2023</p>
+        <h2 class="text-base font-bold mb-2 text-white">Estatus & Duración</h2>
+        <p class="text-sm">
+          <b
+            class={`uppercase ${
+              status.toLowerCase() === 'done'
+                ? 'text-green-500'
+                : status.toLowerCase() === 'in progress'
+                ? 'text-yellow-500'
+                : ''
+            }`}
+          >
+            {status}
+          </b> - {duration}
+        </p>
       </div>
     </div>
 
-    <!-- Columna Derecha -->
     <div class="md:w-1/2">
       <div class="mb-10">
-        <h2 class="text-xl font-bold mb-1">Resumen</h2>
+        <h2 class="text-base font-bold mb-2 text-white">Resumen</h2>
         <p class="text-sm">
-          Following the announcement of Stadia's shutdown, questions remained on what would happen with the platform's
-          Wi-Fi proprietary controller — whether they could still be used wirelessly, or become e-waste.
+          {excerpt}
         </p>
       </div>
     </div>

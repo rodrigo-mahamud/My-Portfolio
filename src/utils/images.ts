@@ -35,3 +35,14 @@ export const findImage = async (imagePath?: string) => {
 
   return typeof images[key] === 'function' ? (await images[key]())['default'] : null;
 };
+export const getAltTxt = (path) => {
+  // Extrae la parte después del último '/'
+  const lastSlashIndex = path.lastIndexOf('/');
+  const fileNameWithExtension = path.substring(lastSlashIndex + 1);
+
+  // Elimina la extensión del archivo
+  const extensionIndex = fileNameWithExtension.lastIndexOf('.');
+  const AltTxt = 'Imagen que muestra' + fileNameWithExtension.substring(0, extensionIndex);
+
+  return AltTxt;
+};

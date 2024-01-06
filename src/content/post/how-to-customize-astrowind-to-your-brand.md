@@ -1,16 +1,15 @@
 ---
-publishDate: 2023-01-06T00:00:00Z
-author: Rodrigo
-title: How to customize AstroWind template to suit your branding
-videoThumbnail: hola
-accentColor: rgba(95, 41, 8, 1)
+publishDate: 2023-01-12
+title: Hello World
+author: Rodrigo Mahamud García
 excerpt: Sint sit cillum pariatur eiusmod nulla pariatur ipsum. Sit laborum anim qui mollit tempor pariatur.
-image: ~/assets/images/colors.jpg
-tags:
-  - astro
-  - tailwind css
-  - theme
-canonical: https://astrowind.vercel.app/how-to-customize-astrowind-to-your-brand
+image: ~/assets/images/do-more.jpg
+video: hola
+accentColor: rgba(86, 8, 95, 1)
+canonical: https://astrowind.vercel.app/get-started-website-with-astro-tailwind-css
+rol: Lorem ipsum dolor sit amet
+duration: 4 months
+status: done
 ---
 
 ## Congue justo vulputate nascetur convallis varius orci fringilla nulla pharetr

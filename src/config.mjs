@@ -17,7 +17,7 @@ const CONFIG = {
   language: 'en',
   textDirection: 'ltr',
 
-  dateFormatter: new Intl.DateTimeFormat('en', {
+  dateFormatter: new Intl.DateTimeFormat('es', {
     year: 'numeric',
     month: 'short',
     day: 'numeric',
