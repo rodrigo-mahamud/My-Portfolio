@@ -1,24 +1,31 @@
 ---
+// Importaciones necesarias
+import type { ImageMetadata } from 'astro';
 import { Image } from 'astro:assets';
 import { getAltTxt } from '~/utils/images';
+
+// Definición de la interfaz para las propiedades
 interface CardProps {
   cardMedia: string;
 }
 
 const { cardMedia } = Astro.props as CardProps;
-const images = import.meta.glob('/src/assets/images/works/*.{jpeg,jpg,png,gif}');
 const altTxt = getAltTxt(cardMedia);
+const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/images/works/*.{jpeg,jpg,png,gif}');
+const getImage = await images[cardMedia]();
+const myImage = getImage.default;
 ---
 
 <section class="bg-black w-full h-screen">
   <Image
     class="z-20 absolute"
     alt={altTxt}
-    sizes="(max-width: 767px) 400px, (max-width: 1023px) 768px, (max-width: 2039px) 1024px, 2040px"
+    widths={[240, 540, 720]}
+    sizes={`(min-width: 360px) 240px, (min-width: 720px) 540px, (min-width: 1600px) 720px`}
+    quality={'mid'}
+    format="avif"
     loading="lazy"
-    width={1024}
-    height={1024}
-    src={images[cardMedia]()}
+    src={myImage}
     decoding="async"
   />
 </section>
