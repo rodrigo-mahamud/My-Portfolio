@@ -16,21 +16,17 @@ const getImage = await images[cardMedia]();
 const myImage = getImage.default;
 ---
 
-<!-- <section class="bg-black w-full h-screen py-16 px-8 overflow-hidden">
-  <div class="p-10 w-full relative flex justify-center items-center">
-    <Image
-      class="rounded-3xl"
-      alt={altTxt}
-      widths={[275, 475, 575, 1050, 1250]}
-      sizes={`(max-width: 550px) 275px, (max-width: 750px) 475px, (max-width: 950px) 575px,(max-width: 1920px) 1050px, (max-width: 2560px) 1250px,`}
-      quality={'mid'}
-      format="avif"
-      loading="lazy"
-      src={myImage}
-      decoding="async"
-    />
-  </div>
-</section> -->
+<style>
+  .bgGradient {
+    background: radial-gradient(
+      110.23% 95% at 20% 0%,
+      var(--gradient-base-color) 0%,
+      var(--adjusted-color1) 50%,
+      transparent 100%
+    );
+    transition: 0.3s ease-in-out;
+  }
+</style>
 <article class="animate-on-scroll" data-type="simple" data-delay="0" data-duration="2.5" data-easing="Expo.easeOut">
   <div
     class="cursor-none custom-mouse relative borderGlow mb-6 w-full h-screen rounded-2xl mt-16 border border-[#2d263a] overflow-hidden"

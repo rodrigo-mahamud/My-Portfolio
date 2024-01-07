@@ -13,20 +13,16 @@
     "lint:eslint": "eslint . --ext .js,.ts,.astro"
   },
   "devDependencies": {
-    "@astrojs/image": "^0.18.0",
     "@astrojs/mdx": "^2.0.3",
     "@astrojs/partytown": "^2.0.3",
     "@astrojs/rss": "^4.0.1",
     "@astrojs/sitemap": "^3.0.4",
     "@astrojs/tailwind": "^5.1.0",
-    "@astrolib/analytics": "^0.3.0",
-    "@astrolib/seo": "^0.3.0",
     "@fontsource/inter": "^4.5.15",
     "@tailwindcss/typography": "^0.5.9",
     "@typescript-eslint/eslint-plugin": "^5.59.0",
     "@typescript-eslint/parser": "^5.59.0",
     "astro": "^4.1.1",
-    "astro-compress": "^1.1.39",
     "astro-icon": "^0.8.0",
     "eslint": "^8.38.0",
     "eslint-plugin-astro": "^0.26.1",
@@ -36,7 +32,7 @@
     "prettier": "^2.8.7",
     "prettier-plugin-astro": "^0.8.0",
     "reading-time": "^1.5.0",
-    "sharp": "^0.31.3",
+    "sharp": "^0.33.1",
     "svgo": "2.8.0",
     "tailwindcss": "^3.3.1",
     "typescript": "^5.0.4"
@@ -45,7 +41,10 @@
     "node": ">=16.12.0"
   },
   "dependencies": {
+    "@astrolib/analytics": "^0.5.0",
+    "@astrolib/seo": "^1.0.0-beta.5",
     "@studio-freight/lenis": "^1.0.27",
+    "astro-compress": "^2.2.7",
     "chroma-js": "^2.4.2",
     "gsap": "^3.11.5",
     "smooth-scrollbar": "^8.8.3"
