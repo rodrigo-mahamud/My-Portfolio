@@ -13,7 +13,6 @@
     "lint:eslint": "eslint . --ext .js,.ts,.astro"
   },
   "devDependencies": {
-    "@astrojs/mdx": "^2.0.3",
     "@astrojs/partytown": "^2.0.3",
     "@astrojs/rss": "^4.0.1",
     "@astrojs/sitemap": "^3.0.4",
@@ -38,9 +37,10 @@
     "typescript": "^5.0.4"
   },
   "engines": {
-    "node": ">=16.12.0"
+    "node": "20.10.0"
   },
   "dependencies": {
+    "@astrojs/mdx": "^2.0.3",
     "@astrolib/analytics": "^0.5.0",
     "@astrolib/seo": "^1.0.0-beta.5",
     "@studio-freight/lenis": "^1.0.27",

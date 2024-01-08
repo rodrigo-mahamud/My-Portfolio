@@ -9,74 +9,55 @@ interface CardProps {
   cardMedia: string;
 }
 
-const { cardMedia } = Astro.props as CardProps;
+const { cardMedia, accentColor } = Astro.props as CardProps;
 const altTxt = getAltTxt(cardMedia);
 const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/images/works/*.{jpeg,jpg,png,gif}');
 const getImage = await images[cardMedia]();
 const myImage = getImage.default;
+
+function darkenColor(color, amount) {
+  let [r, g, b, a] = color.match(/\d+/g).map(Number);
+  r = Math.floor(r * amount);
+  g = Math.floor(g * amount);
+  b = Math.floor(b * amount);
+  return `rgba(${r}, ${g}, ${b}, ${a - 0.25})`;
+}
+
+const adjustedColor1 = darkenColor(accentColor, 0.6);
 ---
 
-<style>
-  .bgGradient {
-    background: radial-gradient(
-      110.23% 95% at 20% 0%,
-      var(--gradient-base-color) 0%,
-      var(--adjusted-color1) 50%,
-      transparent 100%
-    );
-    transition: 0.3s ease-in-out;
-  }
-</style>
-<article class="animate-on-scroll" data-type="simple" data-delay="0" data-duration="2.5" data-easing="Expo.easeOut">
-  <div
-    class="cursor-none custom-mouse relative borderGlow mb-6 w-full h-screen rounded-2xl mt-16 border border-[#2d263a] overflow-hidden"
-    data-typemouse="link"
-  >
-    <div class="bgGradient absolute top-0 h-full w-full rounded-2xl border border-[#716882]"></div>
-    <div class="flex flex-col h-full justify-between z-10 relative">
-      <div class="flex flex-row justify-between px-12 pt-14">
-        <div class="h-1/6">
-          <h3
-            class="text-3xl font-bold tracking-tighter mb-2 headingTxt text-left animate-on-scroll"
-            data-type="simple"
-            data-delay="0.1"
-            data-duration="2.5"
-            data-easing="Expo.easeOut"
-          >
-            dsd
-          </h3>
-          <p
-            class="text-neutral-400 text-lg animate-on-scroll"
-            data-type="simple"
-            data-delay="0.15"
-            data-duration="2.5"
-            data-easing="Expo.easeOut"
-          >
-            sdfsdf
-          </p>
+<article
+  class="animate-on-scroll"
+  data-type="simple"
+  data-delay="0"
+  data-duration="2.5"
+  data-easing="Expo.easeOut"
+  style={{
+    '--gradient-base-color': accentColor,
+    '--adjusted-color1': adjustedColor1,
+  }}
+>
+  <div class="relative cardBorderGlow mb-6 w-full h-screen rounded-2xl mt-16 overflow-hidden" data-typemouse="link">
+    <div class="bgCardGradient absolute top-0 h-full w-full rounded-2xl"></div>
+    <div class="flex flex-col h-full justify-between items-start z-10 relative">
+      <div class="px-12 pt-14">
+        <div class="flex justify-center items-center">
+          <div class="w-3 h-3 mr-3 bg-white rounded-full border border-white"></div>
+          <div class="flex justify-center items-center rounded-full">Hola como estas</div>
         </div>
-        <div class="flex items-center text-neutral-400">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            class="arrow-right"
-            width="2.5rem"
-            height="2.5rem"
-            viewBox="0 0 24 24"
-            stroke-width="1.5"
-            stroke="currentcolor"
-            fill="none"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-            <path d="M5 12l14 0"></path>
-            <path d="M15 16l4 -4"></path>
-            <path d="M15 8l4 4"></path>
-          </svg>
-        </div>
+        <h3
+          class="text-3xl font-bold tracking-tighter mb-2 headingTxt text-left animate-on-scroll"
+          data-type="simple"
+          data-delay="0.1"
+          data-duration="2.5"
+          data-easing="Expo.easeOut"
+        >
+          dsd
+        </h3>
       </div>
+
       <div
-        class="relative h-5/6 rounded pt-16 animate-on-scroll"
+        class="relative rounded pt-16 px-16 animate-on-scroll"
         data-type="simple"
         data-delay="0.35"
         data-duration="2"

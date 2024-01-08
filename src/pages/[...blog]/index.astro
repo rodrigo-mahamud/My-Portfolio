@@ -6,10 +6,11 @@ import SinglePost from '~/components/blog/SinglePost.astro';
 
 import { getCanonical, getPermalink } from '~/utils/permalinks';
 import { fetchPosts } from '~/utils/blog';
-import { findImage } from '~/utils/images';
 
 export async function getStaticPaths() {
-  if (BLOG?.disabled || BLOG?.post?.disabled) return [];
+  if (BLOG?.disabled || BLOG?.post?.disabled) {
+    throw [];
+  }
   return (await fetchPosts()).map((post) => ({
     params: {
       blog: post.permalink,
@@ -25,12 +26,11 @@ const meta = {
   title: post.title,
   // description: post.description,
   canonical: post.canonical || url,
-  image: await findImage(post.image),
   noindex: BLOG?.post?.noindex,
   ogType: 'article',
 };
 ---
 
 <Layout {meta}>
-  <SinglePost post={{ ...post, image: meta.image }} url={url} />
+  <SinglePost post={{ ...post }} url={url} />
 </Layout>

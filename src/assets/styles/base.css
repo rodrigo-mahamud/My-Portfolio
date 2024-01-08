@@ -424,3 +424,89 @@ audio {
   color: transparent;
   -webkit-text-fill-color: transparent;
 }
+/*ITEM*/
+.borderGlow {
+  background: radial-gradient(
+    40.23% 100% at 20% 0%,
+    rgb(25 17 41) 0%,
+    rgba(10, 1, 24, 1) 100%,
+    rgba(10, 1, 24, 1) 100%
+  );
+  transition: 0.3s ease-in-out;
+}
+.borderGlow::before {
+  content: '';
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, rgba(255, 255, 255, 0.95) 10%, rgba(0, 0, 0, 0) 60%);
+  width: 100%;
+  position: relative;
+  display: flex;
+  height: 0.75px;
+}
+
+.bgGradient {
+  opacity: 0;
+  background: radial-gradient(
+    110.23% 95% at 20% 0%,
+    var(--gradient-base-color) 0%,
+    var(--adjusted-color1) 50%,
+    transparent 100%
+  );
+  transition: 0.3s ease-in-out;
+}
+.arrow-right {
+  transition: 0.3s ease-in-out;
+}
+.borderGlow:hover .bgGradient {
+  background: radial-gradient(
+    110.23% 95% at 20% 0%,
+    var(--gradient-base-color) 0%,
+    var(--adjusted-color1) 50%,
+    transparent 100%
+  );
+  opacity: 1;
+  transition: 0.3s ease-in-out;
+}
+.borderGlow:hover .arrow-right {
+  transform: translateX(10px);
+  transition: 0.3s ease-in-out;
+  color: rgba(255, 255, 255, 0.85);
+}
+.borderGlow video {
+  transform: unset;
+  box-shadow: 0 40px 50px 10px rgba(0, 0, 0, 0.15);
+  transition: 0.5s cubic-bezier(0.14, 1, 0.34, 1);
+}
+.borderGlow:hover video {
+  transform: translateY(-25px);
+  box-shadow: 0 40px 50px 10px rgba(0, 0, 0, 0.5);
+  transition: 0.5s cubic-bezier(0.14, 1, 0.34, 1);
+}
+/*CARD*/
+.cardBorderGlow {
+  background: radial-gradient(
+      40.23% 36.93% at 50% 0%,
+      #ffffff0a 0%,
+      rgba(133, 102, 255, 0) 100%,
+      rgba(133, 102, 255, 0) 100%
+    ),
+    radial-gradient(41.17% 54.58% at 50% 38.78%, rgba(133, 102, 255, 0.05) 0%, rgba(133, 102, 255, 0) 100%);
+}
+.cardBorderGlow::before {
+  content: '';
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, rgba(255, 255, 255, 0.95) 50%, rgba(0, 0, 0, 0) 100%);
+  width: 100%;
+  position: relative;
+  display: flex;
+  height: 1px;
+}
+
+/* .bgCardGradient {
+  opacity: 0.15;
+  background: radial-gradient(
+    40.23% 100% at 50% 0%,
+    var(--gradient-base-color) 0%,
+    rgba(10, 1, 24, 1) 100%,
+    rgba(10, 1, 24, 1) 100%
+  );
+  transition: 0.3s ease-in-out;
+} */
