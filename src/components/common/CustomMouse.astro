@@ -170,6 +170,16 @@ import stickman from '../../assets/images/THE-CAKE-IS-A-LIE/portal-stickman.png'
               },
             });
           }
+          if (type === 'disabled' && esferaIcon) {
+            esferaScale = 0;
+            gsap.to(esfera, {
+              scale: esferaScale,
+              border: '0px',
+              duration: 0.5,
+              opacity: 0,
+              ease: 'Expo.easeOut',
+            });
+          }
         });
 
         el.addEventListener('mouseleave', () => {
@@ -198,6 +208,49 @@ import stickman from '../../assets/images/THE-CAKE-IS-A-LIE/portal-stickman.png'
 
     linkArrow();
 
+    const disabled = () => {
+      const linkElements = document.querySelectorAll('.custom-mouse[data-typemouse="disabled"]');
+      linkElements.forEach((el) => {
+        el.addEventListener('mouseenter', (e) => {
+          if (!e.target || !(e.target instanceof HTMLElement)) return;
+          let type = e.target.dataset.typemouse;
+          if (type === 'disabled' && esferaIcon) {
+            esferaScale = 0;
+            gsap.to(esfera, {
+              scale: esferaScale,
+              border: '0px',
+              duration: 0.5,
+              opacity: 0,
+              ease: 'Expo.easeOut',
+            });
+          }
+        });
+
+        el.addEventListener('mouseleave', () => {
+          if (esferaIcon) {
+            esferaScale = 0.5;
+            gsap.to(esfera, {
+              scale: esferaScale,
+              background: 'transparent',
+              border: '2px solid rgb(255, 255, 255)',
+              duration: 0.5,
+              opacity: 1,
+              ease: 'Expo.easeOut',
+            });
+            gsap.to(esferaIcon, {
+              opacity: 0,
+              duration: 0.25,
+              ease: 'Expo.easeOut',
+              onComplete: () => {
+                esferaIcon.classList.remove('hidden');
+              },
+            });
+          }
+        });
+      });
+    };
+
+    disabled();
     // MAGNETIC
     const magnetic = () => {
       const magnetics = document.querySelectorAll('.magnetic');

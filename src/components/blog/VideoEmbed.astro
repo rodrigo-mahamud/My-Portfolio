@@ -1,0 +1,13 @@
+---
+const { url } = Astro.props;
+---
+
+<section class="h-full pt-10 pb-20 custom-mouse" data-typemouse="disabled">
+  <iframe
+    loading="lazy"
+    class="w-full aspect-video rounded-xl"
+    src={url}
+    title="YouTube video player"
+    allow="autoplay; accelerometer; clipboard-write; encrypted-media; gyroscope; web-share"
+    allowfullscreen></iframe>
+</section>
