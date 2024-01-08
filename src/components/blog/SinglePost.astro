@@ -9,6 +9,7 @@ export interface Props {
 }
 
 const { post } = Astro.props;
+
 function darkenColor(color, amount) {
   let [r, g, b, a] = color.match(/\d+/g).map(Number);
   r = Math.floor(r * amount);
@@ -16,7 +17,6 @@ function darkenColor(color, amount) {
   b = Math.floor(b * amount);
   return `rgba(${r}, ${g}, ${b}, ${a - 0.25})`;
 }
-console.log(post.Content);
 
 const adjustedColor1 = darkenColor(post.accentColor, 0.5);
 ---
@@ -82,21 +82,19 @@ const adjustedColor1 = darkenColor(post.accentColor, 0.5);
       </div>
       {
         post.image ? (
-          <Image
-            src={post.image}
-            class="max-w-full w-full mx-auto mb-6 sm:rounded-md bg-gray-400 dark:bg-slate-700 animate-on-scroll"
-            data-type="simple"
-            data-delay="0.15"
-            data-duration="2.5"
-            data-easing="Expo.easeOut"
-            sizes="(max-width: 1440px) 400px, 900px"
-            alt={post.excerpt || ''}
-            loading="eager"
-            width={900}
-            height={506}
-            loading="eager"
-            decoding="async"
-          />
+          <>
+            <Image
+              class="max-w-full w-full mx-auto mb-6 sm:rounded-md bg-gray-400 dark:bg-slate-700 animate-on-scroll"
+              src={post.image}
+              widths={[275, 475, 575, 1050, 1250]}
+              sizes={`(max-width: 550px) 275px, (max-width: 750px) 475px, (max-width: 950px) 575px,(max-width: 1920px) 1050px, (max-width: 2560px) 1250px,`}
+              quality={'mid'}
+              format="avif"
+              loading="lazy"
+              decoding="async"
+              alt={`Imagen del ${post.title}`}
+            />
+          </>
         ) : (
           <div class=" mx-auto px-4 sm:px-6">
             <div class="border-t dark:border-slate-700" />

@@ -10,13 +10,16 @@ canonical: https://astrowind.vercel.app/get-started-website-with-astro-tailwind-
 rol: Lorem ipsum dolor sit amet
 duration: 4 months
 status: done
-
-cardMedia: /src/assets/images/works/MiniaturaDelRewind.png
+SinglePostHeader:
+  preTitle: Context
+  title: The event that unite us
 ---
 
 import SinglePostInfo from '~/components/blog/SinglePostInfo.astro';
 
-import SinglePostCard from '~/components/blog/SinglePostCard.astro';
+import SinglePostHeader from '~/components/blog/SinglePostHeader.astro';
+
+import { YouTube } from '@astro-community/astro-embed-youtube';
 
 <SinglePostInfo
   excerpt={frontmatter.excerpt}
@@ -25,4 +28,8 @@ import SinglePostCard from '~/components/blog/SinglePostCard.astro';
   status={frontmatter.status}
 />
 
-<SinglePostCard cardMedia={frontmatter.cardMedia} accentColor={frontmatter.accentColor} />
+<SinglePostHeader title={frontmatter.SinglePostHeader.title} preTitle={frontmatter.SinglePostHeader.preTitle} />
+El Rewind Hispano es un vídeo recopilatorio que engloba lo más destacado de cada año en cuanto a eventos, memes, música,
+videojuegos, y prácticamente cualquier aspecto del mundo digital. Protagonizado por múltiples creadores y alentos hispanohablantes,resume
+los acontecimientos más relevantes del año.
+<YouTube class="w-full h-screen" id="xtTy5nKay_Y" />
