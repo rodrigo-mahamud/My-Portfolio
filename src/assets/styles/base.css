@@ -166,8 +166,8 @@ html.lenis {
 }
 
 .card {
-  box-shadow: inset 0px 200px 50px -20px rgb(255 255 255 / 10%);
-  background-color: rgba(255, 255, 255, 2%);
+  box-shadow: inset 0px 120px 50px -30px rgb(255 255 255 / 20%);
+  background-color: rgba(255, 255, 255, 3%);
   border-radius: 16px;
   display: flex;
   flex-direction: column;
@@ -499,13 +499,64 @@ audio {
   height: 1px;
 }
 
-/* .bgCardGradient {
-  opacity: 0.15;
+/*BENTO CSS*/
+
+#cards:hover > .bento::after {
+  opacity: 1;
+}
+
+.bento {
+  background: radial-gradient(at right bottom, rgba(255, 255, 255, 0) 65%, rgb(255, 255, 255, 0.3) 100%);
+  background-color: rgba(255, 255, 255, 0.075);
+  box-shadow: 0px 0px 0px #fff;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  border: #0a0118;
+}
+
+.bento:hover::before {
+  opacity: 1;
+}
+
+.bento::before,
+.bento::after {
+  border-radius: inherit;
+  content: '';
+  height: 100%;
+  left: 0px;
+  opacity: 0;
+  position: absolute;
+  top: 0px;
+  transition: opacity 500ms;
+  width: 100%;
+}
+.bento::before {
   background: radial-gradient(
-    40.23% 100% at 50% 0%,
-    var(--gradient-base-color) 0%,
-    rgba(10, 1, 24, 1) 100%,
-    rgba(10, 1, 24, 1) 100%
+    800px circle at var(--mouse-x) var(--mouse-y),
+    rgba(255, 255, 255, 0.08),
+    transparent 30%
   );
-  transition: 0.3s ease-in-out;
-} */
+  z-index: 3;
+}
+
+.bento::after {
+  background: radial-gradient(
+    15rem circle at var(--mouse-x) var(--mouse-y),
+    rgba(255, 255, 255, 0.05),
+    transparent 80%
+  );
+  z-index: 1;
+}
+
+.bento > .bento-content {
+  background: linear-gradient(135deg, rgba(10, 1, 24, 1) 10%, rgba(19, 7, 41, 1) 150%);
+  border-radius: inherit;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  inset: 1px 1px 1px 1px;
+  position: absolute;
+  z-index: 2;
+}
