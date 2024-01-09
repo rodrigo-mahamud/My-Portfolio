@@ -170,7 +170,6 @@ html.lenis {
   background-color: rgba(255, 255, 255, 2%);
   border-radius: 16px;
   display: flex;
-  height: 30vh;
   flex-direction: column;
   position: relative;
 }
@@ -484,8 +483,8 @@ audio {
 /*CARD*/
 .cardBorderGlow {
   background: radial-gradient(
-      40.23% 36.93% at 50% 0%,
-      #ffffff0a 0%,
+      30.23% 65.93% at 50% 0%,
+      #ffffff11 0%,
       rgba(133, 102, 255, 0) 100%,
       rgba(133, 102, 255, 0) 100%
     ),
@@ -493,7 +492,7 @@ audio {
 }
 .cardBorderGlow::before {
   content: '';
-  background: linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, rgba(255, 255, 255, 0.95) 50%, rgba(0, 0, 0, 0) 100%);
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, rgba(255, 255, 255, 1) 50%, rgba(0, 0, 0, 0) 100%);
   width: 100%;
   position: relative;
   display: flex;

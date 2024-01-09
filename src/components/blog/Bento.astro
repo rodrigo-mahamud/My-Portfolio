@@ -1,16 +1,84 @@
 ---
 ---
 
-<section class="w-full h-[150vh]">
-  <div class="w-full h-full grid grid-cols-3 grid-rows-12 gap-7">
-    <div class="row-span-2 bg-black rounded-md">1</div>
-    <div class="row-span-4 bg-black rounded-md col-start-1 row-start-3">3</div>
-    <div class="row-span-6 bg-black rounded-md col-start-2 row-start-1">4</div>
-    <div class="row-span-4 bg-black rounded-md col-start-3 row-start-1">5</div>
-    <div class="row-span-2 bg-black rounded-md col-start-3 row-start-5">6</div>
-    <div class="col-span-2 row-span-3 bg-black rounded-md row-start-7">7</div>
-    <div class="row-span-3 bg-black rounded-md col-start-3 row-start-7">8</div>
-    <div class="row-span-3 bg-black rounded-md row-start-10">9</div>
-    <div class="col-span-2 row-span-3 bg-black rounded-md row-start-10">10</div>
+<section class="w-full h-[125vh] relative">
+  <div id="cards" class="w-full h-full grid grid-cols-3 grid-rows-12 gap-7">
+    <div class="card flex flex-col border border-transparent row-span-2">
+      <div class="card-content relative">1</div>
+    </div>
+    <div class="card flex flex-col border border-transparent row-span-4 col-start-1 row-start-3">
+      <div class="card-content relative"></div>
+    </div>
+    <div class="card flex flex-col border border-transparent row-span-6 col-start-2 row-start-1">
+      <div class="card-content relative"></div>
+    </div>
+    <div class="card flex flex-col border border-transparent row-span-4 col-start-3 row-start-1">
+      <div class="card-content relative"></div>
+    </div>
+    <div class="card flex flex-col border border-transparent row-span-2 col-start-3 row-start-5">
+      <div class="card-content relative"></div>
+    </div>
+    <div class="card flex flex-col border border-transparent col-span-2 row-span-3 rounded-md row-start-7">
+      <div class="card-content relative"></div>
+    </div>
+    <div class="card flex flex-col border border-transparent row-span-3 rounded-md col-start-3 row-start-7">
+      <div class="card-content relative"></div>
+    </div>
+    <div class="card flex flex-col border border-transparent row-span-3 rounded-md row-start-10">
+      <div class="card-content relative"></div>
+    </div>
+    <div class="card flex flex-col border border-transparent col-span-2 row-span-3 rounded-md row-start-10">
+      <div class="card-content relative"></div>
+    </div>
   </div>
 </section>
+
+<script>
+  interface ExtendedHTMLElement extends HTMLElement {
+    style: CSSStyleDeclaration & {
+      '--mouse-x': string;
+      '--mouse-y': string;
+    };
+    mouseX?: number;
+    mouseY?: number;
+  }
+
+  document.getElementById('cards')!.onmousemove = (e: MouseEvent) => {
+    const cards = document.getElementsByClassName('card');
+    console.log(cards);
+
+    for (const card of Array.from(cards) as ExtendedHTMLElement[]) {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+
+      if (card.mouseX === undefined) card.mouseX = x;
+      if (card.mouseY === undefined) card.mouseY = y;
+
+      card.mouseX = x;
+      card.mouseY = y;
+    }
+  };
+
+  function lerp(start: number, end: number, factor: number) {
+    return (1 - factor) * start + factor * end;
+  }
+
+  function animate() {
+    const cards = document.getElementsByClassName('card');
+
+    for (const card of Array.from(cards) as ExtendedHTMLElement[]) {
+      if (card.mouseX !== undefined && card.mouseY !== undefined) {
+        // Interpolación lineal para suavizar el movimiento
+        const x = lerp(parseFloat(card.style.getPropertyValue('--mouse-x') || '0'), card.mouseX, 0.1);
+        const y = lerp(parseFloat(card.style.getPropertyValue('--mouse-y') || '0'), card.mouseY, 0.1);
+
+        card.style.setProperty('--mouse-x', `${x}px`);
+        card.style.setProperty('--mouse-y', `${y}px`);
+      }
+    }
+
+    requestAnimationFrame(animate);
+  }
+  animate();
+</script>
