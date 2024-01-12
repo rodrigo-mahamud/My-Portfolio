@@ -3,6 +3,11 @@ const { url } = Astro.props;
 import { YouTube } from '@astro-community/astro-embed-youtube';
 ---
 
-<section class="h-full pt-10 pb-20 custom-mouse" data-typemouse="play">
-  <YouTube class="w-full min-w-full" id={url} playlabel="Play the video" />
+<section class="h-full pt-10 pb-20">
+  <YouTube
+    class="w-full min-w-full cursor-none custom-mouse opacity-90"
+    data-typemouse="play"
+    id={url}
+    playlabel="Play the video"
+  />
 </section>
