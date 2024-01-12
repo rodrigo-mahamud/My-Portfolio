@@ -2,7 +2,6 @@
 import { Image } from 'astro:assets';
 import { getFormattedDate } from '~/utils/utils';
 import type { Post } from '~/types';
-import Bento from './Bento.astro';
 
 export interface Props {
   post: Post;
@@ -50,6 +49,7 @@ const adjustedColor1 = darkenColor(post.accentColor, 0.5);
     }
   }
 </style>
+
 <section class="w-full h-full">
   <div
     class="bg-accentColor absolute w-full h-full"
@@ -109,6 +109,7 @@ const adjustedColor1 = darkenColor(post.accentColor, 0.5);
   </article>
 </section>
 <script>
+  import { YouTube } from '@astro-community/astro-embed-youtube';
   import { gsap } from 'gsap';
   const article = document.querySelector('article');
 
@@ -119,4 +120,32 @@ const adjustedColor1 = darkenColor(post.accentColor, 0.5);
     opacity: 1,
     ease: 'power3.out',
   });
+
+  /*countup*/
+
+  const animateCounters = () => {
+    const counters = document.querySelectorAll('.counter');
+    counters.forEach((counter) => {
+      const finalNumber = parseInt(counter.textContent || '0');
+      gsap.fromTo(
+        counter,
+        { innerHTML: 0 },
+        {
+          innerHTML: finalNumber,
+          duration: 3,
+          ease: 'Expo.easeOut',
+          snap: { innerHTML: 1 },
+
+          onUpdate: function () {
+            const target = this.targets()[0];
+            if (target.innerHTML) {
+              counter.textContent = Math.ceil(Number(target.innerHTML)).toString();
+            }
+          },
+        }
+      );
+    });
+  };
+
+  document.addEventListener('DOMContentLoaded', animateCounters);
 </script>

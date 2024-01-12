@@ -131,6 +131,7 @@ html.lenis {
 @keyframes disapearWelcome {
   100% {
     opacity: 0;
+    display: none;
   }
 }
 
@@ -559,4 +560,11 @@ audio {
   inset: 1px 1px 1px 1px;
   position: absolute;
   z-index: 2;
+}
+lite-youtube::before {
+  height: 0px !important;
+  padding-bottom: 0px !important;
+}
+lite-youtube > .lty-playbtn {
+  display: none !important;
 }

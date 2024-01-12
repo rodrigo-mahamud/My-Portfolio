@@ -15,10 +15,14 @@ singlePostHeader:
   title: The event that unite us
 
 stats:
-  - title: 'Downloads'
-    amount: '132K'
-  - title: 'Views'
-    amount: '250M'
+  title1: 'Downloads'
+  amount1: '132'
+  title2: 'hola'
+  amount2: '132'
+  title3: 'hola'
+  amount3: '132'
+  title4: 'hola'
+  amount4: '132'
 
 url: https://www.youtube.com/embed/TjkRhh3Gh1U?si=z_--bXE6HPoU6XrK
 ---
@@ -30,6 +34,8 @@ import SinglePostHeader from '~/components/blog/SinglePostHeader.astro';
 import VideoEmbed from '~/components/blog/VideoEmbed.astro';
 
 import Stats from '~/components/widgets/Stats.astro';
+
+import { YouTube } from '@astro-community/astro-embed-youtube';
 
 <SinglePostInfo
   excerpt={frontmatter.excerpt}

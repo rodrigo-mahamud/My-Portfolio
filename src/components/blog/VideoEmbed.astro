@@ -1,13 +1,8 @@
 ---
 const { url } = Astro.props;
+import { YouTube } from '@astro-community/astro-embed-youtube';
 ---
 
-<section class="h-full pt-10 pb-20 custom-mouse" data-typemouse="disabled">
-  <iframe
-    loading="lazy"
-    class="w-full aspect-video rounded-xl"
-    src={url}
-    title="YouTube video player"
-    allow="autoplay; accelerometer; clipboard-write; encrypted-media; gyroscope; web-share"
-    allowfullscreen></iframe>
+<section class="h-full pt-10 pb-20 custom-mouse" data-typemouse="play">
+  <YouTube class="w-full min-w-full" id={url} playlabel="Play the video" />
 </section>
