@@ -207,4 +207,46 @@
       },
     }
   );
+
+  //PARALLAX ANIMATIONS ON SCROLL
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const elementsToAnimate = document.querySelectorAll('.parallax-on-scroll');
+
+    elementsToAnimate.forEach((element) => {
+      const dataType = element.getAttribute('data-type');
+
+      if (dataType === 'small') {
+        gsap.fromTo(
+          element,
+          { y: '-5%' },
+          {
+            y: '5%',
+            scrollTrigger: {
+              trigger: element,
+              start: 'top bottom',
+              end: 'bottom top',
+              scrub: 1,
+            },
+          }
+        );
+      }
+
+      if (dataType === 'big') {
+        gsap.fromTo(
+          element,
+          { y: '-15%' }, // Inicio para big
+          {
+            y: '15%', // Fin para big
+            scrollTrigger: {
+              trigger: element,
+              start: 'top bottom',
+              end: 'bottom top',
+              scrub: 1,
+            },
+          }
+        );
+      }
+    });
+  });
 </script>

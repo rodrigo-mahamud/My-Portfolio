@@ -24,7 +24,10 @@ stats:
   title4: 'hola'
   amount4: '132'
 
-url: https://www.youtube.com/embed/TjkRhh3Gh1U?si=z_--bXE6HPoU6XrK
+url1: https://www.youtube.com/watch?v=h4NJCc4AQxw
+url2: https://www.youtube.com/watch?v=_FMplFlIiOU&t
+url3: https://www.youtube.com/watch?v=IbAuuxBFwoo&t
+url4: https://www.youtube.com/embed/TjkRhh3Gh1U?si=z_--bXE6HPoU6XrK
 ---
 
 import SinglePostInfo from '~/components/blog/SinglePostInfo.astro';
@@ -34,8 +37,6 @@ import SinglePostHeader from '~/components/blog/SinglePostHeader.astro';
 import VideoEmbed from '~/components/blog/VideoEmbed.astro';
 
 import Stats from '~/components/widgets/Stats.astro';
-
-import { YouTube } from '@astro-community/astro-embed-youtube';
 
 <SinglePostInfo
   excerpt={frontmatter.excerpt}
@@ -49,7 +50,7 @@ El Rewind Hispano es un vídeo recopilatorio que engloba lo más destacado de ca
 videojuegos, y prácticamente cualquier aspecto del mundo digital. Protagonizado por múltiples creadores y alentos hispanohablantes,resume
 los acontecimientos más relevantes del año.
 
-<VideoEmbed url={frontmatter.url} />
+<VideoEmbed url1={frontmatter.url1} url2={frontmatter.url2} url3={frontmatter.url3} url4={frontmatter.url4} />
 
 El Rewind Hispano es un vídeo recopilatorio que engloba lo más destacado de cada año en cuanto a eventos, memes, música,
 videojuegos, y prácticamente cualquier aspecto del mundo digital. Protagonizado por múltiples creadores y alentos hispanohablantes,resume

@@ -6,37 +6,36 @@ import sitemap from '@astrojs/sitemap';
 import mdx from '@astrojs/mdx';
 import partytown from '@astrojs/partytown';
 import compress from 'astro-compress';
-
+import icon from 'astro-icon';
 import { SITE } from './src/config.mjs';
-
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-
 const whenExternalScripts = (items = []) =>
   SITE.googleAnalyticsId ? (Array.isArray(items) ? items.map((item) => item()) : [items()]) : [];
 
+// https://astro.build/config
 export default defineConfig({
   site: SITE.origin,
   base: SITE.basePathname,
   trailingSlash: SITE.trailingSlash ? 'always' : 'never',
-
   output: 'static',
-
   integrations: [
+    icon({
+      iconDir: 'src/icons',
+    }),
     tailwind({
       config: {
         applyBaseStyles: false,
       },
     }),
     sitemap(),
-
     mdx(),
-
     ...whenExternalScripts(() =>
       partytown({
-        config: { forward: ['dataLayer.push'] },
+        config: {
+          forward: ['dataLayer.push'],
+        },
       })
     ),
-
     compress({
       css: true,
       html: {
@@ -45,11 +44,9 @@ export default defineConfig({
       img: false,
       js: true,
       svg: false,
-
       logger: 1,
     }),
   ],
-
   vite: {
     resolve: {
       alias: {

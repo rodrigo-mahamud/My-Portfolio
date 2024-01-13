@@ -36,14 +36,6 @@
   display: block;
 }
 
-[astro-icon].icon-light > * {
-  stroke-width: 1.2;
-}
-
-[astro-icon].icon-bold > * {
-  stroke-width: 2.4;
-}
-
 [data-aw-toggle-menu] path {
   @apply transition;
 }
@@ -550,7 +542,9 @@ audio {
   );
   z-index: 1;
 }
-
+.clip-path-inset-video {
+  clip-path: inset(6rem 0);
+}
 .bento > .bento-content {
   background: linear-gradient(135deg, rgba(10, 1, 24, 1) 10%, rgba(19, 7, 41, 1) 150%);
   border-radius: inherit;
