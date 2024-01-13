@@ -15,68 +15,140 @@ import { Icon } from 'astro-icon/components';
           playlabel="Play the video"
         />
       </div>
-      <div class="border-x border-b border-[#f2f2f248] rounded-b-2xl">
-        <div class="flex p-8 justify-between items-center">
-          <Icon name="calendarTime" class="text-3xl mr-6" />
-          <p class="text-pretty">Focus is put on the process as a whole — motivates users to complete the update</p>
+      <div class="flex flex-col postCardBorderGlow">
+        <div class="flex px-8 pb-6 pt-12 justify-between items-center">
+          <Icon name="calendarTime" class="text-3xl mr-6 text-white" />
+          <p class="text-pretty text-sm">
+            Focus is put on the process as a whole — motivates users to complete the update
+          </p>
         </div>
-        <div class="flex p-8 justify-between items-center">
-          <Icon name="calendarTime" class="text-3xl mr-6" />
-          <p class="text-pretty">Focus is put on the process as a whole — motivates users to complete the update</p>
+        <div class="flex px-8 py-6 justify-between items-center">
+          <Icon name="eye" class="text-3xl mr-6 text-white" />
+          <p class="text-pretty text-sm">
+            Focus is put on the process as a whole — motivates users to complete the update
+          </p>
         </div>
-      </div>
-    </div>
-
-    <div class="flex flex-col">
-      <YouTube
-        class="w-full cursor-none custom-mouse opacity-90 rounded-2xl"
-        data-typemouse="play"
-        id={url2}
-        playlabel="Play the video"
-      />
-      <div class="bg-slate-500">
-        <div class="flex p-8 justify-between items-center">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            class="icon icon-tabler icon-tabler-calendar-time mr-4"
-            width="34"
-            height="34"
-            viewBox="0 0 24 24"
-            stroke-width="1.8"
-            stroke="currentColor"
-            fill="none"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            ><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
-              d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4"></path><path
-              d="M18 18m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0"></path><path d="M15 3v4"></path><path d="M7 3v4"></path><path
-              d="M3 11h16"></path><path d="M18 16.496v1.504l1 1"></path></svg
-          >
-          <p class="pr-10">Focus is put on the process as a whole — motivates users to complete the update</p>
+        <div class="flex px-8 py-6 justify-between items-center">
+          <Icon name="thumbUp" class="text-3xl mr-6 text-white" />
+          <p class="text-pretty text-sm">
+            Focus is put on the process as a whole — motivates users to complete the update
+          </p>
         </div>
-        <div class="flex p-8">
-          <img
-            class="mr-4"
-            src="https://assets-global.website-files.com/63dcb6e1a80e9454b630f4c4/645c389b3f92d3360bab8a7f_icon-123.svg"
-            alt="ssss"
-          />
-          <p>Focus is put on the process as a whole — motivates users to complete the update</p>
+        <div class="flex px-8 pb-12 pt-6 justify-between items-center">
+          <Icon name="message-circle" class="text-3xl mr-6 text-white" />
+          <p class="text-pretty text-sm">
+            Focus is put on the process as a whole — motivates users to complete the update
+          </p>
         </div>
       </div>
     </div>
-
-    <YouTube
-      class="w-full cursor-none custom-mouse opacity-90 rounded-2xl"
-      data-typemouse="play"
-      id={url3}
-      playlabel="Play the video"
-    />
-
-    <YouTube
-      class="w-full cursor-none custom-mouse opacity-90 rounded-2xl"
-      data-typemouse="play"
-      id={url4}
-      playlabel="Play the video"
-    />
+    <div class="flex flex-col border border-[#f2f2f248] rounded-2xl overflow-hidden">
+      <div class="flex h-[40vh]">
+        <YouTube
+          class="w-full cursor-none custom-mouse shadow-[inset_0px_-240px_120px_-100px_#0a0118]"
+          data-typemouse="play"
+          id={url2}
+          playlabel="Play the video"
+        />
+      </div>
+      <div class="flex flex-col postCardBorderGlow">
+        <div class="flex px-8 pb-6 pt-12 justify-between items-center">
+          <Icon name="calendarTime" class="text-3xl mr-6 text-white" />
+          <p class="text-pretty text-sm">
+            Focus is put on the process as a whole — motivates users to complete the update
+          </p>
+        </div>
+        <div class="flex px-8 py-6 justify-between items-center">
+          <Icon name="eye" class="text-3xl mr-6 text-white" />
+          <p class="text-pretty text-sm">
+            Focus is put on the process as a whole — motivates users to complete the update
+          </p>
+        </div>
+        <div class="flex px-8 py-6 justify-between items-center">
+          <Icon name="thumbUp" class="text-3xl mr-6 text-white" />
+          <p class="text-pretty text-sm">
+            Focus is put on the process as a whole — motivates users to complete the update
+          </p>
+        </div>
+        <div class="flex px-8 pb-12 pt-6 justify-between items-center">
+          <Icon name="message-circle" class="text-3xl mr-6 text-white" />
+          <p class="text-pretty text-sm">
+            Focus is put on the process as a whole — motivates users to complete the update
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="flex flex-col border border-[#f2f2f248] rounded-2xl overflow-hidden">
+      <div class="flex h-[40vh]">
+        <YouTube
+          class="w-full cursor-none custom-mouse shadow-[inset_0px_-240px_120px_-100px_#0a0118]"
+          data-typemouse="play"
+          id={url3}
+          playlabel="Play the video"
+        />
+      </div>
+      <div class="flex flex-col postCardBorderGlow">
+        <div class="flex px-8 pb-6 pt-12 justify-between items-center">
+          <Icon name="calendarTime" class="text-3xl mr-6 text-white" />
+          <p class="text-pretty text-sm">
+            Focus is put on the process as a whole — motivates users to complete the update
+          </p>
+        </div>
+        <div class="flex px-8 py-6 justify-between items-center">
+          <Icon name="eye" class="text-3xl mr-6 text-white" />
+          <p class="text-pretty text-sm">
+            Focus is put on the process as a whole — motivates users to complete the update
+          </p>
+        </div>
+        <div class="flex px-8 py-6 justify-between items-center">
+          <Icon name="thumbUp" class="text-3xl mr-6 text-white" />
+          <p class="text-pretty text-sm">
+            Focus is put on the process as a whole — motivates users to complete the update
+          </p>
+        </div>
+        <div class="flex px-8 pb-12 pt-6 justify-between items-center">
+          <Icon name="message-circle" class="text-3xl mr-6 text-white" />
+          <p class="text-pretty text-sm">
+            Focus is put on the process as a whole — motivates users to complete the update
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="flex flex-col border border-[#f2f2f248] rounded-2xl overflow-hidden">
+      <div class="flex h-[40vh]">
+        <YouTube
+          class="w-full cursor-none custom-mouse shadow-[inset_0px_-240px_120px_-100px_#0a0118]"
+          data-typemouse="play"
+          id={url4}
+          playlabel="Play the video"
+        />
+      </div>
+      <div class="flex flex-col postCardBorderGlow">
+        <div class="flex px-8 pb-6 pt-12 justify-between items-center">
+          <Icon name="calendarTime" class="text-3xl mr-6 text-white" />
+          <p class="text-pretty text-sm">
+            Focus is put on the process as a whole — motivates users to complete the update
+          </p>
+        </div>
+        <div class="flex px-8 py-6 justify-between items-center">
+          <Icon name="eye" class="text-3xl mr-6 text-white" />
+          <p class="text-pretty text-sm">
+            Focus is put on the process as a whole — motivates users to complete the update
+          </p>
+        </div>
+        <div class="flex px-8 py-6 justify-between items-center">
+          <Icon name="thumbUp" class="text-3xl mr-6 text-white" />
+          <p class="text-pretty text-sm">
+            Focus is put on the process as a whole — motivates users to complete the update
+          </p>
+        </div>
+        <div class="flex px-8 pb-12 pt-6 justify-between items-center">
+          <Icon name="message-circle" class="text-3xl mr-6 text-white" />
+          <p class="text-pretty text-sm">
+            Focus is put on the process as a whole — motivates users to complete the update
+          </p>
+        </div>
+      </div>
+    </div>
   </div>
 </section>

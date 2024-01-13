@@ -491,6 +491,15 @@ audio {
   display: flex;
   height: 1px;
 }
+.postCardBorderGlow {
+  background: radial-gradient(
+      105% 75.93% at 50% 100%,
+      #ffffff09 0%,
+      rgba(133, 102, 255, 0) 100%,
+      rgba(133, 102, 255, 0) 100%
+    ),
+    radial-gradient(60% 80% at 50% 55%, rgba(133, 102, 255, 0.05) 0%, rgba(133, 102, 255, 0) 100%);
+}
 
 /*BENTO CSS*/
 
