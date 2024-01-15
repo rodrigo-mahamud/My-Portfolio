@@ -19,7 +19,6 @@ function darkenColor(color, amount) {
   b = Math.floor(b * amount);
   return `rgba(${r}, ${g}, ${b}, ${a - 0.25})`;
 }
-console.log(post);
 
 const adjustedColor1 = darkenColor(post.accentColor, 0.5);
 ---
@@ -62,7 +61,7 @@ const adjustedColor1 = darkenColor(post.accentColor, 0.5);
     }}
   >
   </div>
-  <PostIndex />
+  <PostIndex postIndex={post.postIndex} />
   <article class="opacity-0 blur-lg max-w-[80vw] lg:max-w-3xl xl:max-w-4xl 2xl:max-w-5xl 3xl:max-w-6xl mx-auto">
     <header class="w-full h-full pt-28">
       <div class="flex justify-between flex-col pb-16 mt-0 mb-2 px-4 sm:px-6 sm:items-center">

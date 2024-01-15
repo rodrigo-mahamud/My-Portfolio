@@ -7,7 +7,6 @@ import type { MetaSEO } from '~/types';
 import { SITE } from '~/config.mjs';
 
 import GsapScrollBarScripts from '~/components/common/GsapScrollBarScripts.astro';
-import SpotifyAPI from '~/components/common/SpotifyAPI.astro';
 
 export interface Props {
   meta?: MetaSEO;
@@ -25,7 +24,6 @@ const { language = 'es', textDirection = 'ltr' } = SITE;
   <body class="antialiased text-page bg-light dark:text-slate-300 dark:bg-[#0a0118] cursor-none">
     <slot />
 
-    <SpotifyAPI />
     <BasicScripts />
     <GsapScrollBarScripts />
     <style is:global>

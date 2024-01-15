@@ -8,6 +8,7 @@ import LatestPosts from '~/components/blog/LatestPosts.astro';
 import Stats from '~/components/widgets/Stats.astro';
 import FeatureHead from '~/components/widgets/FeatureHead.astro';
 import FeatureIcons from '~/components/widgets/FeatureIcons.astro';
+import SpotifyAPI from '~/components/common/SpotifyAPI.astro';
 
 const meta = {
   title: SITE.title,
@@ -17,11 +18,8 @@ const meta = {
 ---
 
 <Layout {meta}>
-  <!-- Hero Widget ******************* -->
+  <SpotifyAPI />
   <Hero />
-
-  <!-- Features2 Widget ************** -->
-
   <Features title="Most used widgets" subtitle="Subtitle Here" highlight="Components">
     <FeatureHead
       title="Headers"

@@ -23,6 +23,7 @@ singlePostInfo:
 singlePostHeader:
   preTitle: Context
   title: The event that unite us
+  indexSection: context
 
 singlePostHeader2:
   preTitle: The Challenge
@@ -93,7 +94,7 @@ import Stats from '~/components/widgets/Stats.astro';
 
 <SinglePostInfo singlePostInfo={frontmatter.singlePostInfo}/>
 
-<SinglePostHeader title={frontmatter.singlePostHeader.title} preTitle={frontmatter.singlePostHeader.preTitle} />
+<SinglePostHeader title={frontmatter.singlePostHeader.title} preTitle={frontmatter.singlePostHeader.preTitle}  indexSection={frontmatter.singlePostHeader.indexSection}/>
 
 <p class="animate-on-scroll leading-7" data-type="simple" data-delay="0.15" data-duration="2.5" data-easing="Expo.easeOut">El Rewind Hispano es un vídeo recopilatorio que engloba lo más destacado de cada año en cuanto a eventos, memes, música,videojuegos, y prácticamente cualquier aspecto del mundo digital. Protagonizado pormúltiples creadores y alentos hispanohablantes,resumelos acontecimientos más relevantes del año.</p>
 

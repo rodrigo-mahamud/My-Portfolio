@@ -1,16 +1,23 @@
 ---
+const { postIndex } = Astro.props;
+postIndex.map((item) => {
+  console.log(item);
+});
 ---
 
 <aside class="sticky top-32 px-12 h-0 w-full flex flex-col items-end">
   <div class="flex flex-col items-start">
     <h2 class="text-sm">INDEX</h2>
     <ul class="pt-5">
-      <li class="flex flex-row items-center pb-4">
-        <h3 class="text-xs"><a>Context</a></h3>
-      </li>
-      <li class="flex flex-row items-center pb-4">
-        <h3 class="text-xs"><a>The Challenge</a></h3>
-      </li>
+      {
+        postIndex.map((item) => (
+          <li class="flex flex-row items-center pb-4">
+            <h3 class="text-xs">
+              <a href={`#${item}`}>{item}</a>
+            </h3>
+          </li>
+        ))
+      }
     </ul>
   </div>
 </aside>
