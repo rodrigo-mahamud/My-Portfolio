@@ -5,10 +5,11 @@ interface CardProps {
   indexSection: string;
 }
 
-const { title, preTitle, indexSection } = Astro.props as CardProps;
+const { title, preTitle } = Astro.props as CardProps;
+let id = preTitle.toLowerCase().replace(/\s+/g, '');
 ---
 
-<section id={indexSection}>
+<section id={id}>
   <div class="relative cardBorderGlow w-full mt-28" data-typemouse="link">
     <div class="bgCardGradient absolute top-0 h-full w-full"></div>
     <div class="flex flex-col justify-between items-start z-10 relative">

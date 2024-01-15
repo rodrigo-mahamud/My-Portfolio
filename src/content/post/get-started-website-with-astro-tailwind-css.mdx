@@ -10,7 +10,7 @@ canonical: https://astrowind.vercel.app/get-started-website-with-astro-tailwind-
 
 postIndex:
   - context
-  - the challenge
+  - thechallenge
   - solutions
 
 singlePostInfo:
@@ -23,7 +23,6 @@ singlePostInfo:
 singlePostHeader:
   preTitle: Context
   title: The event that unite us
-  indexSection: context
 
 singlePostHeader2:
   preTitle: The Challenge
@@ -102,7 +101,7 @@ import Stats from '~/components/widgets/Stats.astro';
 
 <p class="animate-on-scroll" data-type="simple" data-delay="0.5" data-duration="2.5" data-easing="Expo.easeOut">El Rewind Hispano es un vídeo recopilatorio que engloba lo más destacado de cada año en cuanto a eventos, memes, música,videojuegos, y prácticamente cualquier aspecto del mundo digital. Protagonizado pormúltiples creadores y alentos hispanohablantes,resumelos acontecimientos más relevantes del año.</p>
 
-<SinglePostHeader title={frontmatter.singlePostHeader2.title} preTitle={frontmatter.singlePostHeader2.preTitle} />
+<SinglePostHeader title={frontmatter.singlePostHeader2.title} preTitle={frontmatter.singlePostHeader2.preTitle} indexSection={frontmatter.singlePostHeader.indexSection}/>
 
 <p class="animate-on-scroll leading-7" data-type="simple" data-delay="0.15" data-duration="2.5" data-easing="Expo.easeOut">El Rewind Hispano es un vídeo recopilatorio que engloba lo más destacado de cada año en cuanto a eventos, memes, música,videojuegos, y prácticamente cualquier aspecto del mundo digital. Protagonizado pormúltiples creadores y alentos hispanohablantes,resumelos acontecimientos más relevantes del año. El Rewind Hispano es un vídeo recopilatorio que engloba lo más destacado de cada año en cuanto a eventos, memes, música,videojuegos, y prácticamente cualquier aspecto del mundo digital. Protagonizado pormúltiples creadores y alentos hispanohablantes,resumelos acontecimientos más relevantes del año. El Rewind Hispano es un vídeo recopilatorio que engloba lo más destacado de cada año en cuanto a eventos, memes, música,videojuegos, y prácticamente cualquier aspecto del mundo digital. Protagonizado pormúltiples creadores y alentos hispanohablantes,resumelos acontecimientos más relevantes del año.</p>
 
