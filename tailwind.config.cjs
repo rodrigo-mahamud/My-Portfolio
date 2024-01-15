@@ -11,6 +11,7 @@ module.exports = {
       },
       screens: {
         '3xl': '1919px',
+        '4xl': '2000px',
       },
       fontFamily: {
         sans: ['var(--aw-font-sans)', ...defaultTheme.fontFamily.sans],
