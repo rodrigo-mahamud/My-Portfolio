@@ -13,7 +13,9 @@ postIndex.map((item) => {
         postIndex.map((item) => (
           <li class="flex flex-row items-center pb-4">
             <h3 class="text-xs">
-              <a href={`#${item}`}>{item}</a>
+              <a class="post-index-link" href={`#${item}`}>
+                {item}
+              </a>
             </h3>
           </li>
         ))
@@ -21,3 +23,39 @@ postIndex.map((item) => {
     </ul>
   </div>
 </aside>
+<script>
+  import { gsap } from 'gsap';
+  function isSectionAtTop(el) {
+    const rect = el.getBoundingClientRect();
+    return rect.top <= 0 && rect.top + rect.height >= 0;
+  }
+
+  function updateIndexAnimation() {
+    const postIndex = Array.from(document.querySelectorAll('.post-index-link')).map((link: any) =>
+      link.getAttribute('href').replace('#', '')
+    );
+
+    postIndex.forEach((item) => {
+      const section = document.getElementById(item);
+      const link = document.querySelector(`a[href="#${item}"]`);
+
+      if (section && link && isSectionAtTop(section)) {
+        gsap.to(link, {
+          x: '-3px',
+          color: '#fff',
+          duration: 0.3,
+          ease: 'Expo.easeOut',
+        });
+      } else if (link) {
+        gsap.to(link, {
+          clearProps: 'all',
+          duration: 0.3,
+          ease: 'Expo.easeOut',
+        });
+      }
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', updateIndexAnimation);
+  window.addEventListener('scroll', updateIndexAnimation);
+</script>
