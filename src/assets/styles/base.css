@@ -571,3 +571,6 @@ lite-youtube::before {
 lite-youtube > .lty-playbtn {
   display: none !important;
 }
+.textGlow {
+  text-shadow: 0 0 20px #ffffff4f;
+}

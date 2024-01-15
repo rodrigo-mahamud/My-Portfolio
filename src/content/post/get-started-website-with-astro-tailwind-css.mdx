@@ -7,12 +7,26 @@ image: ../../assets/images/do-more.jpg
 video: hola
 accentColor: rgba(135, 0, 0, 1)
 canonical: https://astrowind.vercel.app/get-started-website-with-astro-tailwind-css
-rol: Lorem ipsum dolor sit amet
-duration: 4 months
-status: done
+
+postIndex:
+  - context
+  - the challenge
+  - solutions
+
+singlePostInfo:
+  rol: Vfx supervisor, Vfx producer
+  duration: 4 months
+  team: <i>Vfx supervisor.</i> - Jose Luis Cardona Tudela <br> <i>Nuke Composer.</i> - Jose Luis Cardona Tudela <br> <i>Houddini Artist</i> - Ismael Martínez Martínez <br> <i>Vfx supervisor.</i> - Jose Luis Cardona Tudela <br> <i>Houddini Artist</i> - Ismael Martínez Martínez <br> <i>Vfx supervisor.</i> - Jose Luis Cardona Tudela <br> <i>Houddini Artist</i> - Ismael Martínez Martínez <br> 
+  status: done
+  overview: Following the announcement of Stadia’s shutdown, questions remained on what would happen with the platform’s Wi-Fi proprietary controller — whether they could still be used wirelessly, or become e-waste.<br><br>I led the end-to-end design direction of the web experience for enabling Bluetooth on the controllers and played a pivotal role in defining the update process.<br><br> The website's launch was met with outstanding public sentiment from the community and publications, alongside 1 million+ successfully updated controllers.
+
 singlePostHeader:
   preTitle: Context
   title: The event that unite us
+
+singlePostHeader2:
+  preTitle: The Challenge
+  title: 260 shots in less than 80 days
 
 stats:
   title1: 'Downloads'
@@ -25,37 +39,47 @@ stats:
   amount4: '132'
 
 cards:
-  card:
-    url: https://www.youtube.com/watch?v=h4NJCc4AQxw
+  - url: https://www.youtube.com/watch?v=h4NJCc4AQxw
     info:
-      a:
-        icon: calendarTime
-        text: dfgojsdjgfsdjfgjosdfg dzsfovvmsdfsvbnjlsdfgb
-      b:
-        icon: thumbUp
-        text: dfgojsdjgfsdjfgjosdfg dzsfovvmsdfsvbnjlsdfgb
-      c:
-        icon: eye
-        text: dfgojsdjgfsdjfgjosdfg dzsfovvmsdfsvbnjlsdfgb
-      d:
-        icon: message-circle
-        text: dfgojsdjgfsdjfgjosdfg dzsfovvmsdfsvbnjlsdfgb
+      - icon: calendarTime
+        text: Focus is put on the process as a whole — motivates users to complete the update
+      - icon: thumbUp
+        text: Focus is put on the process as a whole — motivates users to complete the update
+      - icon: eye
+        text: Focus is put on the process as a whole — motivates users to complete the update
+      - icon: message-circle
+        text: Focus is put on the process as a whole — motivates users to complete the update
 
-  card2:
-    url: https://www.youtube.com/watch?v=h4NJCc4AQxw
+  - url: https://www.youtube.com/watch?v=_FMplFlIiOU&t
     info:
-      a:
-        icon: calendarTime
-        text: dfgojsdjgfsdjfgjosdfg dzsfovvmsdfsvbnjlsdfgb
-      b:
-        icon: thumbUp
-        text: dfgojsdjgfsdjfgjosdfg dzsfovvmsdfsvbnjlsdfgb
-      c:
-        icon: eye
-        text: dfgojsdjgfsdjfgjosdfg dzsfovvmsdfsvbnjlsdfgb
-      d:
-        icon: message-circle
-        text: dfgojsdjgfsdjfgjosdfg dzsfovvmsdfsvbnjlsdfgb
+      - icon: calendarTime
+        text: Focus is put on the process as a whole — motivates users to complete the update
+      - icon: thumbUp
+        text: Focus is put on the process as a whole — motivates users to complete the update
+      - icon: eye
+        text: Focus is put on the process as a whole — motivates users to complete the update
+      - icon: message-circle
+        text: Focus is put on the process as a whole — motivates users to complete the update
+  - url: https://www.youtube.com/watch?v=IbAuuxBFwoo&t
+    info:
+      - icon: calendarTime
+        text: Focus is put on the process as a whole — motivates users to complete the update
+      - icon: thumbUp
+        text: Focus is put on the process as a whole — motivates users to complete the update
+      - icon: eye
+        text: Focus is put on the process as a whole — motivates users to complete the update
+      - icon: message-circle
+        text: Focus is put on the process as a whole — motivates users to complete the update
+  - url: https://www.youtube.com/watch?v=TjkRhh3Gh1U&t
+    info:
+      - icon: calendarTime
+        text: Focus is put on the process as a whole — motivates users to complete the update
+      - icon: thumbUp
+        text: Focus is put on the process as a whole — motivates users to complete the update
+      - icon: eye
+        text: Focus is put on the process as a whole — motivates users to complete the update
+      - icon: message-circle
+        text: Focus is put on the process as a whole — motivates users to complete the update
 ---
 
 import SinglePostInfo from '~/components/blog/SinglePostInfo.astro';
@@ -66,22 +90,23 @@ import PostCards from '~/components/blog/PostCards.astro';
 
 import Stats from '~/components/widgets/Stats.astro';
 
-<SinglePostInfo
-  excerpt={frontmatter.excerpt}
-  duration={frontmatter.duration}
-  rol={frontmatter.rol}
-  status={frontmatter.status}
-/>
+
+<SinglePostInfo singlePostInfo={frontmatter.singlePostInfo}/>
 
 <SinglePostHeader title={frontmatter.singlePostHeader.title} preTitle={frontmatter.singlePostHeader.preTitle} />
-El Rewind Hispano es un vídeo recopilatorio que engloba lo más destacado de cada año en cuanto a eventos, memes, música,
-videojuegos, y prácticamente cualquier aspecto del mundo digital. Protagonizado por múltiples creadores y alentos hispanohablantes,resume
-los acontecimientos más relevantes del año.
+
+<p class="animate-on-scroll leading-7" data-type="simple" data-delay="0.15" data-duration="2.5" data-easing="Expo.easeOut">El Rewind Hispano es un vídeo recopilatorio que engloba lo más destacado de cada año en cuanto a eventos, memes, música,videojuegos, y prácticamente cualquier aspecto del mundo digital. Protagonizado pormúltiples creadores y alentos hispanohablantes,resumelos acontecimientos más relevantes del año.</p>
 
 <PostCards cards={frontmatter.cards} />
 
-El Rewind Hispano es un vídeo recopilatorio que engloba lo más destacado de cada año en cuanto a eventos, memes, música,
-videojuegos, y prácticamente cualquier aspecto del mundo digital. Protagonizado por múltiples creadores y alentos hispanohablantes,resume
-los acontecimientos más relevantes del año.
+<p class="animate-on-scroll" data-type="simple" data-delay="0.5" data-duration="2.5" data-easing="Expo.easeOut">El Rewind Hispano es un vídeo recopilatorio que engloba lo más destacado de cada año en cuanto a eventos, memes, música,videojuegos, y prácticamente cualquier aspecto del mundo digital. Protagonizado pormúltiples creadores y alentos hispanohablantes,resumelos acontecimientos más relevantes del año.</p>
+
+<SinglePostHeader title={frontmatter.singlePostHeader2.title} preTitle={frontmatter.singlePostHeader2.preTitle} />
+
+<p class="animate-on-scroll leading-7" data-type="simple" data-delay="0.15" data-duration="2.5" data-easing="Expo.easeOut">El Rewind Hispano es un vídeo recopilatorio que engloba lo más destacado de cada año en cuanto a eventos, memes, música,videojuegos, y prácticamente cualquier aspecto del mundo digital. Protagonizado pormúltiples creadores y alentos hispanohablantes,resumelos acontecimientos más relevantes del año. El Rewind Hispano es un vídeo recopilatorio que engloba lo más destacado de cada año en cuanto a eventos, memes, música,videojuegos, y prácticamente cualquier aspecto del mundo digital. Protagonizado pormúltiples creadores y alentos hispanohablantes,resumelos acontecimientos más relevantes del año. El Rewind Hispano es un vídeo recopilatorio que engloba lo más destacado de cada año en cuanto a eventos, memes, música,videojuegos, y prácticamente cualquier aspecto del mundo digital. Protagonizado pormúltiples creadores y alentos hispanohablantes,resumelos acontecimientos más relevantes del año.</p>
+
+<br></br>
+
+<p class="animate-on-scroll" data-type="simple" data-delay="0.15" data-duration="2.5" data-easing="Expo.easeOut">El Rewind Hispano es un vídeo recopilatorio que engloba lo más destacado de cada año en cuanto a eventos, memes, música,videojuegos, y prácticamente cualquier aspecto del mundo digital. Protagonizado pormúltiples creadores y alentos hispanohablantes,resumelos acontecimientos más relevantes del año. El Rewind Hispano es un vídeo recopilatorio que engloba lo más destacado de cada año en cuanto a eventos, memes, música,videojuegos, y prácticamente cualquier aspecto del mundo digital. Protagonizado pormúltiples creadores y alentos hispanohablantes,resumelos acontecimientos más relevantes del año.</p>
 
 <Stats items={frontmatter.stats} />

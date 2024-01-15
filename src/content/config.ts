@@ -12,8 +12,9 @@ const post = defineCollection({
       video: z.string().optional(),
       accentColor: z.string().optional(),
       canonical: z.string().url().optional(),
-      duration: z.string(),
-      status: z.string(),
+      duration: z.string().optional(),
+      status: z.string().optional(),
+      postIndex: z.array(z.string()).optional(),
     }),
 });
 

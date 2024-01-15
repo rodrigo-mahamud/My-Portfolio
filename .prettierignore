@@ -1,4 +1,6 @@
 dist
 node_modules
-.github
-.changeset
+*.github
+*.changeset
+*.mdx
+*.md

@@ -10,7 +10,7 @@ module.exports = {
         accent: 'var(--aw-color-accent)',
       },
       screens: {
-        '3xl': '1950px',
+        '3xl': '1919px',
       },
       fontFamily: {
         sans: ['var(--aw-font-sans)', ...defaultTheme.fontFamily.sans],

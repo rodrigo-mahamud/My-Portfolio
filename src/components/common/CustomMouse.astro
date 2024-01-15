@@ -171,14 +171,15 @@ import stickman from '../../assets/images/THE-CAKE-IS-A-LIE/portal-stickman.png'
       });
     });
 
-    let playClicked = false; // Variable para controlar si se ha hecho clic en 'play'
-
     const handleMouseEvents = () => {
       const linkElements = document.querySelectorAll('.custom-mouse');
 
-      linkElements.forEach((el) => {
+      linkElements.forEach((el: any) => {
+        el.dataset.playclicked = 'false';
+
         el.addEventListener('mouseenter', (e) => {
           if (!e.target || !(e.target instanceof HTMLElement)) return;
+          let playClicked = e.target.dataset.playclicked === 'true';
           let type = playClicked ? 'disabled' : e.target.dataset.typemouse;
 
           switch (type) {
@@ -238,9 +239,9 @@ import stickman from '../../assets/images/THE-CAKE-IS-A-LIE/portal-stickman.png'
         });
 
         el.addEventListener('click', (e) => {
-          const target = e.target as HTMLElement;
-          if (target && target.dataset.typemouse === 'play') {
-            playClicked = true;
+          if (!e.target || !(e.target instanceof HTMLElement)) return;
+          if (e.target.dataset.typemouse === 'play') {
+            e.target.dataset.playclicked = 'true';
             esferaScale = 0;
             gsap.to(esfera, {
               scale: esferaScale,
@@ -265,7 +266,7 @@ import stickman from '../../assets/images/THE-CAKE-IS-A-LIE/portal-stickman.png'
             });
             gsap.to([esferaLinkIcon, esferaPlayIcon], {
               opacity: 0,
-              duration: 0.25,
+              duration: 0.00001,
               ease: 'Expo.easeOut',
               onComplete: () => {
                 esferaLinkIcon.classList.add('hidden');
