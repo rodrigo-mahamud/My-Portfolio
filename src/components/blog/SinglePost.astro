@@ -1,7 +1,9 @@
 ---
 import { Image } from 'astro:assets';
+
 import { getFormattedDate } from '~/utils/utils';
 import type { Post } from '~/types';
+import PostIndex from './PostIndex.astro';
 
 export interface Props {
   post: Post;
@@ -9,7 +11,7 @@ export interface Props {
 }
 
 const { post } = Astro.props;
-
+const { Content } = post;
 function darkenColor(color, amount) {
   let [r, g, b, a] = color.match(/\d+/g).map(Number);
   r = Math.floor(r * amount);
@@ -17,6 +19,7 @@ function darkenColor(color, amount) {
   b = Math.floor(b * amount);
   return `rgba(${r}, ${g}, ${b}, ${a - 0.25})`;
 }
+console.log(post);
 
 const adjustedColor1 = darkenColor(post.accentColor, 0.5);
 ---
@@ -59,7 +62,8 @@ const adjustedColor1 = darkenColor(post.accentColor, 0.5);
     }}
   >
   </div>
-  <article class="opacity-0 blur-lg max-w-6xl mx-auto">
+  <PostIndex />
+  <article class="opacity-0 blur-lg max-w-[80vw] lg:max-w-3xl xl:max-w-4xl 2xl:max-w-5xl 3xl:max-w-6xl mx-auto">
     <header class="w-full h-full pt-28">
       <div class="flex justify-between flex-col pb-16 mt-0 mb-2 px-4 sm:px-6 sm:items-center">
         <h1
@@ -85,15 +89,15 @@ const adjustedColor1 = darkenColor(post.accentColor, 0.5);
         post.image ? (
           <>
             <Image
-              class="max-w-full w-full mx-auto mb-6 sm:rounded-md bg-gray-400 dark:bg-slate-700 animate-on-scroll"
-              src={post.image}
+              class="rounded-3xl"
+              alt={`Imagen del ${post.title}`}
               widths={[275, 475, 575, 1050, 1250]}
               sizes={`(max-width: 550px) 275px, (max-width: 750px) 475px, (max-width: 950px) 575px,(max-width: 1920px) 1050px, (max-width: 2560px) 1250px,`}
               quality={'mid'}
               format="avif"
               loading="lazy"
+              src={post.image}
               decoding="async"
-              alt={`Imagen del ${post.title}`}
             />
           </>
         ) : (
@@ -104,12 +108,13 @@ const adjustedColor1 = darkenColor(post.accentColor, 0.5);
       }
     </header>
 
-    <div class="mx-auto mt-8">
-      {post.Content && <post.Content />}
+    <div class="mx-auto">
+      <Content />
     </div>
   </article>
 </section>
 <script>
+  // eslint-disable-next-line no-unused-vars
   import { YouTube } from '@astro-community/astro-embed-youtube';
   import { gsap } from 'gsap';
   const article = document.querySelector('article');

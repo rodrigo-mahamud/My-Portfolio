@@ -10,6 +10,10 @@ canonical: https://astrowind.vercel.app/get-started-website-with-astro-tailwind-
 rol: Lorem ipsum dolor sit amet
 duration: 4 months
 status: done
+postIndex:
+  - context
+  - the challenge
+  - solutions
 ---
 
 ## Congue justo vulputate nascetur convallis varius orci fringilla nulla pharetr

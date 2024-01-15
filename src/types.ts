@@ -7,7 +7,7 @@ export interface Post {
   title: string;
   rol?: string;
 
-  image?: string;
+  image?: any;
   video?: string;
 
   canonical?: string | URL;
@@ -16,10 +16,10 @@ export interface Post {
   accentColor?: string;
   excerpt?: string;
   category?: string;
-  tags?: Array<string>;
+  postIndex?: Array<string>;
   status: string;
 
-  Content: unknown;
+  Content: string;
 }
 
 export interface MetaSEO {
