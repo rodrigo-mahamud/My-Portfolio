@@ -1,0 +1,38 @@
+---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+
+const { mediaFiles } = Astro.props;
+
+const imagePaths = mediaFiles.images.map((image) => image.replace('../../', '/src/'));
+const imageSources = import.meta.glob<{ default: ImageMetadata }>('/src/assets/images/*.{jpeg,jpg,png,gif}');
+---
+
+<div class="grid grid-cols-2 grid-rows-12 gap-4 h-screen">
+  {
+    imagePaths.map((imagePath) => {
+      const imageSrc = imageSources[imagePath]();
+      return (
+        <div class="row-span-4">
+          <Image
+            class="rounded-3xl"
+            alt="imagen"
+            widths={[275, 475, 575, 1050, 1250]}
+            sizes={`(max-width: 550px) 275px, (max-width: 750px) 475px, (max-width: 950px) 575px, (max-width: 1920px) 1050px, (max-width: 2560px) 1250px,`}
+            quality={'mid'}
+            format="avif"
+            loading="lazy"
+            src={imageSrc}
+            decoding="async"
+          />
+        </div>
+      );
+    })
+  }
+</div>
+
+{
+  mediaFiles.videos.map((videoSrc) => {
+    return <video class="h-full w-full" src={videoSrc} autoplay muted playsinline loop />;
+  })
+}

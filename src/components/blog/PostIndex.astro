@@ -3,17 +3,16 @@ const { postIndex } = Astro.props;
 ---
 
 <aside class="sticky top-32 px-12 h-0 w-full flex flex-col items-end">
-  <div class="flex flex-col items-start">
-    <h2 class="text-sm">INDEX</h2>
+  <div class="flex flex-col items-start w-[6vw]">
     <ul class="pt-5">
       {
         postIndex.map((item) => (
           <li class="flex flex-row items-center pb-4">
-            <h3 class="text-xs">
-              <a class="post-index-link" href={`#${item.toLowerCase().replace(/\s+/g, '')}`}>
+            <span class="text-xs">
+              <a class="post-index-link text-gray-400" href={`#${item.toLowerCase().replace(/\s+/g, '')}`}>
                 {item}
               </a>
-            </h3>
+            </span>
           </li>
         ))
       }
@@ -22,12 +21,12 @@ const { postIndex } = Astro.props;
 </aside>
 <script>
   import { gsap } from 'gsap';
-
   let lastAnimatedLink: Element | null = null;
 
-  function isSectionAtTop(el: Element): boolean {
+  function isSectionAtTop(el: Element, thresholdPercentage: number = 20): boolean {
     const rect = el.getBoundingClientRect();
-    return rect.top <= 0 && rect.top + rect.height >= 0;
+    const threshold = window.innerHeight * (thresholdPercentage / 100);
+    return rect.top <= threshold && rect.bottom >= threshold;
   }
 
   function updateIndexAnimation() {
@@ -39,7 +38,7 @@ const { postIndex } = Astro.props;
       const section = document.getElementById(item);
       const link = document.querySelector(`a[href="#${item}"]`) as Element | null;
 
-      if (section && link && isSectionAtTop(section)) {
+      if (section && link && isSectionAtTop(section, 10)) {
         if (lastAnimatedLink && lastAnimatedLink !== link) {
           gsap.to(lastAnimatedLink, {
             clearProps: 'all',
@@ -49,9 +48,10 @@ const { postIndex } = Astro.props;
         }
 
         gsap.to(link, {
-          scale: 1.5,
           color: '#fff',
-          duration: 0.3,
+          marginLeft: '0.25rem',
+          duration: 0.5,
+          delay: 0.3,
           ease: 'Expo.easeOut',
         });
         lastAnimatedLink = link;

@@ -80,6 +80,15 @@ cards:
         text: Focus is put on the process as a whole — motivates users to complete the update
       - icon: message-circle
         text: Focus is put on the process as a whole — motivates users to complete the update
+
+PostGalleryGrid:
+   images: 
+      - ../../assets/images/do-more.jpg
+      - ../../assets/images/do-more.jpg      
+   videos: 
+      - /robgifOP.mp4
+      - /robgifOP.mp4
+         
 ---
 
 import SinglePostInfo from '~/components/blog/SinglePostInfo.astro';
@@ -89,6 +98,8 @@ import SinglePostHeader from '~/components/blog/SinglePostHeader.astro';
 import PostCards from '~/components/blog/PostCards.astro';
 
 import Stats from '~/components/widgets/Stats.astro';
+
+import PostGalleryGrid from '~/components/blog/PostGalleryGrid.astro';
 
 
 <SinglePostInfo singlePostInfo={frontmatter.singlePostInfo}/>
@@ -108,5 +119,8 @@ import Stats from '~/components/widgets/Stats.astro';
 <br></br>
 
 <p class="animate-on-scroll" data-type="simple" data-delay="0.15" data-duration="2.5" data-easing="Expo.easeOut">El Rewind Hispano es un vídeo recopilatorio que engloba lo más destacado de cada año en cuanto a eventos, memes, música,videojuegos, y prácticamente cualquier aspecto del mundo digital. Protagonizado pormúltiples creadores y alentos hispanohablantes,resumelos acontecimientos más relevantes del año. El Rewind Hispano es un vídeo recopilatorio que engloba lo más destacado de cada año en cuanto a eventos, memes, música,videojuegos, y prácticamente cualquier aspecto del mundo digital. Protagonizado pormúltiples creadores y alentos hispanohablantes,resumelos acontecimientos más relevantes del año.</p>
+
+
+<PostGalleryGrid mediaFiles={frontmatter.PostGalleryGrid}  />
 
 <Stats items={frontmatter.stats} />
