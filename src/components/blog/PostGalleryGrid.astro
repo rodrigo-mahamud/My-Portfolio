@@ -35,20 +35,20 @@ const imageSources = import.meta.glob<{ default: ImageMetadata }>('/src/assets/i
   {
     mediaFiles.videos.map((videoSrc, index) => {
       const spanClass = [
-        'col-span-3 row-span-4', // Primeros dos vídeos
+        'col-span-3 row-span-4',
         'col-span-2 row-span-4 col-start-4',
-        'col-span-2 row-span-4 row-start-5', // Tercer vídeo
-        'col-span-3 row-span-4 col-start-3 row-start-5', // Cuarto vídeo
-        'col-span-5 row-span-4 row-start-9', // Quinto vídeo
-      ][index % 5]; // Repetir patrón para más de 5 vídeos
+        'col-span-2 row-span-4 row-start-5',
+        'col-span-3 row-span-4 col-start-3 row-start-5',
+        'col-span-5 row-span-4 row-start-9',
+      ][index % 5];
 
       return (
         <div class={`bento ${spanClass}`}>
           <div class="bento-content h-full w-full rounded-xl overflow-hidden">
             <div class="w-full h-full absolute z-10 bento-text-container flex items-end justify-end">
-              <div class="py-6 px-12 text-center">
-                <p class="text-white font-semibold mb-1">3d Modeling and Texturing </p>
-                <p class="text-white">Made By: Carlos Bea</p>
+              <div class="py-6 px-12 text-end">
+                <p class="text-gray-400 font-semibold mb-1">3d Modeling and Texturing </p>
+                <p class="text-white text-sm ">By: Carlos Bea</p>
               </div>
             </div>
             <video class="object-cover h-full w-full -z-10" src={videoSrc} autoplay muted playsinline loop />
