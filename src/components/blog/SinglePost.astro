@@ -165,7 +165,6 @@ const adjustedColor1 = darkenColor(post.accentColor, 0.5);
 
   document.getElementById('cards')!.onmousemove = (e: MouseEvent) => {
     const cards = document.getElementsByClassName('bento');
-    console.log(cards);
 
     for (const card of Array.from(cards) as ExtendedHTMLElement[]) {
       const rect = card.getBoundingClientRect();
