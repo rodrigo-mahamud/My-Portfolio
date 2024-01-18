@@ -1,39 +1,32 @@
 ---
+// Importaciones y definición de propiedades
 import { Image } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
 
 const { mediaFiles } = Astro.props;
 
-const imagePaths = mediaFiles.images.map((image) => image.replace('../../', '/src/'));
+// Asegurar que images y videos sean arrays iterables
+const images = Array.isArray(mediaFiles.images) ? mediaFiles.images : [];
+const videos = Array.isArray(mediaFiles.videos) ? mediaFiles.videos : [];
+
+// Combinar y transformar rutas de imágenes
+const unifiedMediaPaths = [...images, ...videos].map((file) => file.replace('../../', '/src/'));
+
+// Importar metadatos de imágenes
 const imageSources = import.meta.glob<{ default: ImageMetadata }>('/src/assets/images/*.{jpeg,jpg,png,gif}');
 ---
 
-{/* Sección para Imágenes */}
-<div class="grid grid-cols-2 grid-rows-12 gap-4">
-  {
-    imagePaths.map((imagePath, index) => {
-      const imageSrc = imageSources[imagePath]();
-
-      const spanClass = [
-        'row-span-4', // Primeras dos imágenes
-        'row-span-8 row-start-5', // Tercera imagen
-        'row-span-4 row-start-5', // Cuarta imagen
-        'row-span-4 col-start-2 row-start-9', // Quinta imagen
-      ][index % 5]; // Repetir patrón para más de 5 imágenes
-
-      return (
-        <div class={spanClass}>
-          <Image class="rounded-3xl" alt="Imagen" src={imageSrc} loading="lazy" decoding="async" />
-        </div>
-      );
-    })
-  }
-</div>
-
-{/* Sección para Vídeos */}
+<!-- Renderizado condicional basado en el tipo de archivo -->
 <div id="cards" class="grid grid-cols-5 grid-rows-12 gap-8 h-[150vh]">
   {
-    mediaFiles.videos.map((videoSrc, index) => {
+    unifiedMediaPaths.map((mediaPath, index) => {
+      const isImage =
+        mediaPath.endsWith('.jpg') ||
+        mediaPath.endsWith('.jpeg') ||
+        mediaPath.endsWith('.png') ||
+        mediaPath.endsWith('.gif');
+      const mediaSrc = isImage ? imageSources[mediaPath]() : mediaPath;
+
       const spanClass = [
         'col-span-3 row-span-4',
         'col-span-2 row-span-4 col-start-4',
@@ -51,7 +44,11 @@ const imageSources = import.meta.glob<{ default: ImageMetadata }>('/src/assets/i
                 <p class="text-white text-sm ">By: Carlos Bea</p>
               </div>
             </div>
-            <video class="object-cover h-full w-full -z-10" src={videoSrc} autoplay muted playsinline loop />
+            {isImage ? (
+              <Image class="rounded-3xl" alt="Imagen" src={mediaSrc} loading="lazy" decoding="async" />
+            ) : (
+              <video class="object-cover h-full w-full -z-10" src={mediaSrc} autoplay muted playsinline loop />
+            )}
           </div>
         </div>
       );
