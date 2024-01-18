@@ -9,23 +9,24 @@ const { mediaFiles } = Astro.props;
 const images = Array.isArray(mediaFiles.images) ? mediaFiles.images : [];
 const videos = Array.isArray(mediaFiles.videos) ? mediaFiles.videos : [];
 
-// Combinar y transformar rutas de imágenes
-const unifiedMediaPaths = [...images, ...videos].map((file) => file.replace('../../', '/src/'));
+// Combinar y transformar rutas de imágenes y vídeos
+const unifiedMediaPaths = [...images, ...videos];
+console.log(unifiedMediaPaths);
 
 // Importar metadatos de imágenes
 const imageSources = import.meta.glob<{ default: ImageMetadata }>('/src/assets/images/*.{jpeg,jpg,png,gif}');
 ---
 
 <!-- Renderizado condicional basado en el tipo de archivo -->
-<div id="cards" class="grid grid-cols-5 grid-rows-12 gap-8 h-[150vh]">
+<div id="cards" class="grid grid-cols-5 grid-rows-12 gap-8 h-[150vh] mt-16">
   {
-    unifiedMediaPaths.map((mediaPath, index) => {
+    unifiedMediaPaths.map((mediaItem, index) => {
       const isImage =
-        mediaPath.endsWith('.jpg') ||
-        mediaPath.endsWith('.jpeg') ||
-        mediaPath.endsWith('.png') ||
-        mediaPath.endsWith('.gif');
-      const mediaSrc = isImage ? imageSources[mediaPath]() : mediaPath;
+        mediaItem.path.endsWith('.jpg') ||
+        mediaItem.path.endsWith('.jpeg') ||
+        mediaItem.path.endsWith('.png') ||
+        mediaItem.path.endsWith('.gif');
+      const mediaSrc = isImage ? imageSources[mediaItem.path]() : mediaItem.path;
 
       const spanClass = [
         'col-span-3 row-span-4',
@@ -40,8 +41,8 @@ const imageSources = import.meta.glob<{ default: ImageMetadata }>('/src/assets/i
           <div class="bento-content h-full w-full rounded-xl overflow-hidden">
             <div class="w-full h-full absolute z-10 bento-text-container flex items-end justify-end">
               <div class="py-6 px-12 text-end">
-                <p class="text-gray-400 font-semibold mb-1">3d Modeling and Texturing </p>
-                <p class="text-white text-sm ">By: Carlos Bea</p>
+                <p class="text-gray-400 font-semibold mb-1">{mediaItem.title}</p>
+                <p class="text-white text-sm ">{mediaItem.subtitle}</p>
               </div>
             </div>
             {isImage ? (
