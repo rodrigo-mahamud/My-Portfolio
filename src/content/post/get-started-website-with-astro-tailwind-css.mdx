@@ -85,8 +85,12 @@ cards:
       - icon: message-circle
         text: Focus is put on the process as a whole — motivates users to complete the update
 
-PostGalleryGrid:
+postImage: 
+  path: /MiniaturaDelRewind.png
+  caption: The image caption
+  delay: 2.5
 
+PostGalleryGrid:
    videos: 
       - path: /pepeluRW2-OP.mp4
         title: Nuke Composition
@@ -105,8 +109,8 @@ PostGalleryGrid:
         subtitle: adios      
 
       - path: /nukeIsma.mp4
-        title: hola
-        subtitle: adios         
+        title: Oppenheimer explosion CGI recreation
+        subtitle: By Ismael Martinez, Julen Elia & Héctor Gallego          
 ---
 
 import SinglePostInfo from '~/components/blog/SinglePostInfo.astro';
@@ -116,6 +120,8 @@ import SinglePostHeader from '~/components/blog/SinglePostHeader.astro';
 import PostCards from '~/components/blog/PostCards.astro';
 
 import Stats from '~/components/widgets/Stats.astro';
+
+import PostImage from '~/components/blog/PostImage.astro';
 
 import PostGalleryGrid from '~/components/blog/PostGalleryGrid.astro';
 
@@ -138,8 +144,12 @@ import PostGalleryGrid from '~/components/blog/PostGalleryGrid.astro';
 
 <p class="animate-on-scroll" data-type="simple" data-delay="0.15" data-duration="2.5" data-easing="Expo.easeOut">El Rewind Hispano es un vídeo recopilatorio que engloba lo más destacado de cada año en cuanto a eventos, memes, música,videojuegos, y prácticamente cualquier aspecto del mundo digital. Protagonizado pormúltiples creadores y alentos hispanohablantes,resumelos acontecimientos más relevantes del año. El Rewind Hispano es un vídeo recopilatorio que engloba lo más destacado de cada año en cuanto a eventos, memes, música,videojuegos, y prácticamente cualquier aspecto del mundo digital. Protagonizado pormúltiples creadores y alentos hispanohablantes,resumelos acontecimientos más relevantes del año.</p>
 
+<PostImage image={frontmatter.postImage} />
+
 <SinglePostHeader title={frontmatter.singlePostHeader3.title} preTitle={frontmatter.singlePostHeader3.preTitle}/>
 <p class="animate-on-scroll leading-7" data-type="simple" data-delay="0.15" data-duration="2.5" data-easing="Expo.easeOut">El Rewind Hispano es un vídeo recopilatorio que engloba lo más destacado de cada año en cuanto a eventos, memes, música,videojuegos, y prácticamente cualquier aspecto del mundo digital. Protagonizado pormúltiples creadores y alentos hispanohablantes,resumelos acontecimientos más relevantes del año.</p>
+
+
 
 <PostGalleryGrid mediaFiles={frontmatter.PostGalleryGrid}  />
 
