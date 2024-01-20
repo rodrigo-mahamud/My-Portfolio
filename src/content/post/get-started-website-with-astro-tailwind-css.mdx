@@ -112,7 +112,11 @@ PostGalleryGrid:
 
       - path: /nukeIsma.mp4
         title: Oppenheimer explosion CGI recreation
-        subtitle: By Ismael Martinez, Julen Elia & Héctor Gallego          
+        subtitle: By Ismael Martinez, Julen Elia & Héctor Gallego  
+        
+PostNextProject:
+  path: /robi.png
+  title: The image caption        
 ---
 
 import SinglePostInfo from '~/components/blog/SinglePostInfo.astro';
@@ -128,6 +132,8 @@ import PostImage from '~/components/blog/PostImage.astro';
 import PostGalleryGrid from '~/components/blog/PostGalleryGrid.astro';
 
 import PostTextImage from '~/components/blog/PostTextImage.astro';
+
+import PostNextProject from '~/components/blog/PostNextProject.astro';
 
 
 <SinglePostInfo singlePostInfo={frontmatter.singlePostInfo}/>
@@ -151,11 +157,10 @@ import PostTextImage from '~/components/blog/PostTextImage.astro';
 <PostImage image={frontmatter.postImage} />
 
 <SinglePostHeader title={frontmatter.singlePostHeader3.title} preTitle={frontmatter.singlePostHeader3.preTitle}/>
-<p class="animate-on-scroll leading-7" data-type="simple" data-delay="0.15" data-duration="2.5" data-easing="Expo.easeOut">El Rewind Hispano es un vídeo recopilatorio que engloba lo más destacado de cada año en cuanto a eventos, memes, música,videojuegos, y prácticamente cualquier aspecto del mundo digital. Protagonizado pormúltiples creadores y alentos hispanohablantes,resumelos acontecimientos más relevantes del año.</p>
-
+<p class="animate-on-scroll leading-7" data-type="simple" data-delay="0.1" data-duration="2.5" data-easing="Expo.easeOut">El Rewind Hispano es un vídeo recopilatorio que engloba lo más destacado de cada año en cuanto a eventos, memes, música,videojuegos, y prácticamente cualquier aspecto del mundo digital. Protagonizado pormúltiples creadores y alentos hispanohablantes,resumelos acontecimientos más relevantes del año.</p>
 
 <PostGalleryGrid mediaFiles={frontmatter.PostGalleryGrid}  />
 
-
-
 <Stats items={frontmatter.stats} />
+
+<PostNextProject data={frontmatter.PostNextProject} />

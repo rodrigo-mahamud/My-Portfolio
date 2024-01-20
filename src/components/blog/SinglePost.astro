@@ -200,4 +200,22 @@ const adjustedColor1 = darkenColor(post.accentColor, 0.5);
     requestAnimationFrame(animate);
   }
   animate();
+
+  const nextSection = document.getElementById('nextSection');
+  nextSection?.addEventListener('mouseenter', () => {
+    const image = document.getElementById('image');
+    gsap.to(image, {
+      y: '-20vh',
+      duration: 1.5,
+      ease: 'Expo.easeOut',
+    });
+  });
+  nextSection?.addEventListener('mouseleave', () => {
+    const image = document.getElementById('image');
+    gsap.to(image, {
+      y: '0',
+      duration: 1.5,
+      ease: 'Expo.easeOut',
+    });
+  });
 </script>

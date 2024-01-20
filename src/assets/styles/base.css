@@ -612,6 +612,14 @@ lite-youtube > .lty-playbtn {
     #0a0119;
   box-shadow: -50px 450px 220px 0px #0a0118, 50px 450px 220px 0px #0a0118, 0px 0px 0px 1px #ffffff25;
 }
+.glowLine::before {
+  content: '';
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, rgba(255, 255, 255, 1) 50%, rgba(0, 0, 0, 0) 100%);
+  width: 100%;
+  position: relative;
+  display: flex;
+  height: 1px;
+}
 /* .imageCard img {
   box-shadow: -250px 250px 80px 0px #0a0118, 250px -250px 80px 0px #0a0118, 0px 0px 0px 1px rgba(255, 255, 255, 0.35);
 } */

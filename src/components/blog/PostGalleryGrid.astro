@@ -36,7 +36,14 @@ const imageSources = import.meta.glob<{ default: ImageMetadata }>('/src/assets/i
       ][index % 5];
 
       return (
-        <div class={`bento custom-mouse ${spanClass}`} data-typemouse="link">
+        <div
+          data-type="simple"
+          data-delay={`${0.2 + index * 0.1}`}
+          data-duration="2.5"
+          data-easing="Expo.easeOut"
+          class={`animate-on-scroll bento custom-mouse ${spanClass}`}
+          data-typemouse="link"
+        >
           <div class="flex flex-col bento-content h-full w-full rounded-xl overflow-hidden">
             <div class="flex flex-col items-start justify-start pt-8 px-8 text-start">
               <p class="text-white font-semibold mb-2">{mediaItem.title}</p>

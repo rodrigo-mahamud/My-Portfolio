@@ -1,24 +1,18 @@
 ---
 import { Image } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
-const { image } = Astro.props;
-
+const { data } = Astro.props;
 const imagePath = import.meta.glob<{ default: ImageMetadata }>('/src/assets/works/*.{jpeg,jpg,png,gif}');
-const imageSrc = imagePath[`/src/assets/works${image.path}`]();
+const imageSrc = imagePath[`/src/assets/works${data.path}`]();
 ---
 
-<div
-  class="animate-on-scroll"
-  data-type="simple"
-  data-delay={image.delay}
-  data-duration="2.5"
-  data-easing="Expo.easeOut"
->
-  <div class="imageCard border-b border-[#71688227] rounded-2xl w-full h-full my-16">
-    <div class="p-20">
+<section id="nextSection" class="w-full h-[50vh]">
+  <div class="flex h-full justify-center items-end">
+    <div class="flex w-full justify-center items-center absolute -z-10">
       <Image
-        class="rounded-2xl"
-        alt={`Imagen del ${image}`}
+        id="image"
+        class="rounded-2xl w-1/2"
+        alt="{`Imagen del}"
         widths={[275, 475, 575, 1050, 1250]}
         sizes={`(max-width: 550px) 275px, (max-width: 750px) 475px, (max-width: 950px) 575px,(max-width: 1920px) 1050px, (max-width: 2560px) 1250px,`}
         quality={'mid'}
@@ -28,5 +22,6 @@ const imageSrc = imagePath[`/src/assets/works${image.path}`]();
         decoding="async"
       />
     </div>
+    <div class="glowLine w-full h-[25vh] bg-[#0a0118]"></div>
   </div>
-</div>
+</section>
