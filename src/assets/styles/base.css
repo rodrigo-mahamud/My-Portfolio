@@ -620,6 +620,6 @@ lite-youtube > .lty-playbtn {
   display: flex;
   height: 1px;
 }
-/* .imageCard img {
-  box-shadow: -250px 250px 80px 0px #0a0118, 250px -250px 80px 0px #0a0118, 0px 0px 0px 1px rgba(255, 255, 255, 0.35);
-} */
+canvas {
+  clip-path: inset(1px 0 0 0);
+}

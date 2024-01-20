@@ -6,8 +6,12 @@ const imagePath = import.meta.glob<{ default: ImageMetadata }>('/src/assets/work
 const imageSrc = imagePath[`/src/assets/works${data.path}`]();
 ---
 
-<section id="nextSection" class="w-full h-[50vh]">
-  <div class="flex h-full justify-center items-end">
+<section class="w-full h-[75vh]">
+  <div id="nextSection" class="absolute w-full h-full z-50"></div>
+  <div class="flex h-full justify-center items-end relative">
+    <div id="canvas-container" class="absolute top-0 w-1/2 h-[50vh]">
+      <canvas id="canvas"></canvas>
+    </div>
     <div class="flex w-full justify-center items-center absolute -z-10">
       <Image
         id="image"

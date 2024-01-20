@@ -218,4 +218,96 @@ const adjustedColor1 = darkenColor(post.accentColor, 0.5);
       ease: 'Expo.easeOut',
     });
   });
+  const canvasContainer: HTMLElement = document.getElementById('canvas-container')!;
+  const canvas: HTMLCanvasElement = document.getElementById('canvas') as HTMLCanvasElement;
+  const ctx: CanvasRenderingContext2D = canvas.getContext('2d')!;
+
+  // Ajustar el tamaño del canvas al tamaño del contenedor
+  function resizeCanvas() {
+    canvas.width = canvasContainer.clientWidth;
+    canvas.height = canvasContainer.clientHeight;
+  }
+
+  // Llamar a resizeCanvas en la carga inicial y en el evento de redimensionamiento
+  resizeCanvas();
+  window.addEventListener('resize', resizeCanvas);
+
+  interface Star {
+    x: number;
+    y: number;
+    radius: number;
+    velocity: number;
+    alpha: number; // Opacidad de la estrella
+  }
+
+  const stars: Star[] = [];
+  const maxStars: number = 100; // Cantidad de estrellas
+
+  // Función para crear una nueva estrella
+  function createStar(): Star {
+    return {
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height + canvas.height,
+      radius: Math.random() * 1.25 + 0.5, // Tamaño de las estrellas
+      velocity: Math.random() * 0.2 + 0.1, // Velocidad de la estrella
+      alpha: 1, // Opacidad inicial
+    };
+  }
+
+  // Crear estrellas iniciales
+  for (let i = 0; i < maxStars; i++) {
+    stars.push(createStar());
+  }
+
+  let animating = false;
+
+  // Función para reiniciar las estrellas
+  function resetStars() {
+    stars.forEach((star) => {
+      star.y = Math.random() * canvas.height + canvas.height; // Coloca las estrellas en la parte inferior
+      star.alpha = 1; // Restablece la opacidad
+    });
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+  }
+
+  // Evento mouseenter
+  nextSection?.addEventListener('mouseenter', () => {
+    animating = true;
+    starAnimation();
+  });
+
+  // Evento mouseout
+  nextSection?.addEventListener('mouseout', () => {
+    resetStars();
+    animating = false;
+  });
+
+  // Función de animación
+  function starAnimation() {
+    if (!animating) return; // Detener animación si animating es falso
+
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    stars.forEach((star) => {
+      star.y -= star.velocity; // Mover la estrella hacia arriba
+      if (star.y < -star.radius) {
+        star.y = canvas.height + star.radius; // Reiniciar la posición de la estrella
+        star.alpha = 1; // Restablecer la opacidad
+      }
+
+      // Reducir la opacidad de forma aleatoria a medida que se acercan al borde superior
+      if (star.y < canvas.height * 0.2) {
+        star.alpha = Math.random() * (star.y / (canvas.height * 0.2));
+      }
+
+      // Dibujar la estrella
+      ctx.globalAlpha = star.alpha; // La opacidad de la estrella
+      ctx.fillStyle = '#fff'; // Color blanco
+      ctx.beginPath();
+      ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+      ctx.fill();
+    });
+
+    requestAnimationFrame(starAnimation);
+  }
 </script>
