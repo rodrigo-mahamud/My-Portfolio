@@ -595,3 +595,15 @@ lite-youtube > .lty-playbtn {
 .textGlow {
   text-shadow: 0 0 20px #ffffff4f;
 }
+.imageCard::before {
+  content: '';
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, rgba(255, 255, 255, 1) 50%, rgba(0, 0, 0, 0) 100%);
+  width: 100%;
+  position: relative;
+  display: flex;
+  height: 1px;
+}
+.imageCard {
+  background: linear-gradient(0deg, #0a0118 0%, rgba(22, 9, 42, 0.75) 100%);
+  box-shadow: -50px 450px 220px 0px #0a0118, 50px 450px 220px 0px #0a0118, 0px 0px 0px 1px #f2f2f225;
+}

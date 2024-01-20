@@ -86,9 +86,11 @@ cards:
         text: Focus is put on the process as a whole — motivates users to complete the update
 
 postImage: 
-  path: /MiniaturaDelRewind.png
+  path: /robi.png
   caption: The image caption
-  delay: 2.5
+  delay: 0.5
+
+
 
 PostGalleryGrid:
    videos: 
@@ -125,6 +127,8 @@ import PostImage from '~/components/blog/PostImage.astro';
 
 import PostGalleryGrid from '~/components/blog/PostGalleryGrid.astro';
 
+import PostTextImage from '~/components/blog/PostTextImage.astro';
+
 
 <SinglePostInfo singlePostInfo={frontmatter.singlePostInfo}/>
 
@@ -150,7 +154,8 @@ import PostGalleryGrid from '~/components/blog/PostGalleryGrid.astro';
 <p class="animate-on-scroll leading-7" data-type="simple" data-delay="0.15" data-duration="2.5" data-easing="Expo.easeOut">El Rewind Hispano es un vídeo recopilatorio que engloba lo más destacado de cada año en cuanto a eventos, memes, música,videojuegos, y prácticamente cualquier aspecto del mundo digital. Protagonizado pormúltiples creadores y alentos hispanohablantes,resumelos acontecimientos más relevantes del año.</p>
 
 
-
 <PostGalleryGrid mediaFiles={frontmatter.PostGalleryGrid}  />
+
+
 
 <Stats items={frontmatter.stats} />
