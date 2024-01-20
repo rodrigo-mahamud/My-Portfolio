@@ -505,12 +505,12 @@ audio {
 
 .bento {
   background: radial-gradient(
-    75.23% 75.93% at 20% 0%,
+    75.23% 75.93% at 50% 0%,
     rgba(255, 255, 255, 0.5) 0%,
     rgba(133, 102, 255, 0) 100%,
     rgba(133, 102, 255, 0) 100%
   );
-  background-color: rgba(255, 255, 255, 0.035);
+  background-color: rgba(255, 255, 255, 0.075);
   box-shadow: 0px 0px 0px #fff;
   border-radius: 16px;
   display: flex;
@@ -565,12 +565,12 @@ audio {
 
 .bento > .bento-content {
   background: radial-gradient(
-      75.23% 75.93% at 20% 0%,
-      rgba(255, 255, 255, 0.05) 0%,
+      75.23% 75.93% at 50% 0%,
+      rgba(255, 255, 255, 0.08) 0%,
       rgba(133, 102, 255, 0) 100%,
       rgba(133, 102, 255, 0) 100%
     ),
-    #0a0118;
+    #0a0119;
   border-radius: inherit;
   display: flex;
   flex-direction: column;
@@ -603,8 +603,14 @@ lite-youtube > .lty-playbtn {
   height: 1px;
 }
 .imageCard {
-  background: linear-gradient(0deg, #0a0118 0%, rgba(22, 9, 42, 0.75) 100%);
-  box-shadow: -50px 450px 220px 0px #0a0118, 50px 450px 220px 0px #0a0118, 0px 0px 0px 1px #f2f2f225;
+  background: radial-gradient(
+      75.23% 75.93% at 50% 0%,
+      rgba(255, 255, 255, 0.08) 0%,
+      rgba(133, 102, 255, 0) 100%,
+      rgba(133, 102, 255, 0) 100%
+    ),
+    #0a0119;
+  box-shadow: -50px 450px 220px 0px #0a0118, 50px 450px 220px 0px #0a0118, 0px 0px 0px 1px #ffffff25;
 }
 /* .imageCard img {
   box-shadow: -250px 250px 80px 0px #0a0118, 250px -250px 80px 0px #0a0118, 0px 0px 0px 1px rgba(255, 255, 255, 0.35);

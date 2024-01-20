@@ -17,7 +17,7 @@ const imageSources = import.meta.glob<{ default: ImageMetadata }>('/src/assets/i
 ---
 
 <!-- Renderizado condicional basado en el tipo de archivo -->
-<div id="cards" class="grid grid-cols-5 grid-rows-12 gap-8 h-[175vh] mt-16">
+<div id="cards" class="grid grid-cols-5 grid-rows-12 gap-6 h-[185vh] mt-16">
   {
     unifiedMediaPaths.map((mediaItem, index) => {
       const isImage =
@@ -36,26 +36,17 @@ const imageSources = import.meta.glob<{ default: ImageMetadata }>('/src/assets/i
       ][index % 5];
 
       return (
-        <div class={`bento ${spanClass}`}>
+        <div class={`bento custom-mouse ${spanClass}`} data-typemouse="link">
           <div class="flex flex-col bento-content h-full w-full rounded-xl overflow-hidden">
-            <div class="flex flex-col items-start justify-start h-1/4 py-6 px-12 text-end">
-              <p class="text-white font-semibold">{mediaItem.title}</p>
+            <div class="flex flex-col items-start justify-start pt-8 px-8 text-start">
+              <p class="text-white font-semibold mb-2">{mediaItem.title}</p>
               <p class=" text-gray-400 ">{mediaItem.subtitle}</p>
             </div>
-            <div class="flex h-3/4 ">
+            <div class=" flex m-8 h-full overflow-hidden">
               {isImage ? (
                 <Image class="rounded-xl" alt="Imagen" src={mediaSrc} loading="lazy" decoding="async" />
               ) : (
-                <div class="m-9 w-full overflow-hidden p-[0.75px] rounded-md">
-                  <video
-                    class="object-cover h-full w-full rounded-md "
-                    src={mediaSrc}
-                    autoplay
-                    muted
-                    playsinline
-                    loop
-                  />
-                </div>
+                <video class="object-cover h-full w-full rounded-md" src={mediaSrc} autoplay muted playsinline loop />
               )}
             </div>
           </div>
