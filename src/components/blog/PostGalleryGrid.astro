@@ -17,7 +17,7 @@ const imageSources = import.meta.glob<{ default: ImageMetadata }>('/src/assets/i
 ---
 
 <!-- Renderizado condicional basado en el tipo de archivo -->
-<div id="cards" class="grid grid-cols-5 grid-rows-12 gap-8 h-[150vh] mt-16">
+<div id="cards" class="grid grid-cols-5 grid-rows-12 gap-8 h-[175vh] mt-16">
   {
     unifiedMediaPaths.map((mediaItem, index) => {
       const isImage =
@@ -37,18 +37,27 @@ const imageSources = import.meta.glob<{ default: ImageMetadata }>('/src/assets/i
 
       return (
         <div class={`bento ${spanClass}`}>
-          <div class="bento-content h-full w-full rounded-xl overflow-hidden">
-            <div class="w-full h-full absolute z-10 bento-text-container flex items-end justify-end">
-              <div class="py-6 px-12 text-end">
-                <p class="text-gray-400 font-semibold mb-1">{mediaItem.title}</p>
-                <p class="text-white text-sm ">{mediaItem.subtitle}</p>
-              </div>
+          <div class="flex flex-col bento-content h-full w-full rounded-xl overflow-hidden">
+            <div class="flex flex-col items-start justify-start h-1/4 py-6 px-12 text-end">
+              <p class="text-white font-semibold">{mediaItem.title}</p>
+              <p class=" text-gray-400 ">{mediaItem.subtitle}</p>
             </div>
-            {isImage ? (
-              <Image class="rounded-3xl" alt="Imagen" src={mediaSrc} loading="lazy" decoding="async" />
-            ) : (
-              <video class="object-cover h-full w-full -z-10" src={mediaSrc} autoplay muted playsinline loop />
-            )}
+            <div class="flex h-3/4 ">
+              {isImage ? (
+                <Image class="rounded-xl" alt="Imagen" src={mediaSrc} loading="lazy" decoding="async" />
+              ) : (
+                <div class="m-9 w-full overflow-hidden p-[0.75px] rounded-md">
+                  <video
+                    class="object-cover h-full w-full rounded-md "
+                    src={mediaSrc}
+                    autoplay
+                    muted
+                    playsinline
+                    loop
+                  />
+                </div>
+              )}
+            </div>
           </div>
         </div>
       );

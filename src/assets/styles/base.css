@@ -504,8 +504,13 @@ audio {
 }
 
 .bento {
-  background: linear-gradient(-45deg, rgba(255, 255, 255, 0) 55%, rgb(255, 255, 255, 0.8) 100%);
-  background-color: rgba(255, 255, 255, 0.2);
+  background: radial-gradient(
+    75.23% 75.93% at 20% 0%,
+    rgba(255, 255, 255, 0.5) 0%,
+    rgba(133, 102, 255, 0) 100%,
+    rgba(133, 102, 255, 0) 100%
+  );
+  background-color: rgba(255, 255, 255, 0.035);
   box-shadow: 0px 0px 0px #fff;
   border-radius: 16px;
   display: flex;
@@ -525,14 +530,6 @@ audio {
 .bento:hover .bento-text-container {
   opacity: 1;
   background: linear-gradient(150deg, rgba(255, 255, 255, 0) 0%, rgba(22, 4, 51, 0.8) 90%);
-  transition: 1.5s cubic-bezier(0.14, 1, 0.34, 1);
-}
-.bento:hover video {
-  filter: saturate(0) brightness(0.5);
-  transform: scale(1.15);
-  transition: 1.5s cubic-bezier(0.14, 1, 0.34, 1);
-}
-.bento video {
   transition: 1.5s cubic-bezier(0.14, 1, 0.34, 1);
 }
 
@@ -567,19 +564,21 @@ audio {
 }
 
 .bento > .bento-content {
-  background: linear-gradient(135deg, rgba(10, 1, 24, 1) 10%, rgba(19, 7, 41, 1) 150%);
+  background: radial-gradient(
+      75.23% 75.93% at 20% 0%,
+      rgba(255, 255, 255, 0.05) 0%,
+      rgba(133, 102, 255, 0) 100%,
+      rgba(133, 102, 255, 0) 100%
+    ),
+    #0a0118;
   border-radius: inherit;
   display: flex;
   flex-direction: column;
   flex-grow: 1;
-  clip-path: inset(0px);
+  clip-path: inset(1px);
   position: absolute;
   z-index: 2;
-  transition: 1.5s cubic-bezier(0.14, 1, 0.34, 1);
-}
-.bento:hover .bento-content {
   border-radius: 19px;
-  clip-path: inset(1px);
   transition: 1.5s cubic-bezier(0.14, 1, 0.34, 1);
 }
 .clip-path-inset-video {
@@ -607,3 +606,6 @@ lite-youtube > .lty-playbtn {
   background: linear-gradient(0deg, #0a0118 0%, rgba(22, 9, 42, 0.75) 100%);
   box-shadow: -50px 450px 220px 0px #0a0118, 50px 450px 220px 0px #0a0118, 0px 0px 0px 1px #f2f2f225;
 }
+/* .imageCard img {
+  box-shadow: -250px 250px 80px 0px #0a0118, 250px -250px 80px 0px #0a0118, 0px 0px 0px 1px rgba(255, 255, 255, 0.35);
+} */
