@@ -6,10 +6,11 @@ const imagePath = import.meta.glob<{ default: ImageMetadata }>('/src/assets/work
 const imageSrc = imagePath[`/src/assets/works${data.path}`]();
 ---
 
-<section class="w-full h-[75vh]">
-  <div id="nextSection" class="absolute w-full h-full z-50"></div>
+<section class="nextSection w-full h-[75vh] relative z-50">
+  <div id="nextSection" class="w-full h-[inherit] absolute z-50"></div>
+  <div class="customBg absolute w-full h-[inherit] z-10"></div>
   <div class="flex h-full justify-center items-end relative">
-    <div id="canvas-container" class="absolute top-0 w-1/2 h-[50vh]">
+    <div id="canvas-container" class="absolute bottom-0 w-3/4 h-[65vh] opacity-0">
       <canvas id="canvas"></canvas>
     </div>
     <div class="flex w-full justify-center items-center absolute -z-10">
@@ -26,6 +27,8 @@ const imageSrc = imagePath[`/src/assets/works${data.path}`]();
         decoding="async"
       />
     </div>
-    <div class="glowLine w-full h-[25vh] bg-[#0a0118]"></div>
+
+    <div class="focus absolute"></div>
+    <div class="glowLine w-full h-[25vh] bg-[#0a0118] z-20"></div>
   </div>
 </section>
