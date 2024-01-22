@@ -200,15 +200,16 @@ const adjustedColor1 = darkenColor(post.accentColor, 0.5);
     requestAnimationFrame(animate);
   }
   animate();
+  const nextSection = document.getElementById('nextSection') as HTMLElement;
+  const canvasContainer = document.getElementById('canvas-container') as HTMLElement;
+  const canvas = document.getElementById('canvas') as HTMLCanvasElement;
+  const ctx = canvas.getContext('2d')!;
+  const image = document.getElementById('image') as HTMLElement;
 
-  const nextSection = document.getElementById('nextSection');
-  const canvasContainer: HTMLElement = document.getElementById('canvas-container')!;
-  const canvas: HTMLCanvasElement = document.getElementById('canvas') as HTMLCanvasElement;
-  const ctx: CanvasRenderingContext2D = canvas.getContext('2d')!;
-  const image = document.getElementById('image');
-  nextSection?.addEventListener('mouseenter', () => {
+  nextSection.addEventListener('mouseenter', () => {
     gsap.to(image, {
       y: '-25vh',
+      filter: 'saturate(1.25)',
       duration: 1.5,
       ease: 'Expo.easeOut',
     });
@@ -217,9 +218,11 @@ const adjustedColor1 = darkenColor(post.accentColor, 0.5);
       duration: 1.5,
     });
   });
-  nextSection?.addEventListener('mouseleave', () => {
+
+  nextSection.addEventListener('mouseleave', () => {
     gsap.to(image, {
       y: '0',
+      filter: 'saturate(0.5)',
       duration: 1.5,
       ease: 'Expo.easeOut',
     });
@@ -244,19 +247,19 @@ const adjustedColor1 = darkenColor(post.accentColor, 0.5);
     velocityX: number;
     velocityY: number;
     alpha: number;
-    increasing: boolean; // Indica si la opacidad está aumentando
+    increasing: boolean;
   }
 
   const stars: Star[] = [];
-  const maxStars: number = 200;
+  const maxStars = 200;
 
   function createStar(): Star {
     return {
       x: Math.random() * canvas.width,
       y: Math.random() * canvas.height,
-      radius: Math.random() * 1 + 0.5,
-      velocityX: Math.random() * 0.1 - 0.05, // Movimiento horizontal aleatorio
-      velocityY: Math.random() * 0.1 - 0.05, // Movimiento vertical aleatorio
+      radius: Math.random() * 1.25 + 0.75,
+      velocityX: Math.random() * 0.1 - 0.05,
+      velocityY: Math.random() * 0.1 - 0.05,
       alpha: Math.random(),
       increasing: Math.random() >= 0.5,
     };
@@ -269,30 +272,34 @@ const adjustedColor1 = darkenColor(post.accentColor, 0.5);
   let animating = false;
 
   function updateStar(star: Star) {
-    // Actualizar posición
     star.x += star.velocityX;
     star.y += star.velocityY;
 
-    // Mantener las estrellas dentro del canvas
     if (star.x < 0 || star.x > canvas.width) star.velocityX *= -1;
     if (star.y < 0 || star.y > canvas.height) star.velocityY *= -1;
 
-    // Actualizar opacidad
+    const opacityChangeSpeed = 0.0005;
     if (star.increasing) {
-      star.alpha += 0.001;
-      if (star.alpha >= 1) star.increasing = false;
+      star.alpha += opacityChangeSpeed;
+      if (star.alpha > 0.95) {
+        star.alpha = 1;
+        star.increasing = false;
+      }
     } else {
-      star.alpha -= 0.001;
-      if (star.alpha <= 0) star.increasing = true;
+      star.alpha -= opacityChangeSpeed;
+      if (star.alpha < 0.05) {
+        star.alpha = 0;
+        star.increasing = true;
+      }
     }
   }
 
-  nextSection?.addEventListener('mouseenter', () => {
+  nextSection.addEventListener('mouseenter', () => {
     animating = true;
     starAnimation();
   });
 
-  nextSection?.addEventListener('mouseout', () => {
+  nextSection.addEventListener('mouseleave', () => {
     animating = false;
   });
 
@@ -304,11 +311,16 @@ const adjustedColor1 = darkenColor(post.accentColor, 0.5);
     stars.forEach((star) => {
       updateStar(star);
 
+      ctx.shadowBlur = 10;
+      ctx.shadowColor = '#fff';
+
       ctx.globalAlpha = star.alpha;
       ctx.fillStyle = '#fff';
       ctx.beginPath();
       ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
       ctx.fill();
+
+      ctx.shadowBlur = 0;
     });
 
     requestAnimationFrame(starAnimation);
