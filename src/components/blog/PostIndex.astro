@@ -9,9 +9,9 @@ const { postIndex } = Astro.props;
     <ul class="pt-5">
       {
         postIndex.map((item) => (
-          <li class="flex flex-row items-center pb-4">
+          <li class="flex flex-row items-center pb-4 magnetic" data-strength=".5">
             <span class="text-xs">
-              <a class="post-index-link text-gray-400" href={`#${item.toLowerCase().replace(/\s+/g, '')}`}>
+              <a class="post-index-link text-gray-400 cursor-none" href={`#${item.toLowerCase().replace(/\s+/g, '')}`}>
                 {item}
               </a>
             </span>

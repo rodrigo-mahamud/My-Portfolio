@@ -62,7 +62,7 @@ const adjustedColor1 = darkenColor(post.accentColor, 0.5);
   </div>
   <PostIndex postIndex={post.postIndex} />
   <article class="opacity-0 blur-lg max-w-[80vw] lg:max-w-3xl xl:max-w-4xl 2xl:max-w-5xl 3xl:max-w-6xl mx-auto">
-    <header class="w-full h-full pt-28">
+    <header class="w-full h-full pt-28 relative">
       <div class="flex justify-between flex-col pb-16 mt-0 mb-2 px-4 sm:px-6 sm:items-center">
         <h1
           class="postHeaderFont px-4 text-[80px] mx-auto font-medium tracking-tighter leading-snug animate-on-scroll"
@@ -86,12 +86,13 @@ const adjustedColor1 = darkenColor(post.accentColor, 0.5);
       {
         post.image ? (
           <>
+            <div class="bg-red-400 absolute w-full  z-10" />
             <Image
               class="rounded-3xl"
               alt={`Imagen del ${post.title}`}
               widths={[275, 475, 575, 1050, 1250]}
-              sizes={`(max-width: 550px) 275px, (max-width: 750px) 475px, (max-width: 950px) 575px,(max-width: 1920px) 1050px, (max-width: 2560px) 1250px,`}
-              quality={'mid'}
+              sizes={`(max-width: 550px) 275px, (max-width: 750px) 475px, (max-width: 950px) 575px,(max-width: 1920px) 750px, (max-width: 2560px) 1050px,`}
+              quality={'low'}
               format="avif"
               loading="lazy"
               src={post.image}
