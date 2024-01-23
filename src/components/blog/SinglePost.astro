@@ -85,10 +85,10 @@ const adjustedColor1 = darkenColor(post.accentColor, 0.5);
       </div>
       {
         post.image ? (
-          <>
-            <div class="bg-red-400 absolute w-full  z-10" />
+          <div class=" h-[75vh] w-full reltive pb-[1px]">
+            <div class=" absolute w-full h-[inherit] z-10 shadow-[inset_0px_-450px_200px_-200px_#0a0118]" />
             <Image
-              class="rounded-3xl"
+              class="rounded-3xl h-full object-cover"
               alt={`Imagen del ${post.title}`}
               widths={[275, 475, 575, 1050, 1250]}
               sizes={`(max-width: 550px) 275px, (max-width: 750px) 475px, (max-width: 950px) 575px,(max-width: 1920px) 750px, (max-width: 2560px) 1050px,`}
@@ -98,7 +98,7 @@ const adjustedColor1 = darkenColor(post.accentColor, 0.5);
               src={post.image}
               decoding="async"
             />
-          </>
+          </div>
         ) : (
           <div class=" mx-auto px-4 sm:px-6">
             <div class="border-t dark:border-slate-700" />
