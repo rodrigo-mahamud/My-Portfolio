@@ -6,11 +6,7 @@ const imagePath = import.meta.glob<{ default: ImageMetadata }>('/src/assets/work
 const imageSrc = imagePath[`/src/assets/works${data.path}`]();
 ---
 
-<section
-  class="nextSection w-full h-[75vh] relative z-50 custom-mouse"
-  data-typemouse="text"
-  data-mousetext="Next Project"
->
+<section class="nextSection w-full h-[75vh] relative z-50 custom-mouse" data-typemouse="text" data-mousetext="Next">
   <div id="nextSection" class="w-full h-[inherit] absolute z-50"></div>
   <div class="customBg absolute w-full h-[inherit] z-10"></div>
   <div class="flex h-full justify-center items-end relative">
