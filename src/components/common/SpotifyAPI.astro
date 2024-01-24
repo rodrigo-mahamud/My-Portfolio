@@ -74,7 +74,7 @@
     if (defaultImage) defaultImage.style.display = 'none';
     if (albumCover) {
       albumCover.style.display = 'block';
-      albumCover.src = item.album.images[0].url;
+      albumCover.src = albumCoverUrl;
     }
     if (trackLink) trackLink.href = trackUrl;
 
@@ -86,23 +86,33 @@
       audioElement.pause();
     }
 
-    audioElement = new Audio(item.preview_url);
+    audioElement = new Audio(previewUrl);
     audioElement.volume = 0.125;
 
     const playPauseButton = document.getElementById('play-pause-button') as HTMLButtonElement | null;
     const playIcon = document.getElementById('play-icon') as HTMLElement | null;
     const pauseIcon = document.getElementById('pause-icon') as HTMLElement | null;
 
+    setupPlayPauseButton(playPauseButton, playIcon, pauseIcon);
+  }
+
+  function setupPlayPauseButton(
+    playPauseButton: HTMLButtonElement | null,
+    playIcon: HTMLElement | null,
+    pauseIcon: HTMLElement | null
+  ): void {
     if (playPauseButton && playIcon && pauseIcon) {
       playPauseButton.onclick = function () {
-        if (audioElement && audioElement.paused) {
-          audioElement.play();
-          playIcon.style.display = 'none';
-          pauseIcon.style.display = 'block';
-        } else if (audioElement) {
-          audioElement.pause();
-          playIcon.style.display = 'block';
-          pauseIcon.style.display = 'none';
+        if (audioElement) {
+          if (audioElement.paused) {
+            audioElement.play();
+            playIcon.style.display = 'none';
+            pauseIcon.style.display = 'block';
+          } else {
+            audioElement.pause();
+            playIcon.style.display = 'block';
+            pauseIcon.style.display = 'none';
+          }
         }
       };
     }
@@ -124,35 +134,34 @@
       }
     });
 
-      audioElement.addEventListener('ended', () => {
-        if (audioElement) {
-          audioElement.currentTime = 0;
-        }
-        if (playIcon && pauseIcon) {
-          playIcon.style.display = 'block';
-          pauseIcon.style.display = 'none';
-        }
-      });
-    }
+    audioElement.addEventListener('ended', () => {
+      if (audioElement) {
+        audioElement.currentTime = 0;
+      }
+      if (playIcon) playIcon.style.display = 'block';
+      if (pauseIcon) pauseIcon.style.display = 'none';
+    });
   }
 
-  async function init() {
-    const sbutton = document.getElementById('sbutton');
+  async function init(): Promise<void> {
+    const sbutton = document.getElementById('sbutton') as HTMLButtonElement | null;
     if (sbutton) {
       sbutton.addEventListener('click', async () => {
         if (isFirstClick) {
-          await getNowPlaying();
+          const accessToken = await getAccessToken();
+          await getNowPlaying(accessToken);
           isFirstClick = false;
         }
       });
     }
 
-    await getNowPlaying();
+    const accessToken = await getAccessToken();
+    await getNowPlaying(accessToken);
     setInterval(async () => {
       if (!audioElement || (audioElement && audioElement.paused)) {
-        await getNowPlaying();
+        await getNowPlaying(accessToken);
       }
-    }, 60000);
+    }, 60000); // Actualizar cada 60 segundos
   }
 
   init();
