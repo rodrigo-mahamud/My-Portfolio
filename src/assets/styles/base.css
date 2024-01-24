@@ -66,19 +66,40 @@ html.lenis {
   transform: translate(0px, 50px);
 }
 /*----ESFERA----*/
-#esfera {
+
+.esferaGlow {
   position: fixed;
   display: flex;
   width: 6rem;
   height: 6rem;
-  background-color: transparent;
-  color: #fff;
   border-radius: 50%;
   pointer-events: none;
-  z-index: 9999;
+  z-index: 99999;
   align-items: center;
   justify-content: center;
   opacity: 0;
+  isolation: isolate;
+  overflow: hidden;
+}
+.esferaGlow::after {
+  content: '';
+  background: linear-gradient(
+    180deg,
+    rgba(229, 156, 255, 0.25) 0.01%,
+    rgba(186, 156, 255, 0.2) 50.01%,
+    rgba(156, 178, 255, 0.1) 100%
+  );
+  border-radius: inherit;
+  content: '';
+  inset: 0;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: xor;
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  padding: 1.5px;
+  pointer-events: none;
+  position: absolute;
 }
 #welcome {
   animation: rotateSmooth 0.75s ease-in-out infinite alternate, disapearWelcome 0.5s ease-in-out both 0.5s;
@@ -363,6 +384,7 @@ audio {
 
 /*---TITLE CENTER CSS----*/
 .badge {
+  content: '';
   isolation: isolate;
   overflow: hidden;
   align-items: center;
@@ -378,6 +400,7 @@ audio {
   width: max-content;
 }
 .badge::after {
+  content: '';
   background: linear-gradient(
     180deg,
     rgba(229, 156, 255, 0.24) 0.01%,
