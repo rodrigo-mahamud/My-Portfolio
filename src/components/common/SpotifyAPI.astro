@@ -3,11 +3,12 @@
   let isFirstClick: boolean = true;
 
   async function getNowPlaying(): Promise<void> {
-    const response = await fetch('/.netlify/functions/spotifyHandler');
+    const response = await fetch('https://stupendous-capybara-079a5c.netlify.app/netlify/functions/spotifyHandler.js');
     if (!response.ok) {
       throw new Error('Error al obtener datos de Spotify');
     }
     const data = await response.json();
+    console.log(data);
 
     const trackNameElement = document.getElementById('track-name') as HTMLDivElement | null;
     const scardTitle = document.getElementById('scard-title') as HTMLDivElement | null;
