@@ -1,6 +1,7 @@
 [build]
   publish = "dist"
   command = "npm run build"
+  functions = "netlify/functions"
 [[headers]]
   for = "/assets/*"
   [headers.values]
