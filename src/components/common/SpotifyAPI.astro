@@ -1,12 +1,12 @@
 <script>
-  const clientId: string = 'b1665b5784044dd3b9618e6041d23d17';
-  const clientSecret: string = 'afb55dabcea1474c91ac770644113292';
-  const refreshToken: string =
+  const clientId = 'b1665b5784044dd3b9618e6041d23d17';
+  const clientSecret = 'afb55dabcea1474c91ac770644113292';
+  const refreshToken =
     'AQBOdQ360XO2FzPngspd0bBkRm5UT4Bb2rPSiQakhZIEGn5qRZSilr7Ww0XKExdoHHJ8XSz1ZP7VdKwRED9F3gljWIjt86PC5NdJ_NwWs9wijArDPcX0WJ-9z_jy-lJ-ZM4';
-  let audioElement: HTMLAudioElement | null = null;
+  let audioElement = null;
   let isFirstClick = true;
 
-  async function getAccessToken(): Promise<string> {
+  async function getAccessToken() {
     const response = await fetch('https://accounts.spotify.com/api/token', {
       method: 'POST',
       headers: {
@@ -19,24 +19,25 @@
     return data.access_token;
   }
 
-  async function getNowPlaying(accessToken: string) {
+  async function getNowPlaying(accessToken) {
     const response = await fetch(`https://api.spotify.com/v1/me/player/currently-playing`, {
       headers: {
         Authorization: 'Bearer ' + accessToken,
       },
     });
     const trackNameElement = document.getElementById('track-name');
+
     if (trackNameElement && response.status === 204) {
-      trackNameElement.innerText = 'No hay nada sonando en mi Spotifiy 😴';
-      const scardTitle = document.getElementById('scard-title') as HTMLImageElement;
+      trackNameElement.innerText = 'No hay nada sonando en mi Spotify 😴';
+      const scardTitle = document.getElementById('scard-title');
       if (scardTitle) {
         scardTitle.style.display = 'none';
       }
-      const defaultImage = document.getElementById('default-image') as HTMLImageElement;
+      const defaultImage = document.getElementById('default-image');
       if (defaultImage) {
         defaultImage.style.display = 'block';
       }
-      const albumCover = document.getElementById('album-cover') as HTMLImageElement;
+      const albumCover = document.getElementById('album-cover');
       if (albumCover) {
         albumCover.style.display = 'none';
       }
@@ -54,18 +55,24 @@
       trackNameElement.innerText = `${trackName} - ${artistName}`;
     }
 
-    const defaultImage = document.getElementById('default-image') as HTMLImageElement;
+    // Cambia el estilo de scardTitle cuando hay una canción sonando
+    const scardTitle = document.getElementById('scard-title');
+    if (scardTitle) {
+      scardTitle.style.display = 'flex'; // Ajusta este estilo según sea necesario
+    }
+
+    const defaultImage = document.getElementById('default-image');
     if (defaultImage) {
       defaultImage.style.display = 'none';
     }
 
-    const albumCover = document.getElementById('album-cover') as HTMLImageElement;
+    const albumCover = document.getElementById('album-cover');
     if (albumCover) {
       albumCover.style.display = 'block';
       albumCover.src = albumCoverUrl;
     }
 
-    const trackLink = document.getElementById('track-link') as HTMLAnchorElement;
+    const trackLink = document.getElementById('track-link');
     if (trackLink) {
       trackLink.href = trackUrl;
     }
@@ -77,8 +84,8 @@
     audioElement = new Audio(previewUrl);
     audioElement.volume = 0.125;
     const playPauseButton = document.getElementById('play-pause-button');
-    const playIcon = document.getElementById('play-icon') as HTMLElement;
-    const pauseIcon = document.getElementById('pause-icon') as HTMLElement;
+    const playIcon = document.getElementById('play-icon');
+    const pauseIcon = document.getElementById('pause-icon');
 
     if (playPauseButton && playIcon && pauseIcon) {
       playPauseButton.onclick = function () {
@@ -96,8 +103,8 @@
 
     if (audioElement) {
       audioElement.volume = 0.5;
-      const progress = document.getElementById('progress') as HTMLElement;
-      const progressBar = document.getElementById('progress-bar') as HTMLElement;
+      const progress = document.getElementById('progress');
+      const progressBar = document.getElementById('progress-bar');
       audioElement.addEventListener('timeupdate', () => {
         if (progress && progressBar && audioElement) {
           const progressPercentage = audioElement.currentTime / audioElement.duration;

@@ -21,7 +21,13 @@ import { Icon } from 'astro-icon/components';
     <path d="M6 6l12 12"></path>
   </svg>
   <div class="flex w-full items-center justify-start flex-row" id="now-playing">
-    <a id="track-link" class="flex m-0 w-[30%] flex-col h-full" href="#" target="_blank">
+    <a
+      id="track-link"
+      class="cursor-none flex m-0 w-[30%] flex-col h-full custom-mouse"
+      href="#"
+      target="_blank"
+      data-typemouse="link"
+    >
       <img id="album-cover" class="m-0 h-40 rounded-l-xl object-fill" src="" alt="Carátula del álbum" />
       <img
         id="default-image"
