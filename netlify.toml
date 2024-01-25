@@ -1,7 +1,11 @@
 [build]
   publish = "dist"
   command = "npm run build"
-  functions = "netlify/functions"
+
+[[edge_functions]]
+  path = "/netlify/functions"
+  function = "spotifyHandler"
+
 [[headers]]
   for = "/assets/*"
   [headers.values]

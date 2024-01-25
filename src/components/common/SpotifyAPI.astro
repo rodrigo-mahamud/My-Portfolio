@@ -1,53 +1,58 @@
 <script>
-  const clientId: string | undefined = import.meta.env.SECRET_CLIENT_ID;
-  const clientSecret: string | undefined = import.meta.env.SECRET_CLIENT_SECRET;
-  const refreshToken: string | undefined = import.meta.env.SECRET_REFRESH_TOKEN;
+  type Artist = {
+    name: string;
+  };
+
+  type Album = {
+    images: { url: string }[];
+  };
+
+  type Track = {
+    name: string;
+    artists: Artist[];
+    album: Album;
+    external_urls: { spotify: string };
+    preview_url: string;
+  };
+
+  type SongData = {
+    playing: boolean;
+    songData?: {
+      item: Track;
+    };
+  };
+
   let audioElement: HTMLAudioElement | null = null;
   let isFirstClick: boolean = true;
 
-  async function getAccessToken(): Promise<string> {
-    if (!clientId || !clientSecret || !refreshToken) {
-      throw new Error('Faltan las credenciales de Spotify');
+  async function getNowPlaying(): Promise<void> {
+    try {
+      const response = await fetch('/.netlify/functions/spotifyHandler', {
+        method: 'POST',
+      });
+
+      if (!response.ok) {
+        throw new Error('Error en la respuesta de la Edge Function');
+      }
+
+      const data: SongData = await response.json();
+
+      if (!data.playing || !data.songData?.item) {
+        updateUIForNoSong();
+        return;
+      }
+
+      updateUIWithSongData(data.songData.item);
+    } catch (error) {
+      console.error(error);
     }
-
-    const response = await fetch('https://accounts.spotify.com/api/token', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-        Authorization: 'Basic ' + btoa(clientId + ':' + clientSecret),
-      },
-      body: 'grant_type=refresh_token&refresh_token=' + refreshToken,
-    });
-
-    const data = await response.json();
-    return data.access_token;
-  }
-
-  async function getNowPlaying(accessToken: string): Promise<void> {
-    const response = await fetch(`https://api.spotify.com/v1/me/player/currently-playing`, {
-      headers: {
-        Authorization: 'Bearer ' + accessToken,
-      },
-    });
-
-    if (response.status === 204) {
-      updateUIForNoSong();
-      return;
-    }
-
-    const data = await response.json();
-    if (!data.item) {
-      throw new Error('No se encontró información de la canción');
-    }
-
-    updateUIWithSongData(data);
   }
 
   function updateUIForNoSong(): void {
-    const trackNameElement = document.getElementById('track-name') as HTMLDivElement | null;
-    const scardTitle = document.getElementById('scard-title') as HTMLDivElement | null;
-    const defaultImage = document.getElementById('default-image') as HTMLImageElement | null;
-    const albumCover = document.getElementById('album-cover') as HTMLImageElement | null;
+    const trackNameElement = document.getElementById('track-name') as HTMLDivElement;
+    const scardTitle = document.getElementById('scard-title') as HTMLDivElement;
+    const defaultImage = document.getElementById('default-image') as HTMLImageElement;
+    const albumCover = document.getElementById('album-cover') as HTMLImageElement;
 
     if (trackNameElement) trackNameElement.innerText = 'No hay nada sonando en mi Spotify 😴';
     if (scardTitle) scardTitle.style.display = 'none';
@@ -55,19 +60,18 @@
     if (albumCover) albumCover.style.display = 'none';
   }
 
-  function updateUIWithSongData(data: any): void {
-    // Debes definir una interfaz para 'data' si conoces su estructura exacta
-    const trackName = data.item.name;
-    const artistName = data.item.artists[0].name;
-    const albumCoverUrl = data.item.album.images[0].url;
-    const trackUrl = data.item.external_urls.spotify;
-    const previewUrl = data.item.preview_url;
+  function updateUIWithSongData(item: Track): void {
+    const trackName = item.name;
+    const artistName = item.artists.map((artist) => artist.name).join(', ');
+    const albumCoverUrl = item.album.images[0].url;
+    const trackUrl = item.external_urls.spotify;
+    const previewUrl = item.preview_url;
 
-    const trackNameElement = document.getElementById('track-name') as HTMLDivElement | null;
-    const scardTitle = document.getElementById('scard-title') as HTMLDivElement | null;
-    const defaultImage = document.getElementById('default-image') as HTMLImageElement | null;
-    const albumCover = document.getElementById('album-cover') as HTMLImageElement | null;
-    const trackLink = document.getElementById('track-link') as HTMLAnchorElement | null;
+    const trackNameElement = document.getElementById('track-name') as HTMLDivElement;
+    const scardTitle = document.getElementById('scard-title') as HTMLDivElement;
+    const defaultImage = document.getElementById('default-image') as HTMLImageElement;
+    const albumCover = document.getElementById('album-cover') as HTMLImageElement;
+    const trackLink = document.getElementById('track-link') as HTMLAnchorElement;
 
     if (trackNameElement) trackNameElement.innerText = `${trackName} - ${artistName}`;
     if (scardTitle) scardTitle.style.display = 'flex';
@@ -89,17 +93,17 @@
     audioElement = new Audio(previewUrl);
     audioElement.volume = 0.125;
 
-    const playPauseButton = document.getElementById('play-pause-button') as HTMLButtonElement | null;
-    const playIcon = document.getElementById('play-icon') as HTMLElement | null;
-    const pauseIcon = document.getElementById('pause-icon') as HTMLElement | null;
+    const playPauseButton = document.getElementById('play-pause-button') as HTMLButtonElement;
+    const playIcon = document.getElementById('play-icon') as HTMLElement;
+    const pauseIcon = document.getElementById('pause-icon') as HTMLElement;
 
     setupPlayPauseButton(playPauseButton, playIcon, pauseIcon);
   }
 
   function setupPlayPauseButton(
-    playPauseButton: HTMLButtonElement | null,
-    playIcon: HTMLElement | null,
-    pauseIcon: HTMLElement | null
+    playPauseButton: HTMLButtonElement,
+    playIcon: HTMLElement,
+    pauseIcon: HTMLElement
   ): void {
     if (playPauseButton && playIcon && pauseIcon) {
       playPauseButton.onclick = function () {
@@ -120,17 +124,17 @@
     setupAudioEvents(playIcon, pauseIcon);
   }
 
-  function setupAudioEvents(playIcon: HTMLElement | null, pauseIcon: HTMLElement | null): void {
+  function setupAudioEvents(playIcon: HTMLElement, pauseIcon: HTMLElement): void {
     if (!audioElement) return;
 
     audioElement.volume = 0.5;
-    const progress = document.getElementById('progress') as HTMLDivElement | null;
-    const progressBar = document.getElementById('progress-bar') as HTMLDivElement | null;
+    const progress = document.getElementById('progress') as HTMLDivElement;
+    const progressBar = document.getElementById('progress-bar') as HTMLDivElement;
 
     audioElement.addEventListener('timeupdate', () => {
       if (progress && progressBar && audioElement) {
         const progressPercentage = audioElement.currentTime / audioElement.duration;
-        progress.style.width = progressPercentage * progressBar.offsetWidth + 'px';
+        progress.style.width = `${progressPercentage * progressBar.offsetWidth}px`;
       }
     });
 
@@ -144,22 +148,20 @@
   }
 
   async function init(): Promise<void> {
-    const sbutton = document.getElementById('sbutton') as HTMLButtonElement | null;
+    const sbutton = document.getElementById('sbutton') as HTMLButtonElement;
     if (sbutton) {
       sbutton.addEventListener('click', async () => {
         if (isFirstClick) {
-          const accessToken = await getAccessToken();
-          await getNowPlaying(accessToken);
+          await getNowPlaying();
           isFirstClick = false;
         }
       });
     }
 
-    const accessToken = await getAccessToken();
-    await getNowPlaying(accessToken);
+    await getNowPlaying();
     setInterval(async () => {
       if (!audioElement || (audioElement && audioElement.paused)) {
-        await getNowPlaying(accessToken);
+        await getNowPlaying();
       }
     }, 60000); // Actualizar cada 60 segundos
   }

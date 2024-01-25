@@ -1,5 +1,7 @@
 {
-  "css.customData": ["./vscode.tailwind.json"],
+  "css.customData": [
+    "./vscode.tailwind.json"
+  ],
   "eslint.validate": [
     "javascript",
     "javascriptreact",
@@ -10,8 +12,17 @@
   "files.associations": {
     "*.mdx": "markdown"
   },
-  "prettier.documentSelectors": ["**/*.astro"],
+  "prettier.documentSelectors": [
+    "**/*.astro"
+  ],
   "[astro]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
-  }
+  },
+  "deno.enable": true,
+  "deno.enablePaths": [
+    "netlify/edge-functions"
+  ],
+  "deno.unstable": true,
+  "deno.importMap": ".netlify/edge-functions-import-map.json",
+  "deno.path": "C:\\Users\\Rodrigo\\AppData\\Roaming\\netlify\\Config\\deno-cli\\deno.exe"
 }
