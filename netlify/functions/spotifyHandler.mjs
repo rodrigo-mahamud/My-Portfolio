@@ -1,9 +1,9 @@
 // netlify/functions/spotifyHandler.js
 
 export default async (request) => {
-  const clientId = process.env.PUBLIC_CLIENT_ID;
-  const clientSecret = process.env.PUBLIC_CLIENT_SECRET;
-  const refreshToken = process.env.PUBLIC_REFRESH_TOKEN;
+  const clientId = process.env.SECRET_CLIENT_ID;
+  const clientSecret = process.env.SECRET_CLIENT_SECRET;
+  const refreshToken = process.env.SECRET_REFRESH_TOKEN;
 
   if (!clientId || !clientSecret || !refreshToken) {
     return new Response('Credenciales de Spotify faltantes', { status: 500 });
