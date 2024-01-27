@@ -60,11 +60,13 @@ const { links = [], back, isHomePage } = Astro.props;
           ) : (
             links.map(({ text, href }) => (
               <a
-                class="navElements font-medium cursor-none text-gray-300 hover:text-white py-3 flex items-center magnetic"
+                class="navElements font-medium cursor-none text-slate-300 hover:text-white ease-in-out duration-300 py-3 flex items-center"
                 data-strength=".75"
                 href={href}
               >
-                {text}
+                <div class="magnetic" data-strength=".75">
+                  {text}
+                </div>
               </a>
             ))
           )
@@ -170,12 +172,10 @@ const { links = [], back, isHomePage } = Astro.props;
         scard,
         {
           duration: 1.25,
+          display: 'flex',
           opacity: 1,
           filter: 'blur(0px)',
           ease: 'Expo.easeOut',
-          onStart: () => {
-            gsap.set(scard, { display: 'flex' });
-          },
         },
         '0'
       )
@@ -210,7 +210,14 @@ const { links = [], back, isHomePage } = Astro.props;
     // Evento de clic para cerrar
     scardClose?.addEventListener('click', () => {
       if (isActive) {
-        openTimeline.tweenTo(0, { delay: 0, duration: 0.75, ease: 'Expo.easeOut' });
+        openTimeline.tweenTo(0, {
+          delay: 0,
+          duration: 0.75,
+          ease: 'Expo.easeOut',
+          onComplete: () => {
+            gsap.to(scard, { clearProps: 'display' });
+          },
+        });
       }
     });
   }

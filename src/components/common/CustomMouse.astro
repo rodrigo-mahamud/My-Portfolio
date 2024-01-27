@@ -280,7 +280,7 @@ import { Icon } from 'astro-icon/components';
           });
         });
 
-        magneticElement.addEventListener('mousemove', (e) => {
+        magneticElement.addEventListener('mousemove', (e: any) => {
           const { clientX, clientY } = e;
           const { height, width, left, top } = magneticElement.getBoundingClientRect();
           const x = clientX - (left + width / 2);

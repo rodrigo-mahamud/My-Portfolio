@@ -25,6 +25,43 @@
   let audioElement: HTMLAudioElement | null = null;
   let isFirstClick: boolean = true;
 
+  function updateUISong(item?: Track): void {
+    const trackNameElement = document.getElementById('track-name') as HTMLDivElement;
+    const scardTitle = document.getElementById('scard-title') as HTMLDivElement;
+    const defaultImage = document.getElementById('default-image') as HTMLImageElement;
+    const albumCover = document.getElementById('album-cover') as HTMLImageElement;
+    const trackLink = document.getElementById('track-link') as HTMLAnchorElement;
+
+    if (item) {
+      const trackName = item.name;
+      const artistName = item.artists.map((artist) => artist.name).join(', ');
+      const albumCoverUrl = item.album.images[0].url;
+      const trackUrl = item.external_urls.spotify;
+      const previewUrl = item.preview_url;
+
+      trackNameElement.innerText = `${trackName} - ${artistName}`;
+      scardTitle.style.display = 'flex';
+      defaultImage.style.display = 'none';
+      if (albumCover) {
+        albumCover.style.display = 'block';
+        albumCover.src = albumCoverUrl;
+      }
+      trackLink.href = trackUrl;
+
+      setupAudioElement(previewUrl);
+      return;
+    }
+
+    if (!item) {
+      trackNameElement.innerText = 'No hay nada sonando en mi Spotify 😴';
+      scardTitle.style.display = 'none';
+      defaultImage.style.display = 'block';
+      albumCover.style.display = 'none';
+      trackLink.classList.remove('custom-mouse');
+      trackLink.removeAttribute('data-typemouse');
+    }
+  }
+
   async function getNowPlaying(): Promise<void> {
     try {
       const response = await fetch('/.netlify/functions/spotifyHandler', {
@@ -38,51 +75,13 @@
       const data: SongData = await response.json();
 
       if (!data.playing || !data.songData?.item) {
-        updateUIForNoSong();
-        return;
+        updateUISong();
+      } else {
+        updateUISong(data.songData.item);
       }
-
-      updateUIWithSongData(data.songData.item);
     } catch (error) {
       console.error(error);
     }
-  }
-
-  function updateUIForNoSong(): void {
-    const trackNameElement = document.getElementById('track-name') as HTMLDivElement;
-    const scardTitle = document.getElementById('scard-title') as HTMLDivElement;
-    const defaultImage = document.getElementById('default-image') as HTMLImageElement;
-    const albumCover = document.getElementById('album-cover') as HTMLImageElement;
-
-    if (trackNameElement) trackNameElement.innerText = 'No hay nada sonando en mi Spotify 😴';
-    if (scardTitle) scardTitle.style.display = 'none';
-    if (defaultImage) defaultImage.style.display = 'block';
-    if (albumCover) albumCover.style.display = 'none';
-  }
-
-  function updateUIWithSongData(item: Track): void {
-    const trackName = item.name;
-    const artistName = item.artists.map((artist) => artist.name).join(', ');
-    const albumCoverUrl = item.album.images[0].url;
-    const trackUrl = item.external_urls.spotify;
-    const previewUrl = item.preview_url;
-
-    const trackNameElement = document.getElementById('track-name') as HTMLDivElement;
-    const scardTitle = document.getElementById('scard-title') as HTMLDivElement;
-    const defaultImage = document.getElementById('default-image') as HTMLImageElement;
-    const albumCover = document.getElementById('album-cover') as HTMLImageElement;
-    const trackLink = document.getElementById('track-link') as HTMLAnchorElement;
-
-    if (trackNameElement) trackNameElement.innerText = `${trackName} - ${artistName}`;
-    if (scardTitle) scardTitle.style.display = 'flex';
-    if (defaultImage) defaultImage.style.display = 'none';
-    if (albumCover) {
-      albumCover.style.display = 'block';
-      albumCover.src = albumCoverUrl;
-    }
-    if (trackLink) trackLink.href = trackUrl;
-
-    setupAudioElement(previewUrl);
   }
 
   function setupAudioElement(previewUrl: string): void {
