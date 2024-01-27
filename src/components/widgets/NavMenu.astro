@@ -14,62 +14,65 @@ interface MenuLink extends Link {
 export interface Props {
   links?: Array<MenuLink>;
   isHomePage?: boolean;
+  back: any;
 }
 
 const { links = [], back, isHomePage } = Astro.props;
 ---
 
-<header class="fixed z-50 w-full max-w-[34rem] flex justify-center -translate-x-1/2 bottom-4 left-1/2" id="header">
+<header class="fixed z-50 w-full max-w-[34rem] -translate-x-1/2 bottom-4 left-1/2" id="header">
   <div
     id="navContainer"
-    class={`border border-[#f2f2f21a] rounded-full shadow-[0_10px_25px_0_rgba(0,0,0,0.15)] flex items-center opacity-0 justify-end flex-row h-12 ${
+    style="border-radius: 2rem;"
+    class={`border border-[#f2f2f21a]  shadow-[0_10px_25px_0_rgba(0,0,0,0.15)] flex items-center opacity-0 justify-end flex-row h-12 ${
       isHomePage
         ? 'w-[87.5%] backdrop-blur-xl border-[#f2f2f21a] bg-[#f2f2f20d]'
         : 'w-3/12 bg-[#0000000d] backdrop-blur-md border-[#f2f2f248]'
     } `}
   >
     {isHomePage && <SCard />}
-
-    <nav class="w-full items-center justify-evenly hidden md:flex md:h-auto z-30" aria-label="Main navigation">
-      <div id="navGlow" class={`${isHomePage ? 'w-1/4 h-full -z-20 absolute -translate-x-1/2 navGlow' : 'hidden'}`}>
-      </div>
-      {
-        !isHomePage ? (
-          <a href={back.href} class="flex items-center hover:text-white" data-nav="animate">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              class="-rotate-90 mr-2"
-              width="1.75rem"
-              height="1.75rem"
-              viewBox="0 0 24 24"
-              stroke-width="1.8"
-              stroke="currentColor"
-              fill="none"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            >
-              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-              <path d="M12 5l0 14" />
-              <path d="M16 9l-4 -4" />
-              <path d="M8 9l4 -4" />
-            </svg>
-            {back.text}
-          </a>
-        ) : (
-          links.map(({ text, href }) => (
-            <a
-              class="navElements font-medium cursor-none hover:text-white py-3 flex items-center magnetic"
-              data-strength=".75"
-              href={href}
-            >
-              {text}
+    <div class="flex justify-center w-full h-full" id="navElementsContainer">
+      <nav class="w-full items-center justify-evenly hidden md:flex md:h-auto z-30" aria-label="Main navigation">
+        <div id="navGlow" class={`${isHomePage ? 'w-1/4 h-full -z-20 absolute -translate-x-1/2 navGlow' : 'hidden'}`}>
+        </div>
+        {
+          !isHomePage ? (
+            <a href={back.href} class="flex items-center hover:text-white" data-nav="animate">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="-rotate-90 mr-2"
+                width="1.75rem"
+                height="1.75rem"
+                viewBox="0 0 24 24"
+                stroke-width="1.8"
+                stroke="currentColor"
+                fill="none"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                <path d="M12 5l0 14" />
+                <path d="M16 9l-4 -4" />
+                <path d="M8 9l4 -4" />
+              </svg>
+              {back.text}
             </a>
-          ))
-        )
-      }
-    </nav>
+          ) : (
+            links.map(({ text, href }) => (
+              <a
+                class="navElements font-medium cursor-none text-gray-300 hover:text-white py-3 flex items-center magnetic"
+                data-strength=".75"
+                href={href}
+              >
+                {text}
+              </a>
+            ))
+          )
+        }
+      </nav>
 
-    {isHomePage && <SCardButton isHomePage={isHomePage} />}
+      {isHomePage && <SCardButton isHomePage={isHomePage} />}
+    </div>
   </div>
 </header>
 
@@ -78,6 +81,7 @@ const { links = [], back, isHomePage } = Astro.props;
 
   const sbutton = document.getElementById('sbutton');
   const navContainer = document.getElementById('navContainer');
+  const navElementsContainer = document.getElementById('navElementsContainer');
   const navElements = Array.from(document.getElementsByClassName('navElements'));
   const navGlow = document.getElementById('navGlow');
   const scard = document.getElementById('scard');
@@ -131,122 +135,83 @@ const { links = [], back, isHomePage } = Astro.props;
         });
       });
     });
-    if (sbutton && scardClose && scard) {
-      sbutton.addEventListener('click', () => {
-        if (!isActive) {
-          gsap.to(navContainer, {
-            duration: 1,
-            delay: 0.1,
-            height: '195px',
-            width: '100%',
-            backdropFilter: 'blur(200px)',
-            ease: 'Expo.easeOut',
-          });
-          gsap.to(scard, {
-            duration: 1,
-            delay: 0.3,
-            opacity: 1,
-            filter: 'blur(0px)',
-            ease: 'Expo.easeOut',
-            onStart: function () {
-              gsap.set(scard, { display: 'flex' });
-            },
-          });
-          gsap.to(navContainer, {
-            duration: 0.1,
-            borderRadius: '1rem',
-          });
-          gsap.to(navGlow, {
-            duration: 0.1,
-            filter: 'blur(10px)',
-            opacity: 0,
-          });
-          gsap.to(scardClose, {
-            duration: 1,
-            delay: 0.3,
-            opacity: 1,
-            scale: 1,
-            rotate: 270,
-            ease: 'Expo.easeOut',
-          });
-          navElements.forEach((element) => {
-            gsap.to(element, {
-              duration: 0.01,
-              scale: 0,
-              filter: 'blur(10px)',
-              opacity: 0,
-            });
-          });
 
-          isActive = true;
-        }
-      });
-      scardClose.addEventListener('click', () => {
-        if (isActive) {
-          gsap.to(navContainer, {
-            duration: 1,
-            delay: 0.3,
-            borderRadius: '10rem',
-            ease: 'Expo.easeOut',
-          });
-          gsap.to(navContainer, {
-            duration: 1,
-            delay: 0.1,
-            height: '3rem',
-            width: '87.5%',
-            backdropFilter: 'blur(24px)',
-            ease: 'Expo.easeOut',
-            onComplete: function () {
-              gsap.set(navContainer, { clearProps: 'width,height,backdropFilter' });
-            },
-          });
-          gsap.to(scard, {
-            duration: 0.5,
-            opacity: 0,
-            filter: 'blur(12px)',
-            ease: 'Expo.easeOut',
-            onComplete: function () {
-              gsap.set(scard, { clearProps: 'all' });
-            },
-          });
-          gsap.to(navGlow, {
-            duration: 0.1,
-            filter: 'blur(0px)',
-            opacity: 1,
-            onComplete: function () {
-              gsap.set(navGlow, { clearProps: 'filter,opacity' });
-            },
-          });
-          gsap.to(scardClose, {
-            duration: 1,
-            delay: 0.3,
-            opacity: 0,
-            scale: 1,
-            rotate: 0,
-            ease: 'Expo.easeOut',
-            onComplete: function () {
-              gsap.set(scardClose, { clearProps: 'all' });
-            },
-          });
-          navElements.forEach((element) => {
-            gsap.to(element, {
-              duration: 0.1,
-              scale: 1,
-            });
-            gsap.to(element, {
-              duration: 1,
-              opacity: 1,
-              filter: 'blur(0px)',
-              ease: 'power2.out',
-              onComplete: function () {
-                gsap.set(element, { clearProps: 'all' });
-              },
-            });
-          });
+    // Crear el Timeline para la apertura
+    const openTimeline = gsap.timeline({
+      paused: true,
+      onStart: () => {
+        isActive = true;
+      },
+      onReverseComplete: () => {
+        isActive = false;
+      },
+    });
 
-          isActive = false;
-        }
-      });
-    }
+    openTimeline
+      .to(navElementsContainer, {
+        duration: 0.5,
+        filter: 'blur(10px)',
+        opacity: 0,
+        ease: 'Expo.easeOut',
+      })
+      .to(
+        navContainer,
+        {
+          duration: 1.25,
+          height: '195px',
+          width: '100%',
+          borderRadius: '1rem',
+          backdropFilter: 'blur(50px)',
+          ease: 'Expo.easeOut',
+        },
+        '0'
+      )
+      .to(
+        scard,
+        {
+          duration: 1.25,
+          opacity: 1,
+          filter: 'blur(0px)',
+          ease: 'Expo.easeOut',
+          onStart: () => {
+            gsap.set(scard, { display: 'flex' });
+          },
+        },
+        '0'
+      )
+      .to(
+        navGlow,
+        {
+          duration: 0.5,
+          filter: 'blur(10px)',
+          opacity: 0,
+        },
+        '0'
+      )
+      .to(
+        scardClose,
+        {
+          duration: 1.25,
+          opacity: 1,
+          scale: 1,
+          rotate: 270,
+          ease: 'Expo.easeOut',
+        },
+        '0'
+      );
+
+    // Evento de clic para abrir
+    sbutton?.addEventListener('click', () => {
+      if (!isActive) {
+        openTimeline.play();
+      }
+    });
+
+    // Evento de clic para cerrar
+    scardClose?.addEventListener('click', () => {
+      if (isActive) {
+        openTimeline.tweenTo(0, { delay: 0, duration: 0.75, ease: 'Expo.easeOut' });
+      }
+    });
   }
 </script>

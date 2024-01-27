@@ -20,23 +20,16 @@ import { Icon } from 'astro-icon/components';
     <path d="M18 6l-12 12"></path>
     <path d="M6 6l12 12"></path>
   </svg>
-  <div class="flex w-full items-center justify-start flex-row" id="now-playing">
+  <div class="flex w-full items-center justify-start flex-row overflow-hidden" id="now-playing">
     <a
       id="track-link"
-      class="cursor-none flex m-0 w-[30%] flex-col h-full custom-mouse"
-      href="#"
+      class="cursor-none flex justify-center items-center m-0 w-[30%] rounded-l-2xl flex-col h-full bg-neutral-900 custom-mouse"
+      href=""
       target="_blank"
       data-typemouse="link"
     >
       <img id="album-cover" class="m-0 h-40 rounded-l-xl object-fill" src="" alt="Carátula del álbum" />
-      <img
-        id="default-image"
-        class="custom-mouse rounded-l-xl object-cover h-full"
-        data-typemouse="link"
-        src="no-song.png"
-        alt="Carátula del álbum por defecto"
-        style="display: none;"
-      />
+      <Icon id="default-image" name="music-note" class="text-6xl" />
     </a>
     <div class="flex-col mx-5 w-[70%]">
       <h2 id="scard-title" class="truncate max-w-xs text-white text-lg font-semibold">Sonando en mi Spotify🤘</h2>
