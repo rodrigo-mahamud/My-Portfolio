@@ -1,0 +1,105 @@
+<section class="lg:max-w-4xl xl:max-w-6xl mx-auto w-full">
+  <div class="w-10/12 mx-auto">
+    <div id="canvasContainer">
+      <canvas id="githubCanvas"></canvas>
+    </div>
+  </div>
+</section>
+
+<script>
+  type Contribution = {
+    date: string;
+    count: number;
+    color: string;
+  };
+
+  function transformColor(originalColor: string): string {
+    const colorMap = {
+      '#ebedf0': '#161b22',
+      '#9be9a8': '#0e4429',
+      '#40c463': '#006d32',
+      '#30a14e': '#26a641',
+      '#216e39': '#39d353',
+    };
+    return colorMap[originalColor] || originalColor;
+  }
+
+  function drawRoundedRect(
+    ctx: CanvasRenderingContext2D,
+    x: number,
+    y: number,
+    width: number,
+    height: number,
+    radius: number,
+    color: string
+  ) {
+    ctx.fillStyle = color;
+    ctx.beginPath();
+    ctx.moveTo(x + radius, y);
+    ctx.lineTo(x + width - radius, y);
+    ctx.quadraticCurveTo(x + width, y, x + width, y + radius);
+    ctx.lineTo(x + width, y + height - radius);
+    ctx.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
+    ctx.lineTo(x + radius, y + height);
+    ctx.quadraticCurveTo(x, y + height, x, y + height - radius);
+    ctx.lineTo(x, y + radius);
+    ctx.quadraticCurveTo(x, y, x + radius, y);
+    ctx.closePath();
+    ctx.fill();
+  }
+
+  function drawContributions(
+    canvas: HTMLCanvasElement,
+    contributions: Contribution[],
+    cellSizeWidth: number,
+    cellSizeHeight: number,
+    gapSize: number
+  ) {
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    const diasPorSemana = 7;
+    const cornerRadius = 6;
+
+    contributions.forEach((contrib, i) => {
+      const x = Math.floor(i / diasPorSemana) * (cellSizeWidth + gapSize);
+      const y = (i % diasPorSemana) * (cellSizeHeight + gapSize);
+      const color = transformColor(contrib.color);
+
+      drawRoundedRect(ctx, x, y, cellSizeWidth, cellSizeHeight, cornerRadius, color);
+    });
+  }
+
+  async function main() {
+    try {
+      const response = await fetch('/.netlify/functions/gitHubHandler', {
+        method: 'POST',
+      });
+
+      if (response.ok) {
+        const jsonResponse = await response.json();
+        const contributions: Contribution[] = jsonResponse.contributions;
+
+        const canvasContainer = document.getElementById('canvasContainer');
+        const canvas = document.getElementById('githubCanvas') as HTMLCanvasElement | null;
+
+        if (canvas && canvasContainer) {
+          canvas.width = canvasContainer.offsetWidth;
+          canvas.height = canvasContainer.offsetHeight;
+
+          const cellSizeWidth = canvas.width / 61;
+          const cellSizeHeight = canvas.height / 8;
+          const gapSize = 3; // Ajusta según sea necesario
+
+          drawContributions(canvas, contributions, cellSizeWidth, cellSizeHeight, gapSize);
+        }
+      } else {
+        console.error(`Respuesta no exitosa: ${response.status}`);
+      }
+    } catch (error) {
+      console.error(`Petición fallida: ${error}`);
+    }
+  }
+
+  main();
+</script>

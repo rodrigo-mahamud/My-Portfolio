@@ -4,10 +4,11 @@ module.exports = {
     es2022: true,
     browser: true,
   },
-  extends: ['eslint:recommended', 'plugin:astro/recommended'],
+  extends: ['eslint:recommended', 'plugin:astro/recommended', 'plugin:react/recommended'],
   parserOptions: {
     ecmaVersion: 'latest',
     sourceType: 'module',
+    jsx: true,
   },
   rules: {},
   overrides: [

@@ -6,6 +6,10 @@
   path = "/netlify/functions"
   function = "spotifyHandler"
 
+[[edge_functions]]
+  path = "/netlify/functions"
+  function = "gitHubHandler"
+  
 [[headers]]
   for = "/assets/*"
   [headers.values]
