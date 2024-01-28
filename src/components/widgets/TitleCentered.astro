@@ -3,29 +3,41 @@ export interface Props {
   data?: {
     title?: string;
     subtitle?: string;
+    pretitle?: string;
     isSticky?: boolean;
   };
 }
 const { data = {} } = Astro.props;
 ---
 
-<div class={`flex flex-col ${data.isSticky ? 'sticky' : ''} top-8 pb-16`}>
+<div class={`flex flex-col ${data.isSticky ? 'sticky' : ''} top-8 pb-10`}>
   {
-    data.subtitle && (
+    data.pretitle && (
       <div class="badge animate-on-scroll" data-type="simple" data-duration="1.5" data-easing="Expo.easeOut">
-        <span class="badge-text ">{data.subtitle}</span>
+        <span class="badge-text ">{data.pretitle}</span>
       </div>
     )
   }
   {
     data.title && (
       <h2
-        class="headingTxt text-center text-[3.5rem] leading-[4rem] animate-on-scroll"
-        data-typemouse="link"
+        class="headingTxt text-center text-5xl leading-[3.5rem] animate-on-scroll"
         data-type="simple"
         data-duration="1.5"
         data-easing="Expo.easeOut"
         set:html={data.title}
+      />
+    )
+  }
+  {
+    data.subtitle && (
+      <h2
+        class="max-w-[625px] text-gray-400 mx-auto text-center mt-3 animate-on-scroll"
+        data-type="simple"
+        data-delay="0.15"
+        data-duration="1.5"
+        data-easing="Expo.easeOut"
+        set:html={data.subtitle}
       />
     )
   }

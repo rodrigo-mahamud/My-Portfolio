@@ -1,6 +1,23 @@
-<section class="lg:max-w-4xl xl:max-w-6xl mx-auto w-full">
-  <div class="w-10/12 mx-auto">
-    <div id="canvasContainer">
+---
+import TitleCentered from './TitleCentered.astro';
+---
+
+<style>
+  .clip-try {
+    clip-path: polygon(100% 0, 0 100%, 100% 100%);
+  }
+</style>
+<section class="lg:max-w-4xl xl:max-w-6xl mx-auto w-full py-16">
+  <TitleCentered
+    data={{
+      pretitle: 'Contact Me',
+      title: "Your idea, my<br /> next commit Let's code it!",
+      subtitle: "Let us find the best competitors and we'll use the given data to find most relevant keywords.",
+      isSticky: false,
+    }}
+  />
+  <div class="w-9/12 mx-auto">
+    <div id="canvasContainer" class="clip-try">
       <canvas id="githubCanvas"></canvas>
     </div>
   </div>
@@ -87,7 +104,7 @@
           canvas.width = canvasContainer.offsetWidth;
           canvas.height = canvasContainer.offsetHeight;
 
-          const cellSizeWidth = canvas.width / 61;
+          const cellSizeWidth = canvas.width / 62;
           const cellSizeHeight = canvas.height / 8;
           const gapSize = 3; // Ajusta según sea necesario
 
