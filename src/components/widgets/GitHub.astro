@@ -1,23 +1,22 @@
 ---
+import ContactButton from './ContactButton.astro';
 import TitleCentered from './TitleCentered.astro';
 ---
 
-<style>
-  .clip-try {
-    clip-path: polygon(100% 0, 0 100%, 100% 100%);
-  }
-</style>
-<section class="lg:max-w-4xl xl:max-w-6xl mx-auto w-full py-16">
+<section class="lg:max-w-4xl xl:max-w-6xl mx-auto w-full h-full relative py-16">
   <TitleCentered
     data={{
-      pretitle: 'Contact Me',
       title: "Your idea, my<br /> next commit Let's code it!",
       subtitle: "Let us find the best competitors and we'll use the given data to find most relevant keywords.",
       isSticky: false,
     }}
   />
-  <div class="w-9/12 mx-auto">
-    <div id="canvasContainer" class="clip-try">
+  <div class="relative w-full h-full flex justify-center items-center">
+    <a class="btn absolute z-20" href="#">
+      <span class="btnInner text-xl px-8 py-4 font-medium">Let's get in touch</span>
+    </a>
+    <div class="absolute w-full h-[inherit] z-10 shadowContact"></div>
+    <div class="h-full w-full relative" id="canvasContainer">
       <canvas id="githubCanvas"></canvas>
     </div>
   </div>
@@ -104,7 +103,7 @@ import TitleCentered from './TitleCentered.astro';
           canvas.width = canvasContainer.offsetWidth;
           canvas.height = canvasContainer.offsetHeight;
 
-          const cellSizeWidth = canvas.width / 62;
+          const cellSizeWidth = canvas.width / 60;
           const cellSizeHeight = canvas.height / 8;
           const gapSize = 3; // Ajusta según sea necesario
 

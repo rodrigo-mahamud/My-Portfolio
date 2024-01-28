@@ -707,3 +707,102 @@ canvas {
     );
   transition: all 0.5s ease-in-out;
 }
+/*CONTACT BUTTON*/
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 100px;
+  border: none;
+  background: none;
+  padding: 1px;
+  text-decoration: none;
+  transition: all 0.18s ease-in-out;
+  box-shadow: inset 0 7px 11px #a48fff1f;
+}
+
+.btn:after,
+.btn:before {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: calc(100px + 1.5px);
+  background-size: 100% 100%;
+  background-position: 0px 0px;
+  background-image: conic-gradient(
+    from var(--angle) at 50% 50%,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0) 33%,
+    var(--glowColor) 50%,
+    rgba(0, 0, 0, 0) 66%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  animation: rotate 6s infinite linear;
+}
+
+.btn:before {
+  filter: blur(20px);
+}
+
+.btn .btnInner {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  border-radius: 100px;
+  z-index: 1;
+  transition: all 0.18s ease;
+  backdrop-filter: blur(10px);
+  background: linear-gradient(0deg, rgba(255, 255, 255, 1) 15%, rgba(0, 0, 0, 0.4)),
+    linear-gradient(90deg, #dd81ff 0.01%, #a882ff 50.01%, #7e9aff 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.btn:hover .btnInner {
+  background-color: rgba(88, 221, 147, 0.1);
+  color: #8bebb5;
+}
+
+.btn:active {
+  transform: scale(0.95);
+}
+.btn:hover + .shadowContact {
+  box-shadow: inset 0px 0px 60px 3rem #0a0118;
+  transition: 0.3s all ease-in-out;
+}
+.shadowContact {
+  transition: 0.3s all ease-in-out;
+  box-shadow: inset 0px 0px 60px 4rem #0a0118;
+}
+
+@keyframes rotate {
+  0% {
+    --angle: 0deg;
+    --glowColor: #a48fff0f;
+  }
+  100% {
+    --angle: 360deg;
+    --glowColor: #a48fff0f;
+  }
+}
+@property --angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@property --glowColor {
+  syntax: '<color>';
+}
