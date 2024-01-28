@@ -30,22 +30,10 @@ import hero from '../../assets/images/Hero/Hero.png';
   <div class="bg-[#0f0420] w-screen h-[110vh] heroShadow">
     <div class="w-1/2 bg-[#0a0118] coversh h-[110vh] absolute z-10 transformTextBox overflow-hidden">
       <div class="absolute bottom-14 h-2/5 px-14 pb-8 flex flex-col w-[50vw]">
-        <h1
-          class="text-white text-5xl mb-6 font-semibold w-full animate-on-scroll"
-          data-type="simple"
-          data-delay="0.95"
-          data-duration="2.5"
-          data-easing="Expo.easeOut"
-        >
+        <h1 id="tittleHero" class="text-white text-5xl mb-6 font-semibold w-full translate-y-[50px] opacity-0">
           Rodrigo Mahamud's portfolio :)
         </h1>
-        <h2
-          class="w-full text-lg animate-on-scroll"
-          data-type="simple"
-          data-delay="1.1"
-          data-duration="2.5"
-          data-easing="Expo.easeOut"
-        >
+        <h2 id="subtittleHero" class="w-full text-lg translate-y-[50px] opacity-0">
           UI kit and designss system for Figma in the world. Kickstart any project, save thousands of hours, and level
           up as a .
         </h2>
@@ -289,15 +277,30 @@ import hero from '../../assets/images/Hero/Hero.png';
   document.addEventListener('DOMContentLoaded', () => {
     // obtener todas las columnas de las imágenes
     const columns = Array.from(document.querySelectorAll('#heroCardShadow'));
+    const title = document.getElementById('tittleHero');
+    const subtitle = document.getElementById('subtittleHero');
 
     columns.forEach((column) => {
       // generar una duración aleatoria entre 4 y 6 para la animación inicial
-      const randomDurationInitial = Math.random() * (6 - 3) + 3;
+      const randomDurationInitial = Math.random() * (5 - 3) + 3;
       // generar una duración aleatoria entre 10 y 20 para la animación repetitiva
       const randomDurationIdle = Math.random() * (15 - 7) + 10;
 
+      gsap.to(title, {
+        y: 0,
+        duration: 2.25,
+        opacity: 1,
+        delay: 0.75,
+        ease: 'Expo.easeOut',
+      });
+      gsap.to(subtitle, {
+        y: 0,
+        duration: 2.25,
+        delay: 1,
+        opacity: 1,
+        ease: 'Expo.easeOut',
+      });
       const tl = gsap.timeline();
-
       // Primera animación al cargar
       tl.fromTo(
         column,
@@ -306,7 +309,7 @@ import hero from '../../assets/images/Hero/Hero.png';
         },
         {
           y: -150,
-          delay: 0.8,
+          delay: 0.15,
           opacity: 1,
           ease: 'Expo.easeOut',
           duration: randomDurationInitial,

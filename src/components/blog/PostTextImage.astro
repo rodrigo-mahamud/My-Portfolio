@@ -11,35 +11,17 @@ const imageSrc = imagePath[`/src/assets/works${data.imagePath}`]();
   <div class:list={['flex flex-col items-center gap-8 md:gap-12 md:flex-row', { 'md:flex-row-reverse': isReversed }]}>
     <div class="flex flex-col justify-start h-full items-start md:py-4 md:basis-1/2 w-1/2">
       <h2 class="text-3xl md:text-4xl mb-4 md:mb-8">
-        <div
-          class="animate-on-scroll"
-          data-type="simple"
-          data-delay="0.1"
-          data-easing="Expo.easeOut"
-          data-duration="2.5"
-        >
+        <div class="animate-on-scroll" data-type="simple" data-easing="Expo.easeOut" data-duration="1.5">
           {data.title}
         </div>
       </h2>
-      <div
-        class="animate-on-scroll"
-        data-type="simple"
-        data-delay="0.15"
-        data-easing="Expo.easeOut"
-        data-duration="2.5"
-      >
+      <div class="animate-on-scroll" data-type="simple" data-easing="Expo.easeOut" data-duration="1.5">
         {data.text}
       </div>
     </div>
 
     <div class="relative flex justify-end md:basis-1/2 w-1/2">
-      <div
-        class="animate-on-scroll"
-        data-type="simple"
-        data-delay="0.15"
-        data-easing="Expo.easeOut"
-        data-duration="2.5"
-      >
+      <div class="animate-on-scroll" data-type="simple" data-easing="Expo.easeOut" data-duration="1.5">
         <Image
           class="rounded-2xl"
           alt={data.title}

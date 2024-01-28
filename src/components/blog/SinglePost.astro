@@ -66,8 +66,7 @@ const adjustedColor1 = darkenColor(post.accentColor, 0.5);
         <h1
           class="postHeaderFont px-4 text-[80px] mx-auto font-medium tracking-tighter leading-snug animate-on-scroll"
           data-type="simple"
-          data-delay="0"
-          data-duration="2.5"
+          data-duration="1.5"
           data-easing="Expo.easeOut"
           style={{
             '--gradient-base-color': post.accentColor,
@@ -76,7 +75,7 @@ const adjustedColor1 = darkenColor(post.accentColor, 0.5);
         >
           {post.title}
         </h1>
-        <p class="animate-on-scroll" data-type="simple" data-delay="0" data-duration="2.5" data-easing="Expo.easeOut">
+        <p class="animate-on-scroll" data-type="simple" data-duration="1.5" data-easing="Expo.easeOut">
           <time class="opacity-50 text-white" datetime={String(post.publishDate)}
             >{getFormattedDate(post.publishDate)}</time
           >
@@ -89,8 +88,7 @@ const adjustedColor1 = darkenColor(post.accentColor, 0.5);
             <Image
               class="rounded-3xl h-full object-cover animate-on-scroll"
               data-type="simple"
-              data-delay="0.1"
-              data-duration="2.5"
+              data-duration="1.5"
               data-easing="Expo.easeOut"
               alt={`Imagen del ${post.title}`}
               widths={[275, 475, 575, 1050, 1250]}

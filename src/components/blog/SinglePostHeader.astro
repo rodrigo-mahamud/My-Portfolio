@@ -9,22 +9,14 @@ const { title, preTitle } = Astro.props as CardProps;
 let id = preTitle.toLowerCase().replace(/\s+/g, '');
 ---
 
-<section
-  id={id}
-  class="animate-on-scroll"
-  data-type="simple"
-  data-delay="0"
-  data-duration="2.5"
-  data-easing="Expo.easeOut"
->
+<section id={id} class="animate-on-scroll" data-type="simple" data-duration="1.5" data-easing="Expo.easeOut">
   <div class="relative cardBorderGlow w-full mt-28">
     <div class="bgCardGradient absolute top-0 h-full w-full"></div>
     <div class="flex flex-col justify-between items-start z-10 relative">
       <div
         class="flex items-center pb-5 pt-16 animate-on-scroll"
         data-type="simple"
-        data-delay="0.1"
-        data-duration="2.5"
+        data-duration="1.5"
         data-easing="Expo.easeOut"
       >
         <div class="w-2 h-2 mr-3 bg-white rounded-full border border-white shadow-[0_0_20px_0_#fff]"></div>
@@ -33,8 +25,7 @@ let id = preTitle.toLowerCase().replace(/\s+/g, '');
       <h2
         class="text-5xl font-bold pb-16 tracking-tighter headingTxt text-left animate-on-scroll"
         data-type="simple"
-        data-delay="0.2"
-        data-duration="2.5"
+        data-duration="1.5"
         data-easing="Expo.easeOut"
       >
         {title}

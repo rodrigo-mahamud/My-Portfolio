@@ -20,7 +20,10 @@ export interface Props {
 const { links = [], back, isHomePage } = Astro.props;
 ---
 
-<header class="fixed z-50 w-full max-w-[34rem] -translate-x-1/2 bottom-4 left-1/2" id="header">
+<header
+  class="fixed flex justify-center items-center z-50 w-full max-w-[34rem] -translate-x-1/2 bottom-4 left-1/2"
+  id="header"
+>
   <div
     id="navContainer"
     style="border-radius: 2rem;"
@@ -95,10 +98,16 @@ const { links = [], back, isHomePage } = Astro.props;
 
   if (navContainer && navGlow) {
     window.addEventListener('DOMContentLoaded', () => {
+      let delay = 1.25;
+      let duration = 1.5;
+      if (window.scrollY > 800) {
+        delay = 0;
+        duration = 0;
+      }
       if (navElements.length) {
         gsap.from(navContainer, {
-          duration: 1.5,
-          delay: 1.75,
+          duration: duration,
+          delay: delay,
           y: 100,
           ease: 'Expo.easeOut',
         });
