@@ -135,61 +135,6 @@
     });
   });
 
-  window.addEventListener('DOMContentLoaded', () => {
-    const heroElementsToAnimate = document.querySelectorAll('.animate-on-scrollHero');
-
-    heroElementsToAnimate.forEach((element, index) => {
-      const delay = 0.65 + index * 0.15;
-      gsap.from(element, {
-        duration: 2.25,
-        autoAlpha: 0,
-        y: 100,
-        delay: delay,
-        ease: 'Expo.easeOut',
-        clearProps: 'all',
-      });
-    });
-  });
-
-  const heroElement = document.querySelector('.transformHero');
-  const heroTextBox = document.querySelector('.transformTextBox');
-  const heroContainer = document.querySelector('#inicio');
-  gsap.fromTo(
-    heroElement,
-    {
-      duration: 1,
-      transform: 'translate3d(20%, 0%, 0px) scale3d(1, 0.65, 1)  rotateX(15deg) rotateY(-10deg) rotateZ(32deg) ',
-    },
-
-    {
-      duration: 1,
-      transform: 'translate3d(0%, -50%, 0px) scale3d(1, 1, 1)  rotateX(15deg) rotateY(0deg) rotateZ(0deg) ',
-      scrollTrigger: {
-        trigger: heroContainer,
-        start: 'top',
-        end: 800,
-        scrub: true,
-      },
-    }
-  );
-  gsap.fromTo(
-    heroTextBox,
-    {
-      duration: 1,
-    },
-
-    {
-      width: '0vw',
-      duration: 1,
-      scrollTrigger: {
-        trigger: heroContainer,
-        start: 'top',
-        end: 800,
-        scrub: true,
-      },
-    }
-  );
-
   //PARALLAX ANIMATIONS ON SCROLL
 
   document.addEventListener('DOMContentLoaded', () => {
