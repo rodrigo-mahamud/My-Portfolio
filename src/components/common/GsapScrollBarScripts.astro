@@ -7,7 +7,7 @@
   import { CSSPlugin } from 'gsap/CSSPlugin';
   import Lenis from '@studio-freight/lenis';
 
-  const lenis = new Lenis({ infinite: false, duration: 1.5 });
+  const lenis = new Lenis({ infinite: false, duration: 1.15, lerp: 0.06 });
 
   function raf(time) {
     lenis.raf(time);
