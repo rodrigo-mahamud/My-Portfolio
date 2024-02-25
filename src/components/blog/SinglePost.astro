@@ -60,7 +60,10 @@ const adjustedColor1 = darkenColor(post.accentColor, 0.5);
   >
   </div>
   <PostIndex postIndex={post.postIndex} />
-  <article class="opacity-0 blur-lg max-w-[80vw] lg:max-w-3xl xl:max-w-4xl 2xl:max-w-5xl 3xl:max-w-6xl mx-auto">
+  <article
+    id="article"
+    class="opacity-0 blur-lg max-w-[80vw] lg:max-w-3xl xl:max-w-4xl 2xl:max-w-5xl 3xl:max-w-6xl mx-auto"
+  >
     <header class="w-full h-full pt-28 relative">
       <div class="flex justify-between flex-col pb-16 mt-0 mb-2 px-4 sm:px-6 sm:items-center">
         <h1
@@ -115,16 +118,19 @@ const adjustedColor1 = darkenColor(post.accentColor, 0.5);
 </section>
 <script>
   // eslint-disable-next-line no-unused-vars
-  import { YouTube } from '@astro-community/astro-embed-youtube';
+
   import { gsap } from 'gsap';
-  const article = document.querySelector('article');
+  document.addEventListener('DOMContentLoaded', () => {
+    console.log('ha cargado');
+    const article = document.getElementById('article');
 
-  gsap.to(article, {
-    duration: 1,
+    gsap.to(article, {
+      duration: 1,
 
-    filter: 'blur(0px)',
-    opacity: 1,
-    ease: 'power3.out',
+      filter: 'blur(0px)',
+      opacity: 1,
+      ease: 'power3.out',
+    });
   });
 
   /*countup*/

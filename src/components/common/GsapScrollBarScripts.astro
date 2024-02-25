@@ -30,7 +30,7 @@
         const href = link.getAttribute('href');
         return href ? href.replace('#', '') : '';
       })
-      .filter(Boolean); // Este filtro eliminará cualquier valor vacío
+      .filter(Boolean);
   }
 
   const sectionIDs = getSectionIdsFromNavLinks();
