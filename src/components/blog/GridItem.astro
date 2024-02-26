@@ -23,7 +23,7 @@ function darkenColor(color, amount) {
 const adjustedColor1 = darkenColor(post.accentColor, 0.6);
 ---
 
-<article
+<div
   class="animate-on-scroll"
   data-type="simple"
   data-duration="1.5"
@@ -40,7 +40,7 @@ const adjustedColor1 = darkenColor(post.accentColor, 0.6);
     <a href={getPermalink(post.permalink, 'post')} class="w-full cursor-none" data-nav="animate">
       <div class="bgGradient absolute top-0 h-full w-full rounded-2xl border border-[#716882]"></div>
       <div class="flex flex-col h-full justify-between z-10 relative">
-        <div class="flex flex-row justify-between px-12 pt-14">
+        <div class="flex flex-row justify-between px-8 pt-8 md:px-12 md:pt-14">
           <div class="h-1/6">
             <h3
               class="text-3xl font-bold tracking-tighter mb-2 headingTxt text-left animate-on-scroll"
@@ -51,7 +51,7 @@ const adjustedColor1 = darkenColor(post.accentColor, 0.6);
               {post.title}
             </h3>
             <p
-              class="text-neutral-400 text-lg animate-on-scroll"
+              class="text-neutral-400 text-sm md:text-lg animate-on-scroll"
               data-type="simple"
               data-duration="1.5"
               data-easing="Expo.easeOut"
@@ -94,7 +94,7 @@ const adjustedColor1 = darkenColor(post.accentColor, 0.6);
       </div>
     </a>
   </div>
-</article>
+</div>
 <!-- <Image
 src={image}
 class="object-cover w-5/6 h-full rounded-t-2xl mx-auto"
