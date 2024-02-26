@@ -24,6 +24,19 @@
   /*-----------------------*/
   /*------ NAV MENU ------ */
   /*-----------------------*/
+  // Scroll to section on click
+  navLinks.forEach((link) => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      const href = link.getAttribute('href');
+      if (href) {
+        const target = document.querySelector(href);
+        if (target) {
+          lenis.scrollTo(target);
+        }
+      }
+    });
+  });
   function getSectionIdsFromNavLinks() {
     return Array.from(navLinks)
       .map((link) => {
