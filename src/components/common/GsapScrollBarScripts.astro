@@ -108,13 +108,11 @@
 
   document.addEventListener('DOMContentLoaded', () => {
     const elementsToAnimate: HTMLElement[] = Array.from(document.querySelectorAll('.animate-on-scroll'));
-
     elementsToAnimate.forEach((element: HTMLElement) => {
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: element, // Ajusta según tu estructura HTML
           start: 'top 70%',
-          once: true,
         },
       });
       const delay = parseFloat(element.getAttribute('data-delay') || '0');
