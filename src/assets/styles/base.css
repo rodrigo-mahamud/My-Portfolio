@@ -337,20 +337,8 @@ audio {
     transform: translate(0px, 0px) skewY(330deg);
   }
 }
-/* -- ↓ ↓ ↓ some responsiveness ↓ ↓ ↓ -- */
-
-@media (max-width: 1000px) {
-  .card {
-    flex-shrink: 1;
-    width: calc(50% - 4px);
-  }
-}
 
 @media (max-width: 500px) {
-  .card {
-    height: 180px;
-  }
-
   .card-image {
     height: 80px;
   }

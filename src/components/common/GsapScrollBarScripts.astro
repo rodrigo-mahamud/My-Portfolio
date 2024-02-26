@@ -7,7 +7,7 @@
   import { CSSPlugin } from 'gsap/CSSPlugin';
   import Lenis from '@studio-freight/lenis';
 
-  const lenis = new Lenis({ infinite: false, duration: 1.15, lerp: 0.06 });
+  const lenis = new Lenis({ infinite: false, duration: 1.15, lerp: 0.08 });
 
   function raf(time) {
     lenis.raf(time);
@@ -51,7 +51,7 @@
   function isVisible(el: Element): boolean {
     const rect = el.getBoundingClientRect();
     const windowHeight = window.innerHeight || document.documentElement.clientHeight;
-    const isInView = rect.top <= windowHeight && rect.top + rect.height >= 0;
+    const isInView = rect.top <= windowHeight && rect.top + rect.height >= 20;
     return isInView;
   }
 

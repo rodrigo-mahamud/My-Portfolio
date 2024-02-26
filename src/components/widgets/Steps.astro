@@ -120,8 +120,45 @@ import TitleCentered from './TitleCentered.astro';
   .animate-on-scroll:nth-of-type(3) div {
     box-shadow: 175px 0px 30px -15px rgb(10 1 24 / 75%);
   }
+  @media (max-width: 768px) {
+    .borderAlt {
+      padding: 0.5rem 1.5rem 0.5rem 1.5rem;
+      font-size: 1rem;
+      box-shadow: 0px 5px 0px -2px #0a0118;
+    }
+    .borderAlt:before {
+      content: '';
+      height: 21px;
+      left: -19px;
+
+      box-shadow: 3px -7px 0px #0a0118;
+    }
+    .animate-on-scroll:nth-of-type(2) .borderAlt::after {
+      content: '';
+      height: 23px;
+      right: -19px;
+      box-shadow: 6px -11px 0px 5px #0a0118;
+    }
+    .animate-on-scroll:nth-of-type(3) .borderAlt::after {
+      content: '';
+      height: 23px;
+      right: -19px;
+      box-shadow: 6px -11px 0px 5px #0a0118;
+    }
+    .borderGlow,
+    .animate-on-scroll:nth-of-type(2) .borderGlow,
+    .animate-on-scroll:nth-of-type(3) .borderGlow {
+      background: rgba(10, 1, 24, 1) 100%;
+    }
+    .borderGlow:before {
+      background: transparent !important;
+    }
+  }
 </style>
-<section class="max-w-5xl mx-auto flex flex-col relative h-[calc(100vh+50rem)] py-16" id="proyectos">
+<section
+  class="max-w-[85vw] lg:max-w-5xl mx-auto flex flex-col relative h-[calc(100vh+60rem)] md:h-[calc(100vh+50rem)] py-16"
+  id="proyectos"
+>
   <TitleCentered
     data={{
       title: 'Spot issues faster <br /> with smart indicators',
@@ -136,24 +173,27 @@ import TitleCentered from './TitleCentered.astro';
           <h3 class="uppercase borderAlt bg-[#0a0118]">Experience</h3>
         </div>
         <section class="w-full borderGlow">
-          <ul class="flex flex-col ml-5 mt-6 relative">
-            <div class="h-full bg-gradient-to-b from-white via-white absolute w-[1px] mt-8 left-[1.35rem] z-0"></div>
-            <li class="mt-6 mb-5 ms-4">
+          <ul class="flex flex-col md:ml-5 md:mt-6 relative">
+            <div
+              class="h-full bg-gradient-to-b from-white via-white absolute w-[1px] mt-8 hidden md:flex left-[1.35rem] z-0"
+            >
+            </div>
+            <li class="mt-6 mb-5 md:ms-4 mx-6">
               <div class="flex flex-row items-center">
-                <div class="w-3 h-3 mr-3 bg-white rounded-full border border-white"></div>
+                <div class="w-3 h-3 mr-3 hidden md:flex bg-white rounded-full border border-white"></div>
                 <h4 class="text-white items-center">Application UI code in Tailwind CSS</h4>
               </div>
-              <p class="px-6 pt-2 text-base font-normal text-secondary">
+              <p class="md:px-6 pt-2 text-sm md:text-base font-normal text-secondary">
                 Get access to over 20+ pages including a dashboard layout, charts, kanban board, calendar, and pre-order
                 E-commerce & Marketing pages.
               </p>
             </li>
             <li class="mt-5 mb-5 ms-4">
               <div class="flex flex-row items-center">
-                <div class="w-3 h-3 mr-3 bg-white rounded-full border border-white"></div>
+                <div class="w-3 h-3 mr-3 hidden md:flex bg-white rounded-full border border-white"></div>
                 <h4 class="text-white items-center">Application UI code in Tailwind CSS</h4>
               </div>
-              <p class="px-6 pt-2 text-base font-normal text-secondary">
+              <p class="md:px-6 pt-2 text-sm md:text-base font-normal text-secondary">
                 Get access to over 20+ pages including a dashboard layout, charts, kanban board, calendar, and pre-order
                 E-commerce & Marketing pages.
               </p>
@@ -165,28 +205,31 @@ import TitleCentered from './TitleCentered.astro';
 
     <div class="animate-on-scroll sticky top-12" data-sadelay="0.15">
       <div class="mx-auto">
-        <div class="flex justify-end w-[86%]">
+        <div class="flex justify-end w-[75%] md:w-[86%]">
           <h3 class="uppercase borderAlt bg-[#0a0118]">Experience</h3>
         </div>
         <section class="w-full borderGlow">
-          <ul class="flex flex-col ml-5 mt-6 relative">
-            <div class="h-full bg-gradient-to-b from-white via-white absolute w-[1px] mt-8 left-[1.35rem] z-0"></div>
-            <li class="mt-6 mb-5 ms-4">
+          <ul class="flex flex-col md:ml-5 md:mt-6 relative">
+            <div
+              class="h-full bg-gradient-to-b from-white via-white absolute w-[1px] mt-8 hidden md:flex left-[1.35rem] z-0"
+            >
+            </div>
+            <li class="mt-6 mb-5 md:ms-4 mx-6">
               <div class="flex flex-row items-center">
-                <div class="w-3 h-3 mr-3 bg-white rounded-full border border-white"></div>
+                <div class="w-3 h-3 mr-3 hidden md:flex bg-white rounded-full border border-white"></div>
                 <h4 class="text-white items-center">Application UI code in Tailwind CSS</h4>
               </div>
-              <p class="px-6 pt-2 text-base font-normal text-secondary">
+              <p class="md:px-6 pt-2 text-sm md:text-base font-normal text-secondary">
                 Get access to over 20+ pages including a dashboard layout, charts, kanban board, calendar, and pre-order
                 E-commerce & Marketing pages.
               </p>
             </li>
             <li class="mt-5 mb-5 ms-4">
               <div class="flex flex-row items-center">
-                <div class="w-3 h-3 mr-3 bg-white rounded-full border border-white"></div>
+                <div class="w-3 h-3 mr-3 hidden md:flex bg-white rounded-full border border-white"></div>
                 <h4 class="text-white items-center">Application UI code in Tailwind CSS</h4>
               </div>
-              <p class="px-6 pt-2 text-base font-normal text-secondary">
+              <p class="md:px-6 pt-2 text-sm md:text-base font-normal text-secondary">
                 Get access to over 20+ pages including a dashboard layout, charts, kanban board, calendar, and pre-order
                 E-commerce & Marketing pages.
               </p>
@@ -198,28 +241,31 @@ import TitleCentered from './TitleCentered.astro';
 
     <div class="animate-on-scroll sticky top-12" data-sadelay="0.3">
       <div class="mx-auto">
-        <div class="flex justify-end w-[72%]">
+        <div class="flex justify-end w-[55%] md:w-[72%]">
           <h3 class="uppercase borderAlt bg-[#0a0118]">Experience</h3>
         </div>
         <section class="w-full borderGlow">
-          <ul class="flex flex-col ml-5 mt-6 relative">
-            <div class="h-full bg-gradient-to-b from-white via-white absolute w-[1px] mt-8 left-[1.35rem] z-0"></div>
-            <li class="mt-6 mb-5 ms-4">
+          <ul class="flex flex-col md:ml-5 md:mt-6 relative">
+            <div
+              class="h-full bg-gradient-to-b from-white via-white absolute w-[1px] mt-8 hidden md:flex left-[1.35rem] z-0"
+            >
+            </div>
+            <li class="mt-6 mb-5 md:ms-4 mx-6">
               <div class="flex flex-row items-center">
-                <div class="w-3 h-3 mr-3 bg-white rounded-full border border-white"></div>
+                <div class="w-3 h-3 mr-3 hidden md:flex bg-white rounded-full border border-white"></div>
                 <h4 class="text-white items-center">Application UI code in Tailwind CSS</h4>
               </div>
-              <p class="px-6 pt-2 text-base font-normal text-secondary">
+              <p class="md:px-6 pt-2 text-sm md:text-base font-normal text-secondary">
                 Get access to over 20+ pages including a dashboard layout, charts, kanban board, calendar, and pre-order
                 E-commerce & Marketing pages.
               </p>
             </li>
             <li class="mt-5 mb-5 ms-4">
               <div class="flex flex-row items-center">
-                <div class="w-3 h-3 mr-3 bg-white rounded-full border border-white"></div>
+                <div class="w-3 h-3 mr-3 hidden md:flex bg-white rounded-full border border-white"></div>
                 <h4 class="text-white items-center">Application UI code in Tailwind CSS</h4>
               </div>
-              <p class="px-6 pt-2 text-base font-normal text-secondary">
+              <p class="md:px-6 pt-2 text-sm md:text-base font-normal text-secondary">
                 Get access to over 20+ pages including a dashboard layout, charts, kanban board, calendar, and pre-order
                 E-commerce & Marketing pages.
               </p>
