@@ -35,7 +35,7 @@ const { links = [], back, isHomePage } = Astro.props;
   >
     {isHomePage && <SCard />}
     <div class="flex justify-center w-full h-full" id="navElementsContainer">
-      <nav class="w-full items-center justify-evenly hidden md:flex md:h-auto z-30" aria-label="Main navigation">
+      <nav class="w-full items-center justify-evenly md:flex md:h-auto z-30" aria-label="Main navigation">
         <div id="navGlow" class={`${isHomePage ? 'w-1/4 h-full -z-20 absolute -translate-x-1/2 navGlow' : 'hidden'}`}>
         </div>
         {

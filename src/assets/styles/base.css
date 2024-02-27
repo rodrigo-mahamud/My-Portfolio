@@ -778,6 +778,17 @@ canvas {
   box-shadow: inset 0px 0px 10rem 12rem #0a0118;
 }
 
+@media (max-width: 768px) {
+  .bgGradient {
+    background: radial-gradient(
+      130.23% 121% at 50% 0%,
+      var(--gradient-base-color) 0%,
+      var(--adjusted-color1) 50%,
+      transparent 100%
+    );
+    opacity: 1;
+  }
+}
 @keyframes rotate {
   0% {
     --angle: 0deg;
