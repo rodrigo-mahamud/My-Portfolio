@@ -1,6 +1,7 @@
 ---
 // import { Image } from 'astro:assets';
 
+import { Icon } from 'astro-icon/components';
 import type { Post } from '~/types';
 import { findImage } from '~/utils/images';
 import { getPermalink } from '~/utils/permalinks';
@@ -34,16 +35,16 @@ const adjustedColor1 = darkenColor(post.accentColor, 0.6);
   }}
 >
   <div
-    class="cursor-none custom-mouse relative borderGlow mb-6 w-full h-screen rounded-2xl md:mt-16 border border-[#2d263a] overflow-hidden"
+    class="cursor-none custom-mouse relative borderGlow mb-6 w-full h-[40vh] md:h-screen rounded-2xl md:mt-16 border border-[#2d263a] overflow-hidden"
     data-typemouse="link"
   >
     <a href={getPermalink(post.permalink, 'post')} class="w-full cursor-none" data-nav="animate">
       <div class="bgGradient absolute top-0 h-full w-full rounded-2xl border border-[#716882]"></div>
       <div class="flex flex-col h-full justify-between z-10 relative">
-        <div class="flex flex-row justify-between px-8 pt-8 md:px-12 md:pt-14">
+        <div class="flex flex-row justify-between px-6 pt-6 md:px-12 md:pt-14">
           <div class="h-1/6">
             <h3
-              class="text-3xl font-bold tracking-tighter mb-2 headingTxt text-left animate-on-scroll"
+              class="text-2xl md:text-3xl font-bold tracking-tighter mb-2 headingTxt text-left animate-on-scroll"
               data-type="simple"
               data-duration="1.5"
               data-easing="Expo.easeOut"
@@ -59,28 +60,12 @@ const adjustedColor1 = darkenColor(post.accentColor, 0.6);
               {post.excerpt}
             </p>
           </div>
-          <div class="flex items-center text-neutral-400">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              class="arrow-right"
-              width="2.5rem"
-              height="2.5rem"
-              viewBox="0 0 24 24"
-              stroke-width="1.5"
-              stroke="currentcolor"
-              fill="none"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            >
-              <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-              <path d="M5 12l14 0"></path>
-              <path d="M15 16l4 -4"></path>
-              <path d="M15 8l4 4"></path>
-            </svg>
+          <div class="flex items-start md:items-center text-neutral-400">
+            <Icon name="arrow-narrow-up" class="text-4xl rotate-90 stroke-0.5" />
           </div>
         </div>
         <div
-          class="relative h-5/6 rounded pt-16 animate-on-scroll"
+          class="relative h-5/6 rounded pt-8 md:pt-16 animate-on-scroll"
           data-type="simple"
           data-duration="2"
           data-easing="Expo.easeOut"
