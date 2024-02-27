@@ -4,7 +4,7 @@ import stickman from '../../assets/images/cakeLie/portal-stickman.png';
 import { Icon } from 'astro-icon/components';
 ---
 
-<div id="esfera-container" class="hidden">
+<div id="esfera-container">
   <div id="esfera" class="esferaGlow">
     <span id="esferaLinkIcon" class="arrowIcon hidden">
       <Icon name="arrow-narrow-up" class="text-7xl text-center text-white opacity-85" />
@@ -28,141 +28,206 @@ import { Icon } from 'astro-icon/components';
 </div>
 <script>
   import { gsap } from 'gsap';
+  import type { Code } from 'astro:components';
   document.addEventListener('DOMContentLoaded', () => {
-    const portal = document.getElementById('portal');
-    const esfera = document.getElementById('esfera');
-    const wlcomeIcon = document.getElementById('welcome');
-    const esferaLinkIcon = document.getElementById('esferaLinkIcon');
-    const esferaPlayIcon = document.getElementById('esferaPlayIcon');
-    const esferaText = document.getElementById('mouseText');
-
-    const isHomePage = window.location.pathname === '/';
-    if (!esfera) {
-      console.error('No se pudo encontrar la esfera en el DOM.');
-      return;
+    function isMobileDevice() {
+      const userAgent = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+      if (userAgent && window.innerWidth < 768) {
+        return true;
+      }
     }
-    let x = window.innerWidth / 2;
-    let y = window.innerHeight / 2;
-    let mouseX = x;
-    let mouseY = y;
-    let esferaScale = 0.5;
+    if (!isMobileDevice()) {
+      const portal = document.getElementById('portal');
+      const esfera = document.getElementById('esfera');
+      const wlcomeIcon = document.getElementById('welcome');
+      const esferaLinkIcon = document.getElementById('esferaLinkIcon');
+      const esferaPlayIcon = document.getElementById('esferaPlayIcon');
+      const esferaText = document.getElementById('mouseText');
 
-    gsap.to(esfera, {
-      duration: 0.15,
-      delay: 0.1,
-      backdropFilter: 'blur(6px)',
-      boxShadow: 'inset 0 7px 11px #a48fff26',
-      background: '#0a011824',
-      opacity: 1,
-    });
+      const isHomePage = window.location.pathname === '/';
+      if (!esfera) {
+        console.error('No se pudo encontrar la esfera en el DOM.');
+        return;
+      }
+      let x = window.innerWidth / 2;
+      let y = window.innerHeight / 2;
+      let mouseX = x;
+      let mouseY = y;
+      let esferaScale = 0.5;
 
-    gsap.to(esfera, {
-      scale: esferaScale,
-      duration: 0.75,
-      delay: 0.75,
-      opacity: 1,
-      border: '2px solid #fff',
-      backdropFilter: 'unset',
-      background: 'transparent',
-      ease: 'Expo.easeOut',
-    });
-
-    if (!isHomePage && wlcomeIcon) {
-      wlcomeIcon.style.opacity = '0';
       gsap.to(esfera, {
-        scale: esferaScale,
-        delay: 0,
+        duration: 0.15,
+        delay: 0.1,
+        backdropFilter: 'blur(6px)',
+        boxShadow: 'inset 0 7px 11px #a48fff26',
+        background: '#0a011824',
         opacity: 1,
-        border: '2px solid #fff',
-        backdropFilter: 'unset',
-        background: 'transparent',
-        boxShadow: 'unset',
-        ease: 'Expo.easeOut',
       });
+
       gsap.to(esfera, {
         scale: esferaScale,
         duration: 0.75,
-        delay: 0,
+        delay: 0.75,
         opacity: 1,
         border: '2px solid #fff',
         backdropFilter: 'unset',
         background: 'transparent',
-        boxShadow: 'unset',
         ease: 'Expo.easeOut',
       });
-    }
 
-    function lerp(start, end, amount) {
-      return (1 - amount) * start + amount * end;
-    }
-
-    function animate() {
-      x = lerp(x, mouseX, 0.09);
-      y = lerp(y, mouseY, 0.09);
-      if (esfera) {
-        gsap.set(esfera, {
-          x: x - esfera.clientWidth / 2,
-          y: y - esfera.clientHeight / 2,
-          ease: 'expo.out',
+      if (!isHomePage && wlcomeIcon) {
+        wlcomeIcon.style.opacity = '0';
+        gsap.to(esfera, {
+          scale: esferaScale,
+          delay: 0,
+          opacity: 1,
+          border: '2px solid #fff',
+          backdropFilter: 'unset',
+          background: 'transparent',
+          boxShadow: 'unset',
+          ease: 'Expo.easeOut',
+        });
+        gsap.to(esfera, {
+          scale: esferaScale,
+          duration: 0.75,
+          delay: 0,
+          opacity: 1,
+          border: '2px solid #fff',
+          backdropFilter: 'unset',
+          background: 'transparent',
+          boxShadow: 'unset',
+          ease: 'Expo.easeOut',
         });
       }
 
-      requestAnimationFrame(animate);
-    }
+      function lerp(start, end, amount) {
+        return (1 - amount) * start + amount * end;
+      }
 
-    document.addEventListener('mousemove', (e) => {
-      mouseX = e.clientX;
-      mouseY = e.clientY;
-    });
-    document.addEventListener('mousedown', () => {
-      gsap.to(esfera, {
-        scale: esferaScale * 0.85,
-        ease: 'Expo.easeOut',
+      function animate() {
+        x = lerp(x, mouseX, 0.09);
+        y = lerp(y, mouseY, 0.09);
+        if (esfera) {
+          gsap.set(esfera, {
+            x: x - esfera.clientWidth / 2,
+            y: y - esfera.clientHeight / 2,
+            ease: 'expo.out',
+          });
+        }
+
+        requestAnimationFrame(animate);
+      }
+
+      document.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
       });
-    });
-    document.addEventListener('mouseup', () => {
-      gsap.to(esfera, {
-        scale: esferaScale,
-        ease: 'Expo.easeOut',
+      document.addEventListener('mousedown', () => {
+        gsap.to(esfera, {
+          scale: esferaScale * 0.85,
+          ease: 'Expo.easeOut',
+        });
       });
-    });
+      document.addEventListener('mouseup', () => {
+        gsap.to(esfera, {
+          scale: esferaScale,
+          ease: 'Expo.easeOut',
+        });
+      });
 
-    const handleMouseEvents = () => {
-      const linkElements = document.querySelectorAll('.custom-mouse');
+      const handleMouseEvents = () => {
+        const linkElements = document.querySelectorAll('.custom-mouse');
 
-      linkElements.forEach((el: any) => {
-        el.dataset.playclicked = 'false';
+        linkElements.forEach((el: any) => {
+          el.dataset.playclicked = 'false';
 
-        el.addEventListener('mouseenter', (e) => {
-          if (!e.target || !(e.target instanceof HTMLElement)) return;
-          let playClicked = e.target.dataset.playclicked === 'true';
-          let type = playClicked ? 'disabled' : e.target.dataset.typemouse;
-          const text = e.target.dataset.mousetext;
-          switch (type) {
-            case 'link':
-              if (esferaLinkIcon) {
-                esferaScale = 1;
+          el.addEventListener('mouseenter', (e) => {
+            if (!e.target || !(e.target instanceof HTMLElement)) return;
+            let playClicked = e.target.dataset.playclicked === 'true';
+            let type = playClicked ? 'disabled' : e.target.dataset.typemouse;
+            const text = e.target.dataset.mousetext;
+            switch (type) {
+              case 'link':
+                if (esferaLinkIcon) {
+                  esferaScale = 1;
+                  gsap.to(esfera, {
+                    scale: esferaScale,
+                    border: '0px',
+                    duration: 0.5,
+                    backdropFilter: 'blur(6px)',
+                    boxShadow: 'inset 0 7px 11px #a48fff26',
+                    background: '#0a011824',
+                    opacity: 1,
+                    ease: 'Expo.easeOut',
+                  });
+                  gsap.to(esferaLinkIcon, {
+                    opacity: 1,
+                    duration: 0.25,
+                    ease: 'Expo.easeOut',
+                    onStart: () => {
+                      esferaLinkIcon.classList.remove('hidden');
+                    },
+                  });
+                }
+                break;
+              case 'disabled':
+                esferaScale = 0;
                 gsap.to(esfera, {
                   scale: esferaScale,
                   border: '0px',
                   duration: 0.5,
-                  backdropFilter: 'blur(6px)',
-                  boxShadow: 'inset 0 7px 11px #a48fff26',
-                  background: '#0a011824',
-                  opacity: 1,
+                  opacity: 0,
                   ease: 'Expo.easeOut',
                 });
-                gsap.to(esferaLinkIcon, {
-                  opacity: 1,
-                  duration: 0.25,
-                  ease: 'Expo.easeOut',
-                  onStart: () => {
-                    esferaLinkIcon.classList.remove('hidden');
-                  },
-                });
-              }
-              break;
-            case 'disabled':
+                break;
+              case 'play':
+                if (!playClicked && esferaPlayIcon) {
+                  esferaScale = 1;
+                  gsap.to(esfera, {
+                    scale: esferaScale,
+                    backdropFilter: 'blur(6px)',
+                    boxShadow: 'inset 0 7px 11px #a48fff26',
+                    background: '#0a011824',
+                    border: '0px',
+                    duration: 0.5,
+                    opacity: 1,
+                    ease: 'Expo.easeOut',
+                  });
+                  gsap.to(esferaPlayIcon, {
+                    opacity: 1,
+                    duration: 0.5,
+                    ease: 'Expo.easeOut',
+                    onStart: () => {
+                      esferaPlayIcon.classList.remove('hidden');
+                    },
+                  });
+                }
+                break;
+              case 'text':
+                if (esferaText && text) {
+                  esferaScale = 1;
+                  esferaText.innerHTML = text;
+                  esferaText.classList.remove('hidden');
+                  esferaText.classList.add('flex');
+                  gsap.to(esfera, {
+                    scale: esferaScale,
+                    backdropFilter: 'blur(6px)',
+                    boxShadow: 'inset 0 7px 11px #a48fff26',
+                    background: '#0a011824',
+                    border: '0px',
+                    duration: 0.5,
+                    opacity: 1,
+                    ease: 'Expo.easeOut',
+                  });
+                }
+                break;
+            }
+          });
+
+          el.addEventListener('click', (e) => {
+            if (!e.target || !(e.target instanceof HTMLElement)) return;
+            if (e.target.dataset.typemouse === 'play') {
+              e.target.dataset.playclicked = 'true';
               esferaScale = 0;
               gsap.to(esfera, {
                 scale: esferaScale,
@@ -171,182 +236,131 @@ import { Icon } from 'astro-icon/components';
                 opacity: 0,
                 ease: 'Expo.easeOut',
               });
-              break;
-            case 'play':
-              if (!playClicked && esferaPlayIcon) {
-                esferaScale = 1;
-                gsap.to(esfera, {
-                  scale: esferaScale,
-                  backdropFilter: 'blur(6px)',
-                  boxShadow: 'inset 0 7px 11px #a48fff26',
-                  background: '#0a011824',
-                  border: '0px',
-                  duration: 0.5,
-                  opacity: 1,
-                  ease: 'Expo.easeOut',
-                });
-                gsap.to(esferaPlayIcon, {
-                  opacity: 1,
-                  duration: 0.5,
-                  ease: 'Expo.easeOut',
-                  onStart: () => {
-                    esferaPlayIcon.classList.remove('hidden');
-                  },
-                });
-              }
-              break;
-            case 'text':
-              if (esferaText && text) {
-                esferaScale = 1;
-                esferaText.innerHTML = text;
-                esferaText.classList.remove('hidden');
-                esferaText.classList.add('flex');
-                gsap.to(esfera, {
-                  scale: esferaScale,
-                  backdropFilter: 'blur(6px)',
-                  boxShadow: 'inset 0 7px 11px #a48fff26',
-                  background: '#0a011824',
-                  border: '0px',
-                  duration: 0.5,
-                  opacity: 1,
-                  ease: 'Expo.easeOut',
-                });
-              }
-              break;
-          }
-        });
+            }
+          });
 
-        el.addEventListener('click', (e) => {
-          if (!e.target || !(e.target instanceof HTMLElement)) return;
-          if (e.target.dataset.typemouse === 'play') {
-            e.target.dataset.playclicked = 'true';
-            esferaScale = 0;
+          el.addEventListener('mouseleave', () => {
+            if (esferaLinkIcon && esferaPlayIcon && esferaText) {
+              esferaText.classList.add('hidden');
+              esferaText.classList.remove('flex');
+              esferaScale = 0.5;
+              gsap.to(esfera, {
+                scale: esferaScale,
+                backdropFilter: 'unset',
+                background: 'transparent',
+                boxShadow: 'unset',
+                border: '2px solid rgb(255, 255, 255)',
+                duration: 0.5,
+                opacity: 1,
+                ease: 'Expo.easeOut',
+              });
+              gsap.to([esferaLinkIcon, esferaPlayIcon], {
+                opacity: 0,
+                duration: 0.00001,
+                ease: 'Expo.easeOut',
+                onComplete: () => {
+                  esferaLinkIcon.classList.add('hidden');
+                  esferaPlayIcon.classList.add('hidden');
+                },
+              });
+            }
+          });
+        });
+      };
+
+      handleMouseEvents();
+
+      // MAGNETIC
+      const magnetic = () => {
+        const magnetics = document.querySelectorAll('.magnetic');
+        if (magnetics.length === 0) return;
+
+        magnetics.forEach((magnetic) => {
+          const magneticElement = magnetic as HTMLElement; // Aserción de tipo a HTMLElement
+          const xTo = gsap.quickTo(magneticElement, 'x', { duration: 1, ease: 'elastic.out(1, 0.5)' });
+          const yTo = gsap.quickTo(magneticElement, 'y', { duration: 1, ease: 'elastic.out(1, 0.5)' });
+          const strength = magneticElement.dataset.strength ? parseFloat(magneticElement.dataset.strength) : 1.15;
+          magneticElement.addEventListener('mouseenter', () => {
             gsap.to(esfera, {
-              scale: esferaScale,
-              border: '0px',
+              scale: 0.75,
               duration: 0.5,
-              opacity: 0,
               ease: 'Expo.easeOut',
             });
-          }
-        });
+          });
 
-        el.addEventListener('mouseleave', () => {
-          if (esferaLinkIcon && esferaPlayIcon && esferaText) {
-            esferaText.classList.add('hidden');
-            esferaText.classList.remove('flex');
+          magneticElement.addEventListener('mousemove', (e: any) => {
+            const { clientX, clientY } = e;
+            const { height, width, left, top } = magneticElement.getBoundingClientRect();
+            const x = clientX - (left + width / 2);
+            const y = clientY - (top + height / 2);
+            esferaScale = 0.75;
+
+            gsap.to(esfera, {
+              scale: esferaScale,
+            });
+
+            xTo(x * strength);
+            yTo(y * strength);
+          });
+
+          magneticElement.addEventListener('mouseleave', () => {
+            xTo(0);
+            yTo(0);
             esferaScale = 0.5;
             gsap.to(esfera, {
               scale: esferaScale,
-              backdropFilter: 'unset',
-              background: 'transparent',
-              boxShadow: 'unset',
-              border: '2px solid rgb(255, 255, 255)',
               duration: 0.5,
-              opacity: 1,
               ease: 'Expo.easeOut',
             });
-            gsap.to([esferaLinkIcon, esferaPlayIcon], {
-              opacity: 0,
-              duration: 0.00001,
+          });
+        });
+      };
+      magnetic();
+
+      // THE 404 PAGE IS A LIE
+      if (portal) {
+        const stickman = document.getElementById('stickman');
+        portal.addEventListener('mouseenter', () => {
+          gsap.fromTo(
+            esfera,
+            {
+              scale: 0.5,
+              rotate: '36deg',
+            },
+            {
+              border: '4px solid #ff9142',
+              boxShadow: '0px 0px 75px 0px #de5f03, inset 0px 0px 35px 1px #ff6e00',
+              skewY: '30deg',
+              scale: 0.9,
+              duration: 0.3,
               ease: 'Expo.easeOut',
-              onComplete: () => {
-                esferaLinkIcon.classList.add('hidden');
-                esferaPlayIcon.classList.add('hidden');
-              },
-            });
-          }
-        });
-      });
-    };
-
-    handleMouseEvents();
-
-    // MAGNETIC
-    const magnetic = () => {
-      const magnetics = document.querySelectorAll('.magnetic');
-      if (magnetics.length === 0) return;
-
-      magnetics.forEach((magnetic) => {
-        const magneticElement = magnetic as HTMLElement; // Aserción de tipo a HTMLElement
-        const xTo = gsap.quickTo(magneticElement, 'x', { duration: 1, ease: 'elastic.out(1, 0.5)' });
-        const yTo = gsap.quickTo(magneticElement, 'y', { duration: 1, ease: 'elastic.out(1, 0.5)' });
-        const strength = magneticElement.dataset.strength ? parseFloat(magneticElement.dataset.strength) : 1.15;
-        magneticElement.addEventListener('mouseenter', () => {
-          gsap.to(esfera, {
-            scale: 0.75,
-            duration: 0.5,
-            ease: 'Expo.easeOut',
+            }
+          );
+          gsap.set(stickman, {
+            display: 'flex',
           });
         });
-
-        magneticElement.addEventListener('mousemove', (e: any) => {
-          const { clientX, clientY } = e;
-          const { height, width, left, top } = magneticElement.getBoundingClientRect();
-          const x = clientX - (left + width / 2);
-          const y = clientY - (top + height / 2);
-          esferaScale = 0.75;
-
+        portal.addEventListener('mouseout', () => {
           gsap.to(esfera, {
-            scale: esferaScale,
-          });
-
-          xTo(x * strength);
-          yTo(y * strength);
-        });
-
-        magneticElement.addEventListener('mouseleave', () => {
-          xTo(0);
-          yTo(0);
-          esferaScale = 0.5;
-          gsap.to(esfera, {
-            scale: esferaScale,
-            duration: 0.5,
-            ease: 'Expo.easeOut',
-          });
-        });
-      });
-    };
-    magnetic();
-
-    // THE 404 PAGE IS A LIE
-    if (portal) {
-      const stickman = document.getElementById('stickman');
-      portal.addEventListener('mouseenter', () => {
-        gsap.fromTo(
-          esfera,
-          {
+            skewY: '0deg',
             scale: 0.5,
-            rotate: '36deg',
-          },
-          {
-            border: '4px solid #ff9142',
-            boxShadow: '0px 0px 75px 0px #de5f03, inset 0px 0px 35px 1px #ff6e00',
-            skewY: '30deg',
-            scale: 0.9,
             duration: 0.3,
+            border: '2px solid #fff',
+            boxShadow: 'unset',
+            background: 'transparent',
             ease: 'Expo.easeOut',
-          }
-        );
-        gsap.set(stickman, {
-          display: 'flex',
+          });
+          gsap.set(stickman, {
+            display: 'none',
+          });
         });
-      });
-      portal.addEventListener('mouseout', () => {
-        gsap.to(esfera, {
-          skewY: '0deg',
-          scale: 0.5,
-          duration: 0.3,
-          border: '2px solid #fff',
-          boxShadow: 'unset',
-          background: 'transparent',
-          ease: 'Expo.easeOut',
-        });
-        gsap.set(stickman, {
-          display: 'none',
-        });
-      });
+      }
+      animate();
+    } else {
+      const esfera = document.getElementById('esfera');
+      if (esfera) {
+        esfera.style.display = 'none';
+      }
     }
-    animate();
   });
 </script>
