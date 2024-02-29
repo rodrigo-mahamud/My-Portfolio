@@ -35,7 +35,7 @@ const adjustedColor1 = darkenColor(post.accentColor, 0.6);
   }}
 >
   <div
-    class="cursor-none custom-mouse relative borderGlow mb-8 md:mb-6 w-full h-[40vh] md:h-screen rounded-2xl md:mt-16 border border-[#2d263a] overflow-hidden"
+    class="cursor-none custom-mouse relative borderGlow mb-8 md:mb-6 w-full h-[45vh] md:h-screen rounded-2xl md:mt-16 border border-[#2d263a] overflow-hidden"
     data-typemouse="link"
   >
     <a href={getPermalink(post.permalink, 'post')} class="w-full cursor-none" data-nav="animate">
@@ -52,7 +52,7 @@ const adjustedColor1 = darkenColor(post.accentColor, 0.6);
               {post.title}
             </h3>
             <p
-              class="text-neutral-400 text-sm md:text-lg animate-on-scroll"
+              class="text-white/60 text-sm md:text-lg animate-on-scroll"
               data-type="simple"
               data-duration="1.5"
               data-easing="Expo.easeOut"
@@ -60,19 +60,24 @@ const adjustedColor1 = darkenColor(post.accentColor, 0.6);
               {post.excerpt}
             </p>
           </div>
-          <div class="flex items-start md:items-center text-white md:text-neutral-400">
+          <div class="flex items-start md:items-center text-white md:text-white/60">
             <Icon name="arrow-narrow-right" class="text-4xl stroke-1" />
           </div>
         </div>
         <div
-          class="relative h-5/6 rounded pt-8 md:pt-16 animate-on-scroll"
+          class="relative h-5/6 rounded pt-6 md:pt-16 animate-on-scroll px-6 md:p-0"
           data-type="simple"
           data-duration="2"
           data-easing="Expo.easeOut"
         >
           {
             image && (
-              <video class="object-cover w-5/6 h-[105%] rounded-t-2xl mx-auto" src="./Project1.mp4" autoplay muted />
+              <video
+                class="object-cover md:w-5/6 h-[105%] rounded-xl md:rounded-t-2xl mx-auto"
+                src="./Project1.mp4"
+                autoplay
+                muted
+              />
             )
           }
         </div>

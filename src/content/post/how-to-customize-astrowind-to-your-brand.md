@@ -5,7 +5,7 @@ author: Rodrigo Mahamud García
 excerpt: Sint sit cillum pariatur eiusmod nulla pariatur ipsum. Sit laborum anim qui mollit tempor pariatur.
 image: ../../assets/images/do-more.jpg
 video: hola
-accentColor: rgba(86, 8, 95, 1)
+accentColor: rgba(161, 198, 0, 1)
 canonical: https://astrowind.vercel.app/get-started-website-with-astro-tailwind-css
 rol: Lorem ipsum dolor sit amet
 duration: 4 months
