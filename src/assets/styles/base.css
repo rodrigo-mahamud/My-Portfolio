@@ -63,6 +63,7 @@ html.lenis {
 }
 .animate-on-scroll {
   opacity: 0;
+  will-change: transform;
   transform: translate(0px, 50px);
 }
 /*----ESFERA----*/
@@ -787,6 +788,32 @@ canvas {
       transparent 100%
     );
     opacity: 1;
+  }
+  .navGlow {
+    background: unset;
+  }
+  .navGlow::after {
+    left: 38%;
+    z-index: -3;
+    box-shadow: 0 -2px 25px 2px #fff;
+  }
+  .borderGlow:hover .bgGradient {
+    background: radial-gradient(
+      130.23% 121% at 50% 0%,
+      var(--gradient-base-color) 0%,
+      var(--adjusted-color1) 50%,
+      transparent 100%
+    );
+    opacity: unset;
+  }
+  .borderGlow:hover .arrow-right {
+    transform: unset;
+    transition: unset;
+    color: unset;
+  }
+  .borderGlow:hover video {
+    transform: unset;
+    box-shadow: unset;
   }
 }
 @keyframes rotate {

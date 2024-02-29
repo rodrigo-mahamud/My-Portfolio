@@ -7,15 +7,15 @@ export const headerData = {
       href: '#inicio',
     },
     {
-      text: 'Proyectos',
+      text: 'Works',
       href: '#proyectos',
     },
     {
-      text: 'Experiencia',
+      text: 'Info',
       href: '#experiencia',
     },
     {
-      text: 'Contacto',
+      text: 'Contact',
       href: '#contacto',
     },
   ],

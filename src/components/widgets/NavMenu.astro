@@ -1,6 +1,7 @@
 ---
 import SCard from './SCard.astro';
 import SCardButton from './SCardButton.astro';
+import { Icon } from 'astro-icon/components';
 
 interface Link {
   text?: string;
@@ -21,22 +22,22 @@ const { links = [], back, isHomePage } = Astro.props;
 ---
 
 <header
-  class="fixed flex justify-center items-center z-50 w-full max-w-[34rem] -translate-x-1/2 bottom-4 left-1/2"
+  class="fixed flex justify-center items-center z-50 w-full max-w-[34rem] h-16 md:h-auto -translate-x-1/2 bottom-0 md:bottom-4 left-1/2"
   id="header"
 >
   <div
     id="navContainer"
     style="border-radius: 2rem;"
-    class={`border border-[#f2f2f21a]  shadow-[0_10px_25px_0_rgba(0,0,0,0.15)] flex items-center opacity-0 justify-end flex-row h-12 ${
+    class={`border-t md:border border-[#f2f2f21a] shadow-[0_10px_25px_0_rgba(0,0,0,0.15)] flex items-center opacity-0 justify-end flex-row h-full md:h-12 ${
       isHomePage
-        ? 'w-[87.5%] backdrop-blur-xl border-[#f2f2f21a] bg-[#f2f2f20d]'
+        ? 'w-full md:w-[87.5%] backdrop-blur-xl border-[#f2f2f21a] bg-[#f2f2f20d]'
         : 'w-3/12 bg-[#0000000d] backdrop-blur-md border-[#f2f2f248]'
     } `}
   >
     {isHomePage && <SCard />}
     <div class="flex justify-center w-full h-full" id="navElementsContainer">
-      <nav class="w-full items-center justify-evenly md:flex md:h-auto z-30" aria-label="Main navigation">
-        <div id="navGlow" class={`${isHomePage ? 'w-1/4 h-full -z-20 absolute -translate-x-1/2 navGlow' : 'hidden'}`}>
+      <nav class="w-full items-center justify-evenly flex z-30" aria-label="Main navigation">
+        <div id="navGlow" class={`${isHomePage ? 'w-1/4 h-full -z-20 absolute  -translate-x-1/2 navGlow' : 'hidden'}`}>
         </div>
         {
           !isHomePage ? (
@@ -63,10 +64,11 @@ const { links = [], back, isHomePage } = Astro.props;
           ) : (
             links.map(({ text, href }) => (
               <a
-                class="navElements font-medium cursor-none text-slate-300 hover:text-white ease-in-out duration-300 py-3 flex items-center"
+                class="navElements font-medium cursor-none text-sm md:text-base text-slate-300 hover:text-white ease-in-out duration-300 py-3 flex flex-col md:flex-row items-center will-change-transform"
                 data-strength=".75"
                 href={href}
               >
+                <Icon name="code-circle" class="text-2xl" />
                 <div class="magnetic" data-strength=".75">
                   {text}
                 </div>
@@ -95,7 +97,15 @@ const { links = [], back, isHomePage } = Astro.props;
   const main = document.querySelector('main');
 
   let isActive = false;
-
+  function isMobileDevice() {
+    const userAgent = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    if (userAgent && window.innerWidth < 768) {
+      return true;
+    }
+  }
+  if (isMobileDevice() && navContainer) {
+    navContainer.style.borderRadius = '0';
+  }
   if (navContainer && navGlow) {
     window.addEventListener('DOMContentLoaded', () => {
       let delay = 1.25;
