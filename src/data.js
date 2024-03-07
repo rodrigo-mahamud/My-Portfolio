@@ -3,20 +3,24 @@ import { getPermalink, getHomePermalink } from './utils/permalinks';
 export const headerData = {
   links: [
     {
-      text: 'Inicio',
+      text: 'Index',
       href: '#inicio',
+      icon: 'home',
     },
     {
       text: 'Works',
       href: '#proyectos',
+      icon: 'code-circle',
     },
     {
       text: 'Info',
       href: '#experiencia',
+      icon: 'user-search',
     },
     {
       text: 'Contact',
       href: '#contacto',
+      icon: 'at',
     },
   ],
   back: {
