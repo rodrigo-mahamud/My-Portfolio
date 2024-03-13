@@ -27,8 +27,8 @@ import { Icon } from 'astro-icon/components';
           <div class="flex flex-col postCardBorderGlow">
             {Object.values(card.info).map((info: any) => (
               <div class="flex px-5 py-2 md:px-8 md:py-5 last:pb-10 first:pt-10 justify-start items-center">
-                <Icon name={info.icon} class="text-4xl md:text-2xl mr-5 text-white" />
-                <p class="text-pretty text-xs md:text-sm">{info.text}</p>
+                <Icon name={info.icon} class="w-5 h-5 md:text-2xl mr-5 text-white" />
+                <p class="text-pretty text-sm w-fit">{info.text}</p>
               </div>
             ))}
           </div>
