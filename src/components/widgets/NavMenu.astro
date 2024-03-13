@@ -29,7 +29,7 @@ const { links = [], back, isHomePage } = Astro.props;
   <div
     id="navContainer"
     style="border-radius: 2rem;"
-    class={`border-t md:border border-[#f2f2f21a] shadow-[0_10px_25px_0_rgba(0,0,0,0.15)] flex items-center opacity-0 justify-end flex-row h-full md:h-12 ${
+    class={`border-t md:border border-[#f2f2f21a] shadow-[0_10px_25px_0_rgba(0,0,0,0.15)] will-change-[height] flex items-center opacity-0 justify-end flex-row h-full md:h-12 ${
       isHomePage
         ? 'w-full md:w-[87.5%] backdrop-blur-xl border-[#f2f2f21a] bg-[#f2f2f20d]'
         : 'w-3/12 bg-[#0000000d] backdrop-blur-md border-[#f2f2f248]'
@@ -65,7 +65,7 @@ const { links = [], back, isHomePage } = Astro.props;
           ) : (
             links.map(({ text, href, icon }) => (
               <a
-                class="navElements font-medium cursor-none text-sm md:text-base text-slate-300 hover:text-white ease-in-out duration-300 md:py-3 flex flex-col md:flex-row items-center will-change-transform"
+                class="navElements font-medium cursor-none text-sm md:text-base text-slate-300 hover:text-white ease-in-out duration-300 md:py-3 flex flex-col md:flex-row items-center"
                 data-strength=".75"
                 href={href}
               >
