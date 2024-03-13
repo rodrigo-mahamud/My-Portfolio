@@ -48,6 +48,26 @@ const adjustedColor1 = darkenColor(post.accentColor, 0.5);
       opacity: 1;
     }
   }
+  @media (max-width: 768px) {
+    .bg-accentColor {
+      background: radial-gradient(
+        150% 100% at 50% 0%,
+        var(--gradient-base-color) 0%,
+        var(--adjusted-color1) 50%,
+        transparent 100%
+      );
+      opacity: 0;
+      animation: fadeInOut 0.75s cubic-bezier(0.26, 1, 0.48, 1) forwards 0.75s;
+    }
+    .postHeaderFont {
+      background-image: linear-gradient(to bottom, #fff 50%, #ffffff33);
+      text-shadow: 0 8px 20px rgba(0, 87, 255, 0.25), 0 -6px 20px rgba(255, 90, 0, 0.1),
+        0 0 30px rgba(255, 255, 255, 0.3);
+      -webkit-text-fill-color: transparent;
+      -webkit-background-clip: text;
+      background-clip: text;
+    }
+  }
 </style>
 
 <section class="w-full h-full">
@@ -62,12 +82,12 @@ const adjustedColor1 = darkenColor(post.accentColor, 0.5);
   <PostIndex postIndex={post.postIndex} />
   <article
     id="article"
-    class="opacity-0 blur-lg max-w-[80vw] lg:max-w-3xl xl:max-w-4xl 2xl:max-w-5xl 3xl:max-w-6xl mx-auto"
+    class="opacity-0 blur-lg max-w-[90vw] lg:max-w-3xl xl:max-w-4xl 2xl:max-w-5xl 3xl:max-w-6xl mx-auto"
   >
     <header class="w-full h-full pt-28 relative">
-      <div class="flex justify-between flex-col pb-16 mt-0 mb-2 px-4 sm:px-6 sm:items-center">
+      <div class="flex justify-between flex-col pb-16 mt-0 mb-2 px-4 sm:px-6 items-center">
         <h1
-          class="postHeaderFont px-4 text-[80px] mx-auto font-medium tracking-tighter leading-snug animate-on-scroll"
+          class="postHeaderFont px-4 text-center text-6xl md:text-[80px] mx-auto font-medium tracking-tighter md:leading-snug animate-on-scroll"
           data-type="simple"
           data-duration="1.5"
           data-easing="Expo.easeOut"
@@ -78,7 +98,7 @@ const adjustedColor1 = darkenColor(post.accentColor, 0.5);
         >
           {post.title}
         </h1>
-        <p class="animate-on-scroll" data-type="simple" data-duration="1.5" data-easing="Expo.easeOut">
+        <p class="animate-on-scroll mt-4" data-type="simple" data-duration="1.5" data-easing="Expo.easeOut">
           <time class="opacity-50 text-white" datetime={String(post.publishDate)}
             >{getFormattedDate(post.publishDate)}</time
           >
@@ -86,17 +106,19 @@ const adjustedColor1 = darkenColor(post.accentColor, 0.5);
       </div>
       {
         post.image ? (
-          <div class=" h-[75vh] w-full reltive pb-[1px]">
-            <div class=" absolute w-full h-[inherit] z-10 shadow-[inset_0px_-450px_200px_-200px_#0a0118]" />
+          <div
+            class=" h-[50vh] md:h-[75vh] w-full reltive pb-[1px] animate-on-scroll"
+            data-type="simple"
+            data-duration="1.5"
+            data-easing="Expo.easeOut"
+          >
+            <div class=" absolute w-full h-[inherit] z-10 shadow-[inset_0px_-350px_125px_-200px_#0a0118]" />
             <Image
-              class="rounded-3xl h-full object-cover animate-on-scroll"
-              data-type="simple"
-              data-duration="1.5"
-              data-easing="Expo.easeOut"
+              class="rounded-xl h-full object-cover"
               alt={`Imagen del ${post.title}`}
               widths={[275, 475, 575, 1050, 1250]}
               sizes={`(max-width: 550px) 275px, (max-width: 750px) 475px, (max-width: 950px) 575px,(max-width: 1920px) 750px, (max-width: 2560px) 1050px,`}
-              quality={'low'}
+              quality={'mid'}
               format="avif"
               loading="lazy"
               src={post.image}

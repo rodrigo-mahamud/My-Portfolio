@@ -6,19 +6,19 @@ import { YouTube } from '@astro-community/astro-embed-youtube';
 import { Icon } from 'astro-icon/components';
 ---
 
-<section class="h-full mt-16 mb-20">
-  <div class="grid grid-cols-2 gap-7 gap-y-14">
+<section class="h-full mt-16 mb-8 md:mb-20">
+  <div class="grid md:grid-cols-2 gap-7 gap-y-14">
     {
       Object.values(cardsJson).map((card: any, index) => (
         <div
-          class="flex flex-col border border-[#f2f2f248] rounded-2xl overflow-hidden animate-on-scroll"
+          class="flex flex-col border border-[#f2f2f248] rounded-xl md:rounded-2xl overflow-hidden animate-on-scroll"
           data-type="simple"
           data-duration="1.5"
           data-easing="Expo.easeOut"
         >
-          <div class="flex h-[17vh] 2xl:h-[40vh]">
+          <div class="flex h-[30vh] md:h-[17vh] 2xl:h-[40vh]">
             <YouTube
-              class="w-full cursor-none custom-mouse shadow-[inset_0px_-240px_120px_-100px_#0a0118]"
+              class="w-full cursor-none custom-mouse shadow-[inset_0px_-200px_100px_-100px_#0a0118] bg-center"
               data-typemouse="play"
               id={card.url}
               playlabel="Play the video"
@@ -26,9 +26,9 @@ import { Icon } from 'astro-icon/components';
           </div>
           <div class="flex flex-col postCardBorderGlow">
             {Object.values(card.info).map((info: any) => (
-              <div class="flex px-8 py-5 last:pb-10 first:pt-10 justify-start items-center">
-                <Icon name={info.icon} class="text-2xl mr-6 text-white" />
-                <p class="text-pretty text-sm">{info.text}</p>
+              <div class="flex px-5 py-2 md:px-8 md:py-5 last:pb-10 first:pt-10 justify-start items-center">
+                <Icon name={info.icon} class="text-4xl md:text-2xl mr-5 text-white" />
+                <p class="text-pretty text-xs md:text-sm">{info.text}</p>
               </div>
             ))}
           </div>

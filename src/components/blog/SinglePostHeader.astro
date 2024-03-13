@@ -10,20 +10,20 @@ let id = preTitle.toLowerCase().replace(/\s+/g, '');
 ---
 
 <section id={id} class="animate-on-scroll" data-type="simple" data-duration="1.5" data-easing="Expo.easeOut">
-  <div class="relative cardBorderGlow w-full mt-28">
+  <div class="relative cardBorderGlow w-full mt-16 md:mt-28">
     <div class="bgCardGradient absolute top-0 h-full w-full"></div>
     <div class="flex flex-col justify-between items-start z-10 relative">
       <div
-        class="flex items-center pb-5 pt-16 animate-on-scroll"
+        class="flex items-center pb-4 md:pb-5 pt-16 animate-on-scroll"
         data-type="simple"
         data-duration="1.5"
         data-easing="Expo.easeOut"
       >
         <div class="w-2 h-2 mr-3 bg-white rounded-full border border-white shadow-[0_0_20px_0_#fff]"></div>
-        <div class="flex justify-center items-center rounded-full uppercase text-sm text-gray-40000">{preTitle}</div>
+        <span class="flex justify-center items-center rounded-full uppercase text-xs text-gray-40000">{preTitle}</span>
       </div>
       <h2
-        class="text-5xl font-bold pb-16 tracking-tighter headingTxt text-left animate-on-scroll"
+        class="text-3xl md:text-5xl font-bold pb-8 md:pb-16 tracking-tighter text-pretty headingTxt text-left animate-on-scroll"
         data-type="simple"
         data-duration="1.5"
         data-easing="Expo.easeOut"
