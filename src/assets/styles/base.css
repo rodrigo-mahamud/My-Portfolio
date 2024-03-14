@@ -780,6 +780,9 @@ canvas {
 }
 
 @media (max-width: 768px) {
+  .customBg {
+    background: transparent;
+  }
   .bgGradient {
     background: radial-gradient(
       130.23% 121% at 50% 0%,
@@ -814,6 +817,9 @@ canvas {
   .borderGlow:hover video {
     transform: unset;
     box-shadow: unset;
+  }
+  .nextSection:hover .focus {
+    display: none;
   }
 }
 @keyframes rotate {

@@ -7,12 +7,15 @@ const imageSrc = imagePath[`/src/assets/works${data.path}`]();
 ---
 
 <section
-  class="nextSection w-full h-[50vh] md:h-[75vh] relative z-50 custom-mouse"
+  class="nextSection w-full h-[40vh] md:h-[75vh] relative z-50 custom-mouse overflow-hidden"
   data-typemouse="text"
   data-mousetext="Next"
 >
   <div id="nextSection" class="w-full h-[inherit] absolute z-50"></div>
-  <div class="customBg absolute w-full h-[inherit] z-10"></div>
+
+  <div class="customBg absolute w-full h-[inherit] z-10 flex justify-center items-center md:hidden">
+    <h2 id="nextProjectMobile" class="text-3xl font-semibold translate-y-96 text-white">NEXT PROJECT</h2>
+  </div>
   <div class="flex h-full justify-center items-end relative">
     <div id="canvas-container" class="absolute bottom-0 w-3/4 h-[65vh] opacity-0">
       <canvas id="canvas"></canvas>
@@ -20,7 +23,7 @@ const imageSrc = imagePath[`/src/assets/works${data.path}`]();
     <div class="flex w-full justify-center items-center absolute -z-10">
       <Image
         id="image"
-        class="rounded-t-2xl translate-y-36 aspect-[15/16] md:w-1/2 saturate-50 object-cover"
+        class="rounded-xl md:rounded-t-2xl translate-y-28 md:translate-y-0 aspect-[15/16] md:aspect-auto w-3/4 md:w-1/2 md:saturate-50 object-cover"
         alt="{`Imagen del}"
         widths={[350, 475, 575, 1050, 1250]}
         sizes={`(max-width: 550px) 350px, (max-width: 750px) 475px, (max-width: 950px) 575px,(max-width: 1920px) 1050px, (max-width: 2560px) 1250px,`}

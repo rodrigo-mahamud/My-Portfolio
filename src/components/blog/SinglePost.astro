@@ -240,32 +240,44 @@ const adjustedColor1 = darkenColor(post.accentColor, 0.5);
   const canvasContainer = document.getElementById('canvas-container') as HTMLElement;
   const canvas = document.getElementById('canvas') as HTMLCanvasElement;
   const ctx = canvas.getContext('2d')!;
+  const nextProjectMobile = document.getElementById('nextProjectMobile') as HTMLElement;
   const image = document.getElementById('image') as HTMLElement;
   if (isMobileDevice()) {
     gsap.to(image, {
       scrollTrigger: {
         trigger: nextSection,
-        start: 'top bottom', // Cuando el top de nextSection llegue al bottom de la viewport
-        end: '175% top',
+        start: 'top bottom',
+        end: '200% top',
         scrub: 1, // Suaviza la transición de la animación durante el scroll
       },
-      y: '-5vh',
-      filter: 'saturate(1.25)',
+      y: '-7vh',
       duration: 1.5,
       ease: 'Expo.easeOut',
     });
-
-    gsap.to(canvasContainer, {
+    gsap.to(image, {
       scrollTrigger: {
         trigger: nextSection,
-        start: 'top bottom',
-        end: 'bottom top',
-        scrub: 1,
+        start: '125% bottom',
+        end: '50% bottom',
+        toggleActions: 'play none reverse none',
       },
-      opacity: 1,
-      duration: 1.5,
+      filter: 'blur(2.5px)',
+      duration: 1,
+      ease: 'Expo.easeOut',
     });
-  } else {
+    gsap.to(nextProjectMobile, {
+      scrollTrigger: {
+        trigger: nextSection,
+        start: '125% bottom',
+        end: '50% bottom',
+        toggleActions: 'play none reverse none',
+      },
+      y: '-4vh',
+      duration: 1,
+      ease: 'Expo.easeOut',
+    });
+  }
+  if (!isMobileDevice()) {
     nextSection.addEventListener('mouseenter', () => {
       gsap.to(image, {
         y: '-25vh',
@@ -291,100 +303,101 @@ const adjustedColor1 = darkenColor(post.accentColor, 0.5);
         duration: 1.5,
       });
     });
-  }
-  function resizeCanvas() {
-    canvas.width = canvasContainer.clientWidth;
-    canvas.height = canvasContainer.clientHeight;
-  }
 
-  resizeCanvas();
-  window.addEventListener('resize', resizeCanvas);
+    function resizeCanvas() {
+      canvas.width = canvasContainer.clientWidth;
+      canvas.height = canvasContainer.clientHeight;
+    }
 
-  interface Star {
-    x: number;
-    y: number;
-    radius: number;
-    velocityX: number;
-    velocityY: number;
-    alpha: number;
-    increasing: boolean;
-  }
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
 
-  const stars: Star[] = [];
-  const maxStars = 200;
+    interface Star {
+      x: number;
+      y: number;
+      radius: number;
+      velocityX: number;
+      velocityY: number;
+      alpha: number;
+      increasing: boolean;
+    }
 
-  function createStar(): Star {
-    return {
-      x: Math.random() * canvas.width,
-      y: Math.random() * canvas.height,
-      radius: Math.random() * 1.25 + 0.75,
-      velocityX: Math.random() * 0.1 - 0.05,
-      velocityY: Math.random() * 0.1 - 0.05,
-      alpha: Math.random(),
-      increasing: Math.random() >= 0.5,
-    };
-  }
+    const stars: Star[] = [];
+    const maxStars = 200;
 
-  for (let i = 0; i < maxStars; i++) {
-    stars.push(createStar());
-  }
+    function createStar(): Star {
+      return {
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        radius: Math.random() * 1.25 + 0.75,
+        velocityX: Math.random() * 0.1 - 0.05,
+        velocityY: Math.random() * 0.1 - 0.05,
+        alpha: Math.random(),
+        increasing: Math.random() >= 0.5,
+      };
+    }
 
-  let animating = false;
+    for (let i = 0; i < maxStars; i++) {
+      stars.push(createStar());
+    }
 
-  function updateStar(star: Star) {
-    star.x += star.velocityX;
-    star.y += star.velocityY;
+    let animating = false;
 
-    if (star.x < 0 || star.x > canvas.width) star.velocityX *= -1;
-    if (star.y < 0 || star.y > canvas.height) star.velocityY *= -1;
+    function updateStar(star: Star) {
+      star.x += star.velocityX;
+      star.y += star.velocityY;
 
-    const opacityChangeSpeed = 0.0005;
-    if (star.increasing) {
-      star.alpha += opacityChangeSpeed;
-      if (star.alpha > 0.95) {
-        star.alpha = 1;
-        star.increasing = false;
-      }
-    } else {
-      star.alpha -= opacityChangeSpeed;
-      if (star.alpha < 0.05) {
-        star.alpha = 0;
-        star.increasing = true;
+      if (star.x < 0 || star.x > canvas.width) star.velocityX *= -1;
+      if (star.y < 0 || star.y > canvas.height) star.velocityY *= -1;
+
+      const opacityChangeSpeed = 0.0005;
+      if (star.increasing) {
+        star.alpha += opacityChangeSpeed;
+        if (star.alpha > 0.95) {
+          star.alpha = 1;
+          star.increasing = false;
+        }
+      } else {
+        star.alpha -= opacityChangeSpeed;
+        if (star.alpha < 0.05) {
+          star.alpha = 0;
+          star.increasing = true;
+        }
       }
     }
-  }
 
-  nextSection.addEventListener('mouseenter', () => {
-    animating = true;
-    starAnimation();
-  });
-
-  nextSection.addEventListener('mouseleave', () => {
-    animating = false;
-  });
-
-  function starAnimation() {
-    if (!animating) return;
-
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-    stars.forEach((star) => {
-      updateStar(star);
-
-      ctx.shadowBlur = 10;
-      ctx.shadowColor = '#fff';
-
-      ctx.globalAlpha = star.alpha;
-      ctx.fillStyle = '#fff';
-      ctx.beginPath();
-      ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
-      ctx.fill();
-
-      ctx.shadowBlur = 0;
+    nextSection.addEventListener('mouseenter', () => {
+      animating = true;
+      starAnimation();
     });
 
-    requestAnimationFrame(starAnimation);
-  }
+    nextSection.addEventListener('mouseleave', () => {
+      animating = false;
+    });
 
-  starAnimation();
+    function starAnimation() {
+      if (!animating) return;
+
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      stars.forEach((star) => {
+        updateStar(star);
+
+        ctx.shadowBlur = 10;
+        ctx.shadowColor = '#fff';
+
+        ctx.globalAlpha = star.alpha;
+        ctx.fillStyle = '#fff';
+        ctx.beginPath();
+        ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+        ctx.fill();
+
+        ctx.shadowBlur = 0;
+      });
+
+      requestAnimationFrame(starAnimation);
+    }
+
+    starAnimation();
+  }
 </script>

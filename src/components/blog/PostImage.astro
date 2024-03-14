@@ -11,10 +11,10 @@ const imageSrc = imagePath[`/src/assets/works${image.path}`]();
   <div class="imageCard border-b border-[#71688207] rounded-2xl w-full h-full mb-16 mt-8 md:my-16">
     <div class="md:p-20">
       <Image
-        class="rounded-2xl"
+        class="rounded-xl md:rounded-2xl"
         alt={`Imagen del ${image}`}
-        widths={[275, 475, 575, 1050, 1250]}
-        sizes={`(max-width: 550px) 275px, (max-width: 750px) 475px, (max-width: 950px) 575px,(max-width: 1920px) 1050px, (max-width: 2560px) 1250px,`}
+        widths={[375, 475, 575, 1050, 1250]}
+        sizes={`(max-width: 550px) 375px, (max-width: 750px) 475px, (max-width: 950px) 575px,(max-width: 1920px) 1050px, (max-width: 2560px) 1250px,`}
         quality={'mid'}
         format="avif"
         loading="lazy"
