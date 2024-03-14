@@ -17,7 +17,7 @@ const imageSources = import.meta.glob<{ default: ImageMetadata }>('/src/assets/i
 ---
 
 <!-- Renderizado condicional basado en el tipo de archivo -->
-<div id="cards" class="grid grid-cols-5 grid-rows-12 gap-6 h-[185vh] mt-16">
+<div id="cards" class="grid grid-cols-5 grid-rows-20 md:grid-rows-12 gap-6 h-[300vh] md:h-[185vh] mt-16">
   {
     unifiedMediaPaths.map((mediaItem, index) => {
       const isImage =
@@ -28,11 +28,11 @@ const imageSources = import.meta.glob<{ default: ImageMetadata }>('/src/assets/i
       const mediaSrc = isImage ? imageSources[mediaItem.path]() : mediaItem.path;
 
       const spanClass = [
-        'col-span-3 row-span-4',
-        'col-span-2 row-span-4 col-start-4',
-        'col-span-2 row-span-4 row-start-5',
-        'col-span-3 row-span-4 col-start-3 row-start-5',
-        'col-span-5 row-span-4 row-start-9',
+        'col-span-5 md:col-span-3 row-span-4',
+        'col-span-5 md:col-span-2 row-span-4 md:col-start-4',
+        'col-span-5 md:col-span-2 row-span-4 md:row-start-5',
+        'col-span-5 md:col-span-3 row-span-4 md:col-start-3 md:row-start-5',
+        'col-span-5 md:col-span-5 row-span-4 md:row-start-9',
       ][index % 5];
 
       return (
@@ -44,11 +44,11 @@ const imageSources = import.meta.glob<{ default: ImageMetadata }>('/src/assets/i
           data-typemouse="link"
         >
           <div class="flex flex-col bento-content h-full w-full rounded-xl overflow-hidden">
-            <div class="flex flex-col items-start justify-start pt-8 px-8 text-start">
-              <p class="text-white font-semibold mb-2">{mediaItem.title}</p>
-              <p class=" text-gray-400 ">{mediaItem.subtitle}</p>
+            <div class="flex flex-col items-start justify-start pt-6 px-6 md:pt-8 md:px-8 text-start">
+              <h2 class="text-white font-semibold text-lg mb-2">{mediaItem.title}</h2>
+              <h3 class=" text-gray-400 ">{mediaItem.subtitle}</h3>
             </div>
-            <div class=" flex m-8 h-full overflow-hidden">
+            <div class=" flex m-6 md:m-8 h-full overflow-hidden">
               {isImage ? (
                 <Image class="rounded-xl" alt="Imagen" src={mediaSrc} loading="lazy" decoding="async" />
               ) : (
