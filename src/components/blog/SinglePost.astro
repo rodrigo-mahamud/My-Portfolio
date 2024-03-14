@@ -142,6 +142,12 @@ const adjustedColor1 = darkenColor(post.accentColor, 0.5);
   // eslint-disable-next-line no-unused-vars
 
   import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  gsap.registerPlugin(ScrollTrigger);
+  function isMobileDevice() {
+    const userAgent = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    return userAgent && window.innerWidth < 768;
+  }
   document.addEventListener('DOMContentLoaded', () => {
     const article = document.getElementById('article');
 
@@ -229,38 +235,63 @@ const adjustedColor1 = darkenColor(post.accentColor, 0.5);
     requestAnimationFrame(animate);
   }
   animate();
+
   const nextSection = document.getElementById('nextSection') as HTMLElement;
   const canvasContainer = document.getElementById('canvas-container') as HTMLElement;
   const canvas = document.getElementById('canvas') as HTMLCanvasElement;
   const ctx = canvas.getContext('2d')!;
   const image = document.getElementById('image') as HTMLElement;
-
-  nextSection.addEventListener('mouseenter', () => {
+  if (isMobileDevice()) {
     gsap.to(image, {
-      y: '-25vh',
+      scrollTrigger: {
+        trigger: nextSection,
+        start: 'top bottom', // Cuando el top de nextSection llegue al bottom de la viewport
+        end: '175% top',
+        scrub: 1, // Suaviza la transición de la animación durante el scroll
+      },
+      y: '-5vh',
       filter: 'saturate(1.25)',
       duration: 1.5,
       ease: 'Expo.easeOut',
     });
+
     gsap.to(canvasContainer, {
+      scrollTrigger: {
+        trigger: nextSection,
+        start: 'top bottom',
+        end: 'bottom top',
+        scrub: 1,
+      },
       opacity: 1,
       duration: 1.5,
     });
-  });
-
-  nextSection.addEventListener('mouseleave', () => {
-    gsap.to(image, {
-      y: '0',
-      filter: 'saturate(0.5)',
-      duration: 1.5,
-      ease: 'Expo.easeOut',
+  } else {
+    nextSection.addEventListener('mouseenter', () => {
+      gsap.to(image, {
+        y: '-25vh',
+        filter: 'saturate(1.25)',
+        duration: 1.5,
+        ease: 'Expo.easeOut',
+      });
+      gsap.to(canvasContainer, {
+        opacity: 1,
+        duration: 1.5,
+      });
     });
-    gsap.to(canvasContainer, {
-      opacity: 0,
-      duration: 1.5,
-    });
-  });
 
+    nextSection.addEventListener('mouseleave', () => {
+      gsap.to(image, {
+        y: '0',
+        filter: 'saturate(0.5)',
+        duration: 1.5,
+        ease: 'Expo.easeOut',
+      });
+      gsap.to(canvasContainer, {
+        opacity: 0,
+        duration: 1.5,
+      });
+    });
+  }
   function resizeCanvas() {
     canvas.width = canvasContainer.clientWidth;
     canvas.height = canvasContainer.clientHeight;

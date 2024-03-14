@@ -6,7 +6,11 @@ const imagePath = import.meta.glob<{ default: ImageMetadata }>('/src/assets/work
 const imageSrc = imagePath[`/src/assets/works${data.path}`]();
 ---
 
-<section class="nextSection w-full h-[75vh] relative z-50 custom-mouse" data-typemouse="text" data-mousetext="Next">
+<section
+  class="nextSection w-full h-[50vh] md:h-[75vh] relative z-50 custom-mouse"
+  data-typemouse="text"
+  data-mousetext="Next"
+>
   <div id="nextSection" class="w-full h-[inherit] absolute z-50"></div>
   <div class="customBg absolute w-full h-[inherit] z-10"></div>
   <div class="flex h-full justify-center items-end relative">
@@ -16,10 +20,10 @@ const imageSrc = imagePath[`/src/assets/works${data.path}`]();
     <div class="flex w-full justify-center items-center absolute -z-10">
       <Image
         id="image"
-        class="rounded-t-2xl w-1/2 saturate-50"
+        class="rounded-t-2xl translate-y-36 aspect-[15/16] md:w-1/2 saturate-50 object-cover"
         alt="{`Imagen del}"
-        widths={[275, 475, 575, 1050, 1250]}
-        sizes={`(max-width: 550px) 275px, (max-width: 750px) 475px, (max-width: 950px) 575px,(max-width: 1920px) 1050px, (max-width: 2560px) 1250px,`}
+        widths={[350, 475, 575, 1050, 1250]}
+        sizes={`(max-width: 550px) 350px, (max-width: 750px) 475px, (max-width: 950px) 575px,(max-width: 1920px) 1050px, (max-width: 2560px) 1250px,`}
         quality={'mid'}
         format="avif"
         loading="lazy"
@@ -29,7 +33,7 @@ const imageSrc = imagePath[`/src/assets/works${data.path}`]();
     </div>
 
     <div class="focus absolute"></div>
-    <div class="glowLine w-full h-[25vh] bg-[#0a0118] z-20">
+    <div class="glowLine w-full h-[12.5vh] md:h-[25vh] bg-[#0a0118] z-20">
       <div class="glowShadow w-full h-full"></div>
     </div>
   </div>
