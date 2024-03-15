@@ -24,7 +24,7 @@ export const headerData = {
     },
   ],
   back: {
-    text: 'Back',
+    text: 'Index',
     href: getHomePermalink(),
   },
 };

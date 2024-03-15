@@ -106,17 +106,17 @@ html.lenis {
   animation: rotateSmooth 0.75s ease-in-out infinite alternate, disapearWelcome 0.5s ease-in-out both 0.5s;
 }
 .navGlow {
-  background: radial-gradient(55px 100px at 76px bottom, #ffffff24, #0000);
+  background: radial-gradient(50px 100px at 50% bottom, #ffffff1a, #0000);
 }
 .navGlow::after {
   content: '';
   display: block;
-  height: 4px;
+  height: 3px;
   width: 24px;
   border-radius: 20px;
   position: absolute;
   bottom: -2px;
-  left: 43%;
+  left: 41%;
   background: #fff;
   z-index: -3;
   box-shadow: 0 2px 25px 2px #fff;
@@ -796,10 +796,12 @@ canvas {
     background: unset;
   }
   .navGlow::after {
-    left: 38%;
+    left: 37%;
     z-index: -3;
+    bottom: -0.5px;
     box-shadow: 0 -2px 25px 2px #fff;
   }
+
   .borderGlow:hover .bgGradient {
     background: radial-gradient(
       130.23% 121% at 50% 0%,

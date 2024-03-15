@@ -8,13 +8,16 @@ const imageSrc = imagePath[`/src/assets/works${data.path}`]();
 
 <section
   class="nextSection w-full h-[40vh] md:h-[75vh] relative z-50 custom-mouse overflow-hidden"
-  data-typemouse="text"
-  data-mousetext="Next"
+  data-typemouse="link"
 >
-  <div id="nextSection" class="w-full h-[inherit] absolute z-50"></div>
-
-  <div class="customBg absolute w-full h-[inherit] z-10 flex justify-center items-center md:hidden">
-    <h2 id="nextProjectMobile" class="text-3xl font-semibold translate-y-96 text-white">NEXT PROJECT</h2>
+  <a
+    id="nextSection"
+    href={data.nextUrl}
+    class="w-full h-[inherit] absolute flex justify-center items-center z-50 cursor-none"
+  >
+  </a>
+  <div class="customBg absolute w-full h-[inherit] z-10 flex justify-center items-center">
+    <h2 id="nextProjectMobile" class="text-3xl font-semibold translate-y-96 text-white">NEXT</h2>
   </div>
   <div class="flex h-full justify-center items-end relative">
     <div id="canvas-container" class="absolute bottom-0 w-3/4 h-[65vh] opacity-0">

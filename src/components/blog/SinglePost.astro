@@ -257,18 +257,18 @@ const adjustedColor1 = darkenColor(post.accentColor, 0.5);
     gsap.to(image, {
       scrollTrigger: {
         trigger: nextSection,
-        start: '125% bottom',
+        start: '135% bottom',
         end: '50% bottom',
         toggleActions: 'play none reverse none',
       },
-      filter: 'blur(2.5px)',
       duration: 1,
+      opacity: 0.35,
       ease: 'Expo.easeOut',
     });
     gsap.to(nextProjectMobile, {
       scrollTrigger: {
         trigger: nextSection,
-        start: '125% bottom',
+        start: '135% bottom',
         end: '50% bottom',
         toggleActions: 'play none reverse none',
       },

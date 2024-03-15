@@ -73,9 +73,11 @@
         const linkRect = activeLink.getBoundingClientRect();
         const navRect = activeLink.parentElement.getBoundingClientRect();
         const navGlowPosition = linkRect.left - navRect.left + linkRect.width / 2;
+        console.log(navGlowPosition);
 
         gsap.to(navGlow, {
-          left: `${navGlowPosition}px`,
+          x: `${navGlowPosition}px`,
+          left: `${-12.5}%`,
           duration: 0.5,
           overwrite: true,
           ease: 'Expo.easeOut',

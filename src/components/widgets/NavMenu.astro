@@ -23,43 +23,32 @@ const { links = [], back, isHomePage } = Astro.props;
 ---
 
 <header
-  class="fixed flex justify-center items-end md:items-center z-50 w-full md:max-w-[34rem] h-16 md:h-auto -translate-x-1/2 bottom-0 md:bottom-4 left-1/2"
+  class="fixed flex justify-center items-end md:items-center z-50 w-full md:max-w-[34rem] md:h-auto translate-y-80 md:translate-y-0 -translate-x-1/2 bottom-0 md:bottom-4 left-1/2"
   id="header"
 >
   <div
     id="navContainer"
     style="border-radius: 2rem;"
-    class={`border-t md:border border-[#f2f2f21a] shadow-[0_10px_25px_0_rgba(0,0,0,0.15)] will-change-[height] flex items-center opacity-0 justify-end flex-row h-full md:h-12 ${
+    class={`border-t md:border border-[#f2f2f21a] w-full h-96 md:h-12 shadow-[0_10px_25px_0_rgba(0,0,0,0.15)] will-change-transform flex items-start md:items-center opacity-0 justify-end flex-row ${
       isHomePage
         ? 'w-full md:w-[87.5%] backdrop-blur-xl border-[#f2f2f21a] bg-[#f2f2f20d]'
-        : 'w-3/12 bg-[#0000000d] backdrop-blur-md border-[#f2f2f248]'
+        : 'md:w-3/12 bg-[#0000000d] backdrop-blur-md border-[#f2f2f248]'
     } `}
   >
     {isHomePage && <SCard />}
-    <div class="flex justify-center w-full h-full" id="navElementsContainer">
+    <div class="flex justify-center w-full h-16 md:h-full" id="navElementsContainer">
       <nav class="w-full items-center justify-evenly flex z-30" aria-label="Main navigation">
-        <div id="navGlow" class={`${isHomePage ? 'w-1/4 h-full -z-20 absolute  -translate-x-1/2 navGlow' : 'hidden'}`}>
+        <div
+          id="navGlow"
+          class={`${
+            isHomePage ? 'w-1/4 h-16 md:h-full -z-20 absolute left-0 navGlow will-change-transform' : 'hidden'
+          }`}
+        >
         </div>
         {
           !isHomePage ? (
             <a href={back.href} class="flex items-center hover:text-white" data-nav="animate">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="-rotate-90 mr-2"
-                width="1.75rem"
-                height="1.75rem"
-                viewBox="0 0 24 24"
-                stroke-width="1.8"
-                stroke="currentColor"
-                fill="none"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                <path d="M12 5l0 14" />
-                <path d="M16 9l-4 -4" />
-                <path d="M8 9l4 -4" />
-              </svg>
+              <Icon name="arrow-narrow-right" class="block md:hidden text-xl mr-1 rotate-180" />
               {back.text}
             </a>
           ) : (
@@ -241,7 +230,7 @@ const { links = [], back, isHomePage } = Astro.props;
           navContainer,
           {
             duration: 1,
-            height: '375px',
+            y: '-320px',
             width: '100%',
             backdropFilter: 'blur(30px)',
             ease: 'Expo.easeOut',
