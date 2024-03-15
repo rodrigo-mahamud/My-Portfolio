@@ -11,8 +11,10 @@ const { isHomePage } = Astro.props;
 </div>
 <script>
   document.addEventListener('DOMContentLoaded', () => {
-    const canvas = document.getElementById('miCanvas') as HTMLCanvasElement;
-    const ctx = canvas?.getContext('2d');
+    const canvas = document.getElementById('miCanvas') as HTMLCanvasElement | null;
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
 
     canvas.width = canvas.offsetWidth;
     canvas.height = canvas.offsetHeight;
@@ -22,8 +24,10 @@ const { isHomePage } = Astro.props;
     const anchoBarra: number = (canvas.width - separacion * (numBarras - 1)) / numBarras;
     let alturas: number[] = new Array(numBarras).fill(canvas.height);
     let direccion: number[] = new Array(numBarras).fill(-1);
-    const velocidad: number = 0.7;
+    const velocidad: number = 95;
     const radioBorde: number = anchoBarra / 2;
+
+    let ultimoTiempo: DOMHighResTimeStamp = 0;
 
     function dibujarBarra(x: number, y: number, ancho: number, alto: number, radio: number): void {
       if (ctx) {
@@ -43,38 +47,46 @@ const { isHomePage } = Astro.props;
     }
 
     function dibujar(): void {
-      if (ctx) {
+      if (ctx && canvas) {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         ctx.fillStyle = 'white';
-      }
-      for (let i = 0; i < numBarras; i++) {
-        let x: number = i * (anchoBarra + separacion);
-        let y: number = (canvas.height - alturas[i]) / 2;
-        dibujarBarra(x, y, anchoBarra, alturas[i], radioBorde);
-      }
-    }
-    function actualizar(): void {
-      for (let i = 0; i < numBarras; i++) {
-        if (direccion[i] === -1 && alturas[i] > 0) {
-          alturas[i] -= Math.random() * velocidad;
-        } else if (direccion[i] === 1 && alturas[i] < canvas.height) {
-          alturas[i] += Math.random() * velocidad;
-        }
 
-        if (alturas[i] <= 0) {
-          direccion[i] = 1;
-        } else if (alturas[i] >= canvas.height) {
-          direccion[i] = -1;
+        for (let i = 0; i < numBarras; i++) {
+          let x: number = i * (anchoBarra + separacion);
+          let y: number = (canvas.height - alturas[i]) / 2;
+          dibujarBarra(x, y, anchoBarra, alturas[i], radioBorde);
         }
       }
     }
 
-    function animar(): void {
-      actualizar();
+    function actualizar(deltaTime: number): void {
+      if (canvas) {
+        for (let i = 0; i < numBarras; i++) {
+          let cambio: number = Math.random() * velocidad * deltaTime;
+          if (direccion[i] === -1 && alturas[i] > 0) {
+            alturas[i] -= cambio;
+          } else if (direccion[i] === 1 && alturas[i] < canvas.height) {
+            alturas[i] += cambio;
+          }
+
+          if (alturas[i] <= 0) {
+            direccion[i] = 1;
+          } else if (alturas[i] >= canvas.height) {
+            direccion[i] = -1;
+          }
+        }
+      }
+    }
+
+    function animar(tiempoActual: DOMHighResTimeStamp): void {
+      const deltaTime: number = (tiempoActual - ultimoTiempo) / 1000;
+      actualizar(deltaTime);
       dibujar();
+
+      ultimoTiempo = tiempoActual;
       requestAnimationFrame(animar);
     }
 
-    animar();
+    requestAnimationFrame(animar);
   });
 </script>

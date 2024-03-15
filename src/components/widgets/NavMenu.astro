@@ -47,8 +47,8 @@ const { links = [], back, isHomePage } = Astro.props;
         </div>
         {
           !isHomePage ? (
-            <a href={back.href} class="flex items-center hover:text-white" data-nav="animate">
-              <Icon name="arrow-narrow-right" class="block md:hidden text-xl mr-1 rotate-180" />
+            <a href={back.href} class="flex items-center hover:text-white cursor-none" data-nav="animate">
+              <Icon name="arrow-narrow-right" class="block text-xl mr-1 rotate-180" />
               {back.text}
             </a>
           ) : (
