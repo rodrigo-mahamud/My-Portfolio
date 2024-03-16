@@ -15,15 +15,18 @@ const { singlePostInfo } = Astro.props as InfoProps;
       data-easing="Expo.easeOut"
     >
       <div class="mb-8">
-        <h2 class="text-base font-bold mb-1 text-white">My Role</h2>
+        <h2 class="text-lg font-bold mb-1 text-white">My Role</h2>
         <p class="text-base">{singlePostInfo.rol}</p>
       </div>
       <div class="mb-8">
-        <h2 class="text-base font-bold mb-1 text-white">Team</h2>
-        <p class="text-base leading-snug"><Fragment set:html={singlePostInfo.team} /></p>
+        <h2 class="text-lg font-bold mb-1 text-white">{singlePostInfo.title}</h2>
+        <p class="text-base leading-normal"><Fragment set:html={singlePostInfo.team} /></p>
       </div>
-      <div>
-        <h2 class="text-base font-bold mb-1 text-white">Status & Duración</h2>
+    </div>
+
+    <div class="md:w-1/2 animate-on-scroll" data-type="simple" data-duration="1.5" data-easing="Expo.easeOut">
+      <div class="mb-8">
+        <h2 class="text-lg font-bold mb-1 text-white">Status & Duración</h2>
         <p class="text-base">
           <b
             class={`uppercase ${
@@ -38,11 +41,8 @@ const { singlePostInfo } = Astro.props as InfoProps;
           </b> - {singlePostInfo.duration}
         </p>
       </div>
-    </div>
-
-    <div class="md:w-1/2 animate-on-scroll" data-type="simple" data-duration="1.5" data-easing="Expo.easeOut">
       <div class="md:mb-10">
-        <h2 class="text-base font-bold mb-2 text-white">Overview</h2>
+        <h2 class="text-lg font-bold mb-2 text-white">Overview</h2>
         <p class="text-base text-pretty leading-snug">
           <Fragment set:html={singlePostInfo.overview} />
         </p>

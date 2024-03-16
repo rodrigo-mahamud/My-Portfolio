@@ -14,13 +14,13 @@ const cardsJson = JSON.parse(JSON.stringify(stats));
           data-delay={`${0.15 + index * 0.1}`}
           data-easing="Expo.easeOut"
         >
-          <div class="flex items-center justify-center drop-shadow-[0px_0px_15px_#ffffffc4]">
-            <span class="text-3xl lg:text-5xl xl:text-6xl  text-white ">+</span>
-            <div class="counter text-3xl lg:text-5xl xl:text-6xl  text-primary text-white font-heading ">
+          <div class="flex items-center justify-center drop-shadow-[0px_0px_15px_#ffffff7d]">
+            <span class="text-3xl lg:text-5xl xl:text-6xl text-white ">+</span>
+            <div class="counter text-3xl lg:text-5xl xl:text-6xl text-primary text-white font-heading ">
               {stat.amount}
             </div>
           </div>
-          <p class="text-base text-gray-400 mt-2 lg:text-base">{stat.title}</p>
+          <p class="text-base text-white mt-2 lg:text-base">{stat.title}</p>
         </div>
       ))
     }
