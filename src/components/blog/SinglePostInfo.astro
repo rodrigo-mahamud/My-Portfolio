@@ -2,7 +2,7 @@
 interface InfoProps {
   singlePostInfo: any;
 }
-
+import { Icon } from 'astro-icon/components';
 const { singlePostInfo } = Astro.props as InfoProps;
 ---
 
@@ -20,7 +20,15 @@ const { singlePostInfo } = Astro.props as InfoProps;
       </div>
       <div class="mb-8">
         <h2 class="text-lg font-bold mb-1 text-white">{singlePostInfo.title}</h2>
-        <p class="text-base leading-normal"><Fragment set:html={singlePostInfo.team} /></p>
+        <p id="text" class="text-base leading-normal line-clamp-[11] relative -z-10">
+          <Fragment set:html={singlePostInfo.team} />
+        </p>
+        <div class="w-full mt-4 shadow-[0px_20px_65px_100px_#0a0118] text-white">
+          <div id="viewMore" class="magnetic w-fit flex justify-center text-sm items-center" data-strength=".5">
+            <Icon id="viewMoreIcon" name="chevron-down" class="stroke-1 text-xl mr-1" />
+            <span id="viewMoreText">View all</span>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -50,3 +58,12 @@ const { singlePostInfo } = Astro.props as InfoProps;
     </div>
   </div>
 </div>
+<script is="inline">
+  document.getElementById('viewMore').addEventListener('click', () => {
+    document.getElementById('viewMoreText').innerHTML.includes('View all')
+      ? (document.getElementById('viewMoreText').innerHTML = 'View less')
+      : (document.getElementById('viewMoreText').innerHTML = 'View all');
+    document.getElementById('text').classList.toggle('line-clamp-none');
+    document.getElementById('viewMoreIcon').classList.toggle('rotate-180');
+  });
+</script>
