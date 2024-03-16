@@ -3,6 +3,7 @@ import { Image } from 'astro:assets';
 import { getFormattedDate } from '~/utils/utils';
 import type { Post } from '~/types';
 import PostIndex from './PostIndex.astro';
+import { YouTube } from '@astro-community/astro-embed-youtube';
 
 export interface Props {
   post: Post;
@@ -134,6 +135,7 @@ const adjustedColor1 = darkenColor(post.accentColor, 0.5);
     </header>
 
     <div class="mx-auto">
+      <YouTube class="hidden" />
       <Content />
     </div>
   </article>

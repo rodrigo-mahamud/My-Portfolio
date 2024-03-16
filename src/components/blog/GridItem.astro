@@ -60,7 +60,12 @@ const adjustedColor1 = darkenColor(post.accentColor, 0.6);
               {post.excerpt}
             </p>
           </div>
-          <div class="flex items-start md:items-center text-white md:text-white/60">
+          <div
+            class="flex items-start md:items-center text-white md:text-white/60 animate-on-scroll"
+            data-type="simple"
+            data-duration="1.5"
+            data-easing="Expo.easeOut"
+          >
             <Icon name="arrow-narrow-right" class="text-4xl stroke-1" />
           </div>
         </div>
