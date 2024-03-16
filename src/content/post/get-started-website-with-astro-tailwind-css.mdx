@@ -33,14 +33,14 @@ singlePostHeader3:
   title: Take a look at the results :) 
 
 stats:
-  title1: 'Downloads'
-  amount1: '132'
-  title2: 'hola'
-  amount2: '132'
-  title3: 'hola'
-  amount3: '132'
-  title4: 'hola'
-  amount4: '132'
+  - title: 'CGI Scenes'
+    amount: '260'
+  - title: 'Downloads'
+    amount: '132'
+  - title: 'Downloads'
+    amount: '132'    
+  - title: 'Downloads'
+    amount: '132'
 
 cards:
   - url: https://www.youtube.com/watch?v=h4NJCc4AQxw
@@ -172,6 +172,6 @@ import PostNextProject from '~/components/blog/PostNextProject.astro';
 
 <PostGalleryGrid mediaFiles={frontmatter.PostGalleryGrid}  />
 
-<Stats items={frontmatter.stats} />
+<Stats stats={frontmatter.stats} />
 
 <PostNextProject data={frontmatter.PostNextProject} />
