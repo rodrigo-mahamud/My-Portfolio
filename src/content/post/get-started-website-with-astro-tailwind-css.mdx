@@ -8,10 +8,7 @@ video: hola
 accentColor: rgba(135, 0, 0, 1)
 canonical: https://astrowind.vercel.app/get-started-website-with-astro-tailwind-css
 
-postIndex:
-  - Context
-  - The Challenge
-  - Gallery
+
 
 singlePostInfo:
   rol: Vfx supervisor & Vfx producer
@@ -84,14 +81,18 @@ singlePostInfo:
   duration: 4 months
   overview: As the VFX Supervisor and IT manager for the "Rewind Hispano" from 2020 to 2023, I had the privilege of leading the visual effects production and server infrastructure for this annual project. The "Rewind Hispano" celebrates the most significant moments, trends, and figures of the year within the Spanish-speaking digital creators’ community.<br><br> In the most recent edition, I faced the challenge of coordinating and supervising an international team of over 40 VFX specialists spread across more than eight countries, including Spain, Hungary, Mexico, Venezuela, El Salvador, Argentina, Bangladesh, India... This challenge required not only managing a diverse and geographically dispersed team but also implementing technical solutions to ensure effective and efficient remote collaboration.<br><br> My responsibilities were extensive and included team organization, resource allocation, post-production budget management, and negotiating with suppliers. In addition to these organizational tasks, I also took on the role of IT Manager, setting up the necessary server infrastructure to facilitate remote work. This goes from configuring servers with decentralized redundancy to implementing systems for secure and efficient large-scale file transfers, ensuring seamless operations across different geographic zones.
 
+postIndex:
+  - Context
+  - 2023 Edition
+  - Gallery
 
 singlePostHeader:
   preTitle: Context
   title: The event that unite us
 
 singlePostHeader2:
-  preTitle: The Challenge
-  title: 260 shots in less than 80 days
+  preTitle: '2023 Edition'
+  title: More than 260 shots in less than 80 days 
 
 singlePostHeader3:
   preTitle: Gallery
@@ -227,13 +228,18 @@ import PostNextProject from '~/components/blog/PostNextProject.astro';
 
 <SinglePostHeader title={frontmatter.singlePostHeader2.title} preTitle={frontmatter.singlePostHeader2.preTitle} />
 
-<p class="animate-on-scroll leading-7 text-base" data-type="simple"  data-duration="1.5" data-easing="Expo.easeOut">El Rewind Hispano es un vídeo recopilatorio que engloba lo más destacado de cada año en cuanto a eventos, memes, música,videojuegos, y prácticamente cualquier aspecto del mundo digital. Protagonizado pormúltiples creadores y alentos hispanohablantes,resumelos acontecimientos más relevantes del año. El Rewind Hispano es un vídeo recopilatorio que engloba lo más destacado de cada año en cuanto a eventos, memes, música,videojuegos, y prácticamente cualquier aspecto del mundo digital. Protagonizado pormúltiples creadores y alentos hispanohablantes,resumelos acontecimientos más relevantes del año. El Rewind Hispano es un vídeo recopilatorio que engloba lo más destacado de cada año en cuanto a eventos, memes, música,videojuegos, y prácticamente cualquier aspecto del mundo digital. Protagonizado pormúltiples creadores y alentos hispanohablantes,resumelos acontecimientos más relevantes del año.</p>
+<p class="animate-on-scroll leading-7 text-base" data-type="simple"  data-duration="1.5" data-easing="Expo.easeOut">For the 2023 edition, we aimed to innovate by transforming the previous format, which was based on small sketches linked by transitions, into a more cohesive narrative structure with logical connections between all scenes. To achieve this, we introduced a central character: R.O.B., an animated robot embodying Artificial Intelligence, responsible for guiding the narrative of the video.</p>
+<PostImage image={frontmatter.postImage} />
+<p class="animate-on-scroll leading-7 text-base" data-type="simple"  data-duration="1.5" data-easing="Expo.easeOut">This renewed approach brought several post-production challenges. Incorporating an animated robot into most scenes, along with the extensive visual effects (VFX) work characteristic of this project, significantly increased the number of shots requiring post-production. The post-production process began on October 1, 2023, providing us with 79 days to deliver the final product by December 18. During this time, post-production proceeded concurrently with the filming of new sequences, underscoring the necessity for efficient coordination across all teams. To ensure effective collaboration, we divided post-production into three primary groups, each consisting of specialized teams. These teams were given clear objectives, guidelines on the expected final outcome, and delivery deadlines. Within each group, members selected tasks in consultation with their colleagues, fostering a supportive work environment and ensuring the quality of the final product. Given the tight deadlines, we had to ensure accuracy on the first attempt, as there was no room for redoing parts or entire scenes.</p>
+
+<p class="animate-on-scroll leading-7 text-base" data-type="simple"  data-duration="1.5" data-easing="Expo.easeOut">For example, for the initial scene running from minute 2:11 to 3:31, we began pre-editing as soon as the shots were received from the filming team on set. Alec then reviewed and refined this edit to achieve the final version we continued to work on. Subsequently, we convened the necessary teams for this sequence, which included specialists in 3D animation, 2D animation, composition, Houdini, and motion graphics. In this meeting, we outlined specific tasks for each team, the desired final outcome, delivery deadlines, and discussed the resources needed to complete their tasks. Specifically, this scene required 3D tracking of the environment for accurate integration of the robot, as well as the removal of marks, logos, and backgrounds. As these tasks are technical and do not directly enhance the final aesthetic, we outsourced them to specialized providers for 3D tracking, logo removal, and background elimination. This process was replicated and parallelized across as many scenes as possible to maximize progress.</p>
 
 <br></br>
 
 <p class="animate-on-scroll leading-7 text-base" data-type="simple" data-duration="1.5" data-easing="Expo.easeOut">El Rewind Hispano es un vídeo recopilatorio que engloba lo más destacado de cada año en cuanto a eventos, memes, música,videojuegos, y prácticamente cualquier aspecto del mundo digital. Protagonizado pormúltiples creadores y alentos hispanohablantes,resumelos acontecimientos más relevantes del año. El Rewind Hispano es un vídeo recopilatorio que engloba lo más destacado de cada año en cuanto a eventos, memes, música,videojuegos, y prácticamente cualquier aspecto del mundo digital. Protagonizado pormúltiples creadores y alentos hispanohablantes,resumelos acontecimientos más relevantes del año.</p>
 
 <PostImage image={frontmatter.postImage} />
+
 
 <SinglePostHeader title={frontmatter.singlePostHeader3.title} preTitle={frontmatter.singlePostHeader3.preTitle}/>
 <p class="animate-on-scroll leading-7" data-type="simple"  data-duration="1.5" data-easing="Expo.easeOut">El Rewind Hispano es un vídeo recopilatorio que engloba lo más destacado de cada año en cuanto a eventos, memes, música,videojuegos, y prácticamente cualquier aspecto del mundo digital. Protagonizado pormúltiples creadores y alentos hispanohablantes,resumelos acontecimientos más relevantes del año.</p>
