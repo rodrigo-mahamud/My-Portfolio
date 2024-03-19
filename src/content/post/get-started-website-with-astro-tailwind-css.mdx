@@ -165,8 +165,33 @@ cards:
           
 
 postImage: 
-  path: /robi.png
-  caption: The image caption
+  path: /robsketch.png
+  caption: Initial sketches and concepts of ROB - <i>By Carlos Bea</i>
+  delay: 0.5
+
+postImage2: 
+  path: /schema.png
+  caption: Teams organizational chart
+  delay: 0.5
+
+postImage3: 
+  path: /Breackdown2.mp4
+  caption: Teams organizational chart
+  delay: 0.5
+
+postImage4: 
+  path: /Breackdown1.mp4
+  caption: Teams organizational chart
+  delay: 0.5
+
+postImage5: 
+  path: /Breackdown4.mp4
+  caption: Teams organizational chart
+  delay: 0.5
+
+postImage6: 
+  path: /Breackdown3.mp4
+  caption: Teams organizational chart
   delay: 0.5
 
 
@@ -195,7 +220,7 @@ PostGalleryGrid:
         
 PostNextProject:
   path: /robi.png
-  title: The image caption
+  title: Initial sketches and concepts of ROB - By Carlos Bea
   nextUrl: how-to-customize-astrowind-to-your-brand        
 ---
 
@@ -229,13 +254,29 @@ import PostNextProject from '~/components/blog/PostNextProject.astro';
 <SinglePostHeader title={frontmatter.singlePostHeader2.title} preTitle={frontmatter.singlePostHeader2.preTitle} />
 
 <p class="animate-on-scroll leading-7 text-base" data-type="simple"  data-duration="1.5" data-easing="Expo.easeOut">For the 2023 edition, we aimed to innovate by transforming the previous format, which was based on small sketches linked by transitions, into a more cohesive narrative structure with logical connections between all scenes. To achieve this, we introduced a central character: R.O.B., an animated robot embodying Artificial Intelligence, responsible for guiding the narrative of the video.</p>
-<div class='flex'>
-<PostImage margin='mr-8' image={frontmatter.postImage} />
-<PostImage margin='ml-8' image={frontmatter.postImage} />
+
+<div class='flex my-16'>
+  <PostImage image={frontmatter.postImage} />
 </div>
+
 <p class="animate-on-scroll leading-7 text-base" data-type="simple"  data-duration="1.5" data-easing="Expo.easeOut">This renewed approach brought several post-production challenges. Incorporating an animated robot into most scenes, along with the extensive visual effects (VFX) work characteristic of this project, significantly increased the number of shots requiring post-production. The post-production process began on October 1, 2023, providing us with 79 days to deliver the final product by December 18. During this time, post-production proceeded concurrently with the filming of new sequences, underscoring the necessity for efficient coordination across all teams. To ensure effective collaboration, we divided post-production into three primary groups, each consisting of specialized teams. These teams were given clear objectives, guidelines on the expected final outcome, and delivery deadlines. Within each group, members selected tasks in consultation with their colleagues, fostering a supportive work environment and ensuring the quality of the final product. Given the tight deadlines, we had to ensure accuracy on the first attempt, as there was no room for redoing parts or entire scenes.</p>
 
-<p class="animate-on-scroll leading-7 text-base" data-type="simple"  data-duration="1.5" data-easing="Expo.easeOut">For example, for the initial scene running from minute 2:11 to 3:31, we began pre-editing as soon as the shots were received from the filming team on set. Alec then reviewed and refined this edit to achieve the final version we continued to work on. Subsequently, we convened the necessary teams for this sequence, which included specialists in 3D animation, 2D animation, composition, Houdini, and motion graphics. In this meeting, we outlined specific tasks for each team, the desired final outcome, delivery deadlines, and discussed the resources needed to complete their tasks. Specifically, this scene required 3D tracking of the environment for accurate integration of the robot, as well as the removal of marks, logos, and backgrounds. As these tasks are technical and do not directly enhance the final aesthetic, we outsourced them to specialized providers for 3D tracking, logo removal, and background elimination. This process was replicated and parallelized across as many scenes as possible to maximize progress.</p>
+<div class='flex my-16'>
+  <PostImage image={frontmatter.postImage2} />
+</div>
+
+<p class="animate-on-scroll leading-7 text-base" data-type="simple"  data-duration="1.5" data-easing="Expo.easeOut">For example, for the initial scene running from minute <a class='underline underline-offset-2' href="https://youtu.be/TjkRhh3Gh1U?t=132"> 2:11 </a> to <a class='underline underline-offset-2' href="https://youtu.be/TjkRhh3Gh1U?t=212">3:31</a>, we began pre-editing as soon as the shots were received from the filming team on set. Alec then reviewed and refined this edit to achieve the final version we continued to work on. Subsequently, we convened the necessary teams for this sequence, which included specialists in 3D animation, 2D animation, composition, Houdini, and motion graphics.</p>
+
+<div class='flex gap-8 mt-16'>
+  <PostImage image={frontmatter.postImage3} />
+  <PostImage image={frontmatter.postImage4} />
+</div>
+<div class='flex gap-8 mb-16 mt-8'>
+  <PostImage image={frontmatter.postImage5} />
+  <PostImage image={frontmatter.postImage6} />
+</div>
+
+<p class="animate-on-scroll leading-7 text-base" data-type="simple"  data-duration="1.5" data-easing="Expo.easeOut">In this meeting, we outlined specific tasks for each team, the desired final outcome, delivery deadlines, and discussed the resources needed to complete their tasks. Specifically, this scene required 3D tracking of the environment for accurate integration of the robot, as well as the removal of marks, logos, and backgrounds. As these tasks are technical and do not directly enhance the final aesthetic, we outsourced them to specialized providers for 3D tracking, logo removal, and background elimination. This process was replicated and parallelized across as many scenes as possible to maximize progress.</p>
 
 <br></br>
 

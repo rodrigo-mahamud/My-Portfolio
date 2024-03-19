@@ -1,28 +1,36 @@
 ---
 import { Image } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
-const { image, margin } = Astro.props;
+const { image } = Astro.props;
 
-const imagePath = import.meta.glob<{ default: ImageMetadata }>('/src/assets/works/*.{jpeg,jpg,png,gif}');
+const imagePath = import.meta.glob<{ default: ImageMetadata }>('/src/assets/works/*.{jpeg,jpg,png,gif,mp4,webp}');
 const imageSrc = imagePath[`/src/assets/works${image.path}`]();
 ---
 
 <div class="animate-on-scroll" data-type="simple" data-duration="1.5" data-easing="Expo.easeOut">
-  <div
-    class={`${margin} imageCard border-b border-[#71688207] rounded-xl md:rounded-2xl w-auto h-auto mb-16 mt-8 md:my-16`}
-  >
-    <div class="md:p-20">
-      <Image
-        class="rounded-xl md:rounded-2xl"
-        alt={`Imagen del ${image}`}
-        widths={[375, 475, 575, 1050, 1250]}
-        sizes={`(max-width: 550px) 375px, (max-width: 750px) 475px, (max-width: 950px) 575px,(max-width: 1920px) 1050px, (max-width: 2560px) 1250px,`}
-        quality={'mid'}
-        format="avif"
-        loading="lazy"
-        src={imageSrc}
-        decoding="async"
-      />
+  <div class={`imageCard border-b border-[#71688207] rounded-xl md:rounded-2xl w-auto h-auto `}>
+    <div class="md:p-8">
+      {
+        image.path.endsWith('.mp4') ? (
+          <video muted autoplay loop class="rounded-xl md:rounded-2xl w-full">
+            <source src={`/src/assets/works${image.path}`} type="video/mp4" />
+          </video>
+        ) : (
+          <Image
+            class="rounded-xl md:rounded-2xl"
+            alt={`Imagen del ${image}`}
+            widths={[375, 475, 575, 1050, 1250]}
+            sizes={`(max-width: 550px) 375px, (max-width: 750px) 475px, (max-width: 950px) 575px,(max-width: 1920px) 1050px, (max-width: 2560px) 1250px,`}
+            quality={'mid'}
+            format="avif"
+            loading="lazy"
+            src={imageSrc}
+            decoding="async"
+          />
+        )
+      }
+
+      <figcaption class="text-end text-xs text-gray-400 mt-3 mr-2"><Fragment set:html={image.caption} /></figcaption>
     </div>
   </div>
 </div>
