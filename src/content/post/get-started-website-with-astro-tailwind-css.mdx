@@ -168,32 +168,37 @@ postImage:
   path: /robsketch.png
   caption: Initial sketches and concepts of ROB - <i>By Carlos Bea</i>
   delay: 0.5
+  frame: true
 
 postImage2: 
   path: /schema.png
   caption: Teams organizational chart
   delay: 0.5
+  frame: false
 
 postImage3: 
   path: /Breackdown2.mp4
   caption: Original studio shot 
   delay: 0.5
+  frame: false
 
 postImage4: 
   path: /Breackdown1.mp4
   caption: Final shot 
   delay: 0.5
+  frame: false
 
 postImage5: 
   path: /Breackdown4.mp4
   caption: Initial colored animation 
   delay: 0.5
+  frame: false
 
 postImage6: 
   path: /Breackdown3.mp4
   caption: Final shot 
-  frame: true
   delay: 0.5
+  frame: false
 
 
 
@@ -281,9 +286,7 @@ import PostNextProject from '~/components/blog/PostNextProject.astro';
 
 <br></br>
 
-<p class="animate-on-scroll leading-7 text-base" data-type="simple" data-duration="1.5" data-easing="Expo.easeOut">El Rewind Hispano es un vídeo recopilatorio que engloba lo más destacado de cada año en cuanto a eventos, memes, música,videojuegos, y prácticamente cualquier aspecto del mundo digital. Protagonizado pormúltiples creadores y alentos hispanohablantes,resumelos acontecimientos más relevantes del año. El Rewind Hispano es un vídeo recopilatorio que engloba lo más destacado de cada año en cuanto a eventos, memes, música,videojuegos, y prácticamente cualquier aspecto del mundo digital. Protagonizado pormúltiples creadores y alentos hispanohablantes,resumelos acontecimientos más relevantes del año.</p>
 
-<PostImage image={frontmatter.postImage} />
 
 
 <SinglePostHeader title={frontmatter.singlePostHeader3.title} preTitle={frontmatter.singlePostHeader3.preTitle}/>

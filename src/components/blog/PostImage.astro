@@ -14,8 +14,10 @@ if (imageImportFunction) {
 ---
 
 <div class="animate-on-scroll" data-type="simple" data-duration="1.5" data-easing="Expo.easeOut">
-  <div class="imageCard border-b border-[#71688207] rounded-xl md:rounded-2xl w-auto h-auto">
-    <div class="md:p-8">
+  <div
+    class={`w-auto h-auto  ${image.frame ? ' imageCard border-b border-[#71688207] rounded-xl md:rounded-2xl ' : ''}`}
+  >
+    <div class={`${image.frame ? 'md:p-8' : ''}`}>
       {
         image.path.endsWith('.mp4') ? (
           <video muted autoplay loop class="rounded-xl md:rounded-2xl w-full">
