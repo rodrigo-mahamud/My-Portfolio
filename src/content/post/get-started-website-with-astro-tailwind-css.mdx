@@ -98,6 +98,11 @@ singlePostHeader3:
   preTitle: Gallery
   title: Take a look at the results :) 
 
+singlePostHeader4:
+  preTitle: It infrastructure
+  title: "The Network Behind the Project"
+
+
 stats:
   - title: 'CGI Scenes'
     amount: '260'
@@ -196,11 +201,39 @@ postImage5:
 
 postImage6: 
   path: /Breackdown3.mp4
-  caption: Final shot 
+  caption: Final animation with background 
   delay: 0.5
   frame: false
 
+postImage7: 
+  path: /Breackdown6.mp4
+  caption: Initial shot with background and brands
+  delay: 0.5
+  frame: false
 
+postImage8: 
+  path: /Breackdown5.mp4
+  caption: Shot with backround and removed, ready for composition.
+  delay: 0.5
+  frame: false
+
+postImage9: 
+  path: /network.png
+  caption: Simplified network structure diagram
+  delay: 0.5
+  frame: false
+
+postImage10: 
+  path: /server1.png
+  caption: Synology server
+  delay: 0.5
+  frame: false
+
+postImage11: 
+  path: /server2.png
+  caption: TrueNas Scale server
+  delay: 0.5
+  frame: false  
 
 PostGalleryGrid:
    videos: 
@@ -259,7 +292,7 @@ import PostNextProject from '~/components/blog/PostNextProject.astro';
 
 <SinglePostHeader title={frontmatter.singlePostHeader2.title} preTitle={frontmatter.singlePostHeader2.preTitle} />
 
-<p class="animate-on-scroll leading-7 text-base" data-type="simple"  data-duration="1.5" data-easing="Expo.easeOut">For the 2023 edition, we aimed to innovate by transforming the previous format, which was based on small sketches linked by transitions, into a more cohesive narrative structure with logical connections between all scenes. To achieve this, we introduced a central character: R.O.B., an animated robot embodying Artificial Intelligence, responsible for guiding the narrative of the video.</p>
+<p class="animate-on-scroll leading-7 text-base" data-type="simple"  data-duration="1.5" data-easing="Expo.easeOut">For the 2023 edition, Alec and the team of scriptwriters set out to innovate by transforming the previous format, based on small sketches linked by transitions, into a more cohesive narrative structure with logical connections between all the scenes. To achieve this, we introduced a central character: R.O.B., an animated robot that embodies Artificial Intelligence, in charge of guiding the narration of the video.</p>
 
 <div class='flex mt-16 mb-16'>
   <PostImage image={frontmatter.postImage} />
@@ -282,12 +315,30 @@ import PostNextProject from '~/components/blog/PostNextProject.astro';
   <PostImage image={frontmatter.postImage6} />
 </div>
 
-<p class="animate-on-scroll leading-7 text-base" data-type="simple"  data-duration="1.5" data-easing="Expo.easeOut">In this meeting, we outlined specific tasks for each team, the desired final outcome, delivery deadlines, and discussed the resources needed to complete their tasks. Specifically, this scene required 3D tracking of the environment for accurate integration of the robot, as well as the removal of marks, logos, and backgrounds. As these tasks are technical and do not directly enhance the final aesthetic, we outsourced them to specialized providers for 3D tracking, logo removal, and background elimination. This process was replicated and parallelized across as many scenes as possible to maximize progress.</p>
+<p class="animate-on-scroll leading-7 text-base" data-type="simple"  data-duration="1.5" data-easing="Expo.easeOut">At this meeting, the specific tasks of each team, the desired end result, the deadlines and the resources needed to carry them out were defined. Specifically, this scene required 3D tracking of the environment for the precise integration of the robot, as well as the removal of brands, logos and backgrounds. As these tasks are purely mechanical and do not directly enhance the final aesthetics, we outsourced them to specialized vendors, one vendor for 3D tracking, and another vendor for logo removal and background removal.</p>
 
-<br></br>
+<div class='flex gap-8 mt-16 mb-16'>
+  <PostImage image={frontmatter.postImage7} />
+  <PostImage image={frontmatter.postImage8} />
+</div>
 
+<p class="animate-on-scroll leading-7 text-base" data-type="simple"  data-duration="1.5" data-easing="Expo.easeOut">This way of organization and work was repeated with as many scenes as possible, thanks to this we were able to quickly scale and parallelize the post-production process, which ended up with **more than 40 people working at the same time in small parts of the project**, which allowed us to meet the deadline without any team member ending up overloaded with work. </p>
 
+<SinglePostHeader title={frontmatter.singlePostHeader4.title} preTitle={frontmatter.singlePostHeader4.preTitle}/>
+<p class="animate-on-scroll leading-7 text-base" data-type="simple"  data-duration="1.5" data-easing="Expo.easeOut">This parallel workflow allowed us to progress at a great pace, meeting our deadline. However, **coordinating 40 people working remotely from around the globe, handling 6.7GB of video files per minute… posed significant challenges in terms of infrastructure**. Critical questions arose: How do we securely store the files? What's the best way to send them globally?  How do we manage access permissions?.  </p>
+\
+<p class="animate-on-scroll leading-7 text-base" data-type="simple"  data-duration="1.5" data-easing="Expo.easeOut">I was tasked with designing and implementing a network infrastructure that could address these issues and adapt to the project's workflow. The final design was as follows: </p>
 
+<div class='flex mt-16 mb-16'>
+  <PostImage image={frontmatter.postImage9} />
+</div>
+
+<p class="animate-on-scroll leading-7 text-base" data-type="simple"  data-duration="1.5" data-easing="Expo.easeOut">From a hardware standpoint, the network comprises two servers located in different places: a Synology DS1621+ and another server I assembled myself, running TrueNAS Scale. Opting for two distinct physical locations aimed to maximize protection against incidents like fires, collapses, or thefts. Each server features a set of disks in RAID 5, with 1TB read and write caches, and each is backed by an EATON 5SC 1500I UPS system. </p>
+
+<div class='flex gap-8 mt-16 mb-16'>
+  <PostImage image={frontmatter.postImage10} />
+  <PostImage image={frontmatter.postImage11} />
+</div>
 
 <SinglePostHeader title={frontmatter.singlePostHeader3.title} preTitle={frontmatter.singlePostHeader3.preTitle}/>
 <p class="animate-on-scroll leading-7" data-type="simple"  data-duration="1.5" data-easing="Expo.easeOut">El Rewind Hispano es un vídeo recopilatorio que engloba lo más destacado de cada año en cuanto a eventos, memes, música,videojuegos, y prácticamente cualquier aspecto del mundo digital. Protagonizado pormúltiples creadores y alentos hispanohablantes,resumelos acontecimientos más relevantes del año.</p>
