@@ -84,6 +84,7 @@ singlePostInfo:
 postIndex:
   - Context
   - 2023 Edition
+  - It Infrastructure
   - Gallery
 
 singlePostHeader:
@@ -101,6 +102,10 @@ singlePostHeader3:
 singlePostHeader4:
   preTitle: It infrastructure
   title: "The Network Behind the Project"
+
+singlePostHeader5:
+  preTitle: Gallery
+  title: "Take a look at the results ;)"
 
 
 stats:
@@ -235,6 +240,18 @@ postImage11:
   delay: 0.5
   frame: false  
 
+postImage12: 
+  path: /folder.png
+  caption: Shared folder
+  delay: 0.5
+  frame: false  
+
+postImage13: 
+  path: /folder2.png
+  caption: Shared folder inside the VFX departament
+  delay: 0.5
+  frame: false    
+
 PostGalleryGrid:
    videos: 
       - path: /pepeluRW2-OP.mp4
@@ -298,7 +315,10 @@ import PostNextProject from '~/components/blog/PostNextProject.astro';
   <PostImage image={frontmatter.postImage} />
 </div>
 
-<p class="animate-on-scroll leading-7 text-base" data-type="simple"  data-duration="1.5" data-easing="Expo.easeOut">This renewed approach brought several post-production challenges. Incorporating an animated robot into most scenes, along with the extensive visual effects (VFX) work characteristic of this project, significantly increased the number of shots requiring post-production. The post-production process began on October 1, 2023, providing us with 79 days to deliver the final product by December 18. During this time, post-production proceeded concurrently with the filming of new sequences, underscoring the necessity for efficient coordination across all teams. To ensure effective collaboration, we divided post-production into three primary groups, each consisting of specialized teams. These teams were given clear objectives, guidelines on the expected final outcome, and delivery deadlines. Within each group, members selected tasks in consultation with their colleagues, fostering a supportive work environment and ensuring the quality of the final product. Given the tight deadlines, we had to ensure accuracy on the first attempt, as there was no room for redoing parts or entire scenes.</p>
+<p class="animate-on-scroll leading-7 text-base" data-type="simple"  data-duration="1.5" data-easing="Expo.easeOut">This renewed approach brought several post-production challenges. Incorporating an animated robot into most scenes, along with the extensive visual effects (VFX) work characteristic of this project, significantly increased the number of shots requiring post-production. The post-production process began on October 1, 2023, providing us with 79 days to deliver the final product by December 18. During this time, post-production proceeded concurrently with the filming of new sequences, underscoring the necessity for efficient coordination across all teams.
+\
+\
+To ensure effective collaboration, we divided post-production into three primary groups, each consisting of specialized teams. These teamswere given clear objectives, guidelines on the expected final outcome, and delivery deadlines. Within each group, members selected tasks inconsultation with their colleagues, fostering a supportive work environment and ensuring the quality of the final product. Given the tightdeadlines, we had to ensure accuracy on the first attempt, as there was no room for redoing parts or entire scenes.</p>
 
 <div class='flex mt-16 mb-16'>
   <PostImage image={frontmatter.postImage2} />
@@ -340,9 +360,40 @@ import PostNextProject from '~/components/blog/PostNextProject.astro';
   <PostImage image={frontmatter.postImage11} />
 </div>
 
-<SinglePostHeader title={frontmatter.singlePostHeader3.title} preTitle={frontmatter.singlePostHeader3.preTitle}/>
-<p class="animate-on-scroll leading-7" data-type="simple"  data-duration="1.5" data-easing="Expo.easeOut">El Rewind Hispano es un vídeo recopilatorio que engloba lo más destacado de cada año en cuanto a eventos, memes, música,videojuegos, y prácticamente cualquier aspecto del mundo digital. Protagonizado pormúltiples creadores y alentos hispanohablantes,resumelos acontecimientos más relevantes del año.</p>
+<p class="animate-on-scroll leading-7" data-type="simple"  data-duration="1.5" data-easing="Expo.easeOut">The designed workflow goes as follows: 
+\
+\
+the filming team uploads the video files to the server with TrueNAS, either physically via SMB or remotely through Filebrowser.Then, these files automatically sync with the Synology server via Syncthing. Once the files are synchronized on the Synology server, any user needing to access the files will do so through this server, utilizing Synology Drive since this app simplifies file syncing with its desktop application.
+\
+\
+All files uploaded by the filming team are located in a shared folder with the following structure:
+\
+-Raw Footage
+\
+-VFX
+\
+-Sound
+\
+-Previews
+\
+\
+Post-production team members can view the entire shared folder but only have editing permissions within their department's folder. In their own folder, they have complete control, but in their colleagues' folders, they can only view, add, copy, and download files, not edit or delete them.</p>
+<div class='flex gap-8 mt-16 mb-16'>
+  <PostImage image={frontmatter.postImage12} />
+  <PostImage image={frontmatter.postImage13} />
+</div>
+<p class="animate-on-scroll leading-7" data-type="simple"  data-duration="1.5" data-easing="Expo.easeOut">Each user's personal folder will sync bidirectionally with their desktop through Synology Drive, allowing any changes to be automatically uploaded to the server and vice versa. This synchronization eliminates the need for constantly sending links from platforms like Google Drive or WeTransfer, facilitating collaboration.
+\
+\
+Moreover, this shared folder on the Synology server syncs bidirectionally with the TrueNAS server, thus ensuring off-site redundancy. As an additional security measure, both servers generate incremental snapshots every 30 minutes, retaining them for a week to allow for file recovery in case of corruption or accidental deletion.
+\
+\
+The infrastructure is complemented with solutions for direct and fast file access, crucial for editors. For Alec, who does the final cut, the solution is straightforward thanks to a 10Gbe connection with the Synology server in his office, allowing him to use the server as another hard drive on his system. For the editor doing the preliminary cut, I implemented a Windows 10 virtual machine on the TrueNAS Scale server, enabling remote access to the shared folder via Parsec for immediate editing. The resulting Premiere files automatically sync with the Synology server, facilitating access for the entire team.</p>
+<SinglePostHeader title={frontmatter.singlePostHeader5.title} preTitle={frontmatter.singlePostHeader5.preTitle} />
 
+<p class="animate-on-scroll leading-7 text-base" data-type="simple"  data-duration="1.5" data-easing="Expo.easeOut">
+Among more than 260 shots in total it is difficult to decide, but here you can find a small summary of the highlights of the project.If you want to see the full video you can <a  href='https://youtu.be/TjkRhh3Gh1U?si=5rPvtQUrLkYofYOF'>***find it here***</a>
+</p>
 <PostGalleryGrid mediaFiles={frontmatter.PostGalleryGrid}  />
 
 <Stats stats={frontmatter.stats} />
