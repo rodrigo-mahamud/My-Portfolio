@@ -120,8 +120,8 @@ const adjustedColor1 = darkenColor(post.accentColor, 0.5);
               widths={[275, 475, 575, 1050, 1250]}
               sizes={`(max-width: 550px) 275px, (max-width: 750px) 475px, (max-width: 950px) 575px,(max-width: 1920px) 750px, (max-width: 2560px) 1050px,`}
               quality={'mid'}
-              format="avif"
-              loading="lazy"
+              format="webp"
+              loading="eager"
               src={post.image}
               decoding="async"
             />
@@ -135,7 +135,7 @@ const adjustedColor1 = darkenColor(post.accentColor, 0.5);
     </header>
 
     <div class="mx-auto">
-      <YouTube class="hidden" />
+      <YouTube id="" class="hidden" />
       <Content />
     </div>
   </article>
@@ -402,4 +402,44 @@ const adjustedColor1 = darkenColor(post.accentColor, 0.5);
 
     starAnimation();
   }
+
+  // Lazy load videos
+  document.addEventListener('DOMContentLoaded', () => {
+    const videos = document.querySelectorAll('.lazy-video') as NodeListOf<HTMLVideoElement>;
+    let loadingIndex = 0; // Índice del video que se está cargando
+
+    const loadNextVideo = () => {
+      if (loadingIndex >= videos.length) return;
+
+      const video = videos[loadingIndex];
+      video.src = video.getAttribute('data-src') as string; // Carga el video
+      video.load(); // Importante para comenzar la carga con preload="none"
+
+      const onLoaded = () => {
+        video.play();
+        video.removeEventListener('loadeddata', onLoaded);
+        loadingIndex++;
+        loadNextVideo();
+      };
+
+      video.addEventListener('loadeddata', onLoaded);
+    };
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && loadingIndex === 0) {
+            observer.unobserve(entry.target);
+            loadNextVideo(); // Comienza la secuencia de carga cuando el primer video está visible
+          }
+        });
+      },
+      {
+        rootMargin: '100px 0px',
+        threshold: 0.1,
+      }
+    );
+
+    videos.forEach((video) => observer.observe(video));
+  });
 </script>

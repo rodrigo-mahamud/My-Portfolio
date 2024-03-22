@@ -79,7 +79,7 @@ singlePostInfo:
   <br>" 
   status: done
   duration: 4 months
-  overview: As the VFX Supervisor and IT manager for the "Rewind Hispano" from 2020 to 2023, I had the privilege of leading the visual effects production and server infrastructure for this annual project. The "Rewind Hispano" is a short film created by Alec Hernández that celebrates the most significant moments, trends, and figures of the year within the Spanish-speaking digital creators’ community.<br><br> In the most recent edition, I faced the challenge of coordinating and supervising an international team of over 40 VFX specialists spread across more than eight countries, including Spain, Hungary, Mexico, Venezuela, El Salvador, Argentina, Bangladesh, India... This challenge required not only managing a diverse and geographically dispersed team but also implementing technical solutions to ensure effective and efficient remote collaboration.<br><br> My responsibilities were extensive and included team organization, resource allocation, post-production budget management, and negotiating with suppliers. In addition to these organizational tasks, I also took on the role of IT Manager, setting up the necessary server infrastructure to facilitate remote work. This goes from configuring servers with decentralized redundancy to implementing systems for secure and efficient large-scale file transfers, ensuring seamless operations across different geographic zones.
+  overview: The "Rewind Hispano" is a short film created by Alec Hernández that celebrates the most significant moments, trends, and figures of the year within the Spanish-speaking digital creators’ community. As the VFX Supervisor and IT manager of the "Rewind Hispano" from 2020 to 2023, I had the privilege of leading the visual effects production and server infrastructure for this annual project. <br><br> In the most recent edition, I faced the challenge of coordinating and supervising an international team of over 40 VFX specialists spread across more than eight countries, including Spain, Hungary, Mexico, Venezuela, El Salvador, Argentina, Bangladesh, India... This challenge required not only managing a diverse and geographically dispersed team but also implementing technical solutions to ensure effective and efficient remote collaboration.<br><br> My responsibilities were extensive and included team organization, resource allocation, post-production budget management, and negotiating with suppliers. In addition to these organizational tasks, I also took on the role of IT Manager, setting up the necessary server infrastructure to facilitate remote work. This goes from configuring servers with decentralized redundancy to implementing systems for secure and efficient large-scale file transfers, ensuring seamless operations across different geographic zones.
 
 postIndex:
   - Context
@@ -183,7 +183,7 @@ media:
   - path: /schema.png
     caption: Teams organizational chart
     delay: 0.5
-    frame: false
+    frame: true
 
   - path: /Breackdown2.mp4
     caption: Original studio shot 
@@ -218,7 +218,7 @@ media:
   - path: /network.png
     caption: Simplified network structure diagram
     delay: 0.5
-    frame: false
+    frame: true
 
   - path: /server1.png
     caption: Synology server
@@ -289,7 +289,7 @@ import PostNextProject from '~/components/blog/PostNextProject.astro';
 
 <SinglePostHeader title={frontmatter.singlePostHeader.title} preTitle={frontmatter.singlePostHeader.preTitle}  />
 
-<p class="animate-on-scroll leading-7 text-base" data-type="simple"  data-duration="1.5" data-easing="Expo.easeOut">The "Rewind Hispano" is a community project that brings together the Spanish-speaking digital content creator community to celebrate the year's highlights. Inspired by the concept of YouTube Rewind, this annual video features the trends, events, and personalities that set the agenda on the Spanish-speaking internet, but with a specific focus on the richness and diversity of the digital culture in Spanish. Unlike its global counterpart produced by YouTube, the Rewind Hispano is an initiative created by and for the Hispanic community, allowing for a more authentic and closer representation of its interests and achievements.</p>
+<p class="animate-on-scroll leading-7 text-base" data-type="simple"  data-duration="1.5" data-easing="Expo.easeOut">The "Rewind Hispano" is a community project created by Alec Hernández and produced by DHC FIlms, that wants to bring together the Spanish-speaking content creator community to celebrate the year's highlights. Inspired by the concept of YouTube Rewind, this annual video features the trends, events, and personalities that set the agenda on the Spanish-speaking internet, but with a specific focus on the richness and diversity of the digital culture in Spanish. Unlike its global counterpart produced by YouTube, the Rewind Hispano is an initiative created by and for the Hispanic community, allowing for a more authentic and closer representation of its interests and achievements.</p>
 
 <PostCards cards={frontmatter.cards} />
 
@@ -314,18 +314,18 @@ To ensure effective collaboration, we divided post-production into three primary
 
 <p class="animate-on-scroll leading-7 text-base" data-type="simple"  data-duration="1.5" data-easing="Expo.easeOut">For example, for the initial scene running from minute <a class='underline underline-offset-2' href="https://youtu.be/TjkRhh3Gh1U?t=132"> 2:11 </a> to <a class='underline underline-offset-2' href="https://youtu.be/TjkRhh3Gh1U?t=212">3:31</a>, we began pre-editing as soon as the shots were received from the filming team on set. Alec then reviewed and refined this edit to achieve the final version we continued to work on. Subsequently, we convened the necessary teams for this sequence, which included specialists in 3D animation, 2D animation, composition, Houdini, and motion graphics.</p>
 
-<div class='flex gap-8 mt-16'>
+<div class='flex flex-col md:flex-row gap-8 mt-16'>
   <PostMedia media={frontmatter.media[2]} />
   <PostMedia media={frontmatter.media[3]} />
 </div>
-<div class='flex gap-8 mb-16 mt-8'>
+<div class='flex flex-col md:flex-row gap-8 mb-16 mt-8'>
   <PostMedia media={frontmatter.media[4]} />
   <PostMedia media={frontmatter.media[5]} />
 </div>
 
 <p class="animate-on-scroll leading-7 text-base" data-type="simple"  data-duration="1.5" data-easing="Expo.easeOut">At this meeting, the specific tasks of each team, the desired end result, the deadlines and the resources needed to carry them out were defined. Specifically, this scene required 3D tracking of the environment for the precise integration of the robot, as well as the removal of brands, logos and backgrounds. As these tasks are purely mechanical and do not directly enhance the final aesthetics, we outsourced them to specialized vendors, one vendor for 3D tracking, and another vendor for logo removal and background removal.</p>
 
-<div class='flex gap-8 mt-16 mb-16'>
+<div class='flex flex-col md:flex-row  gap-8 mt-16 mb-16'>
   <PostMedia media={frontmatter.media[6]} />
   <PostMedia media={frontmatter.media[7]} />
 </div>
@@ -333,7 +333,7 @@ To ensure effective collaboration, we divided post-production into three primary
 <p class="animate-on-scroll leading-7 text-base" data-type="simple"  data-duration="1.5" data-easing="Expo.easeOut">This way of organization and work was repeated with as many scenes as possible, thanks to this we were able to quickly scale and parallelize the post-production process, which ended up with **more than 40 people working at the same time in small parts of the project**, which allowed us to meet the deadline without any team member ending up overloaded with work. </p>
 
 <SinglePostHeader title={frontmatter.singlePostHeader4.title} preTitle={frontmatter.singlePostHeader4.preTitle}/>
-<p class="animate-on-scroll leading-7 text-base" data-type="simple"  data-duration="1.5" data-easing="Expo.easeOut">This parallel workflow allowed us to progress at a great pace, meeting our deadline. However, **coordinating 40 people working remotely from around the globe, handling 6.7GB of video files per minute… posed significant challenges in terms of infrastructure**. Critical questions arose: How do we securely store the files? What's the best way to send them globally?  How do we manage access permissions?.  </p>
+<p class="animate-on-scroll leading-7 text-base" data-type="simple"  data-duration="1.5" data-easing="Expo.easeOut">This parallel workflow allowed us to progress at a great pace, meeting our deadline. However, **coordinating 40 people working remotely from around the globe, handling video files of 6.7GB per minute… posed significant challenges in terms of infrastructure**. Critical questions arose: How do we securely store the files? What's the best way to send them globally?  How do we manage access permissions?.  </p>
 \
 <p class="animate-on-scroll leading-7 text-base" data-type="simple"  data-duration="1.5" data-easing="Expo.easeOut">I was tasked with designing and implementing a network infrastructure that could address these issues and adapt to the project's workflow. The final design was as follows: </p>
 
@@ -343,18 +343,13 @@ To ensure effective collaboration, we divided post-production into three primary
 
 <p class="animate-on-scroll leading-7 text-base" data-type="simple"  data-duration="1.5" data-easing="Expo.easeOut">From a hardware standpoint, the network comprises two servers located in different places: a Synology DS1621+ and another server I assembled myself, running TrueNAS Scale. Opting for two distinct physical locations aimed to maximize protection against incidents like fires, collapses, or thefts. Each server features a set of disks in RAID 5, with 1TB read and write caches, and each is backed by an EATON 5SC 1500I UPS system. </p>
 
-<div class='flex gap-8 mt-16 mb-16'>
+<div class='flex flex-col md:flex-row gap-8 mt-16 mb-16'>
   <PostMedia media={frontmatter.media[9]} />
   <PostMedia media={frontmatter.media[10]} />
 </div>
 
-<p class="animate-on-scroll leading-7" data-type="simple"  data-duration="1.5" data-easing="Expo.easeOut">The designed workflow goes as follows: 
+<p class="animate-on-scroll leading-7" data-type="simple"  data-duration="1.5" data-easing="Expo.easeOut">The designed workflow goes as follows: The filming team uploads the video files to the TrueNAS server, either physically via SMB or remotely through Filebrowser. Then, these files automatically sync with the Synology server via Syncthing. Once the files are synchronized on the Synology server, any user needing to access the files will do so through this server, utilizing Synology Drive since this app simplifies file syncing with its desktop application.All files uploaded by the filming team are located in a shared folder with the following structure:
 \
-\
-the filming team uploads the video files to the server with TrueNAS, either physically via SMB or remotely through Filebrowser.Then, these files automatically sync with the Synology server via Syncthing. Once the files are synchronized on the Synology server, any user needing to access the files will do so through this server, utilizing Synology Drive since this app simplifies file syncing with its desktop application.
-\
-\
-All files uploaded by the filming team are located in a shared folder with the following structure:
 \
 -Raw Footage
 \
@@ -366,11 +361,11 @@ All files uploaded by the filming team are located in a shared folder with the f
 \
 \
 Post-production team members can view the entire shared folder but only have editing permissions within their department's folder. In their own folder, they have complete control, but in their colleagues' folders, they can only view, add, copy, and download files, not edit or delete them.</p>
-<div class='flex gap-8 mt-16 mb-16'>
+<div class='flex flex-col md:flex-row  gap-8 mt-16 mb-16'>
   <PostMedia media={frontmatter.media[11]} />
   <PostMedia media={frontmatter.media[12]} />
 </div>
-<p class="animate-on-scroll leading-7" data-type="simple"  data-duration="1.5" data-easing="Expo.easeOut">Each user's personal folder will sync bidirectionally with their desktop through Synology Drive, allowing any changes to be automatically uploaded to the server and vice versa. This synchronization eliminates the need for constantly sending links from platforms like Google Drive or WeTransfer, facilitating collaboration.
+<p class="animate-on-scroll leading-7" data-type="simple"  data-delay="0.25" data-easing="Expo.easeOut">Each user's personal folder will sync bidirectionally with their desktop through Synology Drive, allowing any changes to be automatically uploaded to the server and vice versa. This synchronization eliminates the need for constantly sending links from platforms like Google Drive or WeTransfer, facilitating collaboration.
 \
 \
 Moreover, this shared folder on the Synology server syncs bidirectionally with the TrueNAS server, thus ensuring off-site redundancy. As an additional security measure, both servers generate incremental snapshots every 30 minutes, retaining them for a week to allow for file recovery in case of corruption or accidental deletion.
@@ -379,9 +374,8 @@ Moreover, this shared folder on the Synology server syncs bidirectionally with t
 The infrastructure is complemented with solutions for direct and fast file access, crucial for editors. For Alec, who does the final cut, the solution is straightforward thanks to a 10Gbe connection with the Synology server in his office, allowing him to use the server as another hard drive on his system. For the editor doing the preliminary cut, I implemented a Windows 10 virtual machine on the TrueNAS Scale server, enabling remote access to the shared folder via Parsec for immediate editing. The resulting Premiere files automatically sync with the Synology server, facilitating access for the entire team.</p>
 <SinglePostHeader title={frontmatter.singlePostHeader5.title} preTitle={frontmatter.singlePostHeader5.preTitle} />
 
-<p class="animate-on-scroll leading-7 text-base" data-type="simple"  data-duration="1.5" data-easing="Expo.easeOut">
-Among more than 260 shots in total it is difficult to decide, but here you can find a small summary of the highlights of the project.
-</p>
+<p class="animate-on-scroll leading-7 text-base" data-type="simple" data-delay="0.25" data-easing="Expo.easeOut">Among more than 260 shots in total it is difficult to decide, but here you can find a small summary of the highlights of the project.</p>
+
 <PostGalleryGrid mediaFiles={frontmatter.PostGalleryGrid}  />
 
 <Stats stats={frontmatter.stats} />
