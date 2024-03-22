@@ -823,6 +823,14 @@ canvas {
   .nextSection:hover .focus {
     display: none;
   }
+  .imageCard::before {
+    background: transparent;
+    height: 0px;
+  }
+  .imageCard {
+    background: transparent;
+    box-shadow: unset;
+  }
 }
 @keyframes rotate {
   0% {
