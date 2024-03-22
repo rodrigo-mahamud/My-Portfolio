@@ -1,0 +1,86 @@
+---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+const { media } = Astro.props;
+
+const imagePath = import.meta.glob<{ default: ImageMetadata }>('/src/assets/works/*.{jpeg,jpg,png,gif}');
+const imageImportFunction = imagePath[`/src/assets/works${media.path}`];
+let imageSrc;
+if (imageImportFunction) {
+  imageSrc = imageImportFunction().then((module) => module.default);
+}
+---
+
+<div class="animate-on-scroll w-full h-full" data-type="simple" data-duration="1.5" data-easing="Expo.easeOut">
+  <div
+    class={`w-auto h-auto  ${media.frame ? ' imageCard border-b border-[#71688207] rounded-xl md:rounded-2xl ' : ''}`}
+  >
+    <div class={`${media.frame ? 'md:p-8' : ''}`}>
+      {
+        media.path.endsWith('.mp4') ? (
+          <video
+            muted
+            loop
+            preload="none"
+            class="rounded-xl md:rounded-2xl w-full lazy-video aspect-video"
+            data-src={media.path}
+          />
+        ) : (
+          <Image
+            class="rounded-xl md:rounded-2xl"
+            alt={`Imagen del ${media}`}
+            widths={[375, 475, 575, 1050, 1250]}
+            sizes={`(max-width: 550px) 375px, (max-width: 750px) 475px, (max-width: 950px) 575px,(max-width: 1920px) 1050px, (max-width: 2560px) 1250px,`}
+            quality={'mid'}
+            format="avif"
+            loading="lazy"
+            src={imageSrc}
+            decoding="async"
+          />
+        )
+      }
+
+      <figcaption class="text-end text-xs text-gray-400 mt-3 mr-2"><Fragment set:html={media.caption} /></figcaption>
+    </div>
+  </div>
+</div>
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', () => {
+    const videos = document.querySelectorAll('.lazy-video');
+    let loadingIndex = 0; // Índice del video que se está cargando
+
+    const loadNextVideo = () => {
+      if (loadingIndex >= videos.length) return;
+
+      const video = videos[loadingIndex];
+      video.src = video.getAttribute('data-src'); // Carga el video
+      video.load(); // Importante para comenzar la carga con preload="none"
+
+      const onLoaded = () => {
+        video.play();
+        video.removeEventListener('loadeddata', onLoaded);
+        loadingIndex++;
+        loadNextVideo();
+      };
+
+      video.addEventListener('loadeddata', onLoaded);
+    };
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && loadingIndex === 0) {
+            observer.unobserve(entry.target);
+            loadNextVideo(); // Comienza la secuencia de carga cuando el primer video está visible
+          }
+        });
+      },
+      {
+        rootMargin: '100px 0px',
+        threshold: 0.1,
+      }
+    );
+
+    videos.forEach((video) => observer.observe(video));
+  });
+</script>
