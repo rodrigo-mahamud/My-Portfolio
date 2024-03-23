@@ -406,31 +406,26 @@ const adjustedColor1 = darkenColor(post.accentColor, 0.5);
   // Lazy load videos
   document.addEventListener('DOMContentLoaded', () => {
     const videos = document.querySelectorAll('.lazy-video') as NodeListOf<HTMLVideoElement>;
-    let loadingIndex = 0; // Índice del video que se está cargando
-
-    const loadNextVideo = () => {
-      if (loadingIndex >= videos.length) return;
-
-      const video = videos[loadingIndex];
-      video.src = video.getAttribute('data-src') as string; // Carga el video
-      video.load(); // Importante para comenzar la carga con preload="none"
-
-      const onLoaded = () => {
-        video.play();
-        video.removeEventListener('loadeddata', onLoaded);
-        loadingIndex++;
-        loadNextVideo();
-      };
-
-      video.addEventListener('loadeddata', onLoaded);
-    };
 
     const observer = new IntersectionObserver(
-      (entries) => {
+      (entries, observer) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting && loadingIndex === 0) {
-            observer.unobserve(entry.target);
-            loadNextVideo(); // Comienza la secuencia de carga cuando el primer video está visible
+          const video = entry.target as HTMLVideoElement;
+
+          // Cuando el video entra en pantalla
+          if (entry.isIntersecting) {
+            const videoSrc = video.getAttribute('data-src') || ''; // Corrección aquí
+            if (!video.src) {
+              // Si el video aún no ha sido cargado
+              video.src = videoSrc;
+              video.load();
+              video.addEventListener('loadeddata', () => video.play());
+            } else {
+              // Si el video ya fue cargado antes
+              video.play();
+            }
+          } else {
+            video.pause(); // Cuando el video sale de pantalla
           }
         });
       },

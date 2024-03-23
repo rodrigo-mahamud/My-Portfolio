@@ -11,7 +11,7 @@ canonical: https://astrowind.vercel.app/get-started-website-with-astro-tailwind-
 
 
 singlePostInfo:
-  rol: Vfx supervisor & Vfx producer
+  rol: IT Manager & Vfx supervisor.
   title: '2023 Team'
   team: "<span class='text-white'>Vfx supervisor.</span> - Jose Luis Cardona Tudela <br> 
   <span class='text-white'>Houdini supervisor</span> - Hector Gallego <br> <br>
@@ -105,7 +105,7 @@ singlePostHeader4:
 
 singlePostHeader5:
   preTitle: Gallery
-  title: "Take a look at the results ;)"
+  title: "Check out the results of this latest edition"
 
 
 stats:
@@ -177,90 +177,90 @@ cards:
 media: 
   - path: /robsketch.png
     caption: Initial sketches and concepts of ROB - <i>By Carlos Bea</i>
-    delay: 0.5
+    delay: 0.25
     frame: true
 
   - path: /schema.png
     caption: Teams organizational chart
-    delay: 0.5
+    delay: 0.25
     frame: true
 
   - path: /Breackdown2.mp4
     caption: Original studio shot 
-    delay: 0.5
+    delay: 0.25
     frame: false
 
   - path: /Breackdown1.mp4
     caption: Final shot 
-    delay: 0.5
+    delay: 0.25
     frame: false
 
   - path: /Breackdown4.mp4
     caption: Initial colored animation 
-    delay: 0.5
+    delay: 0.25
     frame: false
 
   - path: /Breackdown3.mp4
     caption: Final animation with background 
-    delay: 0.5
+    delay: 0.25
     frame: false
 
   - path: /Breackdown6.mp4
     caption: Initial shot with background and brands
-    delay: 0.5
+    delay: 0.25
     frame: false
 
   - path: /Breackdown5.mp4
     caption: Shot with backround and removed, ready for composition.
-    delay: 0.5
+    delay: 0.25
     frame: false
 
   - path: /network.png
     caption: Simplified network structure diagram
-    delay: 0.5
+    delay: 0.25
     frame: true
 
   - path: /server1.png
     caption: Synology server
-    delay: 0.5
+    delay: 0.25
     frame: false
 
   - path: /server2.png
     caption: TrueNas Scale server
-    delay: 0.5
+    delay: 0.35
     frame: false  
 
   - path: /folder.png
     caption: Shared folder
-    delay: 0.5
+    delay: 0.25
     frame: false  
 
   - path: /folder2.png
     caption: Shared folder inside the VFX departament
-    delay: 0.5
+    delay: 0.35
     frame: false    
 
 PostGalleryGrid:
    videos: 
-      - path: /pepeluRW2-OP.mp4
-        title: Nuke Composition by Jose Luis Cardona
-        subtitle: Feel free to customize your reports. Utilize our super-table instead of exporting and importing data for over and over.
+      - path: /clip0.mp4
+        title: The best and longest intro.
+        subtitle: "For this edition, we opted to provide a general context through the video, making the introduction essential as it sets the stage for the rest of the content."
 
-      - path: /pepeluRW-OP.mp4
-        title: Nuke Composition
-        subtitle: Feel free to customize your reports. Utilize our super-table instead of exporting and.  
+      - path: /clip1.mp4
+        title: Combination of different styles
+        subtitle: We decided to try something different and included 2d animation. 
 
       - path: /robgifOP.mp4
-        title: "hola By Carlos Bea"
-        subtitle: Feel free to customize your reports. Utilize our super-table instead of exporting and.        
+        title: "Say hello to R.O.B !"
+        subtitle: Created from scratch by us, this AI was the common thread of the whole video.        
 
-      - path: /mencho.mp4
-        title: hola
-        subtitle: adios      
+      - path: /clip2.mp4
+        title: The 'Optic Fiber'
+        subtitle: "The 'Fiber optic' are depicted as a crucial concept in the virtual world envisioned by scriptwriters, portrayed as a vast glass tube surrounded by pixelated elements."
 
-      - path: /nukeIsma.mp4
-        title: Oppenheimer explosion CGI recreation
-        subtitle: By Ismael Martinez, Julen Elia & Héctor Gallego  
+      - path: /clip3.mp4
+        title: Trinity explosion recreation.
+        subtitle: It is undeniable the great impact that Oppenheimer's movie had in 2023, so we wanted to pay tribute to it by including a complete scene recreating the Trinity explosion and proving that it can be done with vfx ;).  
         
 PostNextProject:
   path: /robi.png
@@ -303,7 +303,7 @@ import PostNextProject from '~/components/blog/PostNextProject.astro';
   <PostMedia media={frontmatter.media[0]} />
 </div>
 
-<p class="animate-on-scroll leading-7 text-base" data-type="simple"  data-duration="1.5" data-easing="Expo.easeOut">This renewed approach brought several post-production challenges. Incorporating an animated robot into most scenes, along with the extensive visual effects (VFX) work characteristic of this project, significantly increased the number of shots requiring post-production. The post-production process began on October 1, 2023, providing us with 79 days to deliver the final product by December 18. During this time, post-production proceeded concurrently with the filming of new sequences, underscoring the necessity for efficient coordination across all teams.
+<p class="animate-on-scroll leading-7 text-base" data-type="simple"  data-duration="1.5" data-easing="Expo.easeOut">This renewed approach brought several post-production challenges. Incorporating an animated robot into most scenes, along with the extensive visual effects (VFX) work characteristic of this project, significantly increased the number of shots requiring post-production. **The post-production process began on October 1, 2023, providing us with 79 days to deliver the final product by December 18.** During this time, post-production proceeded concurrently with the filming of new sequences, underscoring the necessity for efficient coordination across all teams.
 \
 \
 To ensure effective collaboration, we divided post-production into three primary groups, each consisting of specialized teams. These teamswere given clear objectives, guidelines on the expected final outcome, and delivery deadlines. Within each group, members selected tasks inconsultation with their colleagues, fostering a supportive work environment and ensuring the quality of the final product. Given the tightdeadlines, we had to ensure accuracy on the first attempt, as there was no room for redoing parts or entire scenes.</p>
@@ -374,7 +374,7 @@ Moreover, this shared folder on the Synology server syncs bidirectionally with t
 The infrastructure is complemented with solutions for direct and fast file access, crucial for editors. For Alec, who does the final cut, the solution is straightforward thanks to a 10Gbe connection with the Synology server in his office, allowing him to use the server as another hard drive on his system. For the editor doing the preliminary cut, I implemented a Windows 10 virtual machine on the TrueNAS Scale server, enabling remote access to the shared folder via Parsec for immediate editing. The resulting Premiere files automatically sync with the Synology server, facilitating access for the entire team.</p>
 <SinglePostHeader title={frontmatter.singlePostHeader5.title} preTitle={frontmatter.singlePostHeader5.preTitle} />
 
-<p class="animate-on-scroll leading-7 text-base" data-type="simple" data-delay="0.25" data-easing="Expo.easeOut">Among more than 260 shots in total it is difficult to decide, but here you can find a small summary of the highlights of the project.</p>
+<p class="animate-on-scroll leading-7 text-base" data-type="simple" data-delay="0.25" data-easing="Expo.easeOut">Among more than 260 shots in total it is difficult to decide, but here you can find a small summary of the highlights of the whole short film. If you want to know more information about this short film you can also visit the making of by clicking <a target='_blank' rel="noopener noreferrer" href='https://www.youtube.com/watch?v=mqtqamTtabg'>***here***</a>.</p>
 
 <PostGalleryGrid mediaFiles={frontmatter.PostGalleryGrid}  />
 

@@ -11,7 +11,13 @@ if (imageImportFunction) {
 }
 ---
 
-<div class="animate-on-scroll w-full h-full" data-type="simple" data-duration="1.5" data-easing="Expo.easeOut">
+<div
+  class="animate-on-scroll w-full h-full"
+  data-type="simple"
+  data-duration="1.5"
+  data-delay={media.delay}
+  data-easing="Expo.easeOut"
+>
   <div
     class={`w-auto h-auto ${
       media.frame ? 'imageCard md:border-b md:border-[#71688207] rounded-xl md:rounded-2xl ' : ''
