@@ -6,7 +6,7 @@ import { Icon } from 'astro-icon/components';
 const { singlePostInfo } = Astro.props as InfoProps;
 ---
 
-<div class="mx-auto pt-16">
+<section id="overview" class="mx-auto pt-16">
   <div class="flex flex-col md:flex-row justify-between">
     <div
       class="md:w-1/3 animate-on-scroll mb-8 md:mb-0"
@@ -16,7 +16,7 @@ const { singlePostInfo } = Astro.props as InfoProps;
     >
       <div class="mb-8">
         <h2 class="text-lg font-bold mb-1 text-white">My Role</h2>
-        <p class="text-base">{singlePostInfo.rol}</p>
+        <p class="text-base font-bold">{singlePostInfo.rol}</p>
       </div>
       <div class="mb-8">
         <h2 class="text-lg font-bold mb-1 text-white">{singlePostInfo.title}</h2>
@@ -57,7 +57,7 @@ const { singlePostInfo } = Astro.props as InfoProps;
       </div>
     </div>
   </div>
-</div>
+</section>
 <script is="inline">
   document.getElementById('viewMore').addEventListener('click', () => {
     document.getElementById('viewMoreText').innerHTML.includes('View all')
