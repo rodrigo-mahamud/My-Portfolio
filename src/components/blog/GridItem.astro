@@ -78,8 +78,8 @@ const adjustedColor1 = darkenColor(post.accentColor, 0.6);
           {
             image && (
               <video
-                class="object-cover md:w-5/6 h-[105%] rounded-xl md:rounded-t-2xl mx-auto"
-                src="./Project1.mp4"
+                class="object-cover md:w-5/6 h-[105%] rounded-xl md:rounded-t-2xl mx-auto lazy-video"
+                data-src={`./${post.video}.mp4`}
                 autoplay
                 muted
               />
