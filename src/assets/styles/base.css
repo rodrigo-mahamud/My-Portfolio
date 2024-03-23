@@ -602,7 +602,7 @@ lite-youtube::before {
   padding-bottom: 0px !important;
 }
 lite-youtube > .lty-playbtn {
-  display: none !important;
+  display: none;
 }
 .textGlow {
   text-shadow: 0 0 20px #ffffff4f;
@@ -780,6 +780,14 @@ canvas {
 }
 
 @media (max-width: 768px) {
+  lite-youtube > .lty-playbtn {
+    width: 65px !important;
+    height: 65px !important;
+    border-radius: 77px !important;
+    background-position: center !important;
+    background-size: cover !important;
+    display: unset !important;
+  }
   .customBg {
     background: transparent;
   }

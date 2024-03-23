@@ -20,8 +20,8 @@ import { Icon } from 'astro-icon/components';
             <YouTube
               class="w-full cursor-none custom-mouse shadow-[inset_0px_-200px_100px_-100px_#0a0118] bg-center"
               data-typemouse="play"
-              id={card.url}
-              playlabel="Play the video"
+              id={card.ytId}
+              poster={`https://i.ytimg.com/vi/${card.ytId}/maxresdefault.jpg`}
             />
           </div>
           <div class="flex flex-col postCardBorderGlow px-5 md:px-8 ">
