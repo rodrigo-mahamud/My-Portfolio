@@ -52,7 +52,7 @@ const adjustedColor1 = darkenColor(post.accentColor, 0.6);
               {post.title}
             </h3>
             <p
-              class="text-white/60 text-sm md:text-lg animate-on-scroll"
+              class="text-white/60 text-sm md:text-lg animate-on-scroll line-clamp-2 md:line-clamp-none"
               data-type="simple"
               data-duration="1.5"
               data-easing="Expo.easeOut"
@@ -82,6 +82,7 @@ const adjustedColor1 = darkenColor(post.accentColor, 0.6);
                 data-src={`./${post.video}.mp4`}
                 autoplay
                 muted
+                loop
               />
             )
           }
