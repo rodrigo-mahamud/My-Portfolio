@@ -53,12 +53,12 @@ const adjustedColor1 = darkenColor(post.accentColor, 0.6);
               {post.title}
             </h3>
             <p
-              class="text-white/60 text-sm md:text-lg animate-on-scroll line-clamp-2 md:line-clamp-none"
+              class="text-white/60 text-sm md:text-lg animate-on-scroll text-balance line-clamp-2 md:line-clamp-none"
               data-type="simple"
               data-duration="1.5"
               data-easing="Expo.easeOut"
             >
-              {post.excerpt}
+              <Fragment set:html={post.excerpt} />
             </p>
           </div>
           <div
@@ -67,7 +67,7 @@ const adjustedColor1 = darkenColor(post.accentColor, 0.6);
             data-duration="1.5"
             data-easing="Expo.easeOut"
           >
-            <Icon name="arrow-narrow-right" class="text-4xl stroke-1" />
+            <Icon name="arrow-narrow-right" class="text-5xl stroke-1 arrow-right" />
           </div>
         </div>
         <div

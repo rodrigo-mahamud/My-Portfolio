@@ -141,21 +141,21 @@ declare module 'astro:content' {
   slug: "markdown-elements-demo-post";
   body: string;
   collection: "post";
-  data: any
+  data: InferEntrySchema<"post">
 } & { render(): Render[".mdx"] };
 "project-hotelBenetusser.mdx": {
 	id: "project-hotelBenetusser.mdx";
   slug: "project-hotelbenetusser";
   body: string;
   collection: "post";
-  data: any
+  data: InferEntrySchema<"post">
 } & { render(): Render[".mdx"] };
 "project-rewindHispano.mdx": {
 	id: "project-rewindHispano.mdx";
   slug: "project-rewindhispano";
   body: string;
   collection: "post";
-  data: any
+  data: InferEntrySchema<"post">
 } & { render(): Render[".mdx"] };
 };
 
@@ -167,5 +167,5 @@ declare module 'astro:content' {
 
 	type AnyEntryMap = ContentEntryMap & DataEntryMap;
 
-	export type ContentConfig = never;
+	export type ContentConfig = typeof import("./../src/content/config.js");
 }
