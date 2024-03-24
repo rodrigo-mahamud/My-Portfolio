@@ -51,7 +51,13 @@ const imageSources = import.meta.glob<{ default: ImageMetadata }>('/src/assets/i
               {isImage ? (
                 <Image class="rounded-xl" alt="Imagen" src={mediaSrc} loading="lazy" decoding="async" />
               ) : (
-                <video class="object-cover h-full w-full rounded-md lazy-video " data-src={mediaSrc} muted loop />
+                <video
+                  class="object-cover h-full w-full rounded-md lazy-video"
+                  preload="none"
+                  data-src={mediaSrc}
+                  muted
+                  loop
+                />
               )}
             </div>
           </div>

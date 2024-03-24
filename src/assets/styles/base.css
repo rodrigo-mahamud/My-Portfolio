@@ -472,12 +472,12 @@ audio {
   transition: 0.3s ease-in-out;
   color: rgba(255, 255, 255, 0.85);
 }
-.borderGlow video {
+.borderGlow img {
   transform: unset;
   box-shadow: 0 40px 50px 10px rgba(0, 0, 0, 0.15);
   transition: 0.5s cubic-bezier(0.14, 1, 0.34, 1);
 }
-.borderGlow:hover video {
+.borderGlow:hover img {
   transform: translateY(-25px);
   box-shadow: 0 40px 50px 10px rgba(0, 0, 0, 0.5);
   transition: 0.5s cubic-bezier(0.14, 1, 0.34, 1);
@@ -824,7 +824,7 @@ canvas {
     transition: unset;
     color: unset;
   }
-  .borderGlow:hover video {
+  .borderGlow:hover img {
     transform: unset;
     box-shadow: unset;
   }

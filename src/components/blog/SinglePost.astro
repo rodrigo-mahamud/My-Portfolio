@@ -117,9 +117,9 @@ const adjustedColor1 = darkenColor(post.accentColor, 0.5);
             <Image
               class="rounded-xl h-full object-cover"
               alt={`Imagen del ${post.title}`}
-              widths={[275, 475, 575, 1050, 1250]}
-              sizes={`(max-width: 550px) 275px, (max-width: 750px) 475px, (max-width: 950px) 575px,(max-width: 1920px) 750px, (max-width: 2560px) 1050px,`}
-              quality={'mid'}
+              widths={[275, 475, 575, 950, 1440]}
+              sizes={`(max-width: 550px) 275px, (max-width: 750px) 475px, (max-width: 950px) 575px,(max-width: 2000px) 950px, 1440px`}
+              quality={'high'}
               format="webp"
               loading="eager"
               src={post.image}
@@ -402,6 +402,4 @@ const adjustedColor1 = darkenColor(post.accentColor, 0.5);
 
     starAnimation();
   }
-
-  // Lazy load videos
 </script>

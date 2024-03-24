@@ -9,7 +9,6 @@ const post = defineCollection({
       rol: z.string().optional(),
       excerpt: z.string().optional(),
       image: image(),
-      video: z.string().optional(),
       accentColor: z.string().optional(),
       canonical: z.string().url().optional(),
       duration: z.string().optional(),

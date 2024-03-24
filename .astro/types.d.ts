@@ -136,41 +136,27 @@ declare module 'astro:content' {
 
 	type ContentEntryMap = {
 		"post": {
-"astrowind-template-in-depth.md": {
-	id: "astrowind-template-in-depth.md";
-  slug: "astrowind-template-in-depth";
-  body: string;
-  collection: "post";
-  data: InferEntrySchema<"post">
-} & { render(): Render[".md"] };
-"get-started-website-with-astro-tailwind-css.mdx": {
-	id: "get-started-website-with-astro-tailwind-css.mdx";
-  slug: "get-started-website-with-astro-tailwind-css";
-  body: string;
-  collection: "post";
-  data: InferEntrySchema<"post">
-} & { render(): Render[".mdx"] };
-"how-to-customize-astrowind-to-your-brand.md": {
-	id: "how-to-customize-astrowind-to-your-brand.md";
-  slug: "how-to-customize-astrowind-to-your-brand";
-  body: string;
-  collection: "post";
-  data: InferEntrySchema<"post">
-} & { render(): Render[".md"] };
 "markdown-elements-demo-post.mdx": {
 	id: "markdown-elements-demo-post.mdx";
   slug: "markdown-elements-demo-post";
   body: string;
   collection: "post";
-  data: InferEntrySchema<"post">
+  data: any
 } & { render(): Render[".mdx"] };
-"useful-resources-to-create-websites.md": {
-	id: "useful-resources-to-create-websites.md";
-  slug: "useful-resources-to-create-websites";
+"project-hotelBenetusser.mdx": {
+	id: "project-hotelBenetusser.mdx";
+  slug: "project-hotelbenetusser";
   body: string;
   collection: "post";
-  data: InferEntrySchema<"post">
-} & { render(): Render[".md"] };
+  data: any
+} & { render(): Render[".mdx"] };
+"project-rewindHispano.mdx": {
+	id: "project-rewindHispano.mdx";
+  slug: "project-rewindhispano";
+  body: string;
+  collection: "post";
+  data: any
+} & { render(): Render[".mdx"] };
 };
 
 	};
@@ -181,5 +167,5 @@ declare module 'astro:content' {
 
 	type AnyEntryMap = ContentEntryMap & DataEntryMap;
 
-	export type ContentConfig = typeof import("./../src/content/config.js");
+	export type ContentConfig = never;
 }
