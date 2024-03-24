@@ -7,36 +7,44 @@
   import { CSSPlugin } from 'gsap/CSSPlugin';
   import Lenis from '@studio-freight/lenis';
 
-  const lenis = new Lenis({ infinite: false, duration: 1.15, lerp: 0.08 });
-
-  function raf(time) {
-    lenis.raf(time);
-    requestAnimationFrame(raf);
+  function isMobileDevice() {
+    const userAgent = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    return userAgent && window.innerWidth < 768;
   }
-
-  requestAnimationFrame(raf);
-  gsap.registerPlugin(CSSPlugin);
-  gsap.registerPlugin(ScrollTrigger);
-
-  const navGlow = document.querySelector('#navGlow');
-  const navLinks = document.querySelectorAll('#header nav a');
 
   /*-----------------------*/
   /*------ NAV MENU ------ */
   /*-----------------------*/
-  // Scroll to section on click
-  navLinks.forEach((link) => {
-    link.addEventListener('click', (e) => {
-      e.preventDefault();
-      const href = link.getAttribute('href');
-      if (href) {
-        const target = document.querySelector(href);
-        if (target) {
-          lenis.scrollTo(target);
+
+  const navGlow = document.querySelector('#navGlow');
+  const navLinks = document.querySelectorAll('#header nav a');
+
+  if (!isMobileDevice()) {
+    const lenis = new Lenis({ infinite: false, duration: 1.15, lerp: 0.08 });
+    function raf(time) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+
+    requestAnimationFrame(raf);
+    gsap.registerPlugin(CSSPlugin);
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Scroll to section on click on desktop
+    navLinks.forEach((link) => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const href = link.getAttribute('href');
+        if (href) {
+          const target = document.querySelector(href);
+          if (target) {
+            lenis.scrollTo(target);
+          }
         }
-      }
+      });
     });
-  });
+  }
+
   function getSectionIdsFromNavLinks() {
     return Array.from(navLinks)
       .map((link) => {
@@ -47,7 +55,6 @@
   }
 
   const sectionIDs = getSectionIdsFromNavLinks();
-
   function isVisible(el: Element): boolean {
     const rect = el.getBoundingClientRect();
     const windowHeight = window.innerHeight || document.documentElement.clientHeight;
