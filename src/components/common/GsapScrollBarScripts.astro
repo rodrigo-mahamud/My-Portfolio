@@ -27,8 +27,6 @@
     }
 
     requestAnimationFrame(raf);
-    gsap.registerPlugin(CSSPlugin);
-    gsap.registerPlugin(ScrollTrigger);
 
     // Scroll to section on click on desktop
     navLinks.forEach((link) => {
@@ -44,7 +42,8 @@
       });
     });
   }
-
+  gsap.registerPlugin(CSSPlugin);
+  gsap.registerPlugin(ScrollTrigger);
   function getSectionIdsFromNavLinks() {
     return Array.from(navLinks)
       .map((link) => {

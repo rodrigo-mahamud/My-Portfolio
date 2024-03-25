@@ -23,32 +23,61 @@ const { singlePostInfo } = Astro.props as InfoProps;
         <p id="text" class="text-base leading-normal line-clamp-[22] relative -z-10">
           <Fragment set:html={singlePostInfo.team} />
         </p>
-        <div class="w-full mt-4 shadow-[0px_20px_65px_100px_#0a0118] text-white">
-          <div id="viewMore" class="magnetic w-fit flex justify-center text-sm items-center" data-strength=".5">
-            <Icon id="viewMoreIcon" name="chevron-down" class="stroke-1 text-xl mr-1" />
-            <span id="viewMoreText">View all</span>
-          </div>
-        </div>
+        {
+          singlePostInfo.team && (
+            <div class="w-full mt-4 shadow-[0px_20px_65px_100px_#0a0118] text-white">
+              <div id="viewMore" class="magnetic w-fit flex justify-center text-sm items-center" data-strength=".5">
+                <Icon id="viewMoreIcon" name="chevron-down" class="stroke-1 text-xl mr-1" />
+                <span id="viewMoreText">View all</span>
+              </div>
+            </div>
+          )
+        }
+        {
+          !singlePostInfo.team && (
+            <div class="mb-8">
+              <h2 class="text-lg font-bold mb-1 text-white">Status & Duración</h2>
+              <p class="text-base">
+                <b
+                  class={`uppercase ${
+                    singlePostInfo.status.toLowerCase() === 'done'
+                      ? 'text-green-500'
+                      : singlePostInfo.status.toLowerCase() === 'in progress'
+                      ? 'text-yellow-500'
+                      : ''
+                  }`}
+                >
+                  {singlePostInfo.status}
+                </b>
+                - {singlePostInfo.duration}
+              </p>
+            </div>
+          )
+        }
       </div>
     </div>
-
     <div class="md:w-1/2 animate-on-scroll" data-type="simple" data-duration="1.5" data-easing="Expo.easeOut">
-      <div class="mb-8">
-        <h2 class="text-lg font-bold mb-1 text-white">Status & Duración</h2>
-        <p class="text-base">
-          <b
-            class={`uppercase ${
-              singlePostInfo.status.toLowerCase() === 'done'
-                ? 'text-green-500'
-                : singlePostInfo.status.toLowerCase() === 'in progress'
-                ? 'text-yellow-500'
-                : ''
-            }`}
-          >
-            {singlePostInfo.status}
-          </b> - {singlePostInfo.duration}
-        </p>
-      </div>
+      {
+        singlePostInfo.team && (
+          <div class="mb-8">
+            <h2 class="text-lg font-bold mb-1 text-white">Status & Duración</h2>
+            <p class="text-base">
+              <b
+                class={`uppercase ${
+                  singlePostInfo.status.toLowerCase() === 'done'
+                    ? 'text-green-500'
+                    : singlePostInfo.status.toLowerCase() === 'in progress'
+                    ? 'text-yellow-500'
+                    : ''
+                }`}
+              >
+                {singlePostInfo.status}
+              </b>{' '}
+              - {singlePostInfo.duration}
+            </p>
+          </div>
+        )
+      }
       <div class="md:mb-10">
         <h2 class="text-lg font-bold mb-2 text-white">Overview</h2>
         <p class="text-base text-pretty leading-snug">
