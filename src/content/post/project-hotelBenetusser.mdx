@@ -168,7 +168,7 @@ import PostNextProject from '~/components/blog/PostNextProject.astro';
 <p class="animate-on-scroll leading-7 text-base" data-type="simple"  data-delay="0.25" data-easing="Expo.easeOut">The main goal of this project was to revitalize the client's static website, focusing not only on modernizing its interface but also on significantly boosting its performance, which was particularly important given the site's purpose of attracting customers. A high-performing website is essential for achieving a prominent position in Google search results, thus enhancing visibility and attracting more potential clients. Additionally, incorporating multilingual support for Spanish and English was crucial, necessitating the use of an internationalization (i18n) library.
 \
 \
-With these priorities in mind, I opted for Astro, an ideal framework for developing static and swiftlyloading websites. Astro offers several built-in optimizations, like the "islands" or "deferredhydration" concept, which notably improve the site's performance. To further support these goals,tools such as astro-compress, astro-sitemap, and astro-i18n were integrated, ensuring the website'sfast performance and its capability to cater to a diverse audience.</p>
+With these priorities in mind, I opted for Astro, an ideal framework for developing static and swiftlyloading websites. Astro offers several built-in optimizations, like the "islands" or "deferredhydration" concept, which notably improve the site's performance. To further support these goals,tools such as astro-compress, astro-sitemap, and astro-i18n were integrated, ensuring the website's fast performance and its capability to cater to a diverse audience.</p>
 
 
 
@@ -185,57 +185,6 @@ With these priorities in mind, I opted for Astro, an ideal framework for develop
 <SinglePostHeader title={frontmatter.singlePostHeader3.title} preTitle={frontmatter.singlePostHeader3.preTitle} />
 
 <p class="animate-on-scroll leading-7 text-base" data-type="simple"  data-delay="0.25" data-easing="Expo.easeOut">At this meeting, the specific tasks of each team, the desired end result, the deadlines and the resources needed to carry them out were defined. Specifically, this scene required 3D tracking of the environment for the precise integration of the robot, as well as the removal of brands, logos and backgrounds. As these tasks are purely mechanical and do not directly enhance the final aesthetics, we outsourced them to specialized vendors, one vendor for 3D tracking, and another vendor for logo removal and background removal.</p>
-
-<div class='flex flex-col md:flex-row  gap-8 mt-16 mb-16'>
-  <PostMedia media={frontmatter.media[6]} />
-  <PostMedia media={frontmatter.media[7]} />
-</div>
-
-<p class="animate-on-scroll leading-7 text-base" data-type="simple"  data-delay="0.25" data-easing="Expo.easeOut">This way of organization and work was repeated with as many scenes as possible, thanks to this we were able to quickly scale and parallelize the post-production process, which ended up with **more than 40 people working at the same time in small parts of the project**, which allowed us to meet the deadline without any team member ending up overloaded with work. </p>
-
-<SinglePostHeader title={frontmatter.singlePostHeader4.title} preTitle={frontmatter.singlePostHeader4.preTitle}/>
-<p class="animate-on-scroll leading-7 text-base" data-type="simple"  data-delay="0.25" data-easing="Expo.easeOut">This parallel workflow allowed us to progress at a great pace, meeting our deadline. However, **coordinating 40 people working remotely from around the globe, handling video files of 6.7GB per minute… posed significant challenges in terms of infrastructure**. Critical questions arose: How do we securely store the files? What's the best way to send them globally?  How do we manage access permissions?.  </p>
-\
-<p class="animate-on-scroll leading-7 text-base" data-type="simple"  data-delay="0.25" data-easing="Expo.easeOut">I was tasked with designing and implementing a network infrastructure that could address these issues and adapt to the project's workflow. The final design was as follows: </p>
-
-<div class='flex mt-16 mb-16'>
-  <PostMedia media={frontmatter.media[8]} />
-</div>
-
-<p class="animate-on-scroll leading-7 text-base" data-type="simple"  data-delay="0.25" data-easing="Expo.easeOut">From a hardware standpoint, the network comprises two servers located in different places: a Synology DS1621+ and another server I assembled myself, running TrueNAS Scale. Opting for two distinct physical locations aimed to maximize protection against incidents like fires, collapses, or thefts. Each server features a set of disks in RAID 5, with 1TB read and write caches, and each is backed by an EATON 5SC 1500I UPS system. </p>
-
-<div class='flex flex-col md:flex-row gap-8 mt-16 mb-16'>
-  <PostMedia media={frontmatter.media[9]} />
-  <PostMedia media={frontmatter.media[10]} />
-</div>
-
-<p class="animate-on-scroll leading-7" data-type="simple"  data-delay="0.25" data-easing="Expo.easeOut">The designed workflow goes as follows: The filming team uploads the video files to the TrueNAS server, either physically via SMB or remotely through Filebrowser. Then, these files automatically sync with the Synology server via Syncthing. Once the files are synchronized on the Synology server, any user needing to access the files will do so through this server, utilizing Synology Drive since this app simplifies file syncing with its desktop application.All files uploaded by the filming team are located in a shared folder with the following structure:
-\
-\
--Raw Footage
-\
--VFX
-\
--Sound
-\
--Previews
-\
-\
-Post-production team members can view the entire shared folder but only have editing permissions within their department's folder. In their own folder, they have complete control, but in their colleagues' folders, they can only view, add, copy, and download files, not edit or delete them.</p>
-<div class='flex flex-col md:flex-row  gap-8 mt-16 mb-16'>
-  <PostMedia media={frontmatter.media[11]} />
-  <PostMedia media={frontmatter.media[12]} />
-</div>
-<p class="animate-on-scroll leading-7" data-type="simple"  data-delay="0.25" data-easing="Expo.easeOut">Each user's personal folder will sync bidirectionally with their desktop through Synology Drive, allowing any changes to be automatically uploaded to the server and vice versa. This synchronization eliminates the need for constantly sending links from platforms like Google Drive or WeTransfer, facilitating collaboration.
-\
-\
-Moreover, this shared folder on the Synology server syncs bidirectionally with the TrueNAS server, thus ensuring off-site redundancy. As an additional security measure, both servers generate incremental snapshots every 30 minutes, retaining them for a week to allow for file recovery in case of corruption or accidental deletion.
-\
-\
-The infrastructure is complemented with solutions for direct and fast file access, crucial for editors. For Alec, who does the final cut, the solution is straightforward thanks to a 10Gbe connection with the Synology server in his office, allowing him to use the server as another hard drive on his system. For the editor doing the preliminary cut, I implemented a Windows 10 virtual machine on the TrueNAS Scale server, enabling remote access to the shared folder via Parsec for immediate editing. The resulting Premiere files automatically sync with the Synology server, facilitating access for the entire team.</p>
-<SinglePostHeader title={frontmatter.singlePostHeader5.title} preTitle={frontmatter.singlePostHeader5.preTitle} />
-
-<p class="animate-on-scroll leading-7 text-base" data-type="simple" data-delay="0.25" data-easing="Expo.easeOut">Among more than 260 shots in total it is difficult to decide, but here you can find a small summary of the highlights of the whole short film. If you want to know more information about this short film you can also visit the making of by clicking <a target='_blank' rel="noopener noreferrer" href='https://www.youtube.com/watch?v=mqtqamTtabg'>***here***</a>.</p>
 
 
 
