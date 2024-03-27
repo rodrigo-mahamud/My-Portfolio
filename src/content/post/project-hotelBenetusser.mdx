@@ -21,7 +21,6 @@ postIndex:
   - Context
   - UI Elements
   - Performace
-  - Gallery
 
 singlePostHeader:
   preTitle: Context
@@ -32,7 +31,7 @@ singlePostHeader2:
   title: More than 260 shots in less than 80 days 
 
 singlePostHeader3:
-  preTitle: UI Elements
+  preTitle: Performace
   title: Take a look at the results :) 
 
 singlePostHeader4:
@@ -124,23 +123,23 @@ media:
 PostGalleryGrid:
    videos: 
       - path: /benetusserClip1.mp4
-        title: The best and longest intro.
+        title: Room image gallery.
         subtitle: "For this edition, we opted to provide a general context through the video, making the introduction essential as it sets the stage for the rest of the content."
 
       - path: /benetusserClip2.mp4
-        title: Combination of different styles
+        title: Contextual mouse animations.
         subtitle: We decided to try something different and included 2d animation. 
 
       - path: /benetusserClip4.mp4
-        title: "Say hello to R.O.B !"
+        title: Parallax on scroll animations.
         subtitle: Created from scratch by us, this AI was the common thread of the whole video.        
 
       - path: /benetusserClip3.mp4
-        title: The 'Optic Fiber'
+        title: Initial hero section animation.
         subtitle: "The 'Fiber optic' are depicted as a crucial concept in the virtual world envisioned by scriptwriters, portrayed as a vast glass tube surrounded by pixelated elements."
 
       - path: /benetusserClip5.mp4
-        title: Trinity explosion recreation.
+        title: On scroll animations.
         subtitle: It is undeniable the great impact that Oppenheimer's movie had in 2023, so we wanted to pay tribute to it by including a complete scene recreating the Trinity explosion and proving that it can be done with vfx ;).  
         
 PostNextProject:
@@ -183,7 +182,7 @@ With these priorities in mind, I opted for Astro, an ideal framework for develop
 
 <PostGalleryGrid mediaFiles={frontmatter.PostGalleryGrid}  />
 
-<SinglePostHeader title={frontmatter.singlePostHeader2.title} preTitle={frontmatter.singlePostHeader2.preTitle} />
+<SinglePostHeader title={frontmatter.singlePostHeader3.title} preTitle={frontmatter.singlePostHeader3.preTitle} />
 
 <p class="animate-on-scroll leading-7 text-base" data-type="simple"  data-delay="0.25" data-easing="Expo.easeOut">At this meeting, the specific tasks of each team, the desired end result, the deadlines and the resources needed to carry them out were defined. Specifically, this scene required 3D tracking of the environment for the precise integration of the robot, as well as the removal of brands, logos and backgrounds. As these tasks are purely mechanical and do not directly enhance the final aesthetics, we outsourced them to specialized vendors, one vendor for 3D tracking, and another vendor for logo removal and background removal.</p>
 

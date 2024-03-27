@@ -27,8 +27,8 @@ const imageSrc = imagePath[`/src/assets/works${data.path}`]();
     <div class="flex w-full justify-center items-center absolute -z-10">
       <Image
         id="image"
-        class="rounded-xl md:rounded-t-2xl translate-y-28 md:translate-y-0 aspect-[15/16] md:aspect-auto w-3/4 md:w-1/2 md:saturate-50 object-cover"
-        alt="{`Imagen del}"
+        class="rounded-t-xl md:rounded-t-2xl translate-y-28 md:translate-y-0 aspect-[15/16] md:aspect-auto w-3/4 md:w-1/2 md:saturate-50 object-cover"
+        alt={`Next project: ${imageSrc}`}
         widths={[350, 475, 575, 1050, 1250]}
         sizes={`(max-width: 550px) 350px, (max-width: 750px) 475px, (max-width: 950px) 575px,(max-width: 1920px) 1050px, (max-width: 2560px) 1250px,`}
         quality={'mid'}
