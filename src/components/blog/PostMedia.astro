@@ -26,13 +26,7 @@ if (imageImportFunction) {
     <div class={`${media.frame ? 'md:p-8' : ''}`}>
       {
         media.path.endsWith('.mp4') ? (
-          <video
-            muted
-            loop
-            preload="none"
-            class="rounded-xl md:rounded-2xl w-full lazy-video aspect-video"
-            data-src={media.path}
-          />
+          <video muted loop preload="none" class="rounded-xl md:rounded-2xl w-full lazy-video " data-src={media.path} />
         ) : (
           <Image
             class="rounded-xl md:rounded-2xl"

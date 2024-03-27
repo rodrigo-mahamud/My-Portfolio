@@ -14,7 +14,7 @@ singlePostInfo:
 
   status: done
   duration: 1 month
-  overview: For this project, I was tasked with completely overhauling the Hotelbenetuser.net website. The previous design, over 20 years old, required a comprehensive update to rejuvenate the client's online presence.<br><br> The goal was to create a fully static website, without the inclusion of a blog or an online sales system, serving merely as a virtual showcase to attract customers. One of the main challenges was to achieve outstanding performance and add bilingual support for two languages. To accomplish this project, I used AstroJS and TailwindCSS for design and development, complemented with GSAP to enrich the site with animations and micro-interactions.
+  overview: For this project, I was tasked with completely overhauling the hotelbenetusser.net website. The previous design, over 20 years old, required a comprehensive update to rejuvenate the client's online presence.<br><br> The goal was to create a fully static website, serving merely as a virtual showcase to attract customers. One of the main challenges was to achieve outstanding performance and add bilingual support for two languages. To accomplish this project, I used AstroJS and TailwindCSS for design and development, complemented with GSAP to enrich the site with animations and micro-interactions.
 
 postIndex:
   - Overview
@@ -25,7 +25,7 @@ postIndex:
 
 singlePostHeader:
   preTitle: Context
-  title: The event that unite us
+  title: 'The goals: New look & Speed'
 
 singlePostHeader2:
   preTitle: UI Elements
@@ -54,72 +54,17 @@ stats:
   - title: 'Million Views in Total'
     amount: '75'
 
-cards:
-  - ytId: TjkRhh3Gh1U
-    title: 'Rewind Hispano 2023'
-    description: 'The 2023 edition featured a notable AI presence, represented by a small robot named R.O.B. in the video.'
-    info:
-      - icon: calendarTime
-        text: 'Published on: 22-12-2023'
-      - icon: thumbUp
-        text: 'More than 1.1M of likes.'
-      - icon: eye
-        text: 'More than 9.3M of views on YouTube'
-      - icon: message-circle
-        text: 'Up to 88K of comments.'
-
-  - ytId: IbAuuxBFwoo
-    title: 'Rewind Hispano 2022'
-    description: 'The large number of events that took place in the Hispanic community during 2022 was the highlight of this edition.'
-    info:
-      - icon: calendarTime
-        text: 'Published on: 28-12-2022'
-      - icon: thumbUp
-        text: 'More than 3.4M of likes.'
-      - icon: eye
-        text: 'More than 17M of views on YouTube'
-      - icon: message-circle
-        text: 'Up to 79K of comments.'
-
-  - ytId: _FMplFlIiOU
-    title: 'Rewind Hispano 2021'
-    description: 'This edition is marked by the presence of great personalities in the video as well.'
-    info:
-      - icon: calendarTime
-        text: 'Published on: 28-12-2021'
-      - icon: thumbUp
-        text: 'More than 4.4M of likes.'
-      - icon: eye
-        text: 'More than 23M of views on YouTube'
-      - icon: message-circle
-        text: 'Up to 119K of comments.'
-
-  - ytId: h4NJCc4AQxw
-    title: 'Rewind Hispano 2020'
-    description: 'This edition was marked by the improvement of the quality of the project both at production and post-production level.'
-    info:
-      - icon: calendarTime
-        text: 'Published on: 26-12-2020'
-      - icon: thumbUp
-        text: 'More than 5.2M of likes.'
-      - icon: eye
-        text: 'More than 26M of views on YouTube'
-      - icon: message-circle
-        text: 'Up to 211K of comments.'
-
-
-          
 
 media: 
-  - path: /robsketch.png
-    caption: Initial sketches and concepts of ROB - <i>By Carlos Bea</i>.
+  - path: /hotelBenetusser.mp4
+    caption: Web site video demonstration.
     delay: 0.25
     frame: true
 
-  - path: /schema.png
+  - path: /benetusserClip1.mp4
     caption: Teams organizational chart.
     delay: 0.25
-    frame: true
+    frame: false
 
   - path: /Breackdown2.mp4
     caption: Original studio shot. 
@@ -178,23 +123,23 @@ media:
 
 PostGalleryGrid:
    videos: 
-      - path: /clip0.mp4
+      - path: /benetusserClip1.mp4
         title: The best and longest intro.
         subtitle: "For this edition, we opted to provide a general context through the video, making the introduction essential as it sets the stage for the rest of the content."
 
-      - path: /clip1.mp4
+      - path: /benetusserClip2.mp4
         title: Combination of different styles
         subtitle: We decided to try something different and included 2d animation. 
 
-      - path: /robgifOP.mp4
+      - path: /benetusserClip4.mp4
         title: "Say hello to R.O.B !"
         subtitle: Created from scratch by us, this AI was the common thread of the whole video.        
 
-      - path: /clip2.mp4
+      - path: /benetusserClip3.mp4
         title: The 'Optic Fiber'
         subtitle: "The 'Fiber optic' are depicted as a crucial concept in the virtual world envisioned by scriptwriters, portrayed as a vast glass tube surrounded by pixelated elements."
 
-      - path: /clip3.mp4
+      - path: /benetusserClip5.mp4
         title: Trinity explosion recreation.
         subtitle: It is undeniable the great impact that Oppenheimer's movie had in 2023, so we wanted to pay tribute to it by including a complete scene recreating the Trinity explosion and proving that it can be done with vfx ;).  
         
@@ -221,10 +166,12 @@ import PostNextProject from '~/components/blog/PostNextProject.astro';
 
 <SinglePostHeader title={frontmatter.singlePostHeader.title} preTitle={frontmatter.singlePostHeader.preTitle}  />
 
-<p class="animate-on-scroll leading-7 text-base" data-type="simple"  data-delay="0.25" data-easing="Expo.easeOut">The "Rewind Hispano" is a community project created by Alec Hernández and produced by DHC FIlms, that wants to bring together the Spanish-speaking content creator community to celebrate the year's highlights. Inspired by the concept of YouTube Rewind, this annual video features the trends, events, and personalities that set the agenda on the Spanish-speaking internet, but with a specific focus on the richness and diversity of the digital culture in Spanish. Unlike its global counterpart produced by YouTube, the Rewind Hispano is an initiative created by and for the Hispanic community, allowing for a more authentic and closer representation of its interests and achievements.</p>
+<p class="animate-on-scroll leading-7 text-base" data-type="simple"  data-delay="0.25" data-easing="Expo.easeOut">The main goal of this project was to revitalize the client's static website, focusing not only on modernizing its interface but also on significantly boosting its performance, which was particularly important given the site's purpose of attracting customers. A high-performing website is essential for achieving a prominent position in Google search results, thus enhancing visibility and attracting more potential clients. Additionally, incorporating multilingual support for Spanish and English was crucial, necessitating the use of an internationalization (i18n) library.
+\
+\
+With these priorities in mind, I opted for Astro, an ideal framework for developing static and swiftlyloading websites. Astro offers several built-in optimizations, like the "islands" or "deferredhydration" concept, which notably improve the site's performance. To further support these goals,tools such as astro-compress, astro-sitemap, and astro-i18n were integrated, ensuring the website'sfast performance and its capability to cater to a diverse audience.</p>
 
 
-<p class="animate-on-scroll leading-7 text-base" data-type="simple"  data-delay="0.25" data-easing="Expo.easeOut">The project aims not only to celebrate the successes and viral moments of the year but also to encourage collaboration among creators from various countries, creating a space for union and mutual recognition. It includes everything from sketches and references to popular memes to tributes to influential figures in the digital community who, through innovative visual effects and creative narratives, create a time capsule of the Hispanic digital culture of the year.</p>
 
 <div class='flex mt-16 mb-16'>
   <PostMedia media={frontmatter.media[0]} />
@@ -234,27 +181,9 @@ import PostNextProject from '~/components/blog/PostNextProject.astro';
 
 <p class="animate-on-scroll leading-7 text-base" data-type="simple"  data-delay="0.25" data-easing="Expo.easeOut">For the 2023 edition, Alec and the team of scriptwriters set out to innovate by transforming the previous format, based on small sketches linked by transitions, into a more cohesive narrative structure with logical connections between all the scenes. To achieve this, we introduced a central character: R.O.B., an animated robot that embodies Artificial Intelligence, in charge of guiding the narration of the video.</p>
 
+<PostGalleryGrid mediaFiles={frontmatter.PostGalleryGrid}  />
 
-
-<p class="animate-on-scroll leading-7 text-base" data-type="simple"  data-delay="0.25" data-easing="Expo.easeOut">This renewed approach brought several post-production challenges. Incorporating an animated robot into most scenes, along with the extensive visual effects (VFX) work characteristic of this project, significantly increased the number of shots requiring post-production. **The post-production process began on October 1, 2023, providing us with 79 days to deliver the final product by December 18.** During this time, post-production proceeded concurrently with the filming of new sequences, underscoring the necessity for efficient coordination across all teams.
-\
-\
-To ensure effective collaboration, we divided post-production into three primary groups, each consisting of specialized teams. These teamswere given clear objectives, guidelines on the expected final outcome, and delivery deadlines. Within each group, members selected tasks inconsultation with their colleagues, fostering a supportive work environment and ensuring the quality of the final product. Given the tightdeadlines, we had to ensure accuracy on the first attempt, as there was no room for redoing parts or entire scenes.</p>
-
-<div class='flex mt-16 mb-16'>
-  <PostMedia media={frontmatter.media[1]} />
-</div>
-
-<p class="animate-on-scroll leading-7 text-base" data-type="simple"  data-delay="0.25" data-easing="Expo.easeOut">For example, for the initial scene running from minute <a class='underline underline-offset-2' href="https://youtu.be/TjkRhh3Gh1U?t=132"> 2:11 </a> to <a class='underline underline-offset-2' href="https://youtu.be/TjkRhh3Gh1U?t=212">3:31</a>, we began pre-editing as soon as the shots were received from the filming team on set. Alec then reviewed and refined this edit to achieve the final version we continued to work on. Subsequently, we convened the necessary teams for this sequence, which included specialists in 3D animation, 2D animation, composition, Houdini, and motion graphics.</p>
-
-<div class='flex flex-col md:flex-row gap-8 mt-16'>
-  <PostMedia media={frontmatter.media[2]} />
-  <PostMedia media={frontmatter.media[3]} />
-</div>
-<div class='flex flex-col md:flex-row gap-8 mb-16 mt-8'>
-  <PostMedia media={frontmatter.media[4]} />
-  <PostMedia media={frontmatter.media[5]} />
-</div>
+<SinglePostHeader title={frontmatter.singlePostHeader2.title} preTitle={frontmatter.singlePostHeader2.preTitle} />
 
 <p class="animate-on-scroll leading-7 text-base" data-type="simple"  data-delay="0.25" data-easing="Expo.easeOut">At this meeting, the specific tasks of each team, the desired end result, the deadlines and the resources needed to carry them out were defined. Specifically, this scene required 3D tracking of the environment for the precise integration of the robot, as well as the removal of brands, logos and backgrounds. As these tasks are purely mechanical and do not directly enhance the final aesthetics, we outsourced them to specialized vendors, one vendor for 3D tracking, and another vendor for logo removal and background removal.</p>
 
@@ -309,6 +238,6 @@ The infrastructure is complemented with solutions for direct and fast file acces
 
 <p class="animate-on-scroll leading-7 text-base" data-type="simple" data-delay="0.25" data-easing="Expo.easeOut">Among more than 260 shots in total it is difficult to decide, but here you can find a small summary of the highlights of the whole short film. If you want to know more information about this short film you can also visit the making of by clicking <a target='_blank' rel="noopener noreferrer" href='https://www.youtube.com/watch?v=mqtqamTtabg'>***here***</a>.</p>
 
-<PostGalleryGrid mediaFiles={frontmatter.PostGalleryGrid}  />
+
 
 <PostNextProject data={frontmatter.PostNextProject} />
