@@ -124,23 +124,23 @@ PostGalleryGrid:
    videos: 
       - path: /benetusserClip1.mp4
         title: Room image gallery.
-        subtitle: "For this edition, we opted to provide a general context through the video, making the introduction essential as it sets the stage for the rest of the content."
+        subtitle: Component with on hover animations that shows at a glance all the rooms offered by the hotel.
 
       - path: /benetusserClip2.mp4
         title: Contextual mouse animations.
-        subtitle: We decided to try something different and included 2d animation. 
+        subtitle: Mouse-based micro-interactions for highlighting links, buttons, or videos.
 
       - path: /benetusserClip4.mp4
         title: Parallax on scroll animations.
-        subtitle: Created from scratch by us, this AI was the common thread of the whole video.        
+        subtitle: Images with parallax effect to capture the user's attention.        
 
       - path: /benetusserClip3.mp4
         title: Initial hero section animation.
-        subtitle: "The 'Fiber optic' are depicted as a crucial concept in the virtual world envisioned by scriptwriters, portrayed as a vast glass tube surrounded by pixelated elements."
+        subtitle: The website's hero animation features hotel images to immediately grab attention, aiming for an elegant and sophisticated first impression.
 
       - path: /benetusserClip5.mp4
         title: On scroll animations.
-        subtitle: It is undeniable the great impact that Oppenheimer's movie had in 2023, so we wanted to pay tribute to it by including a complete scene recreating the Trinity explosion and proving that it can be done with vfx ;).  
+        subtitle: The website uses scroll-triggered animations and Lennis Scrollbar to ensure a smooth user experience, maintaining accessibility because Lennis Scrollbar uses the browser's native scroll, unlike other libraries. 
         
 PostNextProject:
   path: /robi.png
@@ -178,7 +178,10 @@ With these priorities in mind, I opted for Astro, an ideal framework for develop
 
 <SinglePostHeader title={frontmatter.singlePostHeader2.title} preTitle={frontmatter.singlePostHeader2.preTitle} />
 
-<p class="animate-on-scroll leading-7 text-base" data-type="simple"  data-delay="0.25" data-easing="Expo.easeOut">For the 2023 edition, Alec and the team of scriptwriters set out to innovate by transforming the previous format, based on small sketches linked by transitions, into a more cohesive narrative structure with logical connections between all the scenes. To achieve this, we introduced a central character: R.O.B., an animated robot that embodies Artificial Intelligence, in charge of guiding the narration of the video.</p>
+<p class="animate-on-scroll leading-7 text-base" data-type="simple"  data-delay="0.25" data-easing="Expo.easeOut">Aiming to differentiate the website from its competitors and update its appearance, I implement a series of components with subtle animations and microinteractions. These components are designed to enhance the navigation experience, presenting information in a different and relevant way for the user.
+\
+\
+The strategy seeks to attract and retain the user's attention, encouraging them to delve deeper into the site and increase their stay. The implementation of these techniques not only updates the site's aesthetics but also facilitates a more dynamic and personalized interaction with the content, strengthening the relationship between the site and its audience.</p>
 
 <PostGalleryGrid mediaFiles={frontmatter.PostGalleryGrid}  />
 
