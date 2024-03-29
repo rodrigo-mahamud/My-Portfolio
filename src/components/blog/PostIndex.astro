@@ -9,7 +9,7 @@ const { postIndex } = Astro.props;
     <ul class="pt-5">
       {
         postIndex.map((item) => (
-          <li class="flex flex-row items-center pb-4 magnetic" data-strength="0.5">
+          <li class="flex flex-row items-center mb-4 magnetic" data-strength="0.5">
             <span class="text-xs">
               <a class="post-index-link text-gray-400 cursor-none" href={`#${item.toLowerCase().replace(/\s+/g, '')}`}>
                 {item}
@@ -23,44 +23,41 @@ const { postIndex } = Astro.props;
 </aside>
 <script>
   import { gsap } from 'gsap';
-  let lastAnimatedLink: Element | null = null;
+  import ScrollTrigger from 'gsap/ScrollTrigger';
+  gsap.registerPlugin(ScrollTrigger);
 
-  function isSectionAtTop(el: Element, thresholdPercentage: number = 20): boolean {
-    const rect = el.getBoundingClientRect();
-    const threshold = window.innerHeight * (thresholdPercentage / 100);
-    return rect.top <= threshold && rect.bottom >= threshold;
-  }
+  document.addEventListener('DOMContentLoaded', () => {
+    const sections = document.querySelectorAll('section[id]');
 
-  function updateIndexAnimation() {
-    const postIndex = Array.from(document.querySelectorAll('.post-index-link')).map(
-      (link) => link.getAttribute('href')?.replace('#', '') ?? ''
-    );
+    sections.forEach((section) => {
+      ScrollTrigger.create({
+        trigger: section,
+        start: 'top center',
+        end: 'bottom center',
+        onEnter: () => animateLink(section.id, true),
+        onLeaveBack: () => animateLink(section.id, false),
+        onLeave: () => animateLink(section.id, false),
+        onEnterBack: () => animateLink(section.id, true),
+      });
+    });
 
-    postIndex.forEach((item) => {
-      const section = document.getElementById(item);
-      const link = document.querySelector(`a[href="#${item}"]`) as Element | null;
-
-      if (section && link && isSectionAtTop(section, 10)) {
-        if (lastAnimatedLink && lastAnimatedLink !== link) {
-          gsap.to(lastAnimatedLink, {
-            clearProps: 'all',
-            duration: 0.3,
-            ease: 'Expo.easeOut',
-          });
-        }
-
+    function animateLink(id, entering) {
+      const link = document.querySelector(`a[href="#${id}"]`);
+      if (entering) {
         gsap.to(link, {
           color: '#fff',
           marginLeft: '0.25rem',
           duration: 0.5,
-          delay: 0.3,
           ease: 'Expo.easeOut',
         });
-        lastAnimatedLink = link;
+      } else {
+        gsap.to(link, {
+          color: '#9CA3AF',
+          marginLeft: '0',
+          duration: 0.5,
+          ease: 'Expo.easeOut',
+        });
       }
-    });
-  }
-
-  document.addEventListener('DOMContentLoaded', updateIndexAnimation);
-  document.addEventListener('scroll', updateIndexAnimation);
+    }
+  });
 </script>

@@ -589,7 +589,6 @@ audio {
   flex-direction: column;
   flex-grow: 1;
   clip-path: inset(1px);
-  position: absolute;
   z-index: 2;
   border-radius: 19px;
   transition: 1.5s cubic-bezier(0.14, 1, 0.34, 1);

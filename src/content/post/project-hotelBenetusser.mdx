@@ -22,29 +22,10 @@ postIndex:
   - UI Elements
   - Performace
 
-singlePostHeader:
-  preTitle: Context
-  title: 'The goals: New look & Speed'
 
-singlePostHeader2:
-  preTitle: UI Elements
-  title: UI Enhancements for User Engagement 
-
-singlePostHeader3:
+singlePostSection3:
   preTitle: Performace
   title: Enhancing speed with Astro JS 
-
-
-
-stats:
-  - title: 'CGI Scenes in Total'
-    amount: '260'
-  - title: 'People Involved'
-    amount: '40'
-  - title: 'Countries Involved'
-    amount: '8'    
-  - title: 'Million Views in Total'
-    amount: '75'
 
 
 media: 
@@ -53,65 +34,16 @@ media:
     delay: 0.25
     frame: true
 
-  - path: /benetusserClip1.mp4
-    caption: Teams organizational chart.
+  - path: /rendimientoHB1.png
+    caption: Performance analysis performed by PageSpeed Insights.
     delay: 0.25
     frame: false
 
-  - path: /Breackdown2.mp4
-    caption: Original studio shot. 
+  - path: /rendimientoHB2.png
+    caption: Performance analysis performed by GTmetrix.
     delay: 0.25
     frame: false
 
-  - path: /Breackdown1.mp4
-    caption: Final shot, breakdown by Jose Luis Cardona.
-    delay: 0.25
-    frame: false
-
-  - path: /Breackdown4.mp4
-    caption: Initial colored animation. 
-    delay: 0.25
-    frame: false
-
-  - path: /Breackdown3.mp4
-    caption: Final animation with background. 
-    delay: 0.25
-    frame: false
-
-  - path: /Breackdown6.mp4
-    caption: Initial shot with background and brands.
-    delay: 0.25
-    frame: false
-
-  - path: /Breackdown5.mp4
-    caption: Shot with backround and removed, ready for composition.
-    delay: 0.25
-    frame: false
-
-  - path: /network.png
-    caption: Simplified network structure diagram
-    delay: 0.25
-    frame: true
-
-  - path: /server1.png
-    caption: Synology server
-    delay: 0.25
-    frame: false
-
-  - path: /server2.png
-    caption: TrueNas Scale server
-    delay: 0.35
-    frame: false  
-
-  - path: /folder.png
-    caption: Shared folder
-    delay: 0.25
-    frame: false  
-
-  - path: /folder2.png
-    caption: Shared folder inside the VFX departament
-    delay: 0.35
-    frame: false    
 
 PostGalleryGrid:
    videos: 
@@ -139,11 +71,12 @@ PostNextProject:
   path: /robi.png
   title: Initial sketches and concepts of ROB - By Carlos Bea
   nextUrl: how-to-customize-astrowind-to-your-brand        
+
 ---
 
 import SinglePostInfo from '~/components/blog/SinglePostInfo.astro';
 
-import SinglePostHeader from '~/components/blog/SinglePostHeader.astro';
+import SinglePostSection from '~/components/blog/SinglePostSection.astro';
 
 import PostMedia from '~/components/blog/PostMedia.astro';
 
@@ -156,35 +89,52 @@ import PostNextProject from '~/components/blog/PostNextProject.astro';
 
 <SinglePostInfo singlePostInfo={frontmatter.singlePostInfo}/>
 
-<SinglePostHeader title={frontmatter.singlePostHeader.title} preTitle={frontmatter.singlePostHeader.preTitle}  />
-
+<SinglePostSection title='The goals: New look & Speed' preTitle='Context' >
 <p class="animate-on-scroll leading-7 text-base" data-type="simple"  data-delay="0.25" data-easing="Expo.easeOut">The main goal of this project was to revitalize the client's static website, focusing not only on modernizing its interface but also on significantly boosting its performance, which was particularly important given the site's purpose of attracting customers. A high-performing website is essential for achieving a prominent position in Google search results, thus enhancing visibility and attracting more potential clients. Additionally, incorporating multilingual support for Spanish and English was crucial, necessitating the use of an internationalization (i18n) library.
 \
 \
 With these priorities in mind, I opted for Astro, an ideal framework for developing static and swiftlyloading websites. Astro offers several built-in optimizations, like the "islands" or "deferredhydration" concept, which notably improve the site's performance. To further support these goals,tools such as astro-compress, astro-sitemap, and astro-i18n were integrated, ensuring the website's fast performance and its capability to cater to a diverse audience.</p>
 
-
-
 <div class='flex mt-16 mb-16'>
   <PostMedia media={frontmatter.media[0]} />
 </div>
 
-<SinglePostHeader title={frontmatter.singlePostHeader2.title} preTitle={frontmatter.singlePostHeader2.preTitle} />
+</SinglePostSection>
 
-<p class="animate-on-scroll leading-7 text-base" data-type="simple"  data-delay="0.25" data-easing="Expo.easeOut">Aiming to differentiate the website from its competitors and update its appearance, I implement a series of components with subtle animations and microinteractions. These components are designed to enhance the navigation experience, presenting information in a different and relevant way for the user.
+
+
+<SinglePostSection title='UI Enhancements for user engagement' preTitle='UI Elements'>
+
+<p class="animate-on-scroll leading-7 text-base" data-type="simple" data-delay="0.25" data-easing="Expo.easeOut">Aiming to differentiate the website from its competitors and update its appearance, I implement a series of components with subtle animations and microinteractions. These components are designed to enhance the navigation experience, presenting information in a different and relevant way for the user.
 \
 \
 The strategy seeks to attract and retain the user's attention, encouraging them to delve deeper into the site and increase their stay. The implementation of these techniques not only updates the site's aesthetics but also facilitates a more dynamic and personalized interaction with the content, strengthening the relationship between the site and its audience.</p>
 
 <PostGalleryGrid mediaFiles={frontmatter.PostGalleryGrid}  />
 
-<SinglePostHeader title={frontmatter.singlePostHeader3.title} preTitle={frontmatter.singlePostHeader3.preTitle} />
+</SinglePostSection>
 
-<p class="animate-on-scroll leading-7 text-base pb-16" data-type="simple"  data-delay="0.25" data-easing="Expo.easeOut">As previously highlighted in the summary, a crucial aim of the website redesign was to boost its performance. To address this need, Astro JS was selected due to its ability to significantly speed up web development. This framework excels primarily because it prioritizes the delivery of pre-rendered HTML while keeping the JavaScript sent to clients to a minimum, which is key for faster loading times.
+
+
+<SinglePostSection title={frontmatter.singlePostSection3.title} preTitle={frontmatter.singlePostSection3.preTitle}>
+
+<p class="animate-on-scroll leading-7 text-base" data-type="simple"  data-delay="0.25" data-easing="Expo.easeOut">As previously highlighted in the summary, a crucial aim of the website redesign was to boost its performance. To address this need, Astro JS was selected due to its ability to significantly speed up web development. This framework excels primarily because it prioritizes the delivery of pre-rendered HTML while keeping the JavaScript sent to clients to a minimum, which is key for faster loading times.
 \
 \
-Additionally, features like Astro Compress and Astro Image were utilized to enhance site optimization. Astro Compress works by decreasing the sizes of files generated during the website build, such as JavaScript, CSS, and HTML, which contributes to reduced loading times. Meanwhile, Astro Image improves image handling by converting them to the WebP format and adjusting their sizes for different viewing devices. This strategy not only saves bandwidth but also ensures images are displayed optimally across all devices, thereby improving the site’s visual quality and maintaining a balance between aesthetic appeal and technical performance for a better user experience.</p>
+Additionally, features like Astro Compress and Astro Image were utilized to enhance site optimization. Astro Compress works by decreasing the sizes of files generated during the website build, such as JavaScript, CSS, and HTML, which contributes to reduced loading times. Meanwhile, Astro Image improves image handling by converting them to the WebP format and adjusting their sizes for different viewing devices. This strategy not only saves bandwidth but also ensures images are displayed optimally across all devices, thereby improving the site’s visual quality and maintaining a balance between aesthetic appeal and technical performance for a better user experience.
+\
+\
+**You can check the resoults by yourself here:**
+\
+<a class="italic magnetic cursor-none" href='#' target="_blank" rel="noopener">PageSpeed Insights</a>
+\
+<a class="italic magnetic cursor-none" href='#' target="_blank" rel="noopener">GTmetrix</a></p>
 
 
+<div class='flex flex-col md:flex-row gap-8 mt-16 mb-16'>
+  <PostMedia media={frontmatter.media[1]} />
+  <PostMedia media={frontmatter.media[2]} />
+</div>
 
+</SinglePostSection>
 <PostNextProject data={frontmatter.PostNextProject} />

@@ -17,7 +17,7 @@ const imageSources = import.meta.glob<{ default: ImageMetadata }>('/src/assets/i
 ---
 
 <!-- Renderizado condicional basado en el tipo de archivo -->
-<div id="cards" class="grid grid-cols-5 grid-rows-20 md:grid-rows-12 gap-6 h-[300vh] md:h-[185vh] mt-16">
+<div id="cards" class="grid gap-6 mt-16">
   {
     unifiedMediaPaths.map((mediaItem, index) => {
       const isImage =
@@ -40,7 +40,7 @@ const imageSources = import.meta.glob<{ default: ImageMetadata }>('/src/assets/i
           data-type="simple"
           data-duration="1.5"
           data-easing="Expo.easeOut"
-          class={`animate-on-scroll bento ${spanClass}`}
+          class={`animate-on-scroll bento ${spanClass} `}
         >
           <div class="flex flex-col bento-content h-full w-full rounded-xl overflow-hidden">
             <div class="flex flex-col items-start justify-start pt-6 px-6 md:pt-8 md:px-8 text-start">
@@ -51,13 +51,7 @@ const imageSources = import.meta.glob<{ default: ImageMetadata }>('/src/assets/i
               {isImage ? (
                 <Image class="rounded-xl" alt="Imagen" src={mediaSrc} loading="lazy" decoding="async" />
               ) : (
-                <video
-                  class="object-cover h-full w-full rounded-md lazy-video"
-                  preload="none"
-                  data-src={mediaSrc}
-                  muted
-                  loop
-                />
+                <video class=" w-full rounded-md h-full aspect-video object-cover" autoplay src={mediaSrc} muted loop />
               )}
             </div>
           </div>
