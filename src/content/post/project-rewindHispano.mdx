@@ -288,15 +288,18 @@ import PostNextProject from '~/components/blog/PostNextProject.astro';
 
 <SinglePostInfo singlePostInfo={frontmatter.singlePostInfo}/>
 
-<SinglePostSection title={frontmatter.singlePostSection.title} preTitle={frontmatter.singlePostSection.preTitle}  />
+<SinglePostSection title={frontmatter.singlePostSection.title} preTitle={frontmatter.singlePostSection.preTitle}>
 
 <p class="animate-on-scroll leading-7 text-base" data-type="simple"  data-delay="0.25" data-easing="Expo.easeOut">The "Rewind Hispano" is a community project created by Alec Hernández and produced by DHC FIlms, that wants to bring together the Spanish-speaking content creator community to celebrate the year's highlights. Inspired by the concept of YouTube Rewind, this annual video features the trends, events, and personalities that set the agenda on the Spanish-speaking internet, but with a specific focus on the richness and diversity of the digital culture in Spanish. Unlike its global counterpart produced by YouTube, the Rewind Hispano is an initiative created by and for the Hispanic community, allowing for a more authentic and closer representation of its interests and achievements.</p>
 
 <PostCards cards={frontmatter.cards} />
 
 <p class="animate-on-scroll leading-7 text-base" data-type="simple"  data-delay="0.25" data-easing="Expo.easeOut">The project aims not only to celebrate the successes and viral moments of the year but also to encourage collaboration among creators from various countries, creating a space for union and mutual recognition. It includes everything from sketches and references to popular memes to tributes to influential figures in the digital community who, through innovative visual effects and creative narratives, create a time capsule of the Hispanic digital culture of the year.</p>
+</SinglePostSection>
 
-<SinglePostSection title={frontmatter.singlePostSection2.title} preTitle={frontmatter.singlePostSection2.preTitle} />
+
+
+<SinglePostSection title={frontmatter.singlePostSection2.title} preTitle={frontmatter.singlePostSection2.preTitle} >
 
 <p class="animate-on-scroll leading-7 text-base" data-type="simple"  data-delay="0.25" data-easing="Expo.easeOut">For the 2023 edition, Alec and the team of scriptwriters set out to innovate by transforming the previous format, based on small sketches linked by transitions, into a more cohesive narrative structure with logical connections between all the scenes. To achieve this, we introduced a central character: R.O.B., an animated robot that embodies Artificial Intelligence, in charge of guiding the narration of the video.</p>
 
@@ -332,8 +335,10 @@ To ensure effective collaboration, we divided post-production into three primary
 </div>
 
 <p class="animate-on-scroll leading-7 text-base" data-type="simple"  data-delay="0.25" data-easing="Expo.easeOut">This way of organization and work was repeated with as many scenes as possible, thanks to this we were able to quickly scale and parallelize the post-production process, which ended up with **more than 40 people working at the same time in small parts of the project**, which allowed us to meet the deadline without any team member ending up overloaded with work. </p>
+</SinglePostSection>
 
-<SinglePostSection title={frontmatter.singlePostSection4.title} preTitle={frontmatter.singlePostSection4.preTitle}/>
+
+<SinglePostSection title={frontmatter.singlePostSection4.title} preTitle={frontmatter.singlePostSection4.preTitle}>
 <p class="animate-on-scroll leading-7 text-base" data-type="simple"  data-delay="0.25" data-easing="Expo.easeOut">This parallel workflow allowed us to progress at a great pace, meeting our deadline. However, **coordinating 40 people working remotely from around the globe, handling video files of 6.7GB per minute… posed significant challenges in terms of infrastructure**. Critical questions arose: How do we securely store the files? What's the best way to send them globally?  How do we manage access permissions?.  </p>
 \
 <p class="animate-on-scroll leading-7 text-base" data-type="simple"  data-delay="0.25" data-easing="Expo.easeOut">I was tasked with designing and implementing a network infrastructure that could address these issues and adapt to the project's workflow. The final design was as follows: </p>
@@ -373,12 +378,19 @@ Moreover, this shared folder on the Synology server syncs bidirectionally with t
 \
 \
 The infrastructure is complemented with solutions for direct and fast file access, crucial for editors. For Alec, who does the final cut, the solution is straightforward thanks to a 10Gbe connection with the Synology server in his office, allowing him to use the server as another hard drive on his system. For the editor doing the preliminary cut, I implemented a Windows 10 virtual machine on the TrueNAS Scale server, enabling remote access to the shared folder via Parsec for immediate editing. The resulting Premiere files automatically sync with the Synology server, facilitating access for the entire team.</p>
-<SinglePostSection title={frontmatter.singlePostSection5.title} preTitle={frontmatter.singlePostSection5.preTitle} />
+</SinglePostSection>
+
+
+
+<SinglePostSection title={frontmatter.singlePostSection5.title} preTitle={frontmatter.singlePostSection5.preTitle} >
 
 <p class="animate-on-scroll leading-7 text-base" data-type="simple" data-delay="0.25" data-easing="Expo.easeOut">Among more than 260 shots in total it is difficult to decide, but here you can find a small summary of the highlights of the whole short film. If you want to know more information about this short film you can also visit the making of by clicking <a target='_blank' rel="noopener noreferrer" href='https://www.youtube.com/watch?v=mqtqamTtabg'>***here***</a>.</p>
 
 <PostGalleryGrid mediaFiles={frontmatter.PostGalleryGrid}  />
 
 <Stats stats={frontmatter.stats} />
+</SinglePostSection>
+
+
 
 <PostNextProject data={frontmatter.PostNextProject} />
