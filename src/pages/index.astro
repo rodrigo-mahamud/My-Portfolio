@@ -15,11 +15,12 @@ const meta = {
   description: SITE.description,
   dontUseTitleTemplate: true,
 };
+const imagesPaths = ['/folder.png', '/folder.png', '/folder.png', '/folder.png', '/folder.png', '/folder.png'];
 ---
 
 <Layout {meta}>
   <SpotifyAPI />
-  <Hero />
+  <Hero images={imagesPaths} />
   <Features title="Most used widgets" subtitle="Subtitle Here" highlight="Components">
     <FeatureHead
       title="Headers"
@@ -84,5 +85,4 @@ const meta = {
 
   <LatestPosts count={4} title="Spot issues faster <br /> with smart indicators" />
   <GitHub />
-
 </Layout>
