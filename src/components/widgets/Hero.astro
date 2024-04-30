@@ -51,18 +51,18 @@ const columns = Array.from({ length: 6 }, (_, i) => {
         </h2>
       </div>
     </div>
-    <div class="flex flex-row w-full px-2 md:px-0 min-h-max h-screen items-center transformHero">
+    <div class="flex flex-row w-full px-2 md:px-0 min-h-max gap-4 md:gap-10 h-screen items-center transformHero">
       {
         columns.map((column) => (
           <div
-            class="last:flex first:flex flex-col md:w-1/4 mx-2 md:mx-4 opacity-0 hidden lg:flex lg:last:hidden"
+            class="last:flex first:flex flex-col md:w-1/4 gap-y-10 opacity-0 hidden lg:flex lg:last:hidden lg:first:hidden 4xl:last:flex 4xl:first:flex"
             id="heroCardShadow"
           >
             {column.map((image) => {
               const imageSrc = imageSources[`/src/assets/images/hero/${image}`]();
               return (
                 <Image
-                  class="md:mt-9 mt-4 min-h-[12rem] md:min-h-[22rem] object-cover "
+                  class="min-h-[12rem] md:min-h-[22rem] object-cover opacity-80"
                   alt="glad-os"
                   sizes="(max-width: 767px) 400px, (max-width: 1023px) 768px, (max-width: 2039px) 1024px, 2040px"
                   src={imageSrc}
@@ -106,7 +106,7 @@ const columns = Array.from({ length: 6 }, (_, i) => {
         heroElement,
         {
           duration: 1,
-          transform: 'translate3d(20%, 20%, 0px) scale3d(1, 0.65, 1) rotateX(15deg) rotateY(-10deg) rotateZ(32deg)',
+          transform: 'translate3d(20%, 0%, 0px) scale3d(1, 0.65, 1) rotateX(15deg) rotateY(-10deg) rotateZ(32deg)',
         },
         {
           duration: 1,
