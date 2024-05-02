@@ -18,6 +18,24 @@
 
   const navGlow = document.querySelector('#navGlow');
   const navLinks = document.querySelectorAll('#header nav a');
+  function monitorRefreshRate() {
+    let tiempoInicial = performance.now();
+    let fotogramas = 0;
+
+    function contarFotogramas() {
+      fotogramas++;
+      const tiempoTranscurrido = performance.now() - tiempoInicial;
+
+      if (tiempoTranscurrido < 1000) {
+        window.requestAnimationFrame(contarFotogramas);
+      } else {
+        const tasaRefresco = Math.round(fotogramas / (tiempoTranscurrido / 1000));
+        console.log(`La tasa de refresco estimada es de ${tasaRefresco} FPS`);
+      }
+    }
+
+    window.requestAnimationFrame(contarFotogramas);
+  }
 
   if (!isMobileDevice()) {
     const lenis = new Lenis({ infinite: false, duration: 1.15, lerp: 0.08 });

@@ -53,6 +53,7 @@ import { Icon } from 'astro-icon/components';
       let mouseX = x;
       let mouseY = y;
       let esferaScale = 0.5;
+      let lastTime = 0;
 
       gsap.to(esfera, {
         duration: 0.15,
@@ -103,9 +104,16 @@ import { Icon } from 'astro-icon/components';
         return (1 - amount) * start + amount * end;
       }
 
-      function animate() {
-        x = lerp(x, mouseX, 0.09);
-        y = lerp(y, mouseY, 0.09);
+      function animate(currentTime) {
+        if (!lastTime) {
+          lastTime = currentTime;
+        }
+        const deltaTime = currentTime - lastTime;
+        lastTime = currentTime;
+
+        const smoothingFactor = 1 - Math.pow(0.985, deltaTime);
+        x = lerp(x, mouseX, smoothingFactor);
+        y = lerp(y, mouseY, smoothingFactor);
         if (esfera) {
           gsap.set(esfera, {
             x: x - esfera.clientWidth / 2,
@@ -222,7 +230,6 @@ import { Icon } from 'astro-icon/components';
                 break;
             }
           });
-
           el.addEventListener('click', (e) => {
             if (!e.target || !(e.target instanceof HTMLElement)) return;
             if (e.target.dataset.typemouse === 'play') {
@@ -354,7 +361,7 @@ import { Icon } from 'astro-icon/components';
           });
         });
       }
-      animate();
+      requestAnimationFrame(animate);
     } else {
       const esfera = document.getElementById('esfera');
       if (esfera) {
