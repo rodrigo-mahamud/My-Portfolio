@@ -157,6 +157,13 @@ declare module 'astro:content' {
   collection: "post";
   data: InferEntrySchema<"post">
 } & { render(): Render[".mdx"] };
+"project-skolalalatina.mdx": {
+	id: "project-skolalalatina.mdx";
+  slug: "project-skolalalatina";
+  body: string;
+  collection: "post";
+  data: InferEntrySchema<"post">
+} & { render(): Render[".mdx"] };
 };
 
 	};

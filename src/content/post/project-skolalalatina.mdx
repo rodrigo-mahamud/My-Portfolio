@@ -1,0 +1,141 @@
+---
+publishDate: 2023-01-09
+title: Skola la Latina  
+author: Rodrigo Mahamud García
+excerpt: <span class='text-white font-medium'>Freelance Project -</span> I led the visual effects and IT infrastructure for "Rewind Hispano," coordinating an international team and enhancing remote collaboration with advanced server setups and resource management.
+image: ../../assets/works/skolalalatinaImg.png
+accentColor: rgba(0, 180, 208, 1)
+canonical: https://astrowind.vercel.app/get-started-website-with-astro-tailwind-css
+
+
+
+singlePostInfo:
+  rol: Web Developer & Web Designer
+
+  status: done
+  duration: 1 month
+  overview: For this project, I was tasked with completely overhauling the hotelbenetusser.net website. The previous design, over 20 years old, required a comprehensive update to rejuvenate the client's online presence.<br><br> The goal was to create a fully static website, serving merely as a virtual showcase to attract customers. One of the main challenges was to achieve outstanding performance and add bilingual support for two languages. To accomplish this project, I used AstroJS and TailwindCSS for design and development, complemented with GSAP to enrich the site with animations and micro-interactions.
+
+postIndex:
+  - Overview
+  - Context
+  - UI Elements
+  - Performace
+  - Next Project
+
+
+singlePostSection3:
+  preTitle: Performace
+  title: Enhancing speed with Astro JS 
+
+
+media: 
+  - path: /hotelBenetusser.mp4
+    caption: Web site video demonstration.
+    delay: 0.25
+    frame: true
+
+  - path: /rendimientoHB1.png
+    caption: Performance analysis performed by PageSpeed Insights.
+    delay: 0.25
+    frame: false
+
+  - path: /rendimientoHB2.png
+    caption: Performance analysis performed by GTmetrix.
+    delay: 0.25
+    frame: false
+
+
+PostGalleryGrid:
+   videos: 
+      - path: /benetusserClip1.mp4
+        title: Room image gallery.
+        subtitle: Component with on hover animations that shows at a glance all the rooms offered by the hotel.
+
+      - path: /benetusserClip2.mp4
+        title: Contextual mouse animations.
+        subtitle: Mouse-based micro-interactions for highlighting links, buttons, or videos.
+
+      - path: /benetusserClip4.mp4
+        title: Parallax on scroll animations.
+        subtitle: Images with parallax effect to capture the user's attention.        
+
+      - path: /benetusserClip3.mp4
+        title: Initial hero section animation.
+        subtitle: The website's hero animation features hotel images to immediately grab attention, aiming for an elegant and sophisticated first impression.
+
+      - path: /benetusserClip5.mp4
+        title: On scroll animations.
+        subtitle: The website uses scroll-triggered animations and Lennis Scrollbar to ensure a smooth user experience, maintaining accessibility because Lennis Scrollbar uses the browser's native scroll, unlike other libraries. 
+        
+PostNextProject:
+  path: /allRewindImages.png
+  title: Initial sketches and concepts of ROB - By Carlos Bea
+  nextUrl: project-rewindhispano        
+
+---
+
+import SinglePostInfo from '~/components/blog/SinglePostInfo.astro';
+
+import SinglePostSection from '~/components/blog/SinglePostSection.astro';
+
+import PostMedia from '~/components/blog/PostMedia.astro';
+
+import PostGalleryGrid from '~/components/blog/PostGalleryGrid.astro';
+
+import PostTextImage from '~/components/blog/PostTextImage.astro';
+
+import PostNextProject from '~/components/blog/PostNextProject.astro';
+
+
+<SinglePostInfo singlePostInfo={frontmatter.singlePostInfo}/>
+
+<SinglePostSection title='The goals: New look & Speed' preTitle='Context' >
+<p class="animate-on-scroll leading-7 text-base" data-type="simple"  data-delay="0.25" data-easing="Expo.easeOut">The main goal of this project was to revitalize the client's static website, focusing not only on modernizing its interface but also on significantly boosting its performance, which was particularly important given the site's purpose of attracting customers. A high-performing website is essential for achieving a prominent position in Google search results, thus enhancing visibility and attracting more potential clients. Additionally, incorporating multilingual support for Spanish and English was crucial, necessitating the use of an internationalization (i18n) library.
+\
+\
+With these priorities in mind, I opted for Astro, an ideal framework for developing static and swiftlyloading websites. Astro offers several built-in optimizations, like the "islands" or "deferredhydration" concept, which notably improve the site's performance. To further support these goals,tools such as astro-compress, astro-sitemap, and astro-i18n were integrated, ensuring the website's fast performance and its capability to cater to a diverse audience.</p>
+
+<div class='flex mt-16 mb-16'>
+  <PostMedia media={frontmatter.media[0]} />
+</div>
+
+</SinglePostSection>
+
+
+
+<SinglePostSection title='UI Enhancements for user engagement' preTitle='UI Elements'>
+
+<p class="animate-on-scroll leading-7 text-base" data-type="simple" data-delay="0.25" data-easing="Expo.easeOut">Aiming to differentiate the website from its competitors and update its appearance, I implement a series of components with subtle animations and microinteractions. These components are designed to enhance the navigation experience, presenting information in a different and relevant way for the user.
+\
+\
+The strategy seeks to attract and retain the user's attention, encouraging them to delve deeper into the site and increase their stay. The implementation of these techniques not only updates the site's aesthetics but also facilitates a more dynamic and personalized interaction with the content, strengthening the relationship between the site and its audience.</p>
+
+<PostGalleryGrid mediaFiles={frontmatter.PostGalleryGrid}  />
+
+</SinglePostSection>
+
+
+
+<SinglePostSection title={frontmatter.singlePostSection3.title} preTitle={frontmatter.singlePostSection3.preTitle}>
+
+<p class="animate-on-scroll leading-7 text-base" data-type="simple"  data-delay="0.25" data-easing="Expo.easeOut">As previously highlighted in the summary, a crucial aim of the website redesign was to boost its performance. To address this need, Astro JS was selected due to its ability to significantly speed up web development. This framework excels primarily because it prioritizes the delivery of pre-rendered HTML while keeping the JavaScript sent to clients to a minimum, which is key for faster loading times.
+\
+\
+Additionally, features like Astro Compress and Astro Image were utilized to enhance site optimization. Astro Compress works by decreasing the sizes of files generated during the website build, such as JavaScript, CSS, and HTML, which contributes to reduced loading times. Meanwhile, Astro Image improves image handling by converting them to the WebP format and adjusting their sizes for different viewing devices. This strategy not only saves bandwidth but also ensures images are displayed optimally across all devices, thereby improving the site’s visual quality and maintaining a balance between aesthetic appeal and technical performance for a better user experience.
+\
+\
+**You can check the resoults by yourself here:**
+\
+<a class="italic magnetic cursor-none" href='https://pagespeed.web.dev/analysis/https-www-hotelbenetusser-net/m4m74xgoim?form_factor=mobile' target="_blank" rel="noopener">PageSpeed Insights</a>
+\
+<a class="italic magnetic cursor-none" href='https://gtmetrix.com/reports/www.hotelbenetusser.net/4WcE88vd/' target="_blank" rel="noopener">GTmetrix</a></p>
+
+
+<div class='flex flex-col md:flex-row gap-8 mt-16 mb-16'>
+  <PostMedia media={frontmatter.media[1]} />
+  <PostMedia media={frontmatter.media[2]} />
+</div>
+
+</SinglePostSection>
+<PostNextProject data={frontmatter.PostNextProject} />

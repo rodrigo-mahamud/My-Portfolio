@@ -1,6 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
+import { getPermalink } from '~/utils/permalinks';
 const { data } = Astro.props;
 const imagePath = import.meta.glob<{ default: ImageMetadata }>('/src/assets/works/*.{jpeg,jpg,png,gif}');
 const imageSrc = imagePath[`/src/assets/works${data.path}`]();
@@ -13,7 +14,7 @@ const imageSrc = imagePath[`/src/assets/works${data.path}`]();
 >
   <a
     id="nextSection"
-    href={data.nextUrl}
+    href={getPermalink(data.nextUrl)}
     class="w-full h-[inherit] absolute flex justify-center items-center z-50 cursor-none"
   >
   </a>
@@ -33,7 +34,6 @@ const imageSrc = imagePath[`/src/assets/works${data.path}`]();
         widths={[350, 475, 575, 1050, 1250]}
         sizes={`(max-width: 550px) 350px, (max-width: 750px) 475px, (max-width: 950px) 575px,(max-width: 1920px) 1050px, (max-width: 2560px) 1250px,`}
         quality={'mid'}
-        format="avif"
         loading="lazy"
         src={imageSrc}
         decoding="async"
