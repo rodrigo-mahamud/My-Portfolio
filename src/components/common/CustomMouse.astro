@@ -7,19 +7,18 @@ import { Icon } from 'astro-icon/components';
 <div id="esfera-container">
   <div id="esfera" class="esferaGlow">
     <span id="esferaLinkIcon" class="arrowIcon hidden">
-      <Icon name="arrow-narrow-up" class="text-7xl text-center text-white opacity-85" />
+      <Icon name="arrow-narrow-up" class="text-7xl text-center text-white opacity-90" />
     </span>
     <span id="esferaPlayIcon" class="hidden">
-      <Icon name="play" class="text-5xl text-center text-white opacity-85" />
+      <Icon name="play" class="text-5xl text-center text-white opacity-90" />
     </span>
-    <Icon id="welcome" name="handWave" class="text-5xl text-center text-white opacity-85" />
+    <Icon id="welcome" name="handWave" class="text-5xl text-center text-white opacity-90" />
     <div id="mouseText" class="hidden px-2 justify-center items-center text-center leading-5"></div>
     <Image
       id="stickman"
       class="absolute hidden w-3/4 top-0 left-1/3"
       alt="glad-os"
       sizes="(max-width: 767px) 400px, (max-width: 1023px) 768px, (max-width: 2039px) 1024px, 2040px"
-      loading="eager"
       width={1024}
       height={1024}
       src={stickman}
@@ -58,8 +57,7 @@ import { Icon } from 'astro-icon/components';
       gsap.to(esfera, {
         duration: 0.15,
         delay: 0.1,
-        backdropFilter: 'blur(6px)',
-        boxShadow: 'inset 0 7px 11px #a48fff26',
+        border: '1px solid #e1e1e1',
         background: '#0a011824',
         opacity: 1,
       });
@@ -159,10 +157,10 @@ import { Icon } from 'astro-icon/components';
                   esferaScale = 1;
                   gsap.to(esfera, {
                     scale: esferaScale,
-                    border: '0px',
+                    border: '1px solid #e1e1e1',
                     duration: 0.5,
                     backdropFilter: 'blur(6px)',
-                    boxShadow: 'inset 0 7px 11px #a48fff26',
+                    boxShadow: 'inset 0 10px 20px #ffffff33',
                     background: '#0a011824',
                     opacity: 1,
                     ease: 'Expo.easeOut',
@@ -193,9 +191,9 @@ import { Icon } from 'astro-icon/components';
                   gsap.to(esfera, {
                     scale: esferaScale,
                     backdropFilter: 'blur(6px)',
-                    boxShadow: 'inset 0 7px 11px #a48fff26',
+                    boxShadow: 'inset 0 10px 20px #ffffff33',
                     background: '#0a011824',
-                    border: '0px',
+                    border: '1px solid #e1e1e1',
                     duration: 0.5,
                     opacity: 1,
                     ease: 'Expo.easeOut',

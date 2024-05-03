@@ -82,26 +82,7 @@ html.lenis {
   isolation: isolate;
   overflow: hidden;
 }
-.esferaGlow::after {
-  content: '';
-  background: linear-gradient(
-    180deg,
-    rgba(229, 156, 255, 0.25) 0.01%,
-    rgba(186, 156, 255, 0.2) 50.01%,
-    rgba(156, 178, 255, 0.1) 100%
-  );
-  border-radius: inherit;
-  content: '';
-  inset: 0;
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  mask-composite: xor;
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  padding: 1.5px;
-  pointer-events: none;
-  position: absolute;
-}
+
 #welcome {
   animation: rotateSmooth 0.75s ease-in-out infinite alternate, disapearWelcome 0.5s ease-in-out both 0.5s;
 }
