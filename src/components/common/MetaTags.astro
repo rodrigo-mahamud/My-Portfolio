@@ -3,12 +3,12 @@ import { AstroSeo } from '@astrolib/seo';
 import { GoogleAnalytics } from '@astrolib/analytics';
 import { getImage } from 'astro:assets';
 
-import { SITE } from '~/config.mjs';
-import type { MetaSEO } from '~/types';
-import { getCanonical, getAsset } from '~/utils/permalinks';
-import { getRelativeUrlByFilePath } from '~/utils/directories';
+import { SITE } from '../../config.mjs';
+import type { MetaSEO } from '../../types';
+import { getCanonical, getAsset } from '../../utils/permalinks';
+import { getRelativeUrlByFilePath } from '../../utils/directories';
 
-import CustomStyles from '~/components/CustomStyles.astro';
+import CustomStyles from '../../components/CustomStyles.astro';
 
 export interface Props extends MetaSEO {
   dontUseTitleTemplate?: boolean;

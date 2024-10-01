@@ -1,7 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
-import { getPermalink } from '~/utils/permalinks';
+import { getPermalink } from '../../utils/permalinks';
 const { data } = Astro.props;
 const imagePath = import.meta.glob<{ default: ImageMetadata }>('/src/assets/works/*.{jpeg,jpg,png,gif}');
 const imageSrc = imagePath[`/src/assets/works${data.path}`]();
