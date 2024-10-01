@@ -1,11 +1,11 @@
 ---
-import { BLOG } from '~/config.mjs';
+import { BLOG } from '../../config.mjs';
 
-import Layout from '~/layouts/PageLayout.astro';
-import SinglePost from '~/components/blog/SinglePost.astro';
+import Layout from '../../layouts/PageLayout.astro';
+import SinglePost from '../../components/blog/SinglePost.astro';
 
-import { getCanonical, getPermalink } from '~/utils/permalinks';
-import { fetchPosts } from '~/utils/blog';
+import { getCanonical, getPermalink } from '../../utils/permalinks';
+import { fetchPosts } from '../../utils/blog';
 
 export async function getStaticPaths() {
   if (BLOG?.disabled || BLOG?.post?.disabled) {

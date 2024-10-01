@@ -1,12 +1,12 @@
 ---
-import { SITE, BLOG } from '~/config.mjs';
+import { SITE, BLOG } from '../../config.mjs';
 
-import Layout from '~/layouts/PageLayout.astro';
-import BlogList from '~/components/blog/List.astro';
-import Headline from '~/components/blog/Headline.astro';
+import Layout from '../../layouts/PageLayout.astro';
+import BlogList from '../../components/blog/List.astro';
+import Headline from '../../components/blog/Headline.astro';
 
-import { fetchPosts } from '~/utils/blog';
-import { BLOG_BASE } from '~/utils/permalinks';
+import { fetchPosts } from '../../utils/blog';
+import { BLOG_BASE } from '../../utils/permalinks';
 
 export async function getStaticPaths({ paginate }) {
   if (BLOG?.disabled || BLOG?.list?.disabled) throw [];

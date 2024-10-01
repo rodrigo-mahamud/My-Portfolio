@@ -1,10 +1,10 @@
 ---
-import Layout from '~/layouts/BaseLayout.astro';
-import Header from '~/components/widgets/NavMenu.astro';
-import Footer from '~/components/widgets/Footer.astro';
-import Mice from '~/components/common/CustomMouse.astro';
-import { headerData, footerData } from '~/data';
-import { MetaSEO } from '~/types';
+import Layout from '../layouts/BaseLayout.astro';
+import Header from '../components/widgets/NavMenu.astro';
+import Footer from '../components/widgets/Footer.astro';
+import Mice from '../components/common/CustomMouse.astro';
+import { headerData, footerData } from '../data';
+import type { MetaSEO } from '../types';
 const isHomePage = Astro.url.pathname === '/';
 
 export interface Props {

@@ -5,13 +5,10 @@
     "allowJs": true,
     "baseUrl": "C:/Users/Rodrigo/Desktop/PROYECTOS/My-Portfolio",
     "paths": {
-      "~/*": [
-        "src/*"
-      ]
+      "@/*": ["/*"],
+      "~/*": ["src/*"]
     },
-    "types": [
-      "astro/client"
-    ],
+    "types": ["astro/client"],
     "jsx": "react-jsx",
     "jsxImportSource": "react"
   }
