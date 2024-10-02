@@ -1,6 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
+import { Icon } from 'astro-icon/components';
 
 const { images } = Astro.props;
 
@@ -38,17 +39,59 @@ const columns = Array.from({ length: 6 }, (_, i) => {
     <div
       class="w-full h-[40vh] md:w-[50vw] 4xl:w-[35vw] bg-[#0a0118] coversh md:h-[110vh] absolute z-10 transformTextBox overflow-hidden"
     >
-      <div class="absolute bottom-14 md:h-2/5 px-4 md:px-14 md:pb-8 flex flex-col md:w-[50vw] 4xl:w-[35vw]">
-        <h1
-          id="tittleHero"
-          class="text-white text-3xl md:text-5xl mb-6 font-semibold w-full translate-y-[50px] opacity-0 text-pretty"
-        >
-          Rodrigo Mahamud's portfolio. :)
-        </h1>
-        <h2 id="subtittleHero" class="w-full md:text-lg translate-y-[50px] opacity-0">
-          UI kit and designss system for Figma in the world. Kickstart any project, save thousands of hours, and level
-          up das
-        </h2>
+      <div
+        class="absolute bottom-20 md:h-2/6 px-4 md:px-14 md:pb-8 flex justify-between flex-col md:w-[50vw] 4xl:w-[35vw]"
+      >
+        <div>
+          <h1
+            id="tittleHero"
+            class="text-white blur text-3xl md:text-5xl mb-6 font-semibold w-full translate-y-[50px] opacity-0 text-pretty"
+          >
+            Rodrigo Mahamud García
+          </h1>
+          <h2 id="subtittleHero" class="w-full md:text-lg translate-y-[50px] opacity-0 blur">
+            Freelance Frontend Engineer with 3+ years crafting responsive web solutions using React and Next.js.
+          </h2>
+          <div id="buttonsHero" class="flex gap-3 items-center mt-6 w-full translate-y-[50px] opacity-0 blur">
+            <div class="magnetic w-fit" data-strength="0.5">
+              <button
+                class="group relative h-10 w-full cursor-none overflow-hidden rounded-md bg-white/10 px-6 border border-[#f2f2f21a] text-neutral-50 transition hover:bg-white/20"
+              >
+                <span class="relative">Get in touch</span>
+                <div
+                  class="animate-shine-infinite absolute inset-0 -top-[20px] flex h-[calc(100%+40px)] w-full justify-center blur-[12px]"
+                >
+                  <div class="relative h-full w-8 bg-white/15"></div>
+                </div>
+              </button>
+            </div>
+            <div class="magnetic w-fit" data-strength="0.5">
+              <button
+                class="group relative inline-flex h-10 w-10 items-center justify-center overflow-hidden rounded-md bg-white/20 border border-[#f2f2f21a] px-6 font-medium duration-500 ease-out cursor-none"
+                ><div
+                  class="translate-x-0 opacity-100 transition group-hover:-translate-x-[150%] group-hover:opacity-0"
+                >
+                  <Icon name="file-text" class="text-lg stroke-1 arrow-right" />
+                </div><div
+                  class="absolute translate-x-[150%] opacity-0 transition group-hover:translate-x-0 group-hover:opacity-100"
+                >
+                  <Icon name="download" class="text-lg stroke-1 arrow-right" />
+                </div>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="magnetic w-fit" data-strength="0.5">
+          <div id="scrollDownHero" class="translate-y-[50px] opacity-0 blur">
+            <button
+              class="group relative inline-flex w-fit items-center cursor-none overflow-hidden rounded-md font-medium animate-pulse magnetic"
+              data-strength="0.5"
+            >
+              <Icon name="arrow-narrow-up" class="stroke-1 arrow-right rotate-180" />
+              <span class="text-sm">Scroll down</span></button
+            >
+          </div>
+        </div>
       </div>
     </div>
     <div class="flex flex-row w-full px-2 md:px-0 min-h-max gap-4 md:gap-10 h-screen items-center transformHero">
@@ -102,11 +145,12 @@ const columns = Array.from({ length: 6 }, (_, i) => {
       const heroElement = document.querySelector('.transformHero');
       const heroTextBox = document.querySelector('.transformTextBox');
       const heroContainer = document.querySelector('#inicio');
+
       gsap.fromTo(
         heroElement,
         {
           duration: 1,
-          transform: 'translate3d(20%, 0%, 0px) scale3d(1, 0.65, 1) rotateX(15deg) rotateY(-10deg) rotateZ(32deg)',
+          transform: 'translate3d(35%, -35%, 0) scale3d(1, 0.65, 1) rotateX(15deg) rotateY(-10deg) rotateZ(32deg)',
         },
         {
           duration: 1,
@@ -153,7 +197,8 @@ const columns = Array.from({ length: 6 }, (_, i) => {
     const columns = Array.from(document.querySelectorAll('#heroCardShadow'));
     const title = document.getElementById('tittleHero');
     const subtitle = document.getElementById('subtittleHero');
-
+    const heroButtons = document.getElementById('buttonsHero');
+    const heroScrollDown = document.getElementById('scrollDownHero');
     columns.forEach((column) => {
       // generar una duración aleatoria entre 4 y 6 para la animación inicial
       const randomDurationInitial = Math.random() * (5 - 3) + 3;
@@ -162,6 +207,7 @@ const columns = Array.from({ length: 6 }, (_, i) => {
 
       gsap.to(title, {
         y: 0,
+        filter: 'blur(0px)',
         duration: 2.25,
         opacity: 1,
         delay: 0.75,
@@ -169,8 +215,25 @@ const columns = Array.from({ length: 6 }, (_, i) => {
       });
       gsap.to(subtitle, {
         y: 0,
+        filter: 'blur(0px)',
         duration: 2.25,
         delay: 1,
+        opacity: 1,
+        ease: 'Expo.easeOut',
+      });
+      gsap.to(heroButtons, {
+        y: 0,
+        filter: 'blur(0px)',
+        duration: 2.25,
+        delay: 1.25,
+        opacity: 1,
+        ease: 'Expo.easeOut',
+      });
+      gsap.to(heroScrollDown, {
+        y: 0,
+        filter: 'blur(0px)',
+        duration: 2.25,
+        delay: 1.75,
         opacity: 1,
         ease: 'Expo.easeOut',
       });

@@ -63,6 +63,7 @@ html.lenis {
 }
 .animate-on-scroll {
   opacity: 0;
+  filter: blur(6px);
   will-change: transform;
   transform: translate(0px, 50px);
 }
