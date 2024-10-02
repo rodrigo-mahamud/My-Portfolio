@@ -34,53 +34,50 @@ const columns = Array.from({ length: 6 }, (_, i) => {
   }
 </style>
 
-<section class="sticky-section h-[110vh] overflow-hidden" id="inicio" data-start="0" data-end="650">
-  <div class="bg-[#0f0420] w-screen flex-col-reverse md:flex-row h-[110vh] heroShadow">
+<section class="sticky-section h-[160vh]" id="inicio" data-start="0" data-end="650">
+  <div class="bg-[#0f0420] flex-col-reverse md:flex-row heroShadow">
     <div
-      class="w-full h-[40vh] md:w-[50vw] 4xl:w-[35vw] bg-[#0a0118] coversh md:h-[110vh] absolute z-10 transformTextBox overflow-hidden"
+      class="w-full h-[40vh] md:w-[50vw] 4xl:w-[35vw] bg-[#0a0118] coversh md:h-[110vh] fixed z-10 transformTextBox overflow-hidden"
     >
-      <div
-        class="absolute bottom-20 md:h-2/6 px-4 md:px-14 md:pb-8 flex justify-between flex-col md:w-[50vw] 4xl:w-[35vw]"
-      >
-        <div>
-          <h1
-            id="tittleHero"
-            class="text-white blur text-3xl md:text-5xl mb-6 font-semibold w-full translate-y-[50px] opacity-0 text-pretty"
-          >
-            Rodrigo Mahamud García
-          </h1>
-          <h2 id="subtittleHero" class="w-full md:text-lg translate-y-[50px] opacity-0 blur">
-            Freelance Frontend Engineer with 3+ years crafting responsive web solutions using React and Next.js.
-          </h2>
-          <div id="buttonsHero" class="flex gap-3 items-center mt-6 w-full translate-y-[50px] opacity-0 blur">
-            <div class="magnetic w-fit" data-strength="0.5">
-              <button
-                class="group relative h-10 w-full cursor-none overflow-hidden rounded-md bg-white/10 px-6 border border-[#f2f2f21a] text-neutral-50 transition hover:bg-white/20"
+      <div class="absolute bottom-20 md:h-2/6 px-4 md:px-14 md:pb-8 flex gap-6 flex-col md:w-[50vw] 4xl:w-[35vw]">
+        <h1
+          id="tittleHero"
+          class="text-white blur text-3xl md:text-4xl font-medium w-full translate-y-[50px] opacity-0 text-pretty"
+        >
+          Rodrigo Mahamud García
+        </h1>
+        <h2 id="subtittleHero" class="w-full translate-y-[50px] opacity-0 blur">
+          Freelance Frontend Engineer with 3+ years crafting responsive web solutions using React and Next.js.
+        </h2>
+        <div id="buttonsHero" class="flex gap-3 items-center w-full translate-y-[50px] opacity-0 blur">
+          <div class="magnetic w-fit" data-strength="0.5">
+            <button
+              class="group relative h-10 w-full cursor-none overflow-hidden rounded-md bg-white/10 px-6 border border-[#f2f2f21a] text-neutral-50 transition hover:bg-white/20"
+            >
+              <span class="relative">Get in touch</span>
+              <div
+                class="animate-shine-infinite absolute inset-0 -top-[20px] flex h-[calc(100%+40px)] w-full justify-center blur-[12px]"
               >
-                <span class="relative">Get in touch</span>
-                <div
-                  class="animate-shine-infinite absolute inset-0 -top-[20px] flex h-[calc(100%+40px)] w-full justify-center blur-[12px]"
-                >
-                  <div class="relative h-full w-8 bg-white/15"></div>
-                </div>
-              </button>
-            </div>
-            <div class="magnetic w-fit" data-strength="0.5">
-              <button
-                class="group relative inline-flex h-10 w-10 items-center justify-center overflow-hidden rounded-md bg-white/20 border border-[#f2f2f21a] px-6 font-medium duration-500 ease-out cursor-none"
-                ><div
-                  class="translate-x-0 opacity-100 transition group-hover:-translate-x-[150%] group-hover:opacity-0"
-                >
-                  <Icon name="file-text" class="text-lg stroke-1 arrow-right" />
-                </div><div
-                  class="absolute translate-x-[150%] opacity-0 transition group-hover:translate-x-0 group-hover:opacity-100"
-                >
-                  <Icon name="download" class="text-lg stroke-1 arrow-right" />
-                </div>
-              </button>
-            </div>
+                <div class="relative h-full w-8 bg-white/15"></div>
+              </div>
+            </button>
+          </div>
+          <div class="magnetic w-fit" data-strength="0.5">
+            <a
+              href="/cardIMG.png"
+              download="proposed_file_name"
+              class="group relative inline-flex h-10 w-10 items-center justify-center overflow-hidden rounded-md bg-white/20 border border-[#f2f2f21a] px-6 font-medium duration-500 ease-out cursor-none"
+              ><div class="translate-x-0 opacity-100 transition group-hover:-translate-x-[150%] group-hover:opacity-0">
+                <Icon name="file-text" class="text-lg stroke-1 arrow-right" />
+              </div><div
+                class="absolute translate-x-[150%] opacity-0 transition group-hover:translate-x-0 group-hover:opacity-100"
+              >
+                <Icon name="download" class="text-lg stroke-1 arrow-right" />
+              </div>
+            </a>
           </div>
         </div>
+
         <div class="magnetic w-fit" data-strength="0.5">
           <div id="scrollDownHero" class="translate-y-[50px] opacity-0 blur">
             <button
@@ -94,27 +91,30 @@ const columns = Array.from({ length: 6 }, (_, i) => {
         </div>
       </div>
     </div>
-    <div class="flex flex-row w-full px-2 md:px-0 min-h-max gap-4 md:gap-10 h-screen items-center transformHero">
-      {
-        columns.map((column) => (
-          <div
-            class="last:flex first:flex flex-col md:w-1/4 gap-y-10 opacity-0 hidden lg:flex lg:last:hidden lg:first:hidden 4xl:last:flex 4xl:first:flex"
-            id="heroCardShadow"
-          >
-            {column.map((image) => {
-              const imageSrc = imageSources[`/src/assets/images/hero/${image}`]();
-              return (
-                <Image
-                  class="min-h-[12rem] md:min-h-[22rem] object-cover opacity-80"
-                  alt="glad-os"
-                  sizes="(max-width: 767px) 400px, (max-width: 1023px) 768px, (max-width: 2039px) 1024px, 2040px"
-                  src={imageSrc}
-                />
-              );
-            })}
-          </div>
-        ))
-      }
+    <div class="h-full overflow-hidden">
+      <div class="flex flex-row w-full px-2 md:px-0 min-h-max gap-4 md:gap-10 h-screen items-center transformHero">
+        {
+          columns.map((column) => (
+            <div
+              class="last:flex first:flex flex-col md:w-1/4 gap-y-10 opacity-0 hidden lg:flex lg:last:hidden lg:first:hidden 4xl:last:flex 4xl:first:flex"
+              id="heroCardShadow"
+            >
+              {column.map((image) => {
+                const imageSrc = imageSources[`/src/assets/images/hero/${image}`]();
+                return (
+                  <Image
+                    class="min-h-[12rem] md:min-h-[22rem] object-cover opacity-80"
+                    alt="glad-os"
+                    quality={'low'}
+                    sizes="(max-width: 767px) 400px, (max-width: 1023px) 768px, (max-width: 2039px) 1024px, 2040px"
+                    src={imageSrc}
+                  />
+                );
+              })}
+            </div>
+          ))
+        }
+      </div>
     </div>
   </div>
 </section>
@@ -155,10 +155,11 @@ const columns = Array.from({ length: 6 }, (_, i) => {
         {
           duration: 1,
           transform: 'translate3d(0%, -50%, 0px) scale3d(1, 1, 1) rotateX(15deg) rotateY(0deg) rotateZ(0deg)',
+
           scrollTrigger: {
             trigger: heroContainer,
             start: 'top',
-            end: 800,
+            end: 1000,
             scrub: true,
           },
         }
@@ -208,7 +209,7 @@ const columns = Array.from({ length: 6 }, (_, i) => {
       gsap.to(title, {
         y: 0,
         filter: 'blur(0px)',
-        duration: 2.25,
+        duration: 2,
         opacity: 1,
         delay: 0.75,
         ease: 'Expo.easeOut',
@@ -216,7 +217,7 @@ const columns = Array.from({ length: 6 }, (_, i) => {
       gsap.to(subtitle, {
         y: 0,
         filter: 'blur(0px)',
-        duration: 2.25,
+        duration: 2,
         delay: 1,
         opacity: 1,
         ease: 'Expo.easeOut',
@@ -224,7 +225,7 @@ const columns = Array.from({ length: 6 }, (_, i) => {
       gsap.to(heroButtons, {
         y: 0,
         filter: 'blur(0px)',
-        duration: 2.25,
+        duration: 2,
         delay: 1.25,
         opacity: 1,
         ease: 'Expo.easeOut',
@@ -232,8 +233,8 @@ const columns = Array.from({ length: 6 }, (_, i) => {
       gsap.to(heroScrollDown, {
         y: 0,
         filter: 'blur(0px)',
-        duration: 2.25,
-        delay: 1.75,
+        duration: 2,
+        delay: 1.5,
         opacity: 1,
         ease: 'Expo.easeOut',
       });

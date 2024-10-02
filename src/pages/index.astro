@@ -10,6 +10,7 @@ import FeatureHead from '../components/widgets/FeatureHead.astro';
 import FeatureIcons from '../components/widgets/FeatureIcons.astro';
 import SpotifyAPI from '../components/common/SpotifyAPI.astro';
 import GitHub from '../components/widgets/GitHub.astro';
+import { Icon } from 'astro-icon/components';
 const meta = {
   title: SITE.title,
   description: SITE.description,
@@ -54,66 +55,59 @@ const imagesPaths = [
   <Hero images={imagesPaths} />
   <Features title="Most used widgets" subtitle="Subtitle Here" highlight="Components">
     <FeatureHead
-      title="Headers"
-      description="You can filter and sort data in Wope instantly, without having to export it to a spreadsheet first."
+      title=" React Expertise"
+      description="Building scalable React apps with modern patterns and state management."
       delay="0.1"
-      hello="hola"
     >
-      <FeatureIcons selector="1" />
+      <FeatureIcons iconClass="text-[1.75rem]" iconName="brand-react" />
       <img src="./cardIMG.png" alt="Image for Headers" />
     </FeatureHead>
     <FeatureHead
-      title="Headers"
-      description="You can filter and sort data in Wope instantly, without having to export it to a spreadsheet first."
+      title="NextJS & AstroJS"
+      description="Proficient in Next.js and Astro.js for optimized fast web applications."
       delay="0.15"
-      hello="hola"
     >
-      <FeatureIcons selector="2" />
+      <FeatureIcons iconClass="text-[1.75rem]" iconName="brand-nextjs" />
       <img src="./cardIMG.png" alt="Image for Headers" />
     </FeatureHead>
     <FeatureHead
-      title="Headers"
-      description="You can filter and sort data in Wope instantly, without having to export it to a spreadsheet first."
+      title="TypeScript Mastery"
+      description="Developing robust, type-safe applications to enhance code quality and efficiency."
       delay="0.2"
-      hello="hola"
     >
-      <FeatureIcons selector="3" />
+      <FeatureIcons iconClass="text-[1.75rem]" iconName="brand-typescript" />
       <img src="./cardIMG.png" alt="Image for Headershh" />
     </FeatureHead>
     <FeatureHead
-      title="Headers"
-      description="You can filter and sort data in Wope instantly, without having to export it to a spreadsheet first."
+      title="API Integration"
+      description="Seamless integration of RESTful APIs usin React Query for client components."
       delay="0.25"
-      hello="hola"
     >
-      <FeatureIcons selector="4" />
+      <FeatureIcons iconClass="text-[1.75rem]" iconName="plug-connected" />
       <img src="./cardIMG.png" alt="Image for Headers" />
     </FeatureHead>
     <FeatureHead
-      title="Headers"
-      description="You can filter and sort data in Wope instantly, without having to export it to a spreadsheet first."
+      title="Responsive Design"
+      description="Creating user-centric, responsive interfaces using modern CSS and TailwindCSS."
       delay="0.3"
-      hello="hola"
     >
-      <FeatureIcons selector="5" />
+      <FeatureIcons iconClass="text-[1.75rem]" iconName="devices" />
       <img src="./cardIMG.png" alt="Image for Headers" />
     </FeatureHead>
     <FeatureHead
-      title="Headers"
-      description="You can filter and sort data in Wope instantly, without having to export it to a spreadsheet first."
+      title="Performance & Deployment"
+      description="Optimizing web performance and deploying with VPS configuration using Coolify."
       delay="0.35"
-      hello="hola"
     >
-      <FeatureIcons selector="6" />
+      <FeatureIcons iconClass="text-[1.75rem]" iconName="server-cog" />
       <img src="./cardIMG.png" alt="Image for Headers" />
     </FeatureHead>
   </Features>
+  <LatestPosts count={4} title="Spot issues faster <br /> with smart indicators" />
 
+  <Steps />
   <!-- HighlightedPosts Widget ******* -->
   <!-- Steps Widget ****************** -->
 
-  <Steps />
-
-  <LatestPosts count={4} title="Spot issues faster <br /> with smart indicators" />
   <GitHub />
 </Layout>
