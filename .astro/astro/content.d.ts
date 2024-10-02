@@ -158,9 +158,9 @@ declare module 'astro:content' {
   collection: "post";
   data: InferEntrySchema<"post">
 } & { render(): Render[".mdx"] };
-"project-hotelBenetusser.mdx": {
-	id: "project-hotelBenetusser.mdx";
-  slug: "project-hotelbenetusser";
+"project-hotelBenetusser copy.mdx": {
+	id: "project-hotelBenetusser copy.mdx";
+  slug: "project-hotelbenetusser-copy";
   body: string;
   collection: "post";
   data: InferEntrySchema<"post">
@@ -172,9 +172,23 @@ declare module 'astro:content' {
   collection: "post";
   data: InferEntrySchema<"post">
 } & { render(): Render[".mdx"] };
+"project-san-esteban-de-gormaz-website-platform.mdx": {
+	id: "project-san-esteban-de-gormaz-website-platform.mdx";
+  slug: "project-san-esteban-de-gormaz-website-platform";
+  body: string;
+  collection: "post";
+  data: InferEntrySchema<"post">
+} & { render(): Render[".mdx"] };
 "project-skolalalatina.mdx": {
 	id: "project-skolalalatina.mdx";
   slug: "project-skolalalatina";
+  body: string;
+  collection: "post";
+  data: InferEntrySchema<"post">
+} & { render(): Render[".mdx"] };
+"use it as a template.mdx": {
+	id: "use it as a template.mdx";
+  slug: "use-it-as-a-template";
   body: string;
   collection: "post";
   data: InferEntrySchema<"post">
