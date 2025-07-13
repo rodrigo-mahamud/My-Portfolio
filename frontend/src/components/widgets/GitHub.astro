@@ -1,0 +1,129 @@
+---
+import ContactButton from './ContactButton.astro';
+import TitleCentered from './TitleCentered.astro';
+---
+
+<section class="mx-auto max-w-[90vw] w-full lg:max-w-4xl xl:max-w-6xl h-full relative overflow-hidden" id="contacto">
+  <div class="absolute w-full h-[inherit] z-0 shadowContact"></div>
+  <div
+    class="pt-16 pb-28 lg:max-w-4xl xl:max-w-6xl mx-auto w-full h-full flex flex-col justify-center items-center relative z-10"
+  >
+    <TitleCentered
+      data={{
+        title: "Your idea, my<br /> next commit Let's code it!",
+        subtitle: "Let us find the best competitors and we'll use the given data to find most relevant keywords.",
+        isSticky: false,
+      }}
+    />
+    <div class="magnetic rounded-full" data-strength="0.5">
+      <a
+        class="overflow-hidden btn z-20 relative cursor-none"
+        href="mailto:rodrigomahamudg@gmail.com?subject=Let's%20Talk%20"
+      >
+        <span class="btnInner text-lg md:text-xl px-8 py-4 font-medium">Let's get in touch</span>
+      </a>
+    </div>
+  </div>
+  <div class="w-full h-full flex justify-center items-center">
+    <div class="h-full md:w-full 4xl:w-[80vw] absolute top-0 -z-10" id="canvasContainer">
+      <canvas id="githubCanvas"></canvas>
+    </div>
+  </div>
+</section>
+<script>
+  type Contribution = {
+    date: string;
+    count: number;
+    color: string;
+  };
+
+  function transformColor(originalColor: string): string {
+    const colorMap = {
+      '#ebedf0': '#161b22',
+      '#9be9a8': '#0e4429',
+      '#40c463': '#006d32',
+      '#30a14e': '#26a641',
+      '#216e39': '#39d353',
+    };
+    return colorMap[originalColor] || originalColor;
+  }
+
+  function drawRoundedRect(
+    ctx: CanvasRenderingContext2D,
+    x: number,
+    y: number,
+    width: number,
+    height: number,
+    radius: number,
+    color: string
+  ) {
+    ctx.fillStyle = color;
+    ctx.beginPath();
+    ctx.moveTo(x + radius, y);
+    ctx.lineTo(x + width - radius, y);
+    ctx.quadraticCurveTo(x + width, y, x + width, y + radius);
+    ctx.lineTo(x + width, y + height - radius);
+    ctx.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
+    ctx.lineTo(x + radius, y + height);
+    ctx.quadraticCurveTo(x, y + height, x, y + height - radius);
+    ctx.lineTo(x, y + radius);
+    ctx.quadraticCurveTo(x, y, x + radius, y);
+    ctx.closePath();
+    ctx.fill();
+  }
+
+  function drawContributions(
+    canvas: HTMLCanvasElement,
+    contributions: Contribution[],
+    cellSizeWidth: number,
+    cellSizeHeight: number,
+    gapSize: number
+  ) {
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    const diasPorSemana = 7;
+    const cornerRadius = 7;
+
+    contributions.forEach((contrib, i) => {
+      const x = Math.floor(i / diasPorSemana) * (cellSizeWidth + gapSize);
+      const y = (i % diasPorSemana) * (cellSizeHeight + gapSize);
+      const color = transformColor(contrib.color);
+
+      drawRoundedRect(ctx, x, y, cellSizeWidth, cellSizeHeight, cornerRadius, color);
+    });
+  }
+
+  async function main() {
+    try {
+      const response = await fetch('/.netlify/functions/gitHubHandler', {
+        method: 'POST',
+      });
+
+      if (response.ok) {
+        const jsonResponse = await response.json();
+        const contributions: Contribution[] = jsonResponse.contributions;
+
+        const canvasContainer = document.getElementById('canvasContainer');
+        const canvas = document.getElementById('githubCanvas') as HTMLCanvasElement | null;
+
+        if (canvas && canvasContainer) {
+          canvas.width = canvasContainer.offsetWidth;
+          canvas.height = canvasContainer.offsetHeight;
+
+          const cellSizeWidth = canvas.width / 30;
+          const cellSizeHeight = canvas.height / 7;
+          const gapSize = 6; // Ajusta según sea necesario
+
+          drawContributions(canvas, contributions, cellSizeWidth, cellSizeHeight, gapSize);
+        }
+      } else {
+        console.error(`Respuesta no exitosa: ${response.status}`);
+      }
+    } catch (error) {
+      console.error(`Petición fallida: ${error}`);
+    }
+  }
+
+  main();
+</script>

@@ -1,0 +1,278 @@
+---
+import TitleCentered from './TitleCentered.astro';
+---
+
+<style>
+  .borderAlt {
+    border: solid #2d263a;
+    border-width: 2px 2px 0 2px;
+    border-radius: 1rem 1rem 0 0px;
+    padding: 0.75rem 2rem 0.75rem 2rem;
+    box-shadow: -2px 20px 0px #0a0118;
+    position: relative;
+  }
+  .borderAlt:before {
+    border: solid #2d263a;
+    border-width: 2px 1px 0 0px;
+    content: '';
+    height: 32px;
+    left: -25px;
+    position: absolute;
+    width: 18px;
+    border-top-right-radius: 40px;
+    transform: translateY(67%) rotate(90deg);
+    box-shadow: 1px -11px 0px #0a0118;
+  }
+  .borderGlow {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    border: solid #2d263a;
+    background: radial-gradient(
+      40.23% 100% at 20% 0%,
+      rgb(25 17 41) 0%,
+      rgba(10, 1, 24, 1) 100%,
+      rgba(10, 1, 24, 1) 100%
+    );
+    border-width: 2px 2px 0 2px;
+    border-radius: 1rem 0 0 0;
+  }
+  .borderGlow:before {
+    content: '';
+    background: linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, rgba(255, 255, 255, 0.75) 20%, rgba(0, 0, 0, 0) 80%);
+    width: 100%;
+    position: relative;
+    display: flex;
+    height: 0.75px;
+  }
+  .borderGlow::after {
+    content: '';
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgb(10 1 24) 100%);
+    width: 102%;
+    left: -1%;
+    position: relative;
+    display: flex;
+    height: 8rem;
+  }
+  .animate-on-scroll:nth-of-type(2) .borderGlow {
+    background: radial-gradient(
+      40.23% 100% at 20% 0%,
+      rgb(25 17 41) 0%,
+      rgba(10, 1, 24, 1) 100%,
+      rgba(10, 1, 24, 1) 100%
+    );
+    border-width: 2px 2px 0 2px;
+    border-radius: 1rem 1rem 0 0;
+  }
+  .animate-on-scroll:nth-of-type(2) .borderGlow:before {
+    content: '';
+    background: linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, rgba(255, 255, 255, 0.75) 20%, rgba(0, 0, 0, 0) 65%);
+    width: 100%;
+    position: relative;
+    display: flex;
+    height: 0.75px;
+  }
+  .animate-on-scroll:nth-of-type(2) .borderAlt::after {
+    border: solid #2d263a;
+    border-width: 2px 2px 0 0px;
+    content: '';
+    height: 32px;
+    right: -19px;
+    position: absolute;
+    width: 18px;
+    border-top-right-radius: 40px;
+    transform: translateY(45%) rotate(180deg);
+    box-shadow: 1px -11px 0px #0a0118;
+  }
+  .animate-on-scroll:nth-of-type(2) div {
+    box-shadow: 175px 0px 30px -15px rgb(10 1 24 / 75%);
+  }
+  .animate-on-scroll:nth-of-type(3) .borderGlow {
+    background: radial-gradient(
+      40.23% 100% at 20% 0%,
+      rgb(25 17 41) 0%,
+      rgba(10, 1, 24, 1) 100%,
+      rgba(10, 1, 24, 1) 100%
+    );
+    border-width: 2px 2px 0 2px;
+    border-radius: 1rem 1rem 0 0;
+  }
+  .animate-on-scroll:nth-of-type(3) .borderGlow:before {
+    content: '';
+    background: linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, rgba(255, 255, 255, 0.75) 20%, rgba(0, 0, 0, 0) 50%);
+    width: 100%;
+    position: relative;
+    display: flex;
+    height: 0.75px;
+  }
+  .animate-on-scroll:nth-of-type(3) .borderAlt::after {
+    border: solid #2d263a;
+    border-width: 2px 2px 0 0px;
+    content: '';
+    height: 32px;
+    right: -19px;
+    position: absolute;
+    width: 18px;
+    border-top-right-radius: 40px;
+    transform: translateY(47%) rotate(180deg);
+    box-shadow: 6px -11px 0px 5px #0a0118;
+  }
+  .animate-on-scroll:nth-of-type(3) div {
+    box-shadow: 175px 0px 30px -15px rgb(10 1 24 / 75%);
+  }
+  @media (max-width: 768px) {
+    .borderAlt {
+      padding: 0.5rem 1.5rem 0.5rem 1.5rem;
+      font-size: 1rem;
+      box-shadow: 0px 5px 0px -2px #0a0118;
+    }
+    .borderAlt:before {
+      content: '';
+      height: 21px;
+      left: -19px;
+
+      box-shadow: 3px -7px 0px #0a0118;
+    }
+    .animate-on-scroll:nth-of-type(2) .borderAlt::after {
+      content: '';
+      height: 23px;
+      right: -19px;
+      box-shadow: 6px -11px 0px 5px #0a0118;
+    }
+    .animate-on-scroll:nth-of-type(3) .borderAlt::after {
+      content: '';
+      height: 23px;
+      right: -19px;
+      box-shadow: 6px -11px 0px 5px #0a0118;
+    }
+    .borderGlow,
+    .animate-on-scroll:nth-of-type(2) .borderGlow,
+    .animate-on-scroll:nth-of-type(3) .borderGlow {
+      background: rgba(10, 1, 24, 1) 100%;
+    }
+    .borderGlow:before {
+      background: transparent !important;
+    }
+  }
+</style>
+<section
+  class="max-w-[90vw] lg:max-w-5xl mx-auto flex flex-col relative h-auto md:h-[calc(100vh+50rem)] py-16"
+  id="proyectos"
+>
+  <TitleCentered
+    data={{
+      title: 'Academic Foundation <br> and Professional Growth',
+      pretitle: 'Pre titulo',
+      isSticky: false,
+    }}
+  />
+  <div class="w-full">
+    <div class="animate-on-scroll sticky top-12" data-delay="0" data-duration="1.5">
+      <div class="mx-auto">
+        <div class="flex justify-end w-full">
+          <h3 class="uppercase borderAlt bg-[#0a0118]">Experience</h3>
+        </div>
+        <section class="w-full borderGlow">
+          <ul class="flex flex-col md:ml-5 md:mt-6 relative">
+            <div
+              class="h-full bg-gradient-to-b from-white via-white absolute w-[1px] mt-8 hidden md:flex left-[1.35rem] z-0"
+            >
+            </div>
+            <li class="mt-6 mb-5 md:ms-4 mx-7">
+              <div class="flex flex-row items-center">
+                <div class="w-3 h-3 mr-3 hidden md:flex bg-white rounded-full border border-white"></div>
+                <h4 class="text-white items-center">Application UI code in Tailwind</h4>
+              </div>
+              <p class="md:px-6 pt-2 text-sm md:text-base font-normal text-secondary">
+                Get access to over 20+ pages including a dashboard layout, charts, kanban board, calendar, and pre-order
+                E-commerce & Marketing pages.
+              </p>
+            </li>
+            <li class="mt-5 mb-5 md:ms-4 mx-7">
+              <div class="flex flex-row items-center">
+                <div class="w-3 h-3 mr-3 hidden md:flex bg-white rounded-full border border-white"></div>
+                <h4 class="text-white items-center">Application UI code in Tailwind</h4>
+              </div>
+              <p class="md:px-6 pt-2 text-sm md:text-base font-normal text-secondary">
+                Get access to over 20+ pages including a dashboard layout, charts, kanban board, calendar, and pre-order
+                E-commerce & Marketing pages.
+              </p>
+            </li>
+          </ul>
+        </section>
+      </div>
+    </div>
+
+    <div class="animate-on-scroll sticky top-12" data-delay="0.05" data-duration="1.5">
+      <div class="mx-auto">
+        <div class="flex justify-end w-[75%] md:w-[86%]">
+          <h3 class="uppercase borderAlt bg-[#0a0118]">Education</h3>
+        </div>
+        <section class="w-full borderGlow">
+          <ul class="flex flex-col md:ml-5 md:mt-6 relative">
+            <div
+              class="h-full bg-gradient-to-b from-white via-white absolute w-[1px] mt-8 hidden md:flex left-[1.35rem] z-0"
+            >
+            </div>
+            <li class="mt-6 mb-5 md:ms-4 mx-7">
+              <div class="flex flex-row items-center">
+                <div class="w-3 h-3 mr-3 hidden md:flex bg-white rounded-full border border-white"></div>
+                <h4 class="text-white items-center">Application UI code in Tailwind</h4>
+              </div>
+              <p class="md:px-6 pt-2 text-sm md:text-base font-normal text-secondary">
+                Get access to over 20+ pages including a dashboard layout, charts, kanban board, calendar, and pre-order
+                E-commerce & Marketing pages.
+              </p>
+            </li>
+            <li class="mt-5 mb-5 md:ms-4 mx-7">
+              <div class="flex flex-row items-center">
+                <div class="w-3 h-3 mr-3 hidden md:flex bg-white rounded-full border border-white"></div>
+                <h4 class="text-white items-center">Application UI code in Tailwind</h4>
+              </div>
+              <p class="md:px-6 pt-2 text-sm md:text-base font-normal text-secondary">
+                Get access to over 20+ pages including a dashboard layout, charts, kanban board, calendar, and pre-order
+                E-commerce & Marketing pages.
+              </p>
+            </li>
+          </ul>
+        </section>
+      </div>
+    </div>
+
+    <div class="animate-on-scroll sticky top-12" data-delay="0.1" data-duration="1.5">
+      <div class="mx-auto">
+        <div class="flex justify-end w-[55%] md:w-[72%]">
+          <h3 class="uppercase borderAlt bg-[#0a0118]">Experience</h3>
+        </div>
+        <section class="w-full borderGlow">
+          <ul class="flex flex-col md:ml-5 md:mt-6 relative">
+            <div
+              class="h-full bg-gradient-to-b from-white via-white absolute w-[1px] mt-8 hidden md:flex left-[1.35rem] z-0"
+            >
+            </div>
+            <li class="mt-6 mb-5 md:ms-4 mx-7">
+              <div class="flex flex-row items-center">
+                <div class="w-3 h-3 mr-3 hidden md:flex bg-white rounded-full border border-white"></div>
+                <h4 class="text-white items-center">Application UI code in Tailwind</h4>
+              </div>
+              <p class="md:px-6 pt-2 text-sm md:text-base font-normal text-secondary">
+                Get access to over 20+ pages including a dashboard layout, charts, kanban board, calendar, and pre-order
+                E-commerce & Marketing pages.
+              </p>
+            </li>
+            <li class="mt-5 mb-5 md:ms-4 mx-7">
+              <div class="flex flex-row items-center">
+                <div class="w-3 h-3 mr-3 hidden md:flex bg-white rounded-full border border-white"></div>
+                <h4 class="text-white items-center">Application UI code in Tailwind</h4>
+              </div>
+              <p class="md:px-6 pt-2 text-sm md:text-base font-normal text-secondary">
+                Get access to over 20+ pages including a dashboard layout, charts, kanban board, calendar, and pre-order
+                E-commerce & Marketing pages.
+              </p>
+            </li>
+          </ul>
+        </section>
+      </div>
+    </div>
+  </div>
+</section>

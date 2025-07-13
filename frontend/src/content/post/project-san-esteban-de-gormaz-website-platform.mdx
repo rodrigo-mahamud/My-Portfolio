@@ -1,0 +1,144 @@
+---
+publishDate: 2024-01-11
+title: San Esteban De Gormaz Town Hall Website Renovation
+author: Rodrigo Mahamud García
+excerpt: <span class='text-white font-medium'>Ongoing Project -</span> Leading the complete overhaul of the San Esteban De Gormaz Town Hall website, implementing a modern MERN stack solution with advanced features for improved digital services and administrative efficiency.
+image: ../../assets/works/hotelBenetusserImg.png
+accentColor: rgba(0, 123, 255, 1)
+canonical: https://astrowind.vercel.app/get-started-website-with-astro-tailwind-css
+
+singlePostInfo:
+  rol: Front End Engineer
+  status: In progress
+  duration: 3+ months (ongoing)
+  overview: This project involves a comprehensive renovation of the San Esteban De Gormaz Town Hall website. The goal is to create a cutting-edge digital platform using NextJS and the MERN stack, incorporating PayloadCMS for flexible content management. A key feature is the development of an advanced sports facility reservation system with automated access and Stripe payment integration. The project aims to significantly enhance the town hall's digital presence, streamline administrative processes, and provide residents with modern, user-friendly digital services.
+
+postIndex:
+  - Overview
+  - Technical Environment
+  - Key Features
+  - Challenges and Solutions
+  - Results and Impact
+  - Next Steps
+
+singlePostSection3:
+  preTitle: Technical Stack
+  title: Leveraging Modern Web Technologies
+
+media: 
+  - path: /hotelBenetusser.mp4
+    caption: Website renovation demo showcasing new interface and functionality.
+    delay: 0.25
+    frame: true
+
+  - path: /rendimientoHB1.png
+    caption: High-level architecture of the new town hall website.
+    delay: 0.25
+    frame: false
+
+  - path: /rendimientoHB2.png
+    caption: Performance improvements compared to the old website.
+    delay: 0.25
+    frame: false
+
+PostGalleryGrid:
+   videos: 
+      - path: /benetusserClip1.mp4
+        title: PayloadCMS Content Management
+        subtitle: Demonstration of the flexible block-based content management system.
+
+      - path: /benetusserClip2.mp4
+        title: Sports Facility Reservation System
+        subtitle: Walkthrough of the user-friendly booking process and automated access.
+
+      - path: /benetusserClip4.mp4
+        title: Stripe Payment Integration
+        subtitle: Seamless and secure payment process for facility bookings.
+
+      - path: /benetusserClip3.mp4
+        title: Responsive Design
+        subtitle: Showcasing the website's adaptability across various devices.
+
+      - path: /benetusserClip5.mp4
+        title: Administrative Dashboard
+        subtitle: Overview of the streamlined management interface for town hall staff.
+        
+PostNextProject:
+  path: /allRewindImages.png
+  title: Initial sketches and concepts of ROB - By Carlos Bea
+  nextUrl: project-rewindhispano
+
+---
+
+import SinglePostInfo from '~/components/blog/SinglePostInfo.astro';
+import SinglePostSection from '~/components/blog/SinglePostSection.astro';
+import PostMedia from '~/components/blog/PostMedia.astro';
+import PostGalleryGrid from '~/components/blog/PostGalleryGrid.astro';
+import PostTextImage from '~/components/blog/PostTextImage.astro';
+import PostNextProject from '~/components/blog/PostNextProject.astro';
+
+<SinglePostInfo singlePostInfo={frontmatter.singlePostInfo}/>
+
+<SinglePostSection title='Modernizing Municipal Digital Services' preTitle='Overview'>
+<p class="animate-on-scroll leading-7 text-base" data-type="simple" data-delay="0.25" data-easing="Expo.easeOut">
+The San Esteban De Gormaz Town Hall website renovation project represents a significant leap forward in municipal digital services. This comprehensive overhaul aims to transform the town's online presence, offering residents a modern, efficient, and user-friendly platform for accessing information and services.
+
+Our approach combines cutting-edge web technologies with thoughtful design to create a website that not only looks great but also significantly improves functionality. Key features include a flexible content management system, an advanced sports facility reservation system, and integrated payment solutions. This project showcases the potential for small municipalities to leverage technology in enhancing community engagement and streamlining administrative processes.
+</p>
+
+<div class='flex mt-16 mb-16'>
+  <PostMedia media={frontmatter.media[0]} />
+</div>
+
+</SinglePostSection>
+
+<SinglePostSection title='Cutting-Edge Tech Stack' preTitle='Technical Environment'>
+
+<p class="animate-on-scroll leading-7 text-base" data-type="simple" data-delay="0.25" data-easing="Expo.easeOut">
+The project utilizes a modern and robust tech stack to ensure high performance, scalability, and maintainability:
+
+- **Frontend**: NextJS 15RC with App Router, React 19RC, TypeScript, and TailwindCSS for a responsive and dynamic user interface.
+- **Backend**: MongoDB for flexible data storage, PayloadCMS 3.0 for content management, and Server Actions for efficient server-side operations.
+- **State Management**: Zustand for simplified global state management.
+- **UI Components**: Shadcn UI and Framer Motion for polished, animated user interfaces.
+- **Form Handling**: React Hook Form with ZOD for robust form validation.
+- **Additional Libraries**: Date FNS for date manipulation, Embla carousel for image galleries, and React Email for transactional emails.
+- **Integrations**: Stripe for payments, API Unifi Access for facility access control.
+- **Deployment**: Hetzner VPS running Coolify for streamlined deployment and management.
+
+This comprehensive stack allows us to create a high-performance, secure, and feature-rich platform tailored to the town hall's specific needs.
+</p>
+
+<PostGalleryGrid mediaFiles={frontmatter.PostGalleryGrid} />
+
+</SinglePostSection>
+
+<SinglePostSection title={frontmatter.singlePostSection3.title} preTitle={frontmatter.singlePostSection3.preTitle}>
+
+<p class="animate-on-scroll leading-7 text-base" data-type="simple" data-delay="0.25" data-easing="Expo.easeOut">
+The choice of modern web technologies for this project was crucial in achieving our goals of improved performance, enhanced user experience, and easier maintenance. Here's how key technologies contribute to the project's success:
+
+1. **NextJS and React**: Provides a fast, SEO-friendly foundation with server-side rendering capabilities, crucial for a public-facing municipal website.
+
+2. **PayloadCMS**: Offers a flexible, block-based content management system that allows non-technical staff to easily update and manage website content.
+
+3. **TypeScript**: Enhances code quality and maintainability, reducing potential bugs and making future updates easier.
+
+4. **TailwindCSS**: Enables rapid UI development with a consistent design language across the site.
+
+5. **MongoDB**: Provides a flexible database solution that can easily adapt to changing data requirements.
+
+6. **Stripe Integration**: Ensures secure and reliable payment processing for facility bookings and other potential future paid services.
+
+7. **API Unifi Access**: Enables automated access control for sports facilities, improving user experience and reducing administrative overhead.
+
+These technologies work together to create a platform that's not only modern and efficient but also scalable and future-proof, setting a new standard for municipal websites.
+</p>
+
+<div class='flex flex-col md:flex-row gap-8 mt-16 mb-16'>
+  <PostMedia media={frontmatter.media[1]} />
+  <PostMedia media={frontmatter.media[2]} />
+</div>
+
+</SinglePostSection>
+<PostNextProject data={frontmatter.PostNextProject} />

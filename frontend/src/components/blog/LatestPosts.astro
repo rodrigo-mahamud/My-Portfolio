@@ -1,0 +1,28 @@
+---
+import Grid from '../../components/blog/Grid.astro';
+import { findLatestPosts } from '../../utils/blog';
+import TitleCentered from '../widgets/TitleCentered.astro';
+
+export interface Props {
+  title?: string;
+  allPostsText?: string;
+  allPostsLink?: string | URL;
+  information?: string;
+  count: number;
+}
+
+const { title, count = 4 } = Astro.props;
+
+const posts = await findLatestPosts({ count });
+---
+
+<section class="py-16 mx-auto max-w-[90vw] w-full lg:max-w-4xl xl:max-w-6xl" id="experiencia">
+  <TitleCentered
+    data={{
+      title: title,
+      pretitle: 'Works',
+      isSticky: false,
+    }}
+  />
+  <Grid posts={posts} />
+</section>

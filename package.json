@@ -1,0 +1,19 @@
+{
+  "name": "rmgp-monorepo",
+  "version": "1.0.0",
+  "description": "RMGP Monorepo - Portfolio Application",
+  "private": true,
+  "scripts": {
+    "dev:frontend": "cd frontend && npm run dev",
+    "dev:backend": "cd backend && npm run dev",
+    "dev:all": "npx concurrently -n frontend,backend,mongo -c cyan,green,yellow \"npm run dev:frontend\" \"npm run dev:backend\" \"npm run mongo:start\"",
+    "mongo:start": "mongod --dbpath ~/mongodb-data --port 27017 --bind_ip 127.0.0.1 --logpath ~/mongod.log",
+    "mongo:stop": "mongosh --eval 'db.adminCommand({ shutdown: 1 })'",
+    "install:all": "cd frontend && npm install && cd ../backend && npm install",
+    "build:all": "cd frontend && npm run build && cd ../backend && npm run build",
+    "test:all": "cd frontend && npm test && cd ../backend && npm test"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

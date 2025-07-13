@@ -1,0 +1,97 @@
+---
+const { isHomePage } = Astro.props;
+---
+
+<div class={`navElements ${isHomePage ? 'w-1/6' : 'w-3/6'} z-50 h-full flex justify-center items-center`}>
+  <button id="sbutton" class="w-full h-full cursor-none shadow-[-16px_0px_0px_-15px_#fff]">
+    <div data-strength="0.65" class="magnetic w-full h-full flex justify-center items-center">
+      <canvas id="miCanvas" data-strength="0.65" class="magnetic w-3/5 md:w-2/5 h-1/3 md:h-1/2"></canvas>
+    </div>
+  </button>
+</div>
+<script>
+  let deltaTime: number;
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const tiempoInicial = performance.now();
+    setTimeout(() => {
+      const tiempoFinal = performance.now();
+      deltaTime = (tiempoFinal - tiempoInicial) / 10000;
+      console.log(deltaTime);
+
+      const canvas = document.getElementById('miCanvas') as HTMLCanvasElement | null;
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      if (!ctx) return;
+
+      canvas.width = canvas.offsetWidth;
+      canvas.height = canvas.offsetHeight;
+
+      const numBarras: number = 5;
+      const separacion: number = 6;
+      const anchoBarra: number = (canvas.width - separacion * (numBarras - 1)) / numBarras;
+      let alturas: number[] = new Array(numBarras).fill(canvas.height);
+      let direccion: number[] = new Array(numBarras).fill(-1);
+      const velocidad: number = 95;
+      const radioBorde: number = anchoBarra / 2;
+
+      function dibujarBarra(x: number, y: number, ancho: number, alto: number, radio: number): void {
+        if (ctx) {
+          ctx.beginPath();
+          ctx.moveTo(x + radio, y);
+          ctx.lineTo(x + ancho - radio, y);
+          ctx.quadraticCurveTo(x + ancho, y, x + ancho, y + radio);
+          ctx.lineTo(x + ancho, y + alto - radio);
+          ctx.quadraticCurveTo(x + ancho, y + alto, x + ancho - radio, y + alto);
+          ctx.lineTo(x + radio, y + alto);
+          ctx.quadraticCurveTo(x, y + alto, x, y + alto - radio);
+          ctx.lineTo(x, y + radio);
+          ctx.quadraticCurveTo(x, y, x + radio, y);
+          ctx.closePath();
+          ctx.fill();
+        }
+      }
+
+      function dibujar(): void {
+        if (ctx && canvas) {
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+          ctx.fillStyle = 'white';
+
+          for (let i = 0; i < numBarras; i++) {
+            let x: number = i * (anchoBarra + separacion);
+            let y: number = (canvas.height - alturas[i]) / 2;
+            dibujarBarra(x, y, anchoBarra, alturas[i], radioBorde);
+          }
+        }
+      }
+
+      function actualizar(): void {
+        if (canvas) {
+          for (let i = 0; i < numBarras; i++) {
+            let cambio: number = Math.random() * velocidad * deltaTime;
+
+            if (direccion[i] === -1 && alturas[i] > 0) {
+              alturas[i] -= cambio;
+            } else if (direccion[i] === 1 && alturas[i] < canvas.height) {
+              alturas[i] += cambio;
+            }
+
+            if (alturas[i] <= 0) {
+              direccion[i] = 1;
+            } else if (alturas[i] >= canvas.height) {
+              direccion[i] = -1;
+            }
+          }
+        }
+      }
+
+      function animar(): void {
+        actualizar();
+        dibujar();
+        requestAnimationFrame(animar);
+      }
+
+      requestAnimationFrame(animar);
+    }, 100);
+  });
+</script>

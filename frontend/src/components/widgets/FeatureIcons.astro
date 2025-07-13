@@ -1,0 +1,18 @@
+---
+import { Icon } from 'astro-icon/components';
+
+export interface Props {
+  iconName: string;
+  iconClass?: string;
+}
+
+const { iconName, iconClass } = Astro.props;
+---
+
+<div class="absolute w-full pl-4 h-[inherit]">
+  <div
+    class="text-neutral-200 flex justify-center items-center w-16 h-16 rounded-full bg-gradient-to-tr from-[#0a0118] from-35% to-[#291a40] z-10"
+  >
+    <Icon class={iconClass} name={iconName} />
+  </div>
+</div>

@@ -1,0 +1,215 @@
+---
+---
+
+<script>
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  import { CSSPlugin } from 'gsap/CSSPlugin';
+  import Lenis from '@studio-freight/lenis';
+
+  function isMobileDevice() {
+    const userAgent = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    return userAgent && window.innerWidth < 768;
+  }
+
+  /*-----------------------*/
+  /*------ NAV MENU ------ */
+  /*-----------------------*/
+
+  const navGlow = document.querySelector('#navGlow');
+  const navLinks = document.querySelectorAll('#header nav a');
+  function monitorRefreshRate() {
+    let tiempoInicial = performance.now();
+    let fotogramas = 0;
+
+    function contarFotogramas() {
+      fotogramas++;
+      const tiempoTranscurrido = performance.now() - tiempoInicial;
+
+      if (tiempoTranscurrido < 1000) {
+        window.requestAnimationFrame(contarFotogramas);
+      } else {
+        const tasaRefresco = Math.round(fotogramas / (tiempoTranscurrido / 1000));
+        console.log(`La tasa de refresco estimada es de ${tasaRefresco} FPS`);
+      }
+    }
+
+    window.requestAnimationFrame(contarFotogramas);
+  }
+
+  if (!isMobileDevice()) {
+    const lenis = new Lenis({ infinite: false, duration: 1.15, lerp: 0.08 });
+    function raf(time) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+
+    requestAnimationFrame(raf);
+
+    // Scroll to section on click on desktop
+    navLinks.forEach((link) => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const href = link.getAttribute('href');
+        if (href) {
+          const target = document.querySelector(href);
+          if (target) {
+            lenis.scrollTo(target);
+          }
+        }
+      });
+    });
+  }
+  gsap.registerPlugin(CSSPlugin);
+  gsap.registerPlugin(ScrollTrigger);
+  function getSectionIdsFromNavLinks() {
+    return Array.from(navLinks)
+      .map((link) => {
+        const href = link.getAttribute('href');
+        return href ? href.replace('#', '') : '';
+      })
+      .filter(Boolean);
+  }
+
+  const sectionIDs = getSectionIdsFromNavLinks();
+  function isVisible(el: Element): boolean {
+    const rect = el.getBoundingClientRect();
+    const windowHeight = window.innerHeight || document.documentElement.clientHeight;
+    const isInView = rect.top <= windowHeight && rect.top + rect.height >= 20;
+    return isInView;
+  }
+
+  function updateNavGlow() {
+    let activeSectionIndex: number | null = null;
+
+    for (let i = 0; i < sectionIDs.length; i++) {
+      const element = document.getElementById(sectionIDs[i]);
+      if (element && isVisible(element)) {
+        activeSectionIndex = i;
+        break;
+      }
+    }
+
+    if (activeSectionIndex !== null && activeSectionIndex < navLinks.length) {
+      const activeLink = navLinks[activeSectionIndex];
+      if (activeLink.parentElement) {
+        // Asegurarse de que parentElement no es null
+        const linkRect = activeLink.getBoundingClientRect();
+        const navRect = activeLink.parentElement.getBoundingClientRect();
+        const navGlowPosition = linkRect.left - navRect.left + linkRect.width / 2;
+
+        gsap.to(navGlow, {
+          x: `${navGlowPosition}px`,
+          left: `${-12.5}%`,
+          duration: 0.5,
+          overwrite: true,
+          ease: 'Expo.easeOut',
+        });
+
+        navLinks.forEach((link, index) => {
+          if (index === activeSectionIndex) {
+            gsap.to(link, {
+              color: '#fff',
+              scale: 1.05,
+              delay: 0.005,
+              duration: 0.1,
+              overwrite: true,
+              ease: 'Expo.easeOut',
+            });
+          } else {
+            gsap.to(link, {
+              clearProps: 'all',
+              duration: 0.1,
+              ease: 'expo.in',
+            });
+          }
+        });
+      }
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', updateNavGlow);
+  window.addEventListener('scroll', updateNavGlow);
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const elementsToAnimate: HTMLElement[] = Array.from(document.querySelectorAll('.animate-on-scroll'));
+    elementsToAnimate.forEach((element: HTMLElement) => {
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: element, // Ajusta según tu estructura HTML
+          start: 'top 90%',
+        },
+      });
+      const delay = parseFloat(element.getAttribute('data-delay') || '0');
+      const easing = element.getAttribute('data-easing') || 'Expo.easeOut';
+      const duration = parseFloat(element.getAttribute('data-duration') || '2.5');
+      const type = element.getAttribute('data-type') || 'simple';
+
+      let animationSettings: any = {};
+
+      switch (type) {
+        case 'simple':
+          animationSettings = { opacity: 1, y: 0, filter: 'blur(0px)' };
+          break;
+        case 'zoomReversed':
+          animationSettings = { opacity: 1, scale: 1.5 };
+          break;
+        case 'zoomSmall':
+          animationSettings = { opacity: 1, scale: 0.9 };
+          break;
+        case 'glowLine':
+          animationSettings = { opacity: 1, delay: 8 };
+          break;
+      }
+
+      animationSettings.duration = duration;
+      animationSettings.delay = delay;
+      animationSettings.ease = easing;
+      animationSettings.onStart = () => (element.style.visibility = 'visible');
+
+      tl.to(element, animationSettings, '+=0'); // Ajusta la posición relativa según sea necesario
+    });
+  });
+
+  //PARALLAX ANIMATIONS ON SCROLL
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const elementsToAnimate = document.querySelectorAll('.parallax-on-scroll');
+
+    elementsToAnimate.forEach((element) => {
+      const dataType = element.getAttribute('data-type');
+
+      if (dataType === 'small') {
+        gsap.fromTo(
+          element,
+          { y: '-5%' },
+          {
+            y: '5%',
+            scrollTrigger: {
+              trigger: element,
+              start: 'top bottom',
+              end: 'bottom top',
+              scrub: 1,
+            },
+          }
+        );
+      }
+
+      if (dataType === 'big') {
+        gsap.fromTo(
+          element,
+          { y: '-15%' }, // Inicio para big
+          {
+            y: '15%', // Fin para big
+            scrollTrigger: {
+              trigger: element,
+              start: 'top bottom',
+              end: 'bottom top',
+              scrub: 1,
+            },
+          }
+        );
+      }
+    });
+  });
+</script>

@@ -1,0 +1,28 @@
+---
+const { stats } = Astro.props;
+const cardsJson = JSON.parse(JSON.stringify(stats));
+---
+
+<div class="py-16 sm:px-6 mx-auto md:px-24 lg:px-8 lg:py-20 max-w-7xl">
+  <div class="grid grid-cols-2 row-gap-8 md:grid-cols-4">
+    {
+      Object.values(cardsJson).map((stat: any, index) => (
+        <div
+          class="text-center md:border-r md:last:border-none md:border-slate-500 mb-12 md:mb-0 animate-on-scroll"
+          data-type="simple"
+          data-duration="1.5"
+          data-delay={`${0.15 + index * 0.1}`}
+          data-easing="Expo.easeOut"
+        >
+          <div class="flex items-center justify-center drop-shadow-[0px_0px_15px_#ffffff7d]">
+            <span class="text-3xl lg:text-5xl xl:text-6xl text-white ">+</span>
+            <div class="counter text-3xl lg:text-5xl xl:text-6xl text-primary text-white font-heading ">
+              {stat.amount}
+            </div>
+          </div>
+          <p class="text-base text-white mt-2 lg:text-base">{stat.title}</p>
+        </div>
+      ))
+    }
+  </div>
+</div>

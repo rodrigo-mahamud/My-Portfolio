@@ -1,0 +1,42 @@
+---
+import GladOs from '../components/widgets/GladOs.astro';
+import Layout from '../layouts/BaseLayout.astro';
+import { getHomePermalink } from '../utils/permalinks';
+import { Image } from 'astro:assets';
+import aperture from '../assets/images/cakeLie/aperture.png';
+import CustomMouse from '../components/common/CustomMouse.astro';
+const title = ` 404`;
+---
+
+<Layout meta={{ title }}>
+  <CustomMouse />
+  <div class="overflow-hidden">
+    <GladOs />
+    <section class="flex items-center h-screen px-16 bg-black">
+      <div class="absolute left-0 top-0 ml-20 mt-16 py-4">
+        <Image
+          class="w-1/4"
+          alt="glad-os"
+          sizes="(max-width: 767px) 400px, (max-width: 1023px) 768px, (max-width: 2039px) 1024px, 2040px"
+          loading="eager"
+          width={1024}
+          src={aperture}
+        />
+      </div>
+      <div class="container flex flex-col items-center justify-center px-5 mx-auto">
+        <div class="text-center">
+          <h2 class="font-bold text-[10rem] text-white">404</h2>
+          <p class="text-3xl text-white font-semibold md:text-4xl">
+            This page is a <i class="text-[#ff6e00]">lie...</i>
+          </p>
+          <p class="text-lg text-white/60 mt-2 italic md:text-sm">- Please go back to the test chamber -</p>
+        </div>
+      </div>
+      <div class="absolute left-0 bottom-0 ml-20 mb-16 py-4 portal-glow">
+        <a id="portal" class="text-lg text-white pl-5 py-4 cursor-none NoMiceHover" href={getHomePermalink()}
+          >Back to the test chamber.</a
+        >
+      </div>
+    </section>
+  </div>
+</Layout>

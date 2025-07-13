@@ -1,0 +1,94 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Start Frontend",
+      "type": "npm",
+      "script": "dev",
+      "path": "frontend/",
+      "isBackground": true,
+      "presentation": {
+        "reveal": "always",
+        "panel": "new",
+        "group": "development",
+        "name": "Frontend"
+      },
+      "problemMatcher": {
+        "pattern": {
+          "regexp": ".",
+          "file": 1,
+          "location": 2,
+          "message": 3
+        },
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": ".",
+          "endsPattern": "."
+        }
+      }
+    },
+    {
+      "label": "Start Backend",
+      "type": "npm",
+      "script": "dev",
+      "path": "backend/",
+      "isBackground": true,
+      "presentation": {
+        "reveal": "always",
+        "panel": "new",
+        "group": "development",
+        "name": "Backend"
+      },
+      "problemMatcher": {
+        "pattern": {
+          "regexp": ".",
+          "file": 1,
+          "location": 2,
+          "message": 3
+        },
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": ".",
+          "endsPattern": "."
+        }
+      }
+    },
+    {
+      "label": "Start MongoDB",
+      "type": "shell",
+      "command": "pgrep mongod > /dev/null && echo 'MongoDB ya está corriendo' || (mongod --dbpath ~/mongodb-data --port 27017 --bind_ip 127.0.0.1 --fork --logpath ~/mongod.log && echo 'MongoDB iniciado correctamente')",
+      "presentation": {
+        "reveal": "always",
+        "panel": "new",
+        "group": "development",
+        "name": "MongoDB"
+      }
+    },
+    {
+      "label": "Start Development Environment",
+      "dependsOn": ["Start MongoDB", "Start Frontend", "Start Backend"],
+      "dependsOrder": "sequence",
+      "runOptions": {
+        "runOn": "folderOpen"
+      }
+    },
+    {
+      "label": "Install Dependencies",
+      "type": "npm",
+      "script": "install:all",
+      "presentation": {
+        "reveal": "always",
+        "panel": "new"
+      }
+    },
+    {
+      "label": "Stop MongoDB",
+      "type": "shell",
+      "command": "mongosh --eval 'db.adminCommand({ shutdown: 1 })'",
+      "presentation": {
+        "reveal": "always",
+        "panel": "new"
+      }
+    }
+  ]
+}

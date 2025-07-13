@@ -1,0 +1,268 @@
+---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+import { Icon } from 'astro-icon/components';
+
+const { images } = Astro.props;
+
+const img = 'cardIMG.png'
+
+const columns = Array.from({ length: 6 }, (_, i) => {
+  const isEvenColumn = (i + 1) % 2 === 0;
+  const start = i * 5;
+  const end = isEvenColumn ? start + 6 : start + 5;
+  return images.slice(start, end);
+});
+---
+
+<style>
+  .transformTextBox {
+    box-shadow: 25px 0 144px -65px rgba(16, 24, 40, 0.25);
+  }
+  .heroShadow {
+    background-color: transparent;
+  }
+  .heroShadow:after {
+    content: '';
+    position: absolute;
+    width: 100%;
+
+    box-shadow: 0px 95px 68px 175px #0a011800;
+  }
+  .coversh {
+    box-shadow: 0px -80px 0px #0a0118;
+  }
+</style>
+
+<section class="sticky-section h-[160vh]" id="inicio" data-start="0" data-end="650">
+  <div class="bg-[#0f0420] flex-col-reverse md:flex-row heroShadow">
+    <div
+      class="w-full h-[40vh] md:w-[50vw] 4xl:w-[35vw] bg-[#0a0118] coversh md:h-[110vh] fixed z-10 transformTextBox overflow-hidden"
+    >
+      <div class="absolute bottom-20 md:h-2/6 px-4 md:px-14 md:pb-8 flex gap-6 flex-col md:w-[50vw] 4xl:w-[35vw]">
+        <h1
+          id="tittleHero"
+          class="text-white blur text-3xl md:text-4xl font-semibold w-full translate-y-[50px] opacity-0 text-pretty"
+        >
+          Rodrigo Mahamud García
+        </h1>
+        <h2 id="subtittleHero" class="w-full translate-y-[50px] opacity-0 blur">
+          Freelance Frontend Engineer with 3+ years crafting responsive web solutions using React and Next.js.
+        </h2>
+        <div id="buttonsHero" class="flex gap-3 items-center w-full translate-y-[50px] opacity-0 blur">
+          <div class="magnetic w-fit" data-strength="0.5">
+            <button
+              class="group relative h-10 w-full cursor-none overflow-hidden rounded-md bg-white/10 px-6 border border-[#f2f2f21a] text-neutral-50 transition hover:bg-white/20"
+            >
+              <span class="relative">Get in touch</span>
+              <div
+                class="animate-shine-infinite absolute inset-0 -top-[20px] flex h-[calc(100%+40px)] w-full justify-center blur-[12px]"
+              >
+                <div class="relative h-full w-8 bg-white/15"></div>
+              </div>
+            </button>
+          </div>
+          <div class="magnetic w-fit" data-strength="0.5">
+            <a
+              href="/cardIMG.png"
+              download="proposed_file_name"
+              class="group relative inline-flex h-10 w-10 items-center justify-center overflow-hidden rounded-md bg-white/20 border border-[#f2f2f21a] px-6 font-medium duration-500 ease-out cursor-none"
+              ><div class="translate-x-0 opacity-100 transition group-hover:-translate-x-[150%] group-hover:opacity-0">
+                <Icon name="file-text" class="text-lg stroke-1 arrow-right" />
+              </div><div
+                class="absolute translate-x-[150%] opacity-0 transition group-hover:translate-x-0 group-hover:opacity-100"
+              >
+                <Icon name="download" class="text-lg stroke-1 arrow-right" />
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <div class="magnetic w-fit" data-strength="0.5">
+          <div id="scrollDownHero" class="translate-y-[50px] opacity-0 blur">
+            <button
+              class="group relative inline-flex w-fit items-center cursor-none overflow-hidden rounded-md font-medium animate-pulse magnetic"
+              data-strength="0.5"
+            >
+              <Icon name="arrow-narrow-up" class="stroke-1 arrow-right rotate-180" />
+              <span class="text-sm">Scroll down</span></button
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="h-full overflow-hidden">
+      <div class="flex flex-row w-full px-2 md:px-0 min-h-max gap-4 md:gap-10 h-screen items-center transformHero">
+        {
+          columns.map((column) => (
+            <div
+              class="last:flex first:flex flex-col md:w-1/4 gap-y-10 opacity-0 hidden lg:flex lg:last:hidden lg:first:hidden 4xl:last:flex 4xl:first:flex"
+              id="heroCardShadow"
+            >
+              {column.map((image) => {
+             
+                return (
+                  <Image
+                  width={50}
+
+                  height={50}
+                    class="min-h-[12rem] md:min-h-[22rem] object-cover opacity-80"
+                    alt="glad-os"
+                    quality={'low'}
+                    sizes="(max-width: 767px) 400px, (max-width: 1023px) 768px, (max-width: 2039px) 1024px, 2040px"
+                    src='https://images.ecestaticos.com/Ynmp8a6Bh4iEEUeijpUSpqFtOiw=/0x30:1200x705/1600x900/filters:fill(white):format(jpg)/f.elconfidencial.com%2Foriginal%2F666%2Fc0e%2F539%2F666c0e539591f1583ec0707639440ce0.jpg'
+                  />
+                );
+              })}
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>
+<script>
+  import { gsap } from 'gsap';
+  document.addEventListener('DOMContentLoaded', () => {
+    function isMobileDevice() {
+      const userAgent = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+      if (userAgent && window.innerWidth < 768) {
+        return true;
+      }
+    }
+
+    function initializeAnimations() {
+      const heroElementsToAnimate = document.querySelectorAll('.animate-on-scrollHero');
+      heroElementsToAnimate.forEach((element, index) => {
+        const delay = 0.65 + index * 0.15;
+        gsap.from(element, {
+          duration: 2.25,
+          autoAlpha: 0,
+          y: 100,
+          delay: delay,
+          ease: 'Expo.easeOut',
+          clearProps: 'all',
+        });
+      });
+
+      const heroElement = document.querySelector('.transformHero');
+      const heroTextBox = document.querySelector('.transformTextBox');
+      const heroContainer = document.querySelector('#inicio');
+
+      gsap.fromTo(
+        heroElement,
+        {
+          duration: 1,
+          transform: 'translate3d(35%, -35%, 0) scale3d(1, 0.65, 1) rotateX(15deg) rotateY(-10deg) rotateZ(32deg)',
+        },
+        {
+          duration: 1,
+          transform: 'translate3d(0%, -50%, 0px) scale3d(1, 1, 1) rotateX(15deg) rotateY(0deg) rotateZ(0deg)',
+
+          scrollTrigger: {
+            trigger: heroContainer,
+            start: 'top',
+            end: 1000,
+            scrub: true,
+          },
+        }
+      );
+      gsap.fromTo(
+        heroTextBox,
+        {
+          duration: 1,
+        },
+        {
+          width: '0vw',
+          duration: 1,
+          scrollTrigger: {
+            trigger: heroContainer,
+            start: 'top',
+            end: 800,
+            scrub: true,
+          },
+        }
+      );
+    }
+
+    // Ejecutar al inicio
+    if (!isMobileDevice()) {
+      initializeAnimations();
+    }
+
+    // Revisar al redimensionar
+    window.addEventListener('resize', () => {
+      if (!isMobileDevice()) {
+        initializeAnimations();
+      }
+    });
+
+    // obtener todas las columnas de las imágenes
+    const columns = Array.from(document.querySelectorAll('#heroCardShadow'));
+    const title = document.getElementById('tittleHero');
+    const subtitle = document.getElementById('subtittleHero');
+    const heroButtons = document.getElementById('buttonsHero');
+    const heroScrollDown = document.getElementById('scrollDownHero');
+    columns.forEach((column) => {
+      // generar una duración aleatoria entre 4 y 6 para la animación inicial
+      const randomDurationInitial = Math.random() * (5 - 3) + 3;
+      // generar una duración aleatoria entre 10 y 20 para la animación repetitiva
+      const randomDurationIdle = Math.random() * (15 - 7) + 10;
+
+      gsap.to(title, {
+        y: 0,
+        filter: 'blur(0px)',
+        duration: 2,
+        opacity: 1,
+        delay: 0.75,
+        ease: 'Expo.easeOut',
+      });
+      gsap.to(subtitle, {
+        y: 0,
+        filter: 'blur(0px)',
+        duration: 2,
+        delay: 1,
+        opacity: 1,
+        ease: 'Expo.easeOut',
+      });
+      gsap.to(heroButtons, {
+        y: 0,
+        filter: 'blur(0px)',
+        duration: 2,
+        delay: 1.25,
+        opacity: 1,
+        ease: 'Expo.easeOut',
+      });
+      gsap.to(heroScrollDown, {
+        y: 0,
+        filter: 'blur(0px)',
+        duration: 2,
+        delay: 1.5,
+        opacity: 1,
+        ease: 'Expo.easeOut',
+      });
+      const tl = gsap.timeline();
+      // Primera animación al cargar
+      tl.fromTo(
+        column,
+        {
+          y: -800,
+        },
+        {
+          y: -150,
+          delay: 0.15,
+          opacity: 1,
+          ease: 'Expo.easeOut',
+          duration: randomDurationInitial,
+        }
+      ).to(column, {
+        duration: randomDurationIdle,
+        delay: 0,
+        translateY: 0,
+        repeat: -1,
+        yoyo: true,
+        ease: 'Expo.easeInOut',
+      });
+    });
+  });
+</script>

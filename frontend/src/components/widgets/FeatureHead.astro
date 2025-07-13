@@ -1,0 +1,78 @@
+---
+export interface Props {
+  title: string;
+  description: string;
+  delay: string;
+}
+---
+
+<div
+  class="card h-[30vh] animate-on-scroll relative flex flex-col border border-transparent"
+  data-type="simple"
+  data-delay={Astro.props.delay}
+  data-duration="1.75"
+  data-easing="Expo.easeOut"
+>
+  <div class="card-content relative">
+    <div class="card-image">
+      <slot />
+    </div>
+    <div class="px-8 pb-6">
+      <h3 class="text-lg font-bold">{Astro.props.title}</h3>
+      {
+        Astro.props.description && (
+          <h4 class="text-muted text-gray-400 text-sm mt-1" set:html={Astro.props.description} />
+        )
+      }
+    </div>
+  </div>
+</div>
+
+<script>
+  interface ExtendedHTMLElement extends HTMLElement {
+    style: CSSStyleDeclaration & {
+      '--mouse-x': string;
+      '--mouse-y': string;
+    };
+    mouseX?: number;
+    mouseY?: number;
+  }
+
+  document.getElementById('cards')!.onmousemove = (e: MouseEvent) => {
+    const cards = document.getElementsByClassName('card');
+
+    for (const card of Array.from(cards) as ExtendedHTMLElement[]) {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+
+      if (card.mouseX === undefined) card.mouseX = x;
+      if (card.mouseY === undefined) card.mouseY = y;
+
+      card.mouseX = x;
+      card.mouseY = y;
+    }
+  };
+
+  function lerp(start: number, end: number, factor: number) {
+    return (1 - factor) * start + factor * end;
+  }
+
+  function animate() {
+    const cards = document.getElementsByClassName('card');
+
+    for (const card of Array.from(cards) as ExtendedHTMLElement[]) {
+      if (card.mouseX !== undefined && card.mouseY !== undefined) {
+        // Interpolación lineal para suavizar el movimiento
+        const x = lerp(parseFloat(card.style.getPropertyValue('--mouse-x') || '0'), card.mouseX, 0.1);
+        const y = lerp(parseFloat(card.style.getPropertyValue('--mouse-y') || '0'), card.mouseY, 0.1);
+
+        card.style.setProperty('--mouse-x', `${x}px`);
+        card.style.setProperty('--mouse-y', `${y}px`);
+      }
+    }
+
+    requestAnimationFrame(animate);
+  }
+  animate();
+</script>

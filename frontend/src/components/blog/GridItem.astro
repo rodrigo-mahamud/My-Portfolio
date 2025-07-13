@@ -1,0 +1,106 @@
+---
+// import { Image } from 'astro:assets';
+
+import { Icon } from 'astro-icon/components';
+import { Image } from 'astro:assets';
+import type { Post } from '../../types';
+import { findImage } from '../../utils/images';
+import { getPermalink } from '../../utils/permalinks';
+
+export interface Props {
+  post: Post;
+}
+
+const { post } = Astro.props;
+const image = await findImage(post.image);
+
+function darkenColor(color, amount) {
+  let [r, g, b, a] = color.match(/\d+/g).map(Number);
+  r = Math.floor(r * amount);
+  g = Math.floor(g * amount);
+  b = Math.floor(b * amount);
+  return `rgba(${r}, ${g}, ${b}, ${a - 0.25})`;
+}
+
+const adjustedColor1 = darkenColor(post.accentColor, 0.6);
+---
+
+<div
+  class="animate-on-scroll"
+  data-type="simple"
+  data-duration="1.5"
+  data-easing="Expo.easeOut"
+  style={{
+    '--gradient-base-color': post.accentColor,
+    '--adjusted-color1': adjustedColor1,
+  }}
+>
+  <div
+    class="cursor-none custom-mouse relative borderGlow mb-8 md:mb-6 w-full h-[45vh] md:h-screen rounded-2xl md:mt-16 border border-[#2d263a] overflow-hidden"
+    data-typemouse="link"
+  >
+    <a href={getPermalink(post.permalink, 'post')} class="w-full cursor-none" data-nav="animate">
+      <div class="bgGradient absolute top-0 h-full w-full rounded-2xl md:border md:border-[#716882]"></div>
+      <div class="flex flex-col h-full justify-between z-10 relative">
+        <div class="flex flex-row justify-between px-6 pt-6 md:px-12 md:pt-14">
+          <div class="h-1/6">
+            <h3
+              class="text-2xl md:text-3xl font-bold tracking-tighter mb-2 headingTxt text-left animate-on-scroll"
+              data-type="simple"
+              data-duration="1.5"
+              data-easing="Expo.easeOut"
+            >
+              {post.title}
+            </h3>
+            <p
+              class="text-white/60 text-sm md:text-lg animate-on-scroll text-balance line-clamp-2 md:line-clamp-none"
+              data-type="simple"
+              data-duration="1.5"
+              data-easing="Expo.easeOut"
+            >
+              <Fragment set:html={post.excerpt} />
+            </p>
+          </div>
+          <div
+            class="flex items-start md:items-center text-white md:text-white/60 animate-on-scroll"
+            data-type="simple"
+            data-duration="1.5"
+            data-easing="Expo.easeOut"
+          >
+            <Icon name="arrow-narrow-right" class="text-5xl stroke-1 arrow-right" />
+          </div>
+        </div>
+        <div
+          class="relative h-5/6 rounded pt-6 md:pt-16 animate-on-scroll px-6 md:p-0"
+          data-type="simple"
+          data-duration="2"
+          data-easing="Expo.easeOut"
+        >
+          {
+            image && (
+              <Image
+                class="object-cover md:w-5/6 h-[105%] rounded-xl md:rounded-t-2xl mx-auto "
+                alt={`Imagen del ${post.title}`}
+                widths={[275, 475, 575, 950, 1440]}
+                sizes={`(max-width: 550px) 275px, (max-width: 750px) 475px, (max-width: 950px) 575px,(max-width: 2000px) 950px, 1440px`}
+                quality={'high'}
+                format="webp"
+                loading="lazy"
+                src={post.image}
+                decoding="async"
+              />
+            )
+          }
+        </div>
+      </div>
+    </a>
+  </div>
+</div>
+<!-- <Image
+src={image}
+class="object-cover w-5/6 h-full rounded-t-2xl mx-auto"
+widths={[1920]}
+alt={post.title}
+loading="lazy"
+decoding="async"
+/> -->

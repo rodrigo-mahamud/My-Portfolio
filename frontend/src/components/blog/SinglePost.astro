@@ -1,0 +1,406 @@
+---
+import { Image } from 'astro:assets';
+import { getFormattedDate } from '../../utils/utils';
+import type { Post } from '../../types';
+import PostIndex from './PostIndex.astro';
+import { YouTube } from '@astro-community/astro-embed-youtube';
+
+export interface Props {
+  post: Post;
+  url: string | URL;
+}
+
+const { post } = Astro.props;
+const { Content } = post;
+function darkenColor(color, amount) {
+  let [r, g, b, a] = color.match(/\d+/g).map(Number);
+  r = Math.floor(r * amount);
+  g = Math.floor(g * amount);
+  b = Math.floor(b * amount);
+  return `rgba(${r}, ${g}, ${b}, ${a - 0.25})`;
+}
+
+const adjustedColor1 = darkenColor(post.accentColor, 0.5);
+---
+
+<style>
+  .bg-accentColor {
+    background: radial-gradient(
+      95% 100% at 50% 0%,
+      var(--gradient-base-color) 0%,
+      var(--adjusted-color1) 50%,
+      transparent 100%
+    );
+    opacity: 0;
+    animation: fadeInOut 0.75s cubic-bezier(0.26, 1, 0.48, 1) forwards 0.75s;
+  }
+  .postHeaderFont {
+    background-image: linear-gradient(to bottom, #fff 50%, transparent);
+    text-shadow: 0 8px 20px rgba(0, 87, 255, 0.25), 0 -6px 20px rgba(255, 90, 0, 0.1), 0 0 30px rgba(255, 255, 255, 0.3);
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+  }
+  @keyframes fadeInOut {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  @media (max-width: 768px) {
+    .bg-accentColor {
+      background: radial-gradient(
+        150% 100% at 50% 0%,
+        var(--gradient-base-color) 0%,
+        var(--adjusted-color1) 50%,
+        transparent 100%
+      );
+      opacity: 0;
+      animation: fadeInOut 0.75s cubic-bezier(0.26, 1, 0.48, 1) forwards 0.75s;
+    }
+    .postHeaderFont {
+      background-image: linear-gradient(to bottom, #fff 50%, #ffffff33);
+      text-shadow: 0 8px 20px rgba(0, 87, 255, 0.25), 0 -6px 20px rgba(255, 90, 0, 0.1),
+        0 0 30px rgba(255, 255, 255, 0.3);
+      -webkit-text-fill-color: transparent;
+      -webkit-background-clip: text;
+      background-clip: text;
+    }
+  }
+</style>
+
+<section class="w-full h-full">
+  <div
+    class="bg-accentColor absolute w-full h-screen"
+    style={{
+      '--gradient-base-color': post.accentColor,
+      '--adjusted-color1': adjustedColor1,
+    }}
+  >
+  </div>
+  <PostIndex postIndex={post.postIndex} />
+  <article
+    id="article"
+    class="opacity-0 blur-lg max-w-[90vw] lg:max-w-3xl xl:max-w-4xl 2xl:max-w-5xl 3xl:max-w-6xl mx-auto"
+  >
+    <header class="w-full h-full pt-28 relative">
+      <div class="flex justify-between flex-col pb-16 mt-0 mb-2 px-4 sm:px-6 items-center">
+        <h1
+          class="postHeaderFont px-4 text-center text-5xl md:text-[80px] mx-auto font-medium tracking-tighter md:leading-snug animate-on-scroll"
+          data-type="simple"
+          data-duration="1.5"
+          data-easing="Expo.easeOut"
+          style={{
+            '--gradient-base-color': post.accentColor,
+            '--adjusted-color1': adjustedColor1,
+          }}
+        >
+          {post.title}
+        </h1>
+
+        <p class="animate-on-scroll mt-4" data-type="simple" data-duration="1.5" data-easing="Expo.easeOut">
+          <time class="opacity-50 text-white" datetime={String(post.publishDate)}
+            >{getFormattedDate(post.publishDate)}</time
+          >
+        </p>
+      </div>
+      {
+        post.image ? (
+          <div
+            class=" h-[50vh] md:h-[75vh] w-full reltive pb-[1px] animate-on-scroll"
+            data-type="simple"
+            data-duration="1.5"
+            data-easing="Expo.easeOut"
+          >
+            <div class=" absolute w-full h-[inherit] z-10 shadow-[inset_0px_-350px_125px_-200px_#0a0118]" />
+            <Image
+              class="rounded-xl h-full object-cover"
+              alt={`Imagen del ${post.title}`}
+              widths={[275, 475, 575, 950, 1440]}
+              sizes={`(max-width: 550px) 275px, (max-width: 750px) 475px, (max-width: 950px) 575px,(max-width: 2000px) 950px, 1440px`}
+              quality={'high'}
+              format="webp"
+              loading="eager"
+              src={post.image}
+              decoding="async"
+            />
+          </div>
+        ) : (
+          <div class=" mx-auto px-4 sm:px-6">
+            <div class="border-t dark:border-slate-700" />
+          </div>
+        )
+      }
+    </header>
+
+    <div class="mx-auto">
+      <YouTube id="" class="hidden" />
+      <Content />
+    </div>
+  </article>
+</section>
+<script>
+  // eslint-disable-next-line no-unused-vars
+
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  gsap.registerPlugin(ScrollTrigger);
+  function isMobileDevice() {
+    const userAgent = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    return userAgent && window.innerWidth < 768;
+  }
+  document.addEventListener('DOMContentLoaded', () => {
+    const article = document.getElementById('article');
+
+    gsap.to(article, {
+      duration: 1,
+
+      filter: 'blur(0px)',
+      opacity: 1,
+      ease: 'power3.out',
+    });
+  });
+
+  /*countup*/
+
+  const animateCounters = () => {
+    const counters = document.querySelectorAll('.counter');
+    counters.forEach((counter) => {
+      const finalNumber = parseInt(counter.textContent || '0');
+      gsap.fromTo(
+        counter,
+        { innerHTML: 0 },
+        {
+          innerHTML: finalNumber,
+          duration: 3,
+          ease: 'Expo.easeOut',
+          snap: { innerHTML: 1 },
+
+          onUpdate: function () {
+            const target = this.targets()[0];
+            if (target.innerHTML) {
+              counter.textContent = Math.ceil(Number(target.innerHTML)).toString();
+            }
+          },
+        }
+      );
+    });
+  };
+
+  document.addEventListener('DOMContentLoaded', animateCounters);
+
+  //BENTO//
+  interface ExtendedHTMLElement extends HTMLElement {
+    style: CSSStyleDeclaration & {
+      '--mouse-x': string;
+      '--mouse-y': string;
+    };
+    mouseX?: number;
+    mouseY?: number;
+  }
+
+  document.getElementById('cards')!.onmousemove = (e: MouseEvent) => {
+    const cards = document.getElementsByClassName('bento');
+
+    for (const card of Array.from(cards) as ExtendedHTMLElement[]) {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+
+      if (card.mouseX === undefined) card.mouseX = x;
+      if (card.mouseY === undefined) card.mouseY = y;
+
+      card.mouseX = x;
+      card.mouseY = y;
+    }
+  };
+
+  function lerp(start: number, end: number, factor: number) {
+    return (1 - factor) * start + factor * end;
+  }
+
+  function animate() {
+    const cards = document.getElementsByClassName('bento');
+
+    for (const card of Array.from(cards) as ExtendedHTMLElement[]) {
+      if (card.mouseX !== undefined && card.mouseY !== undefined) {
+        // Interpolación lineal para suavizar el movimiento
+        const x = lerp(parseFloat(card.style.getPropertyValue('--mouse-x') || '0'), card.mouseX, 0.1);
+        const y = lerp(parseFloat(card.style.getPropertyValue('--mouse-y') || '0'), card.mouseY, 0.1);
+
+        card.style.setProperty('--mouse-x', `${x}px`);
+        card.style.setProperty('--mouse-y', `${y}px`);
+      }
+    }
+
+    requestAnimationFrame(animate);
+  }
+  animate();
+
+  const nextSection = document.getElementById('nextSection') as HTMLElement;
+  const canvasContainer = document.getElementById('canvas-container') as HTMLElement;
+  const canvas = document.getElementById('canvas') as HTMLCanvasElement;
+  const ctx = canvas.getContext('2d')!;
+  const nextProjectMobile = document.getElementById('nextProjectMobile') as HTMLElement;
+  const image = document.getElementById('image') as HTMLElement;
+  if (isMobileDevice()) {
+    gsap.to(image, {
+      scrollTrigger: {
+        trigger: nextSection,
+        start: 'top bottom',
+        end: '200% top',
+        scrub: 1, // Suaviza la transición de la animación durante el scroll
+      },
+      y: '-7vh',
+      duration: 1.5,
+      ease: 'Expo.easeOut',
+    });
+    gsap.to(image, {
+      scrollTrigger: {
+        trigger: nextSection,
+        start: '135% bottom',
+        end: '50% bottom',
+        toggleActions: 'play none reverse none',
+      },
+      duration: 1,
+      opacity: 0.35,
+      ease: 'Expo.easeOut',
+    });
+    gsap.to(nextProjectMobile, {
+      scrollTrigger: {
+        trigger: nextSection,
+        start: '135% bottom',
+        end: '50% bottom',
+        toggleActions: 'play none reverse none',
+      },
+      y: '-4vh',
+      duration: 1,
+      ease: 'Expo.easeOut',
+    });
+  }
+  if (!isMobileDevice()) {
+    nextSection.addEventListener('mouseenter', () => {
+      gsap.to(image, {
+        y: '-25vh',
+        filter: 'saturate(1.25)',
+        duration: 1.5,
+        ease: 'Expo.easeOut',
+      });
+      gsap.to(canvasContainer, {
+        opacity: 1,
+        duration: 1.5,
+      });
+    });
+
+    nextSection.addEventListener('mouseleave', () => {
+      gsap.to(image, {
+        y: '0',
+        filter: 'saturate(0.5)',
+        duration: 1.5,
+        ease: 'Expo.easeOut',
+      });
+      gsap.to(canvasContainer, {
+        opacity: 0,
+        duration: 1.5,
+      });
+    });
+
+    function resizeCanvas() {
+      canvas.width = canvasContainer.clientWidth;
+      canvas.height = canvasContainer.clientHeight;
+    }
+
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
+
+    interface Star {
+      x: number;
+      y: number;
+      radius: number;
+      velocityX: number;
+      velocityY: number;
+      alpha: number;
+      increasing: boolean;
+    }
+
+    const stars: Star[] = [];
+    const maxStars = 200;
+
+    function createStar(): Star {
+      return {
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        radius: Math.random() * 1.25 + 0.75,
+        velocityX: Math.random() * 0.1 - 0.05,
+        velocityY: Math.random() * 0.1 - 0.05,
+        alpha: Math.random(),
+        increasing: Math.random() >= 0.5,
+      };
+    }
+
+    for (let i = 0; i < maxStars; i++) {
+      stars.push(createStar());
+    }
+
+    let animating = false;
+
+    function updateStar(star: Star) {
+      star.x += star.velocityX;
+      star.y += star.velocityY;
+
+      if (star.x < 0 || star.x > canvas.width) star.velocityX *= -1;
+      if (star.y < 0 || star.y > canvas.height) star.velocityY *= -1;
+
+      const opacityChangeSpeed = 0.0005;
+      if (star.increasing) {
+        star.alpha += opacityChangeSpeed;
+        if (star.alpha > 0.95) {
+          star.alpha = 1;
+          star.increasing = false;
+        }
+      } else {
+        star.alpha -= opacityChangeSpeed;
+        if (star.alpha < 0.05) {
+          star.alpha = 0;
+          star.increasing = true;
+        }
+      }
+    }
+
+    nextSection.addEventListener('mouseenter', () => {
+      animating = true;
+      starAnimation();
+    });
+
+    nextSection.addEventListener('mouseleave', () => {
+      animating = false;
+    });
+
+    function starAnimation() {
+      if (!animating) return;
+
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      stars.forEach((star) => {
+        updateStar(star);
+
+        ctx.shadowBlur = 10;
+        ctx.shadowColor = '#fff';
+
+        ctx.globalAlpha = star.alpha;
+        ctx.fillStyle = '#fff';
+        ctx.beginPath();
+        ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+        ctx.fill();
+
+        ctx.shadowBlur = 0;
+      });
+
+      requestAnimationFrame(starAnimation);
+    }
+
+    starAnimation();
+  }
+</script>

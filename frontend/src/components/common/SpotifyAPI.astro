@@ -1,0 +1,169 @@
+<script>
+  type Artist = {
+    name: string;
+  };
+
+  type Album = {
+    images: { url: string }[];
+  };
+
+  type Track = {
+    name: string;
+    artists: Artist[];
+    album: Album;
+    external_urls: { spotify: string };
+    preview_url: string;
+  };
+
+  type SongData = {
+    playing: boolean;
+    songData?: {
+      item: Track;
+    };
+  };
+
+  let audioElement: HTMLAudioElement | null = null;
+  let isFirstClick: boolean = true;
+
+  function updateUISong(item?: Track): void {
+    const trackNameElement = document.getElementById('track-name') as HTMLDivElement;
+    const scardTitle = document.getElementById('scard-title') as HTMLDivElement;
+    const defaultImage = document.getElementById('default-image') as HTMLImageElement;
+    const albumCover = document.getElementById('album-cover') as HTMLImageElement;
+    const trackLink = document.getElementById('track-link') as HTMLAnchorElement;
+
+    if (item) {
+      const trackName = item.name;
+      const artistName = item.artists.map((artist) => artist.name).join(', ');
+      const albumCoverUrl = item.album.images[0].url;
+      const trackUrl = item.external_urls.spotify;
+      const previewUrl = item.preview_url;
+
+      trackNameElement.innerText = `${trackName} - ${artistName}`;
+      scardTitle.style.display = 'flex';
+      defaultImage.style.display = 'none';
+      if (albumCover) {
+        albumCover.style.display = 'block';
+        albumCover.src = albumCoverUrl;
+      }
+      trackLink.href = trackUrl;
+
+      setupAudioElement(previewUrl);
+      return;
+    }
+
+    if (!item) {
+      trackNameElement.innerText = 'No hay nada sonando en mi Spotify 😴';
+      scardTitle.style.display = 'none';
+      defaultImage.style.display = 'block';
+      albumCover.style.display = 'none';
+      trackLink.classList.remove('custom-mouse');
+      trackLink.removeAttribute('data-typemouse');
+    }
+  }
+
+  async function getNowPlaying(): Promise<void> {
+    try {
+      const response = await fetch('/.netlify/functions/spotifyHandler', {
+        method: 'POST',
+      });
+
+      if (!response.ok) {
+        throw new Error('Error en la respuesta de la Edge Function');
+      }
+
+      const data: SongData = await response.json();
+
+      if (!data.playing || !data.songData?.item) {
+        updateUISong();
+      } else {
+        updateUISong(data.songData.item);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  function setupAudioElement(previewUrl: string): void {
+    if (audioElement) {
+      audioElement.pause();
+    }
+
+    audioElement = new Audio(previewUrl);
+    audioElement.volume = 0.125;
+
+    const playPauseButton = document.getElementById('play-pause-button') as HTMLButtonElement;
+    const playIcon = document.getElementById('play-icon') as HTMLElement;
+    const pauseIcon = document.getElementById('pause-icon') as HTMLElement;
+
+    setupPlayPauseButton(playPauseButton, playIcon, pauseIcon);
+  }
+
+  function setupPlayPauseButton(
+    playPauseButton: HTMLButtonElement,
+    playIcon: HTMLElement,
+    pauseIcon: HTMLElement
+  ): void {
+    if (playPauseButton && playIcon && pauseIcon) {
+      playPauseButton.onclick = function () {
+        if (audioElement) {
+          if (audioElement.paused) {
+            audioElement.play();
+            playIcon.style.display = 'none';
+            pauseIcon.style.display = 'block';
+          } else {
+            audioElement.pause();
+            playIcon.style.display = 'block';
+            pauseIcon.style.display = 'none';
+          }
+        }
+      };
+    }
+
+    setupAudioEvents(playIcon, pauseIcon);
+  }
+
+  function setupAudioEvents(playIcon: HTMLElement, pauseIcon: HTMLElement): void {
+    if (!audioElement) return;
+
+    audioElement.volume = 0.5;
+    const progress = document.getElementById('progress') as HTMLDivElement;
+    const progressBar = document.getElementById('progress-bar') as HTMLDivElement;
+
+    audioElement.addEventListener('timeupdate', () => {
+      if (progress && progressBar && audioElement) {
+        const progressPercentage = audioElement.currentTime / audioElement.duration;
+        progress.style.width = `${progressPercentage * progressBar.offsetWidth}px`;
+      }
+    });
+
+    audioElement.addEventListener('ended', () => {
+      if (audioElement) {
+        audioElement.currentTime = 0;
+      }
+      if (playIcon) playIcon.style.display = 'block';
+      if (pauseIcon) pauseIcon.style.display = 'none';
+    });
+  }
+
+  async function init(): Promise<void> {
+    const sbutton = document.getElementById('sbutton') as HTMLButtonElement;
+    if (sbutton) {
+      sbutton.addEventListener('click', async () => {
+        if (isFirstClick) {
+          await getNowPlaying();
+          isFirstClick = false;
+        }
+      });
+    }
+
+    await getNowPlaying();
+    setInterval(async () => {
+      if (!audioElement || (audioElement && audioElement.paused)) {
+        await getNowPlaying();
+      }
+    }, 60000);
+  }
+
+  init();
+</script>

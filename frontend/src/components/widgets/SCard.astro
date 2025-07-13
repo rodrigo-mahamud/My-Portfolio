@@ -1,0 +1,60 @@
+---
+import { Icon } from 'astro-icon/components';
+---
+
+<div id="scard" class="overflow-hidden blur-md fixed h-full z-40 left-0 right-0 bottom-0 opacity-0 hidden">
+  <svg
+    id="scardClose"
+    class="absolute magnetic m-4 md:mx-3 md:my-2 right-0 opacity-0 scale-0"
+    data-strength="1.05"
+    width="1.75rem"
+    height="1.75rem"
+    viewBox="0 0 24 24"
+    stroke-width="1.5"
+    stroke="#fff"
+    fill="#fff"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  >
+    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+    <path d="M18 6l-12 12"></path>
+    <path d="M6 6l12 12"></path>
+  </svg>
+  <div
+    class="flex md:flex-row flex-col w-full h-full md:h-auto items-center justify-evenly md:justify-start overflow-hidden"
+    id="now-playing"
+  >
+    <a
+      id="track-link"
+      class="cursor-none bg-white/5 flex justify-center items-center w-2/5 md:w-[30%] md:rounded-l-2xl flex-col md:h-full custom-mouse"
+      href=""
+      target="_blank"
+      data-typemouse="link"
+    >
+      <img id="album-cover" class="m-0 object-cover md:rounded-l-2xl" src="" alt="Carátula del álbum" />
+      <Icon id="default-image" name="music-note" class="text-6xl" />
+    </a>
+    <div class="flex-col mx-5 w-[70%]">
+      <h2 id="scard-title" class="truncate max-w-xs md:justify-start justify-center text-white text-lg font-semibold">
+        Sonando en mi Spotify🤘
+      </h2>
+      <h3 id="track-name" class="truncate max-w-xs md:text-start text-center text-slate-300 text-sm font-semibold mb-4">
+      </h3>
+
+      <div id="custom-audio" class="flex flex-row items-center justify-start mt-3">
+        <button
+          id="play-pause-button"
+          class="magnetic cursor-none w-9 h-9 bg-[#ffffff25] rounded-full flex items-center justify-center"
+          data-strength="0.75"
+        >
+          <Icon id="play-icon" name="play" class="text-xl text-center text-white" />
+          <Icon id="pause-icon" name="pause" class="text-xl text-center text-white" style="display: none;" />
+        </button>
+
+        <div id="progress-bar">
+          <div id="progress"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

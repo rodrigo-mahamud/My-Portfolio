@@ -1,0 +1,68 @@
+---
+// Importaciones y definición de propiedades
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+
+const { mediaFiles } = Astro.props;
+
+// Asegurar que images y videos sean arrays iterables
+const images = Array.isArray(mediaFiles.images) ? mediaFiles.images : [];
+const videos = Array.isArray(mediaFiles.videos) ? mediaFiles.videos : [];
+
+// Combinar y transformar rutas de imágenes y vídeos
+const unifiedMediaPaths = [...images, ...videos];
+
+// Importar metadatos de imágenes
+const imageSources = import.meta.glob<{ default: ImageMetadata }>('/src/assets/images/*.{jpeg,jpg,png,gif}');
+---
+
+<!-- Renderizado condicional basado en el tipo de archivo -->
+<div id="cards" class="grid gap-6 mt-16">
+  {
+    unifiedMediaPaths.map((mediaItem, index) => {
+      const isImage =
+        mediaItem.path.endsWith('.jpg') ||
+        mediaItem.path.endsWith('.jpeg') ||
+        mediaItem.path.endsWith('.png') ||
+        mediaItem.path.endsWith('.gif');
+      const mediaSrc = isImage ? imageSources[mediaItem.path]() : mediaItem.path;
+
+      const spanClass = [
+        'col-span-5 md:col-span-3 row-span-4',
+        'col-span-5 md:col-span-2 row-span-4 md:col-start-4',
+        'col-span-5 md:col-span-2 row-span-4 md:row-start-5',
+        'col-span-5 md:col-span-3 row-span-4 md:col-start-3 md:row-start-5',
+        'col-span-5 md:col-span-5 row-span-4 md:row-start-9',
+      ][index % 5];
+
+      return (
+        <div
+          data-type="simple"
+          data-duration="1.5"
+          data-easing="Expo.easeOut"
+          class={`animate-on-scroll bento ${spanClass} `}
+        >
+          <div class="flex flex-col bento-content h-full w-full rounded-xl overflow-hidden">
+            <div class="flex flex-col items-start justify-start pt-6 px-6 md:pt-8 md:px-8 text-start">
+              <h2 class="text-white font-semibold text-lg mb-2">{mediaItem.title}</h2>
+              <h3 class=" text-gray-400 ">{mediaItem.subtitle}</h3>
+            </div>
+            <div class=" flex m-6 md:m-8 h-full overflow-hidden">
+              {isImage ? (
+                <Image class="rounded-xl" alt="Imagen" src={mediaSrc} loading="lazy" decoding="async" />
+              ) : (
+                <video
+                  class="w-full rounded-md h-full aspect-video lazy-video object-cover"
+                  preload="none"
+                  data-src={mediaSrc}
+                  muted
+                  loop
+                />
+              )}
+            </div>
+          </div>
+        </div>
+      );
+    })
+  }
+</div>

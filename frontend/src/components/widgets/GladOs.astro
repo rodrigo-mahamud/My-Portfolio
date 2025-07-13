@@ -1,0 +1,250 @@
+---
+import { Image } from 'astro:assets';
+import body from '../../assets/images/cakeLie/body.png';
+import grid from '../../assets/images/cakeLie/RLed-grid.png';
+import headIn from '../../assets/images/cakeLie/HeadIN.png';
+import headOut from '../../assets/images/cakeLie/HeadOUT.png';
+import headLight from '../../assets/images/cakeLie/Light.png';
+import rled1 from '../../assets/images/cakeLie/RLed-Body.png';
+import rled2 from '../../assets/images/cakeLie/RLedBIG-Head.png';
+import rled3 from '../../assets/images/cakeLie/RLed-Body-2.png';
+import rled4 from '../../assets/images/cakeLie/RLed-Head-2.png';
+import rled5 from '../../assets/images/cakeLie/RLed-Head.png';
+---
+
+<style>
+  .shake-vertical {
+    transform-origin: 80%;
+    animation: shake-vertical 20s cubic-bezier(0.455, 0.03, 0.515, 0.955) infinite alternate-reverse both;
+  }
+  .light {
+    animation: light ease-in-out infinite alternate-reverse both;
+  }
+  .light-flicker {
+    animation: light-blink-fast linear infinite alternate-reverse both 0.1s;
+  }
+  .flicker {
+    animation: blink-fast linear infinite alternate-reverse both 0.5s;
+  }
+  .flicker-fast {
+    animation: blink-fast linear infinite alternate-reverse both 0.5s;
+  }
+  .flicker-fast2 {
+    animation: blink-fast ease-in-out infinite alternate-reverse both 0s;
+  }
+  .flicker-fast3 {
+    animation: blink-fast linear infinite alternate-reverse both 0s;
+  }
+  .flicker-fast4 {
+    animation: blink-fast ease-in-out infinite alternate-reverse both 0.75s;
+  }
+  .flicker-fast5 {
+    animation: blink-fast linear infinite alternate-reverse both 0.5s;
+  }
+  .flicker-fast6 {
+    animation: blink-fast linear infinite alternate-reverse both 2.5s;
+  }
+  @keyframes shake-vertical {
+    0%,
+    100% {
+      -webkit-transform: skewY(0) rotateX(0deg) translateY(15px) rotate(5deg);
+      transform: skewY(0) rotateX(0deg) translateY(15px) rotate(5deg);
+    }
+
+    10%,
+    30%,
+    50%,
+    70%,
+    90% {
+      -webkit-transform: skewY(-1deg) rotateX(10deg) translateY(0px) rotate(6deg);
+      transform: skewY(-1deg) rotateX(10deg) translateY(0px) rotate(6deg);
+    }
+
+    20%,
+    40%,
+    60%,
+    80% {
+      -webkit-transform: skewY(0deg) rotateX(0deg) translateY(15px) rotate(5deg);
+      transform: skewY(0deg) rotateX(0deg) translateY(15px) rotate(5deg);
+    }
+  }
+  @keyframes light {
+    0%,
+    40% {
+      -webkit-transform: translate(0px);
+      transform: translate(-5px, -8px);
+    }
+    50% {
+      -webkit-transform: translate(15px);
+      transform: translate(3px, 10px);
+    }
+    60%,
+    100% {
+      -webkit-transform: translate(15px);
+      transform: translate(-5px, -8px);
+    }
+  }
+
+  @keyframes blink-fast {
+    0% {
+      opacity: 1;
+    }
+    20% {
+      opacity: 1;
+    }
+    25% {
+      opacity: 0;
+    }
+    30% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
+  @keyframes light-blink-fast {
+    0% {
+      opacity: 0.5;
+    }
+    20% {
+      opacity: 0.5;
+    }
+    25% {
+      opacity: 0;
+    }
+    30% {
+      opacity: 0.5;
+    }
+    100% {
+      opacity: 0.5;
+    }
+  }
+</style>
+<div class="shake-vertical">
+  <div class="absolute right-5 -top-5 w-1/5">
+    <div class="absolute z-30 light-flicker">
+      <Image
+        class="light mix-blend-luminosity"
+        alt="glad-os"
+        sizes="(max-width: 767px) 400px, (max-width: 1023px) 768px, (max-width: 2039px) 1024px, 2040px"
+        loading="eager"
+        width={1024}
+        src={headLight}
+      />
+    </div>
+    <Image
+      class="z-10 absolute light"
+      alt="glad-os"
+      sizes="(max-width: 767px) 400px, (max-width: 1023px) 768px, (max-width: 2039px) 1024px, 2040px"
+      loading="eager"
+      width={1024}
+      src={headIn}
+    />
+
+    <Image
+      class="z-20 absolute"
+      alt="glad-os"
+      sizes="(max-width: 767px) 400px, (max-width: 1023px) 768px, (max-width: 2039px) 1024px, 2040px"
+      loading="eager"
+      width={1024}
+      src={headOut}
+    />
+    <Image
+      class="z-10 absolute flicker-fast6"
+      alt="glad-os"
+      sizes="(max-width: 767px) 400px, (max-width: 1023px) 768px, (max-width: 2039px) 1024px, 2040px"
+      loading="eager"
+      width={1024}
+      src={rled5}
+    />
+    <Image
+      class="z-10 absolute flicker-fast3"
+      alt="glad-os"
+      sizes="(max-width: 767px) 400px, (max-width: 1023px) 768px, (max-width: 2039px) 1024px, 2040px"
+      loading="eager"
+      width={1024}
+      src={rled4}
+    />
+    <Image
+      class="z-10 absolute flicker-fast"
+      alt="glad-os"
+      sizes="(max-width: 767px) 400px, (max-width: 1023px) 768px, (max-width: 2039px) 1024px, 2040px"
+      loading="eager"
+      width={1024}
+      src={rled3}
+    />
+    <Image
+      class="z-10 absolute flicker-fast4"
+      alt="glad-os"
+      sizes="(max-width: 767px) 400px, (max-width: 1023px) 768px, (max-width: 2039px) 1024px, 2040px"
+      loading="eager"
+      width={1024}
+      src={rled2}
+    />
+    <Image
+      class="z-10 absolute flicker-fast2"
+      alt="glad-os"
+      sizes="(max-width: 767px) 400px, (max-width: 1023px) 768px, (max-width: 2039px) 1024px, 2040px"
+      loading="eager"
+      width={1024}
+      src={rled1}
+    />
+    <Image
+      class="z-10 absolute flicker-fast5"
+      alt="glad-os"
+      sizes="(max-width: 767px) 400px, (max-width: 1023px) 768px, (max-width: 2039px) 1024px, 2040px"
+      loading="eager"
+      width={1024}
+      src={grid}
+    />
+    <Image
+      class="z-0 absolute"
+      alt="glad-os"
+      sizes="(max-width: 767px) 400px, (max-width: 1023px) 768px, (max-width: 2039px) 1024px, 2040px"
+      loading="eager"
+      width={1024}
+      src={body}
+    />
+  </div>
+</div>
+<script>
+  // Objeto de todas las clases de animación que quieres actualizar, con sus rangos de duración
+  const animations: Record<string, { min: number; max: number }> = {
+    light: { min: 2, max: 2.5 },
+    flicker: { min: 0.3, max: 0.75 },
+    'flicker-fast': { min: 0.5, max: 1 },
+    // Añade más aquí...
+  };
+
+  // Función para obtener un valor aleatorio entre un rango
+  function randomVal(min: number, max: number): number {
+    return Math.random() * (max - min) + min;
+  }
+
+  // Función para actualizar la duración de las animaciones
+  function updateDur(animation: string, range: { min: number; max: number }): void {
+    // Selecciona todos los elementos con la clase de animación actual
+    const elements = document.querySelectorAll(`.${animation}`);
+
+    // Si no hay elementos, no hacer nada
+    if (elements.length === 0) return;
+
+    // Establece la duración de la animación a un valor aleatorio entre el rango especificado
+    const duration = randomVal(range.min, range.max);
+
+    elements.forEach((element) => {
+      // Aquí hacemos el 'type assertion' a HTMLElement
+      const htmlElement = element as HTMLElement;
+      htmlElement.style.animationDuration = `${duration}s`;
+    });
+  }
+
+  // Actualiza la duración de las animaciones al inicio
+  Object.entries(animations).forEach(([animation, range]) => updateDur(animation, range));
+
+  // Actualiza la duración de las animaciones cada 5 segundos
+  setInterval(() => {
+    Object.entries(animations).forEach(([animation, range]) => updateDur(animation, range));
+  }, 3500);
+</script>
