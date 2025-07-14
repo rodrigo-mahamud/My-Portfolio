@@ -1,0 +1,57 @@
+---
+import type { PostMediaBlock } from '../../../utils/payload';
+import { payloadAPI } from '../../../utils/payload';
+
+export interface Props {
+  block: PostMediaBlock;
+}
+
+const { block } = Astro.props;
+const mediaUrl = payloadAPI.getMediaUrl(block.mediaFile);
+const captionHTML = block.caption ? payloadAPI.richTextToHTML(block.caption) : '';
+const isVideo = mediaUrl.includes('.mp4') || mediaUrl.includes('.webm') || mediaUrl.includes('.mov');
+
+// Layout classes
+const layoutClasses = {
+  'single': 'w-full',
+  'half': 'w-full md:w-1/2',
+  'two-columns': 'w-full'
+};
+
+const containerClasses = block.layout === 'two-columns' 
+  ? 'flex flex-col md:flex-row gap-8' 
+  : 'flex justify-center';
+---
+
+<div class={`animate-on-scroll mt-16 mb-16 px-4 sm:px-6 ${containerClasses}`} 
+     data-type="simple" 
+     data-duration="1.5" 
+     data-easing="Expo.easeOut"
+     style={`animation-delay: ${block.delay || 0.25}s`}>
+  
+  <div class={`${layoutClasses[block.layout || 'single']} ${block.frame ? 'border border-gray-700 rounded-lg overflow-hidden' : ''}`}>
+    {isVideo ? (
+      <video 
+        class="w-full h-auto rounded-lg" 
+        controls
+        preload="metadata"
+        poster={`${mediaUrl}#t=0.5`}
+      >
+        <source src={mediaUrl} type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+    ) : (
+      <img 
+        src={mediaUrl} 
+        alt={block.mediaFile.alt || ''} 
+        class="w-full h-auto rounded-lg object-cover"
+        loading="lazy"
+        decoding="async"
+      />
+    )}
+    
+    {captionHTML && (
+      <div class="mt-4 text-sm text-gray-400" set:html={captionHTML} />
+    )}
+  </div>
+</div>

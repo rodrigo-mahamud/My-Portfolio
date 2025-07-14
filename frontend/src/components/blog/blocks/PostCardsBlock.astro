@@ -1,0 +1,61 @@
+---
+import type { PostCardsBlock } from '../../../utils/payload';
+import { YouTube } from '@astro-community/astro-embed-youtube';
+
+export interface Props {
+  block: PostCardsBlock;
+}
+
+const { block } = Astro.props;
+
+// Icon mapping
+const iconMap = {
+  calendarTime: '📅',
+  thumbUp: '👍',
+  eye: '👁️',
+  clock: '⏰',
+  user: '👤',
+  star: '⭐',
+  heart: '❤️',
+  play: '▶️'
+};
+---
+
+<section class="animate-on-scroll px-4 sm:px-6 py-12 mb-8" data-type="simple" data-duration="1.5" data-easing="Expo.easeOut">
+  <div class="max-w-6xl mx-auto">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+      {block.cards.map((card, index) => (
+        <div  class="bg-gray-900 rounded-lg overflow-hidden border border-gray-700">
+          <!-- YouTube Embed -->
+          <div class="aspect-video">
+            <YouTube id={card.ytId} />
+          </div>
+          
+          <!-- Card Content -->
+          <div class="p-6">
+            <h3 class="text-xl font-bold text-white mb-3">
+              {card.title}
+            </h3>
+            
+            <p class="text-gray-300 mb-4 leading-relaxed">
+              {card.description}
+            </p>
+            
+            {card.info && card.info.length > 0 && (
+              <div class="space-y-2">
+                {card.info.map((infoItem, infoIndex) => (
+                  <div class="flex items-center text-sm text-gray-400">
+                    <span class="mr-2" role="img" aria-label={infoItem.icon}>
+                      {iconMap[infoItem.icon] || '•'}
+                    </span>
+                    <span>{infoItem.text}</span>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

@@ -121,6 +121,7 @@ export interface UserAuthOperations {
  */
 export interface User {
   id: string;
+  role: 'admin' | 'user';
   updatedAt: string;
   createdAt: string;
   email: string;
@@ -167,129 +168,21 @@ export interface Work {
   title: string;
   author: string;
   /**
-   * Brief description of the project
+   * Brief description of the project for previews
    */
   excerpt?: string | null;
   publishDate?: string | null;
   /**
-   * Main project image
+   * Main project hero image
    */
   image: string | Media;
   /**
    * RGBA color for project theming (e.g., rgba(161, 198, 0, 1))
    */
   accentColor?: string | null;
-  singlePostInfo?: {
-    /**
-     * Your role in the project
-     */
-    rol?: string | null;
-    status?: ('completed' | 'in-progress' | 'on-hold' | 'cancelled') | null;
-    /**
-     * Project duration (e.g., "3 months", "2022-2023")
-     */
-    duration?: string | null;
-    /**
-     * Project overview and description
-     */
-    overview?: {
-      root: {
-        type: string;
-        children: {
-          type: string;
-          version: number;
-          [k: string]: unknown;
-        }[];
-        direction: ('ltr' | 'rtl') | null;
-        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-        indent: number;
-        version: number;
-      };
-      [k: string]: unknown;
-    } | null;
-    team?:
-      | {
-          name: string;
-          role: string;
-          /**
-           * Portfolio or social media URL
-           */
-          url?: string | null;
-          id?: string | null;
-        }[]
-      | null;
-  };
-  sections?:
-    | {
-        preTitle?: string | null;
-        title: string;
-        content?: {
-          root: {
-            type: string;
-            children: {
-              type: string;
-              version: number;
-              [k: string]: unknown;
-            }[];
-            direction: ('ltr' | 'rtl') | null;
-            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-            indent: number;
-            version: number;
-          };
-          [k: string]: unknown;
-        } | null;
-        id?: string | null;
-      }[]
-    | null;
-  stats?:
-    | {
-        title: string;
-        /**
-         * Statistic value (e.g., "95%", "10+", "2M")
-         */
-        amount: string;
-        id?: string | null;
-      }[]
-    | null;
-  cards?:
-    | {
-        title: string;
-        /**
-         * YouTube video ID
-         */
-        videoId: string;
-        thumbnail?: (string | null) | Media;
-        id?: string | null;
-      }[]
-    | null;
-  media?:
-    | {
-        file: string | Media;
-        caption?: string | null;
-        /**
-         * Animation delay in milliseconds
-         */
-        delay?: number | null;
-        /**
-         * Frame animation delay
-         */
-        frameDelay?: number | null;
-        type?: ('image' | 'video') | null;
-        id?: string | null;
-      }[]
-    | null;
-  PostGalleryGrid?: {
-    title?: string | null;
-    subtitle?: string | null;
-    videos?:
-      | {
-          file: string | Media;
-          title?: string | null;
-          description?: string | null;
-          id?: string | null;
-        }[]
-      | null;
-  };
+  /**
+   * Navigation menu for the project page
+   */
   postIndex?:
     | {
         label: string;
@@ -300,38 +193,291 @@ export interface Work {
         id?: string | null;
       }[]
     | null;
-  PostNextProject?: {
-    /**
-     * Reference to the next project to display
-     */
-    nextProject?: (string | null) | Work;
-    /**
-     * Custom title for next project section
-     */
-    customTitle?: string | null;
-  };
+  /**
+   * Build your project page using blocks
+   */
+  layout?:
+    | (
+        | {
+            /**
+             * Your role in the project
+             */
+            rol: string;
+            status: 'done' | 'in progress' | 'on hold' | 'cancelled';
+            /**
+             * Project duration (e.g., "2 months", "2022-2023")
+             */
+            duration: string;
+            /**
+             * Project overview and description
+             */
+            overview: {
+              root: {
+                type: string;
+                children: {
+                  type: string;
+                  version: number;
+                  [k: string]: unknown;
+                }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
+              };
+              [k: string]: unknown;
+            };
+            /**
+             * Optional additional title (e.g., "2023 Team")
+             */
+            title?: string | null;
+            /**
+             * Team members and roles (HTML supported)
+             */
+            team?: {
+              root: {
+                type: string;
+                children: {
+                  type: string;
+                  version: number;
+                  [k: string]: unknown;
+                }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
+              };
+              [k: string]: unknown;
+            } | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'singlePostInfo';
+          }
+        | {
+            /**
+             * Category or context (e.g., "Context", "Process")
+             */
+            preTitle?: string | null;
+            /**
+             * Main section title
+             */
+            title: string;
+            /**
+             * Section content - supports rich text formatting
+             */
+            content: {
+              root: {
+                type: string;
+                children: {
+                  type: string;
+                  version: number;
+                  [k: string]: unknown;
+                }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
+              };
+              [k: string]: unknown;
+            };
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'singlePostSection';
+          }
+        | {
+            /**
+             * Image or video file
+             */
+            mediaFile: string | Media;
+            /**
+             * Media description or caption (HTML supported)
+             */
+            caption?: {
+              root: {
+                type: string;
+                children: {
+                  type: string;
+                  version: number;
+                  [k: string]: unknown;
+                }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
+              };
+              [k: string]: unknown;
+            } | null;
+            /**
+             * Animation delay in seconds
+             */
+            delay?: number | null;
+            /**
+             * Show frame/border around media
+             */
+            frame?: boolean | null;
+            /**
+             * Layout style for this media block
+             */
+            layout?: ('single' | 'half' | 'two-columns') | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'postMedia';
+          }
+        | {
+            /**
+             * Optional title for the gallery section
+             */
+            title?: string | null;
+            /**
+             * Optional subtitle for the gallery section
+             */
+            subtitle?: string | null;
+            /**
+             * Type of media in this gallery
+             */
+            mediaType?: ('videos' | 'images' | 'mixed') | null;
+            items: {
+              mediaFile: string | Media;
+              /**
+               * Title for this gallery item
+               */
+              title: string;
+              /**
+               * Description or subtitle for this item
+               */
+              subtitle?: string | null;
+              id?: string | null;
+            }[];
+            /**
+             * Number of columns in the gallery grid
+             */
+            columns?: ('1' | '2' | '3' | '4') | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'postGalleryGrid';
+          }
+        | {
+            cards: {
+              /**
+               * YouTube video ID (e.g., "TjkRhh3Gh1U")
+               */
+              ytId: string;
+              /**
+               * Card title
+               */
+              title: string;
+              /**
+               * Card description
+               */
+              description: string;
+              /**
+               * Additional information items with icons
+               */
+              info?:
+                | {
+                    /**
+                     * Icon for this info item
+                     */
+                    icon: 'calendarTime' | 'thumbUp' | 'eye' | 'clock' | 'user' | 'star' | 'heart' | 'play';
+                    /**
+                     * Info text (e.g., "Published on: 22-12-2023")
+                     */
+                    text: string;
+                    id?: string | null;
+                  }[]
+                | null;
+              id?: string | null;
+            }[];
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'postCards';
+          }
+        | {
+            /**
+             * Optional title for the statistics section
+             */
+            title?: string | null;
+            stats: {
+              /**
+               * Statistic label (e.g., "CGI Scenes in Total")
+               */
+              title: string;
+              /**
+               * Statistic value (e.g., "260", "40+", "95%")
+               */
+              amount: string;
+              /**
+               * Optional additional description
+               */
+              description?: string | null;
+              id?: string | null;
+            }[];
+            /**
+             * Layout style for statistics
+             */
+            layout?: ('grid' | 'row' | 'vertical') | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'stats';
+          }
+        | {
+            /**
+             * Select the next project to showcase
+             */
+            nextProject?: (string | null) | Work;
+            /**
+             * Custom image for next project (overrides project image)
+             */
+            customImage?: (string | null) | Media;
+            /**
+             * Custom title (overrides project title)
+             */
+            customTitle?: string | null;
+            /**
+             * Custom description for the next project link
+             */
+            customDescription?: string | null;
+            /**
+             * Custom URL (if not linking to a project in the system)
+             */
+            customUrl?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'postNextProject';
+          }
+        | {
+            /**
+             * Rich text content with full formatting support
+             */
+            content: {
+              root: {
+                type: string;
+                children: {
+                  type: string;
+                  version: number;
+                  [k: string]: unknown;
+                }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
+              };
+              [k: string]: unknown;
+            };
+            textAlign?: ('left' | 'center' | 'right' | 'justify') | null;
+            /**
+             * Content width constraint
+             */
+            maxWidth?: ('default' | 'narrow' | 'wide' | 'full') | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'richText';
+          }
+      )[]
+    | null;
   /**
    * Canonical URL for SEO
    */
   canonical?: string | null;
-  /**
-   * Main project content (converted from MDX)
-   */
-  content?: {
-    root: {
-      type: string;
-      children: {
-        type: string;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  } | null;
   /**
    * URL slug for the project
    */
@@ -405,6 +551,7 @@ export interface PayloadMigration {
  * via the `definition` "users_select".
  */
 export interface UsersSelect<T extends boolean = true> {
+  role?: T;
   updatedAt?: T;
   createdAt?: T;
   email?: T;
@@ -451,69 +598,6 @@ export interface WorksSelect<T extends boolean = true> {
   publishDate?: T;
   image?: T;
   accentColor?: T;
-  singlePostInfo?:
-    | T
-    | {
-        rol?: T;
-        status?: T;
-        duration?: T;
-        overview?: T;
-        team?:
-          | T
-          | {
-              name?: T;
-              role?: T;
-              url?: T;
-              id?: T;
-            };
-      };
-  sections?:
-    | T
-    | {
-        preTitle?: T;
-        title?: T;
-        content?: T;
-        id?: T;
-      };
-  stats?:
-    | T
-    | {
-        title?: T;
-        amount?: T;
-        id?: T;
-      };
-  cards?:
-    | T
-    | {
-        title?: T;
-        videoId?: T;
-        thumbnail?: T;
-        id?: T;
-      };
-  media?:
-    | T
-    | {
-        file?: T;
-        caption?: T;
-        delay?: T;
-        frameDelay?: T;
-        type?: T;
-        id?: T;
-      };
-  PostGalleryGrid?:
-    | T
-    | {
-        title?: T;
-        subtitle?: T;
-        videos?:
-          | T
-          | {
-              file?: T;
-              title?: T;
-              description?: T;
-              id?: T;
-            };
-      };
   postIndex?:
     | T
     | {
@@ -521,14 +605,118 @@ export interface WorksSelect<T extends boolean = true> {
         anchor?: T;
         id?: T;
       };
-  PostNextProject?:
+  layout?:
     | T
     | {
-        nextProject?: T;
-        customTitle?: T;
+        singlePostInfo?:
+          | T
+          | {
+              rol?: T;
+              status?: T;
+              duration?: T;
+              overview?: T;
+              title?: T;
+              team?: T;
+              id?: T;
+              blockName?: T;
+            };
+        singlePostSection?:
+          | T
+          | {
+              preTitle?: T;
+              title?: T;
+              content?: T;
+              id?: T;
+              blockName?: T;
+            };
+        postMedia?:
+          | T
+          | {
+              mediaFile?: T;
+              caption?: T;
+              delay?: T;
+              frame?: T;
+              layout?: T;
+              id?: T;
+              blockName?: T;
+            };
+        postGalleryGrid?:
+          | T
+          | {
+              title?: T;
+              subtitle?: T;
+              mediaType?: T;
+              items?:
+                | T
+                | {
+                    mediaFile?: T;
+                    title?: T;
+                    subtitle?: T;
+                    id?: T;
+                  };
+              columns?: T;
+              id?: T;
+              blockName?: T;
+            };
+        postCards?:
+          | T
+          | {
+              cards?:
+                | T
+                | {
+                    ytId?: T;
+                    title?: T;
+                    description?: T;
+                    info?:
+                      | T
+                      | {
+                          icon?: T;
+                          text?: T;
+                          id?: T;
+                        };
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        stats?:
+          | T
+          | {
+              title?: T;
+              stats?:
+                | T
+                | {
+                    title?: T;
+                    amount?: T;
+                    description?: T;
+                    id?: T;
+                  };
+              layout?: T;
+              id?: T;
+              blockName?: T;
+            };
+        postNextProject?:
+          | T
+          | {
+              nextProject?: T;
+              customImage?: T;
+              customTitle?: T;
+              customDescription?: T;
+              customUrl?: T;
+              id?: T;
+              blockName?: T;
+            };
+        richText?:
+          | T
+          | {
+              content?: T;
+              textAlign?: T;
+              maxWidth?: T;
+              id?: T;
+              blockName?: T;
+            };
       };
   canonical?: T;
-  content?: T;
   slug?: T;
   updatedAt?: T;
   createdAt?: T;

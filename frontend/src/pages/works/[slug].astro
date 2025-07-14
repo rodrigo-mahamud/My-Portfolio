@@ -1,0 +1,24 @@
+---
+import SinglePost from '../../components/blog/SinglePost.astro';
+import PageLayout from '../../layouts/PageLayout.astro';
+
+
+
+export async function getStaticPaths() {
+  const res = await fetch("http://localhost:3000/api/works");
+  const data = await res.json();
+  
+  return data.docs.map((work) => {
+    return {
+      params: { slug: work.slug },
+      props: { work }
+    };
+  });
+}
+
+const { work } = Astro.props;
+---
+
+<PageLayout>
+  <SinglePost post={work} />
+</PageLayout>

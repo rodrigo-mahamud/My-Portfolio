@@ -1,9 +1,12 @@
 ---
-import { Image } from 'astro:assets';
+
 import { getFormattedDate } from '../../utils/utils';
 import type { Post } from '../../types';
 import PostIndex from './PostIndex.astro';
 import { YouTube } from '@astro-community/astro-embed-youtube';
+
+import { payloadAPI } from '../../utils/payload';
+import BlockRenderer from './BlockRenderer.astro';
 
 export interface Props {
   post: Post;
@@ -11,7 +14,24 @@ export interface Props {
 }
 
 const { post } = Astro.props;
-const { Content } = post;
+
+// Only work with Payload posts now
+const isPayloadPost = post.isPayloadPost || post.layout;
+if (!isPayloadPost) {
+  throw new Error('SinglePost component now only works with Payload posts');
+}
+
+// Handle image sources (Payload vs MDX)
+const getImageSrc = (image) => {
+  if (!image) return null;
+  if (typeof image === 'string') return image; // MDX image
+  if (image.src) return image.src; // Astro image object
+  if (image.url) return payloadAPI.getMediaUrl(image); // Payload image
+  return null;
+};
+
+const imageSrc = getImageSrc(post.image);
+const imageAlt = post.image?.alt || `Imagen del ${post.title}`;
 function darkenColor(color, amount) {
   let [r, g, b, a] = color.match(/\d+/g).map(Number);
   r = Math.floor(r * amount);
@@ -19,6 +39,7 @@ function darkenColor(color, amount) {
   b = Math.floor(b * amount);
   return `rgba(${r}, ${g}, ${b}, ${a - 0.25})`;
 }
+console.log('imagedssdfasfas', imageSrc);
 
 const adjustedColor1 = darkenColor(post.accentColor, 0.5);
 ---
@@ -107,7 +128,7 @@ const adjustedColor1 = darkenColor(post.accentColor, 0.5);
         </p>
       </div>
       {
-        post.image ? (
+        imageSrc ? (
           <div
             class=" h-[50vh] md:h-[75vh] w-full reltive pb-[1px] animate-on-scroll"
             data-type="simple"
@@ -115,15 +136,11 @@ const adjustedColor1 = darkenColor(post.accentColor, 0.5);
             data-easing="Expo.easeOut"
           >
             <div class=" absolute w-full h-[inherit] z-10 shadow-[inset_0px_-350px_125px_-200px_#0a0118]" />
-            <Image
-              class="rounded-xl h-full object-cover"
-              alt={`Imagen del ${post.title}`}
-              widths={[275, 475, 575, 950, 1440]}
-              sizes={`(max-width: 550px) 275px, (max-width: 750px) 475px, (max-width: 950px) 575px,(max-width: 2000px) 950px, 1440px`}
-              quality={'high'}
-              format="webp"
+            <img
+              class="rounded-xl h-full w-full object-cover"
+              alt={imageAlt}
+              src={imageSrc}
               loading="eager"
-              src={post.image}
               decoding="async"
             />
           </div>
@@ -137,7 +154,9 @@ const adjustedColor1 = darkenColor(post.accentColor, 0.5);
 
     <div class="mx-auto">
       <YouTube id="" class="hidden" />
-      <Content />
+      {post.layout && post.layout.map((block, index) => (
+        <BlockRenderer block={block} key={index} />
+      ))}
     </div>
   </article>
 </section>

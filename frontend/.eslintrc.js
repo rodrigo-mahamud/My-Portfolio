@@ -4,7 +4,7 @@ module.exports = {
     es2022: true,
     browser: true,
   },
-  extends: ['eslint:recommended', 'plugin:astro/recommended', 'plugin:react/recommended'],
+  extends: ['eslint:recommended', 'plugin:astro/recommended'],
   parserOptions: {
     ecmaVersion: 'latest',
     sourceType: 'module',
@@ -19,6 +19,13 @@ module.exports = {
       },
     },
     {
+      files: ['*.jsx', '*.tsx'],
+      extends: ['plugin:react/recommended'],
+      rules: {
+        'react/react-in-jsx-scope': 'off',
+      },
+    },
+    {
       files: ['*.astro'],
       parser: 'astro-eslint-parser',
       parserOptions: {
@@ -27,6 +34,10 @@ module.exports = {
       },
       rules: {
         'no-mixed-spaces-and-tabs': ['error', 'smart-tabs'],
+        'react/jsx-no-undef': 'off',
+        'react/react-in-jsx-scope': 'off',
+        'react/prop-types': 'off',
+        'react/no-unknown-property': 'off',
       },
     },
     {

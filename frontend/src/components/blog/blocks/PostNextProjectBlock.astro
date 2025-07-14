@@ -1,0 +1,66 @@
+---
+import type { PostNextProjectBlock } from '../../../utils/payload';
+import { payloadAPI } from '../../../utils/payload';
+
+export interface Props {
+  block: PostNextProjectBlock;
+}
+
+const { block } = Astro.props;
+
+// Determine what to display
+const nextProject = block.nextProject;
+const displayTitle = block.customTitle || nextProject?.title || 'Next Project';
+const displayDescription = block.customDescription || nextProject?.excerpt || '';
+const displayImage = block.customImage ? payloadAPI.getMediaUrl(block.customImage) : 
+                    nextProject?.image ? payloadAPI.getMediaUrl(nextProject.image) : null;
+const displayUrl = block.customUrl || (nextProject?.slug ? `/blog/${nextProject.slug}` : '#');
+---
+
+<section class="animate-on-scroll px-4 sm:px-6 py-16 mb-8" data-type="simple" data-duration="1.5" data-easing="Expo.easeOut">
+  <div class="max-w-4xl mx-auto">
+    <div class="text-center mb-8">
+      <p class="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-2">
+        What's Next
+      </p>
+      <h2 class="text-2xl md:text-3xl font-bold text-white">
+        Explore Another Project
+      </h2>
+    </div>
+    
+    <a href={displayUrl} class="group block">
+      <div class="relative overflow-hidden rounded-lg bg-gray-900 border border-gray-700 transition-all duration-300 group-hover:border-gray-500">
+        {displayImage && (
+          <div class="aspect-video overflow-hidden">
+            <img 
+              src={displayImage} 
+              alt={displayTitle}
+              class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+        )}
+        
+        <div class="p-8">
+          <h3 class="text-xl md:text-2xl font-bold text-white mb-3 group-hover:text-gray-200 transition-colors">
+            {displayTitle}
+          </h3>
+          
+          {displayDescription && (
+            <p class="text-gray-300 leading-relaxed">
+              {displayDescription}
+            </p>
+          )}
+          
+          <div class="mt-6 flex items-center text-sm font-semibold text-gray-400 group-hover:text-white transition-colors">
+            <span>View Project</span>
+            <svg class="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </a>
+  </div>
+</section>

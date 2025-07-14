@@ -1,10 +1,23 @@
 import type { CollectionConfig } from 'payload'
+import {
+  SinglePostInfo,
+  SinglePostSection,
+  PostMedia,
+  PostGalleryGrid,
+  PostCards,
+  Stats,
+  PostNextProject,
+  RichText,
+} from '../blocks'
 
 export const Works: CollectionConfig = {
   slug: 'works',
+  access: {
+    read: () => true,
+  },
   admin: {
     useAsTitle: 'title',
-    defaultColumns: ['title', 'author', 'status', 'publishDate'],
+    defaultColumns: ['title', 'author', 'publishDate'],
   },
   fields: [
     // Basic Information
@@ -23,7 +36,7 @@ export const Works: CollectionConfig = {
       name: 'excerpt',
       type: 'textarea',
       admin: {
-        description: 'Brief description of the project',
+        description: 'Brief description of the project for previews',
       },
     },
     {
@@ -41,7 +54,7 @@ export const Works: CollectionConfig = {
       relationTo: 'media',
       required: true,
       admin: {
-        description: 'Main project image',
+        description: 'Main project hero image',
       },
     },
     {
@@ -51,219 +64,14 @@ export const Works: CollectionConfig = {
         description: 'RGBA color for project theming (e.g., rgba(161, 198, 0, 1))',
       },
     },
-    
-    // Project Details
-    {
-      name: 'singlePostInfo',
-      type: 'group',
-      fields: [
-        {
-          name: 'rol',
-          type: 'text',
-          admin: {
-            description: 'Your role in the project',
-          },
-        },
-        {
-          name: 'status',
-          type: 'select',
-          options: [
-            { label: 'Completed', value: 'completed' },
-            { label: 'In Progress', value: 'in-progress' },
-            { label: 'On Hold', value: 'on-hold' },
-            { label: 'Cancelled', value: 'cancelled' },
-          ],
-        },
-        {
-          name: 'duration',
-          type: 'text',
-          admin: {
-            description: 'Project duration (e.g., "3 months", "2022-2023")',
-          },
-        },
-        {
-          name: 'overview',
-          type: 'richText',
-          admin: {
-            description: 'Project overview and description',
-          },
-        },
-        {
-          name: 'team',
-          type: 'array',
-          fields: [
-            {
-              name: 'name',
-              type: 'text',
-              required: true,
-            },
-            {
-              name: 'role',
-              type: 'text',
-              required: true,
-            },
-            {
-              name: 'url',
-              type: 'text',
-              admin: {
-                description: 'Portfolio or social media URL',
-              },
-            },
-          ],
-        },
-      ],
-    },
 
-    // Content Sections
-    {
-      name: 'sections',
-      type: 'array',
-      maxRows: 5,
-      fields: [
-        {
-          name: 'preTitle',
-          type: 'text',
-        },
-        {
-          name: 'title',
-          type: 'text',
-          required: true,
-        },
-        {
-          name: 'content',
-          type: 'richText',
-        },
-      ],
-    },
-
-    // Statistics
-    {
-      name: 'stats',
-      type: 'array',
-      fields: [
-        {
-          name: 'title',
-          type: 'text',
-          required: true,
-        },
-        {
-          name: 'amount',
-          type: 'text',
-          required: true,
-          admin: {
-            description: 'Statistic value (e.g., "95%", "10+", "2M")',
-          },
-        },
-      ],
-    },
-
-    // Video Cards (YouTube embeds)
-    {
-      name: 'cards',
-      type: 'array',
-      fields: [
-        {
-          name: 'title',
-          type: 'text',
-          required: true,
-        },
-        {
-          name: 'videoId',
-          type: 'text',
-          required: true,
-          admin: {
-            description: 'YouTube video ID',
-          },
-        },
-        {
-          name: 'thumbnail',
-          type: 'upload',
-          relationTo: 'media',
-        },
-      ],
-    },
-
-    // Media Gallery
-    {
-      name: 'media',
-      type: 'array',
-      fields: [
-        {
-          name: 'file',
-          type: 'upload',
-          relationTo: 'media',
-          required: true,
-        },
-        {
-          name: 'caption',
-          type: 'text',
-        },
-        {
-          name: 'delay',
-          type: 'number',
-          admin: {
-            description: 'Animation delay in milliseconds',
-          },
-        },
-        {
-          name: 'frameDelay',
-          type: 'number',
-          admin: {
-            description: 'Frame animation delay',
-          },
-        },
-        {
-          name: 'type',
-          type: 'select',
-          options: [
-            { label: 'Image', value: 'image' },
-            { label: 'Video', value: 'video' },
-          ],
-          defaultValue: 'image',
-        },
-      ],
-    },
-
-    // Video Gallery
-    {
-      name: 'PostGalleryGrid',
-      type: 'group',
-      fields: [
-        {
-          name: 'title',
-          type: 'text',
-        },
-        {
-          name: 'subtitle',
-          type: 'text',
-        },
-        {
-          name: 'videos',
-          type: 'array',
-          fields: [
-            {
-              name: 'file',
-              type: 'upload',
-              relationTo: 'media',
-              required: true,
-            },
-            {
-              name: 'title',
-              type: 'text',
-            },
-            {
-              name: 'description',
-              type: 'text',
-            },
-          ],
-        },
-      ],
-    },
-
-    // Navigation
+    // Navigation Index
     {
       name: 'postIndex',
       type: 'array',
+      admin: {
+        description: 'Navigation menu for the project page',
+      },
       fields: [
         {
           name: 'label',
@@ -281,27 +89,23 @@ export const Works: CollectionConfig = {
       ],
     },
 
-    // Next Project Reference
+    // Main Content using Blocks
     {
-      name: 'PostNextProject',
-      type: 'group',
-      fields: [
-        {
-          name: 'nextProject',
-          type: 'relationship',
-          relationTo: 'works',
-          admin: {
-            description: 'Reference to the next project to display',
-          },
-        },
-        {
-          name: 'customTitle',
-          type: 'text',
-          admin: {
-            description: 'Custom title for next project section',
-          },
-        },
+      name: 'layout',
+      type: 'blocks',
+      blocks: [
+        SinglePostInfo,
+        SinglePostSection,
+        PostMedia,
+        PostGalleryGrid,
+        PostCards,
+        Stats,
+        PostNextProject,
+        RichText,
       ],
+      admin: {
+        description: 'Build your project page using blocks',
+      },
     },
 
     // SEO
@@ -310,15 +114,6 @@ export const Works: CollectionConfig = {
       type: 'text',
       admin: {
         description: 'Canonical URL for SEO',
-      },
-    },
-
-    // Content Body (Rich Text)
-    {
-      name: 'content',
-      type: 'richText',
-      admin: {
-        description: 'Main project content (converted from MDX)',
       },
     },
 

@@ -1,18 +1,25 @@
 ---
-// import { Image } from 'astro:assets';
-
 import { Icon } from 'astro-icon/components';
-import { Image } from 'astro:assets';
-import type { Post } from '../../types';
-import { findImage } from '../../utils/images';
-import { getPermalink } from '../../utils/permalinks';
 
 export interface Props {
-  post: Post;
+  work: any; // Payload work object
 }
 
-const { post } = Astro.props;
-const image = await findImage(post.image);
+const { work } = Astro.props;
+
+const PAYLOAD_URL = import.meta.env.PUBLIC_PAYLOAD_URL?.replace('/api', '') || 'http://localhost:3000';
+
+// Get image URL
+const getImageUrl = (image) => {
+  if (!image) return null;
+  if (typeof image === 'string') return image;
+  if (image.url) {
+    return image.url.startsWith('http') ? image.url : `${PAYLOAD_URL}${image.url}`;
+  }
+  return null;
+};
+
+const imageUrl = getImageUrl(work.image);
 
 function darkenColor(color, amount) {
   let [r, g, b, a] = color.match(/\d+/g).map(Number);
@@ -22,7 +29,7 @@ function darkenColor(color, amount) {
   return `rgba(${r}, ${g}, ${b}, ${a - 0.25})`;
 }
 
-const adjustedColor1 = darkenColor(post.accentColor, 0.6);
+const adjustedColor1 = work.accentColor ? darkenColor(work.accentColor, 0.6) : 'rgba(0, 0, 0, 0.5)';
 ---
 
 <div
@@ -31,7 +38,7 @@ const adjustedColor1 = darkenColor(post.accentColor, 0.6);
   data-duration="1.5"
   data-easing="Expo.easeOut"
   style={{
-    '--gradient-base-color': post.accentColor,
+    '--gradient-base-color': work.accentColor || 'rgba(126, 107, 235, 1)',
     '--adjusted-color1': adjustedColor1,
   }}
 >
@@ -39,7 +46,7 @@ const adjustedColor1 = darkenColor(post.accentColor, 0.6);
     class="cursor-none custom-mouse relative borderGlow mb-8 md:mb-6 w-full h-[45vh] md:h-screen rounded-2xl md:mt-16 border border-[#2d263a] overflow-hidden"
     data-typemouse="link"
   >
-    <a href={getPermalink(post.permalink, 'post')} class="w-full cursor-none" data-nav="animate">
+    <a href={`/works/${work.slug}`} class="w-full cursor-none" data-nav="animate">
       <div class="bgGradient absolute top-0 h-full w-full rounded-2xl md:border md:border-[#716882]"></div>
       <div class="flex flex-col h-full justify-between z-10 relative">
         <div class="flex flex-row justify-between px-6 pt-6 md:px-12 md:pt-14">
@@ -50,7 +57,7 @@ const adjustedColor1 = darkenColor(post.accentColor, 0.6);
               data-duration="1.5"
               data-easing="Expo.easeOut"
             >
-              {post.title}
+              {work.title}
             </h3>
             <p
               class="text-white/60 text-sm md:text-lg animate-on-scroll text-balance line-clamp-2 md:line-clamp-none"
@@ -58,7 +65,7 @@ const adjustedColor1 = darkenColor(post.accentColor, 0.6);
               data-duration="1.5"
               data-easing="Expo.easeOut"
             >
-              <Fragment set:html={post.excerpt} />
+              <Fragment set:html={work.excerpt} />
             </p>
           </div>
           <div
@@ -77,16 +84,12 @@ const adjustedColor1 = darkenColor(post.accentColor, 0.6);
           data-easing="Expo.easeOut"
         >
           {
-            image && (
-              <Image
-                class="object-cover md:w-5/6 h-[105%] rounded-xl md:rounded-t-2xl mx-auto "
-                alt={`Imagen del ${post.title}`}
-                widths={[275, 475, 575, 950, 1440]}
-                sizes={`(max-width: 550px) 275px, (max-width: 750px) 475px, (max-width: 950px) 575px,(max-width: 2000px) 950px, 1440px`}
-                quality={'high'}
-                format="webp"
+            imageUrl && (
+              <img
+                class="object-cover md:w-5/6 h-[105%] rounded-xl md:rounded-t-2xl mx-auto"
+                alt={work.image?.alt || `Imagen del ${work.title}`}
+                src={imageUrl}
                 loading="lazy"
-                src={post.image}
                 decoding="async"
               />
             )
@@ -96,11 +99,3 @@ const adjustedColor1 = darkenColor(post.accentColor, 0.6);
     </a>
   </div>
 </div>
-<!-- <Image
-src={image}
-class="object-cover w-5/6 h-full rounded-t-2xl mx-auto"
-widths={[1920]}
-alt={post.title}
-loading="lazy"
-decoding="async"
-/> -->

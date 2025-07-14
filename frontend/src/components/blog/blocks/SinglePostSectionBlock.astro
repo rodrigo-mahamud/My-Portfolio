@@ -1,0 +1,27 @@
+---
+import type { SinglePostSectionBlock } from '../../../utils/payload';
+import { payloadAPI } from '../../../utils/payload';
+
+export interface Props {
+  block: SinglePostSectionBlock;
+}
+
+const { block } = Astro.props;
+const contentHTML = payloadAPI.richTextToHTML(block.content);
+---
+
+<section class="animate-on-scroll px-4 sm:px-6 py-12 mb-8" data-type="simple" data-duration="1.5" data-easing="Expo.easeOut">
+  <div class="max-w-4xl mx-auto">
+    {block.preTitle && (
+      <p class="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-3">
+        {block.preTitle}
+      </p>
+    )}
+    
+    <h2 class="text-3xl md:text-4xl font-bold text-white mb-8 leading-tight">
+      {block.title}
+    </h2>
+    
+    <div class="prose prose-lg text-white max-w-none" set:html={contentHTML} />
+  </div>
+</section>

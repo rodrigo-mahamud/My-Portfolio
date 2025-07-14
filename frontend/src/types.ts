@@ -1,3 +1,5 @@
+import type { PayloadBlock } from './utils/payload';
+
 export interface Post {
   id: string;
   slug: string;
@@ -12,14 +14,21 @@ export interface Post {
 
   canonical?: string | URL;
   permalink?: string;
-  duration: string;
+  duration?: string;
   accentColor?: string;
   excerpt?: string;
   category?: string;
-  postIndex?: Array<string>;
-  status: string;
+  postIndex?: Array<{
+    label: string;
+    anchor: string;
+  }>;
+  status?: string;
 
-  Content: string;
+  // Payload specific properties
+  layout?: PayloadBlock[];
+  isPayloadPost?: boolean;
+
+  Content?: any; // Function for MDX posts, null for Payload posts
 }
 
 export interface MetaSEO {

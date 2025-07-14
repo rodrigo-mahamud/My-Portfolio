@@ -1,107 +1,25 @@
-import { getCollection } from 'astro:content';
-import type { CollectionEntry } from 'astro:content';
-import type { Post } from '~/types';
-import { cleanSlug, trimSlash, POST_PERMALINK_PATTERN } from './permalinks';
+// Simplified Payload fetching utilities following official Astro-Payload pattern
 
-const generatePermalink = async ({ id, slug, publishDate }) => {
-  const year = String(publishDate.getFullYear()).padStart(4, '0');
-  const month = String(publishDate.getMonth() + 1).padStart(2, '0');
-  const day = String(publishDate.getDate()).padStart(2, '0');
-  const hour = String(publishDate.getHours()).padStart(2, '0');
-  const minute = String(publishDate.getMinutes()).padStart(2, '0');
-  const second = String(publishDate.getSeconds()).padStart(2, '0');
+const PAYLOAD_API_URL = import.meta.env.PUBLIC_PAYLOAD_URL || 'http://localhost:3000/api';
 
-  const permalink = POST_PERMALINK_PATTERN.replace('%slug%', slug)
-    .replace('%id%', id)
-    .replace('%year%', year)
-    .replace('%month%', month)
-    .replace('%day%', day)
-    .replace('%hour%', hour)
-    .replace('%minute%', minute)
-    .replace('%second%', second);
+export async function fetchWorks() {
+  const res = await fetch(`${PAYLOAD_API_URL}/works`);
+  const data = await res.json();
+  return data.docs;
+}
 
-  return permalink
-    .split('/')
-    .map((el) => trimSlash(el))
-    .filter((el) => !!el)
-    .join('/');
-};
+export async function fetchWorkBySlug(slug: string) {
+  const res = await fetch(`${PAYLOAD_API_URL}/works?where[slug][equals]=${slug}`);
+  const data = await res.json();
+  return data.docs[0] || null;
+}
 
-const getNormalizedPost = async (post: CollectionEntry<'post'>): Promise<Post> => {
-  const { id, slug: rawSlug = '', data } = post;
-  const { Content } = await post.render();
+export async function fetchLatestWorks(limit: number = 6) {
+  const res = await fetch(`${PAYLOAD_API_URL}/works?limit=${limit}&sort=-publishDate`);
+  const data = await res.json();
+  return data.docs;
+}
 
-  const { author = 'Anonymous', publishDate: rawPublishDate = new Date(), ...rest } = data;
-
-  const slug = cleanSlug(rawSlug.split('/').pop());
-  const publishDate = new Date(rawPublishDate);
-
-  return {
-    id: id,
-    slug: slug,
-    publishDate: publishDate,
-    author: author,
-
-    ...rest,
-    Content: Content,
-    permalink: await generatePermalink({ id, slug, publishDate }),
-  };
-};
-
-const load = async function (): Promise<Array<Post>> {
-  const posts = await getCollection('post');
-  const normalizedPosts = posts.map(async (post) => await getNormalizedPost(post));
-
-  const results = (await Promise.all(normalizedPosts)).sort(
-    (a, b) => b.publishDate.valueOf() - a.publishDate.valueOf()
-  );
-
-  return results;
-};
-
-let _posts: Array<Post>;
-
-/** */
-export const fetchPosts = async (): Promise<Array<Post>> => {
-  if (!_posts) {
-    _posts = await load();
-  }
-
-  return _posts;
-};
-
-/** */
-export const findPostsBySlugs = async (slugs: Array<string>): Promise<Array<Post>> => {
-  if (!Array.isArray(slugs)) return [];
-
-  const posts = await fetchPosts();
-
-  return slugs.reduce(function (r: Array<Post>, slug: string) {
-    posts.some(function (post: Post) {
-      return slug === post.slug && r.push(post);
-    });
-    return r;
-  }, []);
-};
-
-/** */
-export const findPostsByIds = async (ids: Array<string>): Promise<Array<Post>> => {
-  if (!Array.isArray(ids)) return [];
-
-  const posts = await fetchPosts();
-
-  return ids.reduce(function (r: Array<Post>, id: string) {
-    posts.some(function (post: Post) {
-      return id === post.id && r.push(post);
-    });
-    return r;
-  }, []);
-};
-
-/** */
-export const findLatestPosts = async ({ count }: { count?: number }): Promise<Array<Post>> => {
-  const _count = count || 4;
-  const posts = await fetchPosts();
-
-  return posts ? posts.slice(0, _count) : [];
-};
+// Legacy exports for backwards compatibility
+export const fetchPosts = fetchWorks;
+export const findLatestPosts = fetchLatestWorks;

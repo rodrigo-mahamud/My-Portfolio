@@ -1,0 +1,80 @@
+---
+import type { PostGalleryGridBlock } from '../../../utils/payload';
+import { payloadAPI } from '../../../utils/payload';
+
+export interface Props {
+  block: PostGalleryGridBlock;
+}
+
+const { block } = Astro.props;
+
+// Grid classes based on columns
+const gridClasses = {
+  '1': 'grid-cols-1',
+  '2': 'grid-cols-1 md:grid-cols-2',
+  '3': 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3',
+  '4': 'grid-cols-1 md:grid-cols-2 lg:grid-cols-4'
+};
+---
+
+<section class="animate-on-scroll px-4 sm:px-6 py-12 mb-8" data-type="simple" data-duration="1.5" data-easing="Expo.easeOut">
+  <div class="max-w-6xl mx-auto">
+    {(block.title || block.subtitle) && (
+      <div class="text-center mb-12">
+        {block.title && (
+          <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">
+            {block.title}
+          </h2>
+        )}
+        {block.subtitle && (
+          <p class="text-lg text-gray-300">
+            {block.subtitle}
+          </p>
+        )}
+      </div>
+    )}
+    
+    <div class={`grid ${gridClasses[block.columns || '2']} gap-8`}>
+      {block.items.map((item, index) => {
+        const mediaUrl = payloadAPI.getMediaUrl(item.mediaFile);
+        const isVideo = mediaUrl.includes('.mp4') || mediaUrl.includes('.webm') || mediaUrl.includes('.mov');
+        
+        return (
+          <div key={index} class="group">
+            <div class="relative overflow-hidden rounded-lg bg-gray-900">
+              {isVideo ? (
+                <video 
+                  class="w-full h-auto transition-transform duration-300 group-hover:scale-105" 
+                  controls
+                  preload="metadata"
+                  poster={`${mediaUrl}#t=0.5`}
+                >
+                  <source src={mediaUrl} type="video/mp4" />
+                </video>
+              ) : (
+                <img 
+                  src={mediaUrl} 
+                  alt={item.mediaFile.alt || item.title} 
+                  class="w-full h-auto transition-transform duration-300 group-hover:scale-105 object-cover"
+                  loading="lazy"
+                  decoding="async"
+                />
+              )}
+            </div>
+            
+            <div class="mt-4">
+              <h3 class="text-lg font-semibold text-white mb-2">
+                {item.title}
+              </h3>
+              {item.subtitle && (
+                <p class="text-sm text-gray-400">
+                  {item.subtitle}
+                </p>
+              )}
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  </div>
+</section>

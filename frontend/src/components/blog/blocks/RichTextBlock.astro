@@ -1,0 +1,36 @@
+---
+import type { RichTextBlock } from '../../../utils/payload';
+import { payloadAPI } from '../../../utils/payload';
+
+export interface Props {
+  block: RichTextBlock;
+}
+
+const { block } = Astro.props;
+const contentHTML = payloadAPI.richTextToHTML(block.content);
+
+// Width classes
+const widthClasses = {
+  narrow: 'max-w-2xl',
+  default: 'max-w-4xl',
+  wide: 'max-w-6xl',
+  full: 'max-w-none'
+};
+
+// Alignment classes
+const alignClasses = {
+  left: 'text-left',
+  center: 'text-center',
+  right: 'text-right',
+  justify: 'text-justify'
+};
+---
+
+<section class="animate-on-scroll px-4 sm:px-6 py-8 mb-8" data-type="simple" data-duration="1.5" data-easing="Expo.easeOut">
+  <div class={`mx-auto ${widthClasses[block.maxWidth || 'default']}`}>
+    <div 
+      class={`prose prose-lg text-white max-w-none ${alignClasses[block.textAlign || 'left']}`}
+      set:html={contentHTML} 
+    />
+  </div>
+</section>

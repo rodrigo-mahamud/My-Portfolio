@@ -1,0 +1,29 @@
+---
+import type { PayloadBlock } from '../../utils/payload';
+
+// Import block components
+import SinglePostInfoBlock from './blocks/SinglePostInfoBlock.astro';
+import SinglePostSectionBlock from './blocks/SinglePostSectionBlock.astro';
+import PostMediaBlock from './blocks/PostMediaBlock.astro';
+import PostGalleryGridBlock from './blocks/PostGalleryGridBlock.astro';
+import PostCardsBlock from './blocks/PostCardsBlock.astro';
+import StatsBlock from './blocks/StatsBlock.astro';
+import PostNextProjectBlock from './blocks/PostNextProjectBlock.astro';
+import RichTextBlock from './blocks/RichTextBlock.astro';
+
+export interface Props {
+  block: PayloadBlock;
+  key?: string | number;
+}
+
+const { block } = Astro.props;
+---
+
+{block.blockType === 'singlePostInfo' && <SinglePostInfoBlock block={block} />}
+{block.blockType === 'singlePostSection' && <SinglePostSectionBlock block={block} />}
+{block.blockType === 'postMedia' && <PostMediaBlock block={block} />}
+{block.blockType === 'postGalleryGrid' && <PostGalleryGridBlock block={block} />}
+{block.blockType === 'postCards' && <PostCardsBlock block={block} />}
+{block.blockType === 'stats' && <StatsBlock block={block} />}
+{block.blockType === 'postNextProject' && <PostNextProjectBlock block={block} />}
+{block.blockType === 'richText' && <RichTextBlock block={block} />}

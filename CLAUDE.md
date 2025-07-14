@@ -43,6 +43,7 @@ pnpm test:e2e            # Run E2E tests only
 pnpm generate:types      # Generate TypeScript types for Payload
 pnpm generate:importmap  # Generate import map
 pnpm payload             # Run Payload CLI commands
+pnpm seed                # Create admin user (first time setup)
 ```
 
 ## Architecture
@@ -66,9 +67,11 @@ Key frontend patterns:
 
 -  Pages use Astro's file-based routing
 -  Components can be `.astro` (static) or `.jsx`/`.tsx` (interactive)
--  Content is managed via MDX files in `src/content/`
+-  Content is managed via Payload CMS blocks
 -  Tailwind CSS for styling with custom configuration
 -  GSAP and Lenis for animations and smooth scrolling
+-  WorksGrid displays all works from Payload CMS
+-  WorksItem renders individual work cards with Payload image support
 
 ### Backend Structure
 
@@ -104,7 +107,17 @@ Key backend patterns:
    ```
    DATABASE_URI=mongodb://127.0.0.1:27017/RMGP-Database
    PAYLOAD_SECRET=YOUR_SECRET_HERE
+   ADMIN_EMAIL=your-admin@email.com
+   ADMIN_PASSWORD=your-secure-password
    ```
+
+### Authentication & Access Control
+
+The backend uses role-based access control:
+- **Public access**: Read-only access to published works and media
+- **Authenticated users**: Can create, read, update works and media
+- **Admin users**: Full access including user management
+- Run `pnpm seed` to create the first admin user
 
 ### Frontend Requirements
 

@@ -1,0 +1,26 @@
+---
+import { payloadAPI } from '../../utils/payload';
+
+export interface Props {
+  content: any; // Payload rich text content
+  className?: string;
+}
+
+const { content, className = '' } = Astro.props;
+
+// Convert Payload rich text to HTML
+const htmlContent = content ? payloadAPI.richTextToHTML(content) : '';
+---
+
+{htmlContent && (
+  <div 
+    class={className}
+    set:html={htmlContent}
+  />
+)}
+
+{!htmlContent && (
+  <div class={className}>
+    <p>No content available</p>
+  </div>
+)}
