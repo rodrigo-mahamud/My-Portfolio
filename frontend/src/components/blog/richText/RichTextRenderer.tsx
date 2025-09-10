@@ -10,8 +10,6 @@ type Props = {
 export default function RichTextRenderer(props: Props) {
   const { className, data, ...rest } = props
 
-  console.log('RichTextRenderer data:', JSON.stringify(data, null, 2))
-
   if (!data) {
     return (
       <div className={`rich-text-content ${className || ''}`}>
