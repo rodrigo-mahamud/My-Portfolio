@@ -27,6 +27,7 @@ export interface Post {
   // Payload specific properties
   layout?: PayloadBlock[];
   isPayloadPost?: boolean;
+  content?: any; // Rich text content from Payload
 
   Content?: any; // Function for MDX posts, null for Payload posts
 }

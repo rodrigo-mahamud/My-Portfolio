@@ -7,6 +7,7 @@ import mdx from '@astrojs/mdx';
 import partytown from '@astrojs/partytown';
 import compress from 'astro-compress';
 import icon from 'astro-icon';
+import react from '@astrojs/react';
 import { SITE } from './src/config.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -19,7 +20,22 @@ export default defineConfig({
   base: SITE.basePathname,
   trailingSlash: SITE.trailingSlash ? 'always' : 'never',
   output: 'static',
+  image: {
+    domains: ['localhost', '127.0.0.1'],
+    remotePatterns: [
+      {
+        protocol: 'http',
+        hostname: 'localhost',
+        port: '3000',
+      },
+      {
+        protocol: 'https',
+        hostname: '**.payloadcms.com',
+      }
+    ],
+  },
   integrations: [
+    react(),
     icon({
       iconDir: 'src/icons',
     }),

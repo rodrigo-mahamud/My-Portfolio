@@ -1,25 +1,13 @@
 ---
 import { Icon } from 'astro-icon/components';
+import PayloadImage from '../common/PayloadImage.astro';
+import { processAccentColor } from '~/utils/utils';
 
 export interface Props {
   work: any; // Payload work object
 }
 
 const { work } = Astro.props;
-
-const PAYLOAD_URL = import.meta.env.PUBLIC_PAYLOAD_URL?.replace('/api', '') || 'http://localhost:3000';
-
-// Get image URL
-const getImageUrl = (image) => {
-  if (!image) return null;
-  if (typeof image === 'string') return image;
-  if (image.url) {
-    return image.url.startsWith('http') ? image.url : `${PAYLOAD_URL}${image.url}`;
-  }
-  return null;
-};
-
-const imageUrl = getImageUrl(work.image);
 
 function darkenColor(color, amount) {
   let [r, g, b, a] = color.match(/\d+/g).map(Number);
@@ -29,7 +17,8 @@ function darkenColor(color, amount) {
   return `rgba(${r}, ${g}, ${b}, ${a - 0.25})`;
 }
 
-const adjustedColor1 = work.accentColor ? darkenColor(work.accentColor, 0.6) : 'rgba(0, 0, 0, 0.5)';
+const processedColor = processAccentColor(work.accentColor);
+const adjustedColor1 = darkenColor(processedColor, 0.6);
 ---
 
 <div
@@ -38,7 +27,7 @@ const adjustedColor1 = work.accentColor ? darkenColor(work.accentColor, 0.6) : '
   data-duration="1.5"
   data-easing="Expo.easeOut"
   style={{
-    '--gradient-base-color': work.accentColor || 'rgba(126, 107, 235, 1)',
+    '--gradient-base-color': processedColor,
     '--adjusted-color1': adjustedColor1,
   }}
 >
@@ -84,13 +73,15 @@ const adjustedColor1 = work.accentColor ? darkenColor(work.accentColor, 0.6) : '
           data-easing="Expo.easeOut"
         >
           {
-            imageUrl && (
-              <img
-                class="object-cover md:w-5/6 h-[105%] rounded-xl md:rounded-t-2xl mx-auto"
+            work.image && (
+              <PayloadImage
+                image={work.image}
                 alt={work.image?.alt || `Imagen del ${work.title}`}
-                src={imageUrl}
+                class="object-cover md:w-5/6 h-[105%] rounded-xl md:rounded-t-2xl mx-auto"
                 loading="lazy"
-                decoding="async"
+                quality="high"
+                widths={[375, 640, 768, 1024, 1280, 1536, 1920]}
+                sizes="(max-width: 768px) 100vw, (max-width: 1024px) 90vw, 83vw"
               />
             )
           }

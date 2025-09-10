@@ -108,6 +108,7 @@ export interface PayloadWork {
   title: string
   author: string
   excerpt?: string
+  content?: any // Rich text content
   publishDate?: string
   image: {
     id: string
@@ -175,6 +176,7 @@ class PayloadAPI {
     page?: number
     where?: object
     sort?: string
+    depth?: number
   } = {}): Promise<PayloadResponse<PayloadWork>> {
     const params = new URLSearchParams()
     
@@ -182,6 +184,8 @@ class PayloadAPI {
     if (options.page) params.set('page', String(options.page))
     if (options.where) params.set('where', JSON.stringify(options.where))
     if (options.sort) params.set('sort', options.sort)
+    // Add depth parameter to populate relationships
+    params.set('depth', String(options.depth || 2))
 
     const queryString = params.toString()
     const endpoint = `/works${queryString ? `?${queryString}` : ''}`
@@ -194,7 +198,8 @@ class PayloadAPI {
     try {
       const response = await this.getWorks({
         where: { slug: { equals: slug } },
-        limit: 1
+        limit: 1,
+        depth: 2 // Populate image relationship
       })
       
       return response.docs[0] || null
@@ -209,7 +214,8 @@ class PayloadAPI {
     try {
       const response = await this.getWorks({
         limit,
-        sort: '-publishDate'
+        sort: '-publishDate',
+        depth: 2 // Populate image relationship
       })
       
       return response.docs
@@ -222,7 +228,7 @@ class PayloadAPI {
   // Get work by ID
   async getWorkById(id: string): Promise<PayloadWork | null> {
     try {
-      return await this.fetchAPI<PayloadWork>(`/works/${id}`)
+      return await this.fetchAPI<PayloadWork>(`/works/${id}?depth=2`)
     } catch (error) {
       console.error(`Error fetching work by ID: ${id}`, error)
       return null
@@ -279,7 +285,10 @@ export const payloadAPI = new PayloadAPI()
 // Helper functions for compatibility with existing blog utils
 export async function fetchWorksFromPayload(): Promise<PayloadWork[]> {
   try {
-    const response = await payloadAPI.getWorks({ sort: '-publishDate' })
+    const response = await payloadAPI.getWorks({ 
+      sort: '-publishDate',
+      depth: 2 // Populate image relationship
+    })
     return response.docs
   } catch (error) {
     console.error('Error fetching works from Payload', error)

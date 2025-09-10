@@ -9,6 +9,31 @@ import {
   PostNextProject,
   RichText,
 } from '../blocks'
+import { AccentColor } from '../fields/color'
+import {
+  lexicalEditor,
+  FixedToolbarFeature,
+  InlineToolbarFeature,
+  BoldFeature,
+  ItalicFeature,
+  UnderlineFeature,
+  StrikethroughFeature,
+  InlineCodeFeature,
+  ParagraphFeature,
+  HeadingFeature,
+  LinkFeature,
+  OrderedListFeature,
+  UnorderedListFeature,
+  ChecklistFeature,
+  BlockquoteFeature,
+  AlignFeature,
+  IndentFeature,
+  SuperscriptFeature,
+  SubscriptFeature,
+  HorizontalRuleFeature,
+  BlocksFeature,
+  UploadFeature,
+} from '@payloadcms/richtext-lexical'
 
 export const Works: CollectionConfig = {
   slug: 'works',
@@ -30,7 +55,9 @@ export const Works: CollectionConfig = {
       name: 'author',
       type: 'text',
       required: true,
-      defaultValue: 'Rodrigo',
+      admin: {
+        position: 'sidebar',
+      },
     },
     {
       name: 'excerpt',
@@ -40,12 +67,94 @@ export const Works: CollectionConfig = {
       },
     },
     {
+      name: 'content',
+      type: 'richText',
+      editor: lexicalEditor({
+        features: () => [
+          // Toolbar fija en la parte superior
+          FixedToolbarFeature(),
+          // Toolbar flotante al seleccionar texto
+          InlineToolbarFeature(),
+
+          // Formateo de texto básico
+          BoldFeature(),
+          ItalicFeature(),
+          UnderlineFeature(),
+          StrikethroughFeature(),
+          InlineCodeFeature(),
+          SuperscriptFeature(),
+          SubscriptFeature(),
+
+          // Estructura de documento
+          ParagraphFeature(),
+          HeadingFeature({
+            enabledHeadingSizes: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'],
+          }),
+
+          // Listas
+          OrderedListFeature(),
+          UnorderedListFeature(),
+          ChecklistFeature(),
+
+          // Bloques especiales
+          BlockquoteFeature(),
+          HorizontalRuleFeature(),
+
+          // Enlaces
+          LinkFeature({
+            enabledCollections: ['works'],
+            fields: ({ defaultFields }) => defaultFields,
+          }),
+
+          // Alineación y sangría
+          AlignFeature(),
+          IndentFeature(),
+
+          // Multimedia y contenido avanzado
+          UploadFeature({
+            collections: {
+              media: {
+                fields: [
+                  {
+                    name: 'alt',
+                    type: 'text',
+                    required: true,
+                  },
+                  {
+                    name: 'caption',
+                    type: 'text',
+                  },
+                ],
+              },
+            },
+          }),
+
+          // Bloques reutilizables
+          BlocksFeature({
+            blocks: [
+              SinglePostInfo,
+              SinglePostSection,
+              PostMedia,
+              PostGalleryGrid,
+              PostCards,
+              Stats,
+              RichText,
+            ],
+          }),
+        ],
+      }),
+      admin: {
+        description: 'Contenido detallado del proyecto con formato enriquecido',
+      },
+    },
+    {
       name: 'publishDate',
       type: 'date',
       admin: {
         date: {
           pickerAppearance: 'dayAndTime',
         },
+        position: 'sidebar',
       },
     },
     {
@@ -57,13 +166,13 @@ export const Works: CollectionConfig = {
         description: 'Main project hero image',
       },
     },
-    {
+    AccentColor({
       name: 'accentColor',
-      type: 'text',
+      label: 'Color de accento',
       admin: {
-        description: 'RGBA color for project theming (e.g., rgba(161, 198, 0, 1))',
+        description: 'Color for project theming',
       },
-    },
+    }),
 
     // Navigation Index
     {

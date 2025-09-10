@@ -1,12 +1,14 @@
 ---
 
-import { getFormattedDate } from '../../utils/utils';
+import { getFormattedDate, processAccentColor } from '../../utils/utils';
 import type { Post } from '../../types';
 import PostIndex from './PostIndex.astro';
 import { YouTube } from '@astro-community/astro-embed-youtube';
 
 import { payloadAPI } from '../../utils/payload';
 import BlockRenderer from './BlockRenderer.astro';
+import PayloadImage from '../common/PayloadImage.astro';
+import RichTextRenderer from './RichTextRenderer';
 
 export interface Props {
   post: Post;
@@ -22,15 +24,7 @@ if (!isPayloadPost) {
 }
 
 // Handle image sources (Payload vs MDX)
-const getImageSrc = (image) => {
-  if (!image) return null;
-  if (typeof image === 'string') return image; // MDX image
-  if (image.src) return image.src; // Astro image object
-  if (image.url) return payloadAPI.getMediaUrl(image); // Payload image
-  return null;
-};
-
-const imageSrc = getImageSrc(post.image);
+const isPayloadImage = post.image && typeof post.image === 'object' && 'url' in post.image;
 const imageAlt = post.image?.alt || `Imagen del ${post.title}`;
 function darkenColor(color, amount) {
   let [r, g, b, a] = color.match(/\d+/g).map(Number);
@@ -39,9 +33,10 @@ function darkenColor(color, amount) {
   b = Math.floor(b * amount);
   return `rgba(${r}, ${g}, ${b}, ${a - 0.25})`;
 }
-console.log('imagedssdfasfas', imageSrc);
+console.log('POST', post.content);
 
-const adjustedColor1 = darkenColor(post.accentColor, 0.5);
+const processedColor = processAccentColor(post.accentColor);
+const adjustedColor1 = darkenColor(processedColor, 0.5);
 ---
 
 <style>
@@ -96,7 +91,7 @@ const adjustedColor1 = darkenColor(post.accentColor, 0.5);
   <div
     class="bg-accentColor absolute w-full h-screen"
     style={{
-      '--gradient-base-color': post.accentColor,
+      '--gradient-base-color': processedColor,
       '--adjusted-color1': adjustedColor1,
     }}
   >
@@ -114,7 +109,7 @@ const adjustedColor1 = darkenColor(post.accentColor, 0.5);
           data-duration="1.5"
           data-easing="Expo.easeOut"
           style={{
-            '--gradient-base-color': post.accentColor,
+            '--gradient-base-color': processedColor,
             '--adjusted-color1': adjustedColor1,
           }}
         >
@@ -128,7 +123,7 @@ const adjustedColor1 = darkenColor(post.accentColor, 0.5);
         </p>
       </div>
       {
-        imageSrc ? (
+        post.image ? (
           <div
             class=" h-[50vh] md:h-[75vh] w-full reltive pb-[1px] animate-on-scroll"
             data-type="simple"
@@ -136,13 +131,25 @@ const adjustedColor1 = darkenColor(post.accentColor, 0.5);
             data-easing="Expo.easeOut"
           >
             <div class=" absolute w-full h-[inherit] z-10 shadow-[inset_0px_-350px_125px_-200px_#0a0118]" />
-            <img
-              class="rounded-xl h-full w-full object-cover"
-              alt={imageAlt}
-              src={imageSrc}
-              loading="eager"
-              decoding="async"
-            />
+            {isPayloadImage ? (
+              <PayloadImage
+                image={post.image}
+                alt={imageAlt}
+                class="rounded-xl h-full w-full object-cover"
+                loading="eager"
+                quality="high"
+                widths={[640, 768, 1024, 1280, 1536, 1920, 2560]}
+                sizes="100vw"
+              />
+            ) : (
+              <img
+                class="rounded-xl h-full w-full object-cover"
+                alt={imageAlt}
+                src={typeof post.image === 'string' ? post.image : post.image.src}
+                loading="eager"
+                decoding="async"
+              />
+            )}
           </div>
         ) : (
           <div class=" mx-auto px-4 sm:px-6">
@@ -154,6 +161,20 @@ const adjustedColor1 = darkenColor(post.accentColor, 0.5);
 
     <div class="mx-auto">
       <YouTube id="" class="hidden" />
+      
+      {/* Renderizar el contenido richText si existe */}
+      {post.content && (
+        <section class="animate-on-scroll px-4 sm:px-6 py-8 mb-8" 
+          data-type="simple" 
+          data-duration="1.5" 
+          data-easing="Expo.easeOut">
+          <div class="max-w-4xl mx-auto">
+            <RichTextRenderer data={post.content} client:load />
+          </div>
+        </section>
+      )}
+      
+      {/* Renderizar los bloques del layout */}
       {post.layout && post.layout.map((block, index) => (
         <BlockRenderer block={block} key={index} />
       ))}

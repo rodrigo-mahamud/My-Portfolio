@@ -1,0 +1,115 @@
+---
+import { Image } from 'astro:assets';
+
+export interface Props {
+  image: any;
+  alt?: string;
+  class?: string;
+  loading?: 'lazy' | 'eager';
+  widths?: number[];
+  sizes?: string;
+  quality?: 'low' | 'mid' | 'high' | 'max' | number;
+  format?: 'avif' | 'webp' | 'png' | 'jpg';
+  aspectRatio?: string;
+  inferSize?: boolean;
+}
+
+const {
+  image,
+  alt = '',
+  class: className = '',
+  loading = 'lazy',
+  widths = [320, 640, 768, 1024, 1280, 1536, 1920],
+  sizes = '(max-width: 640px) 100vw, (max-width: 768px) 768px, (max-width: 1024px) 1024px, (max-width: 1280px) 1280px, 1536px',
+  quality = 'high',
+  format = 'webp',
+  aspectRatio,
+  inferSize = true,
+} = Astro.props;
+
+const PAYLOAD_URL = import.meta.env.PUBLIC_PAYLOAD_URL?.replace('/api', '') || 'http://localhost:3000';
+
+const getImageData = (img: any) => {
+  if (!img) return null;
+  
+  // If it's a string (ID only), we can't optimize it
+  if (typeof img === 'string') {
+    console.warn('Image is only an ID, cannot optimize. Make sure to use depth parameter in queries.');
+    return null;
+  }
+  
+  // Get the URL
+  let url = '';
+  if (img.url) {
+    url = img.url.startsWith('http') ? img.url : `${PAYLOAD_URL}${img.url}`;
+  }
+  
+  return {
+    src: url,
+    alt: img.alt || alt,
+    width: img.width,
+    height: img.height,
+  };
+};
+
+const imageData = getImageData(image);
+
+// Calculate aspect ratio if width and height are available
+const calculateAspectRatio = () => {
+  if (aspectRatio) return aspectRatio;
+  if (imageData?.width && imageData?.height) {
+    return `${imageData.width}/${imageData.height}`;
+  }
+  return undefined;
+};
+
+const imageAspectRatio = calculateAspectRatio();
+---
+
+{
+  imageData ? (
+    inferSize && !imageData.width ? (
+      <Image
+        src={imageData.src}
+        alt={imageData.alt}
+        class={className}
+        loading={loading}
+        widths={widths}
+        sizes={sizes}
+        quality={quality}
+        format={format}
+        inferSize={true}
+        decoding="async"
+      />
+    ) : imageData.width && imageData.height ? (
+      <Image
+        src={imageData.src}
+        alt={imageData.alt}
+        width={imageData.width}
+        height={imageData.height}
+        class={className}
+        loading={loading}
+        widths={widths}
+        sizes={sizes}
+        quality={quality}
+        format={format}
+        decoding="async"
+      />
+    ) : (
+      <Image
+        src={imageData.src}
+        alt={imageData.alt}
+        class={className}
+        loading={loading}
+        widths={widths}
+        sizes={sizes}
+        quality={quality}
+        format={format}
+        inferSize={true}
+        decoding="async"
+      />
+    )
+  ) : (
+    <div class={`bg-gray-200 ${className}`} aria-label="Image placeholder" />
+  )
+}

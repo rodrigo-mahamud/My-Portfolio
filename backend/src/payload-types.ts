@@ -171,13 +171,31 @@ export interface Work {
    * Brief description of the project for previews
    */
   excerpt?: string | null;
+  /**
+   * Contenido detallado del proyecto con formato enriquecido
+   */
+  content?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
   publishDate?: string | null;
   /**
    * Main project hero image
    */
   image: string | Media;
   /**
-   * RGBA color for project theming (e.g., rgba(161, 198, 0, 1))
+   * Color for project theming
    */
   accentColor?: string | null;
   /**
@@ -595,6 +613,7 @@ export interface WorksSelect<T extends boolean = true> {
   title?: T;
   author?: T;
   excerpt?: T;
+  content?: T;
   publishDate?: T;
   image?: T;
   accentColor?: T;
