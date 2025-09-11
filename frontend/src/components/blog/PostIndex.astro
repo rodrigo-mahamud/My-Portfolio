@@ -40,37 +40,64 @@ const { headings } = Astro.props;
   gsap.registerPlugin(ScrollTrigger);
 
   document.addEventListener('DOMContentLoaded', () => {
-    const sections = document.querySelectorAll('[id^="h"], section[id]');
-
-    sections.forEach((section) => {
-      ScrollTrigger.create({
-        trigger: section,
-        start: 'top center',
-        end: 'bottom center',
-        onEnter: () => animateLink(section.id, true),
-        onLeaveBack: () => animateLink(section.id, false),
-        onLeave: () => animateLink(section.id, false),
-        onEnterBack: () => animateLink(section.id, true),
-      });
-    });
-
-    function animateLink(id, entering) {
-      const link = document.querySelector(`a[href="#${id}"]`);
-      if (entering) {
-        gsap.to(link, {
-          color: '#fff',
-          marginLeft: '0.25rem',
-          duration: 0.5,
-          ease: 'Expo.easeOut',
-        });
-      } else {
-        gsap.to(link, {
-          color: '#9CA3AF',
-          marginLeft: '0',
-          duration: 0.5,
-          ease: 'Expo.easeOut',
-        });
+    setTimeout(() => {
+      const headingElements = document.querySelectorAll('h1[id], h2[id], h3[id], h4[id], h5[id], h6[id]');
+      let currentActiveLink = null;
+      
+      function setActiveLink(newActiveId) {
+        // Desactivar el enlace anterior si existe
+        if (currentActiveLink && currentActiveLink !== newActiveId) {
+          const previousLink = document.querySelector(`a[href="#${currentActiveLink}"]`);
+          if (previousLink) {
+            gsap.to(previousLink, {
+              color: '#9CA3AF',
+              marginLeft: '0',
+              duration: 0.3,
+              ease: 'Expo.easeOut',
+            });
+          }
+        }
+        
+        // Activar el nuevo enlace
+        if (newActiveId) {
+          const newLink = document.querySelector(`a[href="#${newActiveId}"]`);
+          if (newLink) {
+            gsap.to(newLink, {
+              color: '#fff',
+              marginLeft: '0.25rem',
+              duration: 0.3,
+              ease: 'Expo.easeOut',
+            });
+          }
+        }
+        
+        currentActiveLink = newActiveId;
       }
-    }
+      
+      headingElements.forEach((heading, index) => {
+        const headingId = heading.id;
+        if (!headingId) return;
+        
+        ScrollTrigger.create({
+          trigger: heading,
+          start: 'top 60%',
+          end: 'bottom 40%',
+          onEnter: () => setActiveLink(headingId),
+          onEnterBack: () => setActiveLink(headingId),
+          onLeave: () => {
+            // Solo desactivar si es el último elemento o si no hay siguiente
+            if (index === headingElements.length - 1) {
+              setActiveLink(null);
+            }
+          },
+          onLeaveBack: () => {
+            // Solo desactivar si es el primer elemento o si no hay anterior
+            if (index === 0) {
+              setActiveLink(null);
+            }
+          }
+        });
+      });
+    }, 100);
   });
 </script>

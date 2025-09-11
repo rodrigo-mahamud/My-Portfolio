@@ -8,6 +8,7 @@ import {
   Stats,
   PostNextProject,
   RichText,
+  WorkCardsBlock,
 } from '../blocks'
 import { AccentColor } from '../fields/color'
 import {
@@ -139,6 +140,7 @@ export const Works: CollectionConfig = {
               PostCards,
               Stats,
               RichText,
+              WorkCardsBlock,
             ],
           }),
         ],
