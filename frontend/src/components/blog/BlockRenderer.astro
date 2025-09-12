@@ -10,6 +10,7 @@ import PostCardsBlock from './blocks/PostCardsBlock.astro';
 import StatsBlock from './blocks/StatsBlock.astro';
 import PostNextProjectBlock from './blocks/PostNextProjectBlock.astro';
 import RichTextBlock from './blocks/RichTextBlock.astro';
+import WorkCardsBlock from './richText/blocks/WorkCardsBlock.astro';
 
 export interface Props {
   block: PayloadBlock;
@@ -27,3 +28,4 @@ const { block } = Astro.props;
 {block.blockType === 'stats' && <StatsBlock block={block} />}
 {block.blockType === 'postNextProject' && <PostNextProjectBlock block={block} />}
 {block.blockType === 'richText' && <RichTextBlock block={block} />}
+{block.blockType === 'workCards' && <WorkCardsBlock cards={block.cards} />}

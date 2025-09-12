@@ -1,0 +1,46 @@
+---
+import { convertLexicalToHTML } from '../../../utils/lexicalToHtml'
+import type { SerializedEditorState } from 'lexical'
+import BlockRenderer from '../BlockRenderer.astro'
+
+export interface Props {
+  data: SerializedEditorState | null
+  className?: string
+}
+
+const { data, className = '' } = Astro.props
+
+const { html, blocks } = convertLexicalToHTML(data)
+---
+
+<div 
+  class={`rich-text-content prose prose-lg prose-invert max-w-none
+    prose-headings:text-white 
+    prose-p:text-gray-300 
+    prose-strong:text-white
+    prose-em:text-gray-200
+    prose-blockquote:text-gray-400
+    prose-blockquote:border-blue-500
+    prose-code:text-blue-300
+    prose-pre:bg-gray-900
+    prose-ol:text-gray-300
+    prose-ul:text-gray-300
+    prose-li:text-gray-300
+    prose-hr:border-gray-700
+    prose-a:text-blue-400
+    prose-a:hover:text-blue-300
+    ${className}`}>
+  {blocks.map((item) => {
+    if (item.type === 'html') {
+      return <Fragment set:html={item.content} />
+    } else if (item.type === 'block') {
+      // Create a block object compatible with BlockRenderer
+      const block = {
+        blockType: item.blockType,
+        ...item.data
+      }
+      return <BlockRenderer block={block} />
+    }
+    return null
+  })}
+</div>

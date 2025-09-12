@@ -1,15 +1,28 @@
 ---
-const { cards } = Astro.props;
-const cardsJson = JSON.parse(JSON.stringify(cards));
-
 import { YouTube } from '@astro-community/astro-embed-youtube';
 import { Icon } from 'astro-icon/components';
+
+export interface Props {
+  cards: Array<{
+    id: string;
+    ytId: string;
+    title: string;
+    description: string;
+    info?: Array<{
+      id: string;
+      icon: string;
+      text: string;
+    }>;
+  }>;
+}
+
+const { cards } = Astro.props;
 ---
 
 <section class="h-full mt-16 mb-8 md:mb-20">
   <div class="grid md:grid-cols-2 gap-7 gap-y-14">
     {
-      Object.values(cardsJson).map((card: any,) => (
+      cards.map((card) => (
         <div
           class="flex flex-col border border-[#f2f2f248] rounded-xl md:rounded-2xl overflow-hidden animate-on-scroll"
           data-type="simple"
@@ -24,11 +37,11 @@ import { Icon } from 'astro-icon/components';
               poster={`https://i.ytimg.com/vi/${card.ytId}/maxresdefault.jpg`}
             />
           </div>
-          <div class="flex flex-col workCardBorderGlow px-5 md:px-8 ">
+          <div class="flex flex-col workCardBorderGlow px-5 md:px-8">
             <h2 class="mb-2 mt-10 text-white text-lg font-semibold">{card.title}</h2>
-            <h3 class="mb-2 ">{card.description}</h3>
+            <h3 class="mb-2">{card.description}</h3>
 
-            {Object.values(card.info).map((info: any) => (
+            {card.info && card.info.map((info) => (
               <div class="flex py-2 md:py-3 last:pb-10 justify-start items-center">
                 <Icon name={info.icon} class="w-5 h-5 md:text-2xl mr-5 text-white" />
                 <p class="text-pretty text-sm w-fit">{info.text}</p>

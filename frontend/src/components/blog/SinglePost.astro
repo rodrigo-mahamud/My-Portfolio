@@ -9,7 +9,7 @@ import { extractHeadingsFromRichText } from '../../utils/richTextUtils';
 import { payloadAPI } from '../../utils/payload';
 import BlockRenderer from './BlockRenderer.astro';
 import PayloadImage from '../common/PayloadImage.astro';
-import RichTextRenderer from './richText/RichTextRenderer';
+import RichTextAstro from './richText/RichTextAstro.astro';
 
 export interface Props {
   post: Post;
@@ -172,7 +172,7 @@ const headings = post.content ? extractHeadingsFromRichText(post.content) : [];
           data-duration="1.5" 
           data-easing="Expo.easeOut">
           <div class="max-w-4xl mx-auto">
-            <RichTextRenderer data={post.content} client:load />
+            <RichTextAstro data={post.content} />
           </div>
         </section>
       )}
