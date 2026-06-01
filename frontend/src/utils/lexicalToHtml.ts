@@ -11,6 +11,7 @@ export interface LexicalNode {
   url?: string;
   fields?: {
     linkType?: string;
+    url?: string;
     newTab?: boolean;
     doc?: {
       value: any;
@@ -157,7 +158,9 @@ function convertNodeToHTML(node: LexicalNode, headings: HeadingInfo[] = []): str
 
     case 'link': {
       const linkContent = node.children?.map((child) => convertNodeToHTML(child, headings)).join('') || '';
-      const url = node.fields?.doc ? `/works/${node.fields.doc.value?.slug || ''}` : node.url || '#';
+      const url = node.fields?.doc
+        ? `/works/${node.fields.doc.value?.slug || ''}`
+        : node.fields?.url || node.url || '#';
       const target = node.fields?.newTab ? 'target="_blank" rel="noopener noreferrer"' : '';
       return `<a href="${url}" class="text-blue-400 hover:text-blue-300 underline" ${target}>${linkContent}</a>`;
     }

@@ -1,4 +1,6 @@
 // Payload CMS API utilities
+import { convertLexicalToHTML } from './lexicalToHtml'
+
 const PAYLOAD_API_URL = import.meta.env.PUBLIC_PAYLOAD_URL || 'http://localhost:3000/api'
 
 // Block types
@@ -235,26 +237,12 @@ class PayloadAPI {
     }
   }
 
-  // Convert Payload rich text to HTML (basic conversion)
+  // Convert Payload rich text (Lexical) to HTML.
+  // Delegates to the full converter so links, bold, lists, line breaks, etc. render.
   richTextToHTML(richText: any): string {
     if (!richText || !richText.root) return ''
-    
-    // This is a basic converter - you might want to use a more sophisticated one
-    // based on how Payload's Lexical editor structures the content
     try {
-      const content = richText.root.children || []
-      return content.map((node: any) => {
-        if (node.type === 'paragraph') {
-          const text = node.children?.map((child: any) => child.text || '').join('') || ''
-          return `<p>${text}</p>`
-        }
-        if (node.type === 'heading') {
-          const text = node.children?.map((child: any) => child.text || '').join('') || ''
-          const tag = node.tag || 'h2'
-          return `<${tag}>${text}</${tag}>`
-        }
-        return ''
-      }).join('')
+      return convertLexicalToHTML(richText).html
     } catch (error) {
       console.error('Error converting rich text to HTML', error)
       return ''
