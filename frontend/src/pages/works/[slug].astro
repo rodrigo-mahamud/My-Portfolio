@@ -5,7 +5,8 @@ import PageLayout from '../../layouts/PageLayout.astro';
 
 
 export async function getStaticPaths() {
-  const res = await fetch("http://localhost:3000/api/works");
+  const base = import.meta.env.PUBLIC_PAYLOAD_URL || 'http://localhost:3000/api';
+  const res = await fetch(`${base}/works?limit=100&depth=2`);
   const data = await res.json();
   
   return data.docs.map((work) => {

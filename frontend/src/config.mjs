@@ -3,7 +3,7 @@ import defaultImage from './assets/images/default.png';
 const CONFIG = {
   name: 'Rodrigo Mahamud',
 
-  origin: 'https://astrowind.vercel.app',
+  origin: 'https://stupendous-capybara-079a5c.netlify.app',
   basePathname: '/',
   trailingSlash: false,
 
