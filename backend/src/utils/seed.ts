@@ -1,3 +1,4 @@
+import 'dotenv/config'
 import { getPayload } from 'payload'
 import config from '../payload.config'
 
@@ -39,8 +40,12 @@ export async function createAdminUser() {
   }
 }
 
-// Run if called directly
-if (require.main === module) {
+// Run if called directly (ESM compatible)
+import { fileURLToPath } from 'url'
+
+const isMainModule = process.argv[1] === fileURLToPath(import.meta.url)
+
+if (isMainModule) {
   createAdminUser()
     .then(() => {
       console.log('Seeding completed')
