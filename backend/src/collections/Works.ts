@@ -168,6 +168,14 @@ export const Works: CollectionConfig = {
         description: 'Main project hero image',
       },
     },
+    {
+      name: 'heroVideo',
+      type: 'upload',
+      relationTo: 'media',
+      admin: {
+        description: 'Optional hero video (plays instead of image)',
+      },
+    },
     AccentColor({
       name: 'accentColor',
       label: 'Color de accento',

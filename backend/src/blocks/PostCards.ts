@@ -54,6 +54,7 @@ export const PostCards: Block = {
                 { label: 'Star', value: 'star' },
                 { label: 'Heart', value: 'heart' },
                 { label: 'Play', value: 'play' },
+                { label: 'Message Circle', value: 'message-circle' },
               ],
               admin: {
                 description: 'Icon for this info item',

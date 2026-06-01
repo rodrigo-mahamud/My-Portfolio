@@ -195,6 +195,10 @@ export interface Work {
    */
   image: string | Media;
   /**
+   * Optional hero video (plays instead of image)
+   */
+  heroVideo?: (string | null) | Media;
+  /**
    * Color for project theming
    */
   accentColor?: string | null;
@@ -395,7 +399,16 @@ export interface Work {
                     /**
                      * Icon for this info item
                      */
-                    icon: 'calendarTime' | 'thumbUp' | 'eye' | 'clock' | 'user' | 'star' | 'heart' | 'play';
+                    icon:
+                      | 'calendarTime'
+                      | 'thumbUp'
+                      | 'eye'
+                      | 'clock'
+                      | 'user'
+                      | 'star'
+                      | 'heart'
+                      | 'play'
+                      | 'message-circle';
                     /**
                      * Info text (e.g., "Published on: 22-12-2023")
                      */
@@ -616,6 +629,7 @@ export interface WorksSelect<T extends boolean = true> {
   content?: T;
   publishDate?: T;
   image?: T;
+  heroVideo?: T;
   accentColor?: T;
   postIndex?:
     | T
