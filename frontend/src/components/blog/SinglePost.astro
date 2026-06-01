@@ -40,6 +40,32 @@ const adjustedColor1 = darkenColor(processedColor, 0.5);
 
 // Extract headings from rich text content for dynamic index
 const headings = post.content ? extractHeadingsFromRichText(post.content) : [];
+
+// Group consecutive half-width media blocks into a flex row (mirrors the original
+// MDX, where two <PostMedia> sat side-by-side inside a flex wrapper).
+const layoutBlocks = post.layout || [];
+const layoutGroups: Array<{ kind: 'row' | 'single'; blocks?: any[]; block?: any }> = [];
+for (let i = 0; i < layoutBlocks.length; ) {
+  const b = layoutBlocks[i];
+  if (b.blockType === 'postMedia' && b.layout === 'half') {
+    // Chunk consecutive half-width media into rows of two (mirrors the original
+    // MDX, where side-by-side media always came in pairs).
+    const row: any[] = [];
+    while (
+      i < layoutBlocks.length &&
+      layoutBlocks[i].blockType === 'postMedia' &&
+      layoutBlocks[i].layout === 'half' &&
+      row.length < 2
+    ) {
+      row.push(layoutBlocks[i]);
+      i++;
+    }
+    layoutGroups.push({ kind: 'row', blocks: row });
+  } else {
+    layoutGroups.push({ kind: 'single', block: b });
+    i++;
+  }
+}
 ---
 
 <style>
@@ -167,16 +193,33 @@ const headings = post.content ? extractHeadingsFromRichText(post.content) : [];
       
       {/* Renderizar el contenido richText si existe */}
       {post.content && (
-        <section class="animate-on-scroll px-4 sm:px-6 py-8 mb-8" 
-          data-type="simple" 
-          data-duration="1.5" 
+        <section class="animate-on-scroll px-4 sm:px-6 py-8 mb-8"
+          data-type="simple"
+          data-duration="1.5"
           data-easing="Expo.easeOut">
           <div class="max-w-4xl mx-auto">
             <RichTextAstro data={post.content} />
           </div>
         </section>
       )}
-      
+
+      {/* Renderizar los bloques del layout (contenido estructurado del proyecto) */}
+      {layoutGroups.length > 0 && (
+        <div class="block-layout">
+          {layoutGroups.map((g) =>
+            g.kind === 'row' ? (
+              <div class="flex flex-col md:flex-row gap-8 mt-16 mb-16">
+                {g.blocks!.map((b) => (
+                  <BlockRenderer block={b} />
+                ))}
+              </div>
+            ) : (
+              <BlockRenderer block={g.block} />
+            )
+          )}
+        </div>
+      )}
+
     </div>
   </article>
 </section>
@@ -240,7 +283,8 @@ const headings = post.content ? extractHeadingsFromRichText(post.content) : [];
     mouseY?: number;
   }
 
-  document.getElementById('cards')!.onmousemove = (e: MouseEvent) => {
+  const cardsEl = document.getElementById('cards');
+  if (cardsEl) cardsEl.onmousemove = (e: MouseEvent) => {
     const cards = document.getElementsByClassName('bento');
 
     for (const card of Array.from(cards) as ExtendedHTMLElement[]) {
@@ -281,9 +325,11 @@ const headings = post.content ? extractHeadingsFromRichText(post.content) : [];
   const nextSection = document.getElementById('nextSection') as HTMLElement;
   const canvasContainer = document.getElementById('canvas-container') as HTMLElement;
   const canvas = document.getElementById('canvas') as HTMLCanvasElement;
-  const ctx = canvas.getContext('2d')!;
   const nextProjectMobile = document.getElementById('nextProjectMobile') as HTMLElement;
   const image = document.getElementById('image') as HTMLElement;
+  // The next-project block may be absent on some works; guard its scripts.
+  if (nextSection && canvas) {
+  const ctx = canvas.getContext('2d')!;
   if (isMobileDevice()) {
     gsap.to(image, {
       scrollTrigger: {
@@ -442,4 +488,5 @@ const headings = post.content ? extractHeadingsFromRichText(post.content) : [];
 
     starAnimation();
   }
+  } // end guard: nextSection && canvas
 </script>

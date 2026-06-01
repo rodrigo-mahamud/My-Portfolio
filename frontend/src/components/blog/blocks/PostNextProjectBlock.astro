@@ -14,7 +14,7 @@ const displayTitle = block.customTitle || nextProject?.title || 'Next Project';
 const displayDescription = block.customDescription || nextProject?.excerpt || '';
 const displayImage = block.customImage ? payloadAPI.getMediaUrl(block.customImage) : 
                     nextProject?.image ? payloadAPI.getMediaUrl(nextProject.image) : null;
-const displayUrl = block.customUrl || (nextProject?.slug ? `/blog/${nextProject.slug}` : '#');
+const displayUrl = block.customUrl || (nextProject?.slug ? `/works/${nextProject.slug}` : '#');
 ---
 
 <section class="animate-on-scroll px-4 sm:px-6 py-16 mb-8" data-type="simple" data-duration="1.5" data-easing="Expo.easeOut">

@@ -1,31 +1,103 @@
 ---
-import type { PayloadBlock } from '../../utils/payload';
+import { payloadAPI } from '../../utils/payload';
 
-// Import block components
-import SinglePostInfoBlock from './blocks/SinglePostInfoBlock.astro';
-import SinglePostSectionBlock from './blocks/SinglePostSectionBlock.astro';
-import PostMediaBlock from './blocks/PostMediaBlock.astro';
-import PostGalleryGridBlock from './blocks/PostGalleryGridBlock.astro';
-import PostCardsBlock from './blocks/PostCardsBlock.astro';
-import StatsBlock from './blocks/StatsBlock.astro';
-import PostNextProjectBlock from './blocks/PostNextProjectBlock.astro';
-import RichTextBlock from './blocks/RichTextBlock.astro';
+// Original UI components — single source of truth for the design.
+// Payload block data is adapted to the props these components already expect.
+import SinglePostInfo from './SinglePostInfo.astro';
+import SinglePostSection from './SinglePostSection.astro';
+import PostMedia from './PostMedia.astro';
+import PostGalleryGrid from './PostGalleryGrid.astro';
+import PostNextProject from './PostNextProject.astro';
+import PostCards from './PostCards.astro';
+import Stats from '../widgets/Stats.astro';
 import WorkCardsBlock from './richText/blocks/WorkCardsBlock.astro';
 
-export interface Props {
-  block: PayloadBlock;
-  key?: string | number;
+const { block } = Astro.props;
+
+// --- adapters: Payload block -> original component props ---
+const singlePostInfo =
+  block.blockType === 'singlePostInfo'
+    ? {
+        rol: block.rol,
+        title: block.title,
+        status: block.status,
+        duration: block.duration,
+        overview: payloadAPI.richTextToHTML(block.overview),
+        team: block.team ? payloadAPI.richTextToHTML(block.team) : undefined,
+      }
+    : null;
+
+const mediaData =
+  block.blockType === 'postMedia'
+    ? {
+        path: payloadAPI.getMediaUrl(block.mediaFile),
+        caption: block.caption ? payloadAPI.richTextToHTML(block.caption) : '',
+        delay: block.delay ?? 0.25,
+        frame: block.frame !== false,
+      }
+    : null;
+
+let galleryData: { videos: any[]; images: any[] } | null = null;
+if (block.blockType === 'postGalleryGrid') {
+  galleryData = { videos: [], images: [] };
+  for (const it of block.items || []) {
+    const url = payloadAPI.getMediaUrl(it.mediaFile);
+    const entry = { path: url, title: it.title, subtitle: it.subtitle };
+    if (/\.(mp4|webm|mov)(\?|#|$)/i.test(url)) galleryData.videos.push(entry);
+    else galleryData.images.push(entry);
+  }
 }
 
-const { block } = Astro.props;
+let nextData: { path: string; title: string; nextUrl: string } | null = null;
+if (block.blockType === 'postNextProject') {
+  const np = block.nextProject;
+  nextData = {
+    path: block.customImage
+      ? payloadAPI.getMediaUrl(block.customImage)
+      : np && np.image
+      ? payloadAPI.getMediaUrl(np.image)
+      : '',
+    title: block.customTitle || (np && np.title) || '',
+    nextUrl: block.customUrl || (np && np.slug ? `/works/${np.slug}` : '#'),
+  };
+}
+
+const sectionHTML =
+  block.blockType === 'singlePostSection' ? payloadAPI.richTextToHTML(block.content) : '';
+const richTextHTML = block.blockType === 'richText' ? payloadAPI.richTextToHTML(block.content) : '';
 ---
 
-{block.blockType === 'singlePostInfo' && <SinglePostInfoBlock block={block} />}
-{block.blockType === 'singlePostSection' && <SinglePostSectionBlock block={block} />}
-{block.blockType === 'postMedia' && <PostMediaBlock block={block} />}
-{block.blockType === 'postGalleryGrid' && <PostGalleryGridBlock block={block} />}
-{block.blockType === 'postCards' && <PostCardsBlock block={block} />}
-{block.blockType === 'stats' && <StatsBlock block={block} />}
-{block.blockType === 'postNextProject' && <PostNextProjectBlock block={block} />}
-{block.blockType === 'richText' && <RichTextBlock block={block} />}
+{singlePostInfo && <SinglePostInfo singlePostInfo={singlePostInfo} />}
+
+{
+  block.blockType === 'singlePostSection' && (
+    <SinglePostSection title={block.title} preTitle={block.preTitle}>
+      <div
+        class="animate-on-scroll leading-7 text-base"
+        data-type="simple"
+        data-duration="1.5"
+        data-easing="Expo.easeOut"
+        set:html={sectionHTML}
+      />
+    </SinglePostSection>
+  )
+}
+
+{mediaData && <PostMedia media={mediaData} />}
+{galleryData && <PostGalleryGrid mediaFiles={galleryData} />}
+{nextData && <PostNextProject data={nextData} />}
+
+{block.blockType === 'postCards' && <PostCards cards={block.cards} />}
+{block.blockType === 'stats' && <Stats stats={block.stats} />}
+{
+  block.blockType === 'richText' && (
+    <div
+      class="animate-on-scroll leading-7 text-base"
+      data-type="simple"
+      data-duration="1.5"
+      data-easing="Expo.easeOut"
+      set:html={richTextHTML}
+    />
+  )
+}
 {block.blockType === 'workCards' && <WorkCardsBlock cards={block.cards} />}
