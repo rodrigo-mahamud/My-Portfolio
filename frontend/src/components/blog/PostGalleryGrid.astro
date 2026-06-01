@@ -24,8 +24,11 @@ const imageSources = import.meta.glob<{ default: ImageMetadata }>('/src/assets/i
         mediaItem.path.endsWith('.jpg') ||
         mediaItem.path.endsWith('.jpeg') ||
         mediaItem.path.endsWith('.png') ||
-        mediaItem.path.endsWith('.gif');
-      const mediaSrc = isImage ? imageSources[mediaItem.path]() : mediaItem.path;
+        mediaItem.path.endsWith('.gif') ||
+        mediaItem.path.endsWith('.webp');
+      // Remote (Payload) media uses full URLs; local (MDX) images resolve via glob.
+      const isRemote = typeof mediaItem.path === 'string' && mediaItem.path.startsWith('http');
+      const mediaSrc = isImage && !isRemote ? imageSources[mediaItem.path]() : mediaItem.path;
 
       const spanClass = [
         'col-span-5 md:col-span-3 row-span-4',
@@ -49,7 +52,11 @@ const imageSources = import.meta.glob<{ default: ImageMetadata }>('/src/assets/i
             </div>
             <div class=" flex m-6 md:m-8 h-full overflow-hidden">
               {isImage ? (
-                <Image class="rounded-xl" alt="Imagen" src={mediaSrc} loading="lazy" decoding="async" />
+                isRemote ? (
+                  <img class="rounded-xl w-full" alt="Imagen" src={mediaSrc} loading="lazy" decoding="async" />
+                ) : (
+                  <Image class="rounded-xl" alt="Imagen" src={mediaSrc} loading="lazy" decoding="async" />
+                )
               ) : (
                 <video
                   class="w-full rounded-md h-full aspect-video lazy-video object-cover"

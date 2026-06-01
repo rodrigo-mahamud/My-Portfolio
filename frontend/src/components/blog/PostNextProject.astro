@@ -3,8 +3,12 @@ import { Image } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
 import { getPermalink } from '../../utils/permalinks';
 const { data } = Astro.props;
+// Remote (Payload) image referenced by URL; local (MDX) image resolved via glob.
+const isRemote = typeof data.path === 'string' && data.path.startsWith('http');
 const imagePath = import.meta.glob<{ default: ImageMetadata }>('/src/assets/works/*.{jpeg,jpg,png,gif}');
-const imageSrc = imagePath[`/src/assets/works${data.path}`]();
+const imageImport = !isRemote ? imagePath[`/src/assets/works${data.path}`] : undefined;
+const imageSrc = imageImport ? imageImport() : undefined;
+const nextHref = isRemote || data.nextUrl?.startsWith('/') ? data.nextUrl : getPermalink(data.nextUrl);
 ---
 
 <section
@@ -14,7 +18,7 @@ const imageSrc = imagePath[`/src/assets/works${data.path}`]();
 >
   <a
     id="nextSection"
-    href={getPermalink(data.nextUrl)}
+    href={nextHref}
     class="w-full h-[inherit] absolute flex justify-center items-center z-50 cursor-none"
   >
   </a>
@@ -27,17 +31,28 @@ const imageSrc = imagePath[`/src/assets/works${data.path}`]();
     </div>
 
     <div class="flex w-full justify-center items-center absolute -z-10">
-      <Image
-        id="image"
-        class="rounded-t-xl md:rounded-t-2xl translate-y-28 md:translate-y-0 aspect-[15/16] md:aspect-auto w-3/4 md:w-1/2 md:saturate-50 object-cover"
-        alt={`Next project: ${imageSrc}`}
-        widths={[350, 475, 575, 1050, 1250]}
-        sizes={`(max-width: 550px) 350px, (max-width: 750px) 475px, (max-width: 950px) 575px,(max-width: 1920px) 1050px, (max-width: 2560px) 1250px,`}
-        quality={'mid'}
-        loading="lazy"
-        src={imageSrc}
-        decoding="async"
-      />
+      {isRemote ? (
+        <img
+          id="image"
+          class="rounded-t-xl md:rounded-t-2xl translate-y-28 md:translate-y-0 aspect-[15/16] md:aspect-auto w-3/4 md:w-1/2 md:saturate-50 object-cover"
+          alt="Next project"
+          loading="lazy"
+          src={data.path}
+          decoding="async"
+        />
+      ) : (
+        <Image
+          id="image"
+          class="rounded-t-xl md:rounded-t-2xl translate-y-28 md:translate-y-0 aspect-[15/16] md:aspect-auto w-3/4 md:w-1/2 md:saturate-50 object-cover"
+          alt="Next project"
+          widths={[350, 475, 575, 1050, 1250]}
+          sizes={`(max-width: 550px) 350px, (max-width: 750px) 475px, (max-width: 950px) 575px,(max-width: 1920px) 1050px, (max-width: 2560px) 1250px,`}
+          quality={'mid'}
+          loading="lazy"
+          src={imageSrc}
+          decoding="async"
+        />
+      )}
     </div>
 
     <div class="focus absolute"></div>
